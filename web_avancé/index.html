@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="row">
+    <div class="col-xs-6">
+        <h3>Student</h3>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody id="student_table">
+                <tr>
+                    <th>Time</th>
+                    <th>Period</th>
+                    <th>Teacher</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-xs-6">
+        <h3>Secretary</h3>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody id="secretary_table">
+                <tr>
+                    <th>Time</th>
+                    <th>Teacher</th>
+                    <th>Student</th>
+                    <th>Class name</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function add_time_line(table_name, column_nb) {
+        var table = document.getElementById(table_name);
+        var time = 8;
+        while (time < 18) {
+            var new_row = document.createElement("tr");
+            var new_item = document.createElement("td");
+            var node_text = document.createTextNode(time.toString() + ":00");
+            new_item.appendChild(node_text);
+            new_row.appendChild(new_item);
+            for (var i = 0; i < column_nb - 1; i++) {
+                new_row.appendChild(document.createElement("td"));
+            }
+            table.appendChild(new_row);
+            time++;
+        }
+    }
+    add_time_line("student_table", 3);
+    add_time_line("secretary_table", 4);
+
+</script>
+
+</body>
+</html>
