@@ -26,6 +26,17 @@ Person.Client = function (firstName, lastName, address, freeTime) {
     Person.call(this, firstName, lastName, address);
     this.type = "Client";
     this.freeTime = freeTime;
+
+
+    var list_class = [];
+
+    /**
+     * add a class to a student
+     * @param value
+     */
+    function add_class(value){
+        this.list_class.push(value);
+    };
 }
 
 Person.Secretary = function () {
@@ -38,7 +49,17 @@ Person.Teacher = function (firstName, lastName, address, freeTime) {
     this.type = "Teacher";
     this.freeTime = freeTime;
 
-    this.__defineSetter__("class", function(value) {this.class = value;});
+    var list_class = [];
+
+    /**
+     * add a class to a teacher
+     * @param value
+     */
+    function add_class(value){
+          this.list_class.push(value);
+    };
+
+
 }
 
 
@@ -54,6 +75,9 @@ Class = function (name) {
 Class.prototype = {
     name: "",
     type: "",
+    duration:"",
+    teacher:"",
+    student:"",
     description: function () {
         console.log("This is " + this.name + " of type " + this.type);
     }
