@@ -60,12 +60,12 @@ Class.prototype = {
 }
 
 Class.DriveClass = function (name) {
-    Class.Class.call(this, name);
+    Class.call(this, name);
     this.type = "Drive";
 }
 
 Class.LectureClass = function (name) {
-    Class.Class.call(this, name);
+    Class.call(this, name);
     this.type = "Lecture";
 }
 

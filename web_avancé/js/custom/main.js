@@ -40,7 +40,7 @@ function editSecretaryTable() {
 
 window.onload = function () {
     initObjects();
-    add_time_line('student_table', 3);
+    add_time_line('student_table', 4);
     add_time_line('secretary_table', 4);
 
     // Check browser support
