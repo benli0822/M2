@@ -23,7 +23,7 @@ function add_time_line(table_name, column_nb) {
 }
 
 window.onload = function() {
-    add_time_line("student_table", 3);
+    add_time_line("student_table", 4);
     add_time_line("secretary_table", 4);
 
 
