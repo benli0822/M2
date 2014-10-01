@@ -4,12 +4,18 @@
 function initObjects() {
     cl = new Class.LectureClass('toto');
 
+    teacherList = [];
     jps = new Person.Teacher('jps', 'jsp', 'jsp', 8);
     ns = new Person.Teacher('ns', 'ns', 'ns', 9);
     bs = new Person.Teacher('bs', 'bs', 'bs', 'bs', 10);
+    cheng = new Person.Teacher('cheng', 'cheng', 'cheng', 20);
+    teacherList.push(jps);
+    teacherList.push(ns);
+    teacherList.push(bs);
+    teacherList.push(cheng);
 }
 
-function add_time_line(table_name, column_nb) {
+function addTimeLine(table_name, column_nb) {
     var table = document.getElementById(table_name);
     var time = 8;
     var count = 0;
@@ -33,15 +39,26 @@ function add_time_line(table_name, column_nb) {
     }
 }
 
-function editSecretaryTable() {
-    var title1 = document.createElement('th');
-    title1.innerHTML = ''
+function editTable(table_name) {
+    var table = document.getElementById(table_name);
+    var title_row = document.createElement('tr');
+    var title_name1 = document.createElement('th');
+    title_name1.appendChild(document.createTextNode('Time'));
+    title_row.appendChild(title_name1);
+    for(var i = 0; i< teacherList.length; i ++ ){
+        var title_temp = document.createElement('th');
+        title_temp.appendChild(document.createTextNode(teacherList[i].firstName));
+        title_row.appendChild(title_temp);
+    }
+    table.appendChild(title_row);
+    addTimeLine(table_name,teacherList.length+1);
+
 }
 
 window.onload = function () {
     initObjects();
-    add_time_line('student_table', 4);
-    add_time_line('secretary_table', 4);
+    addTimeLine('student_table', 4);
+    editTable('secretary_table', 4);
 
     // Check browser support
     if (typeof(Storage) != 'undefined') {
