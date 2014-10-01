@@ -1,9 +1,12 @@
 /**
  * Created by benli on 24/09/14.
  */
-model = {};
 
-model.Person.prototype = {
+/**
+ * Prototype for Person
+ * @type {{firstName: string, lastName: string, address: string, type: string, say: say}}
+ */
+Person.prototype = {
     firstName: "",
     lastName: "",
     address: "",
@@ -13,48 +16,64 @@ model.Person.prototype = {
     }
 }
 
-model.Person = function (firstName, lastName, address) {
+Person = function (firstName, lastName, address) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
 }
 
-model.Client = function (firstName, lastName, address, freeTime) {
-    model.Person.call(this, firstName, lastName, address);
+
+Person.Client = function (firstName, lastName, address, freeTime) {
+    Person.call(this, firstName, lastName, address);
     this.type = "Client";
     this.freeTime = freeTime;
+
+    this.__defineGetter__('freeTime', function () {
+        return this.freeTime;
+    });
+
 }
 
-model.Secretary = function () {
-    model.Person.call(this);
+Person.Secretary = function () {
+    Person.call(this);
     this.type = "Secretary";
 }
 
-model.Teacher = function (freeTime) {
-    model.Person.call(this);
+Person.Teacher = function (freeTime) {
+    Person.call(this);
     this.type = "Teacher";
     this.freeTime = freeTime;
+
+    this.__defineGetter__('freeTime', function () {
+        return this.freeTime;
+    });
+
 }
 
-model.Class.prototype = {
+
+/**
+ * Prototype for class
+ * @type {{name: string, type: string, description: description}}
+ */
+Class.prototype = {
     name: "",
     type: "",
-    description: function() {
+    description: function () {
         console.log("This is " + this.name + " of type " + this.type);
     }
 }
 
-model.Class = function(name) {
+Class = function (name) {
     this.name = name;
 }
 
-model.DriveClass = function(name) {
-    model.Class.call(this, name);
+Class.DriveClass = function (name) {
+    Class.Class.call(this, name);
     this.type = "Drive";
 }
 
-model.LectureClass = function(name) {
-    model.Class.call(this, name);
+Class.LectureClass = function (name) {
+    Class.Class.call(this, name);
     this.type = "Lecture";
 }
 

@@ -49,30 +49,6 @@
 
     </div>
 </div>
-
-
-<script type="text/javascript">
-
-    function add_time_line(table_name, column_nb) {
-        var table = document.getElementById(table_name);
-        var time = 8;
-        while (time < 18) {
-            var new_row = document.createElement("tr");
-            var new_item = document.createElement("td");
-            var node_text = document.createTextNode(time.toString() + ":00");
-            new_item.appendChild(node_text);
-            new_row.appendChild(new_item);
-            for (var i = 0; i < column_nb - 1; i++) {
-                new_row.appendChild(document.createElement("td"));
-            }
-            table.appendChild(new_row);
-            time++;
-        }
-    }
-    add_time_line("student_table", 3);
-    add_time_line("secretary_table", 4);
-
-</script>
-
+<script type="text/javascript" src="js/custom/main.js"></script>
 </body>
 </html>
