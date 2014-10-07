@@ -77,7 +77,9 @@ function save_a_class_to_database(teacher, client, duration, starttime ){
     //create a class and save it to db
 
     //1. create the class locally
-    var newClass = Class.DriveClass("class_name", duration, teacher, client,starttime);
+    newClass = new Class.DriveClass("class_name", duration, teacher, client,starttime);
+
+
     //2. add the class to the DB
     var retrievedObjectData = localStorage.getItem('classList');
     var originalObject = JSON.parse(retrievedObjectData);
@@ -98,12 +100,13 @@ function save_a_class_to_database(teacher, client, duration, starttime ){
         if(clientlistobject[i].firstName == client.firstName && clientlistobject[i].lastName == client.lastName){
             //we have find the client add the class to this client
             var theClient = clientlistobject[i];
-            theClient.add_a_class(newClass);
+
+                theClient.list_class.push(newClass);
 
             //we will replace the old client information with the new client information
             clientlistobject[i]=theClient;
             //we will store the new client information to the DB
-            localStorage.setItem('clientlist',JSON.stringify(clientlistobject));
+            localStorage.setItem('clientList',JSON.stringify(clientlistobject));
         }
     }
 
@@ -117,12 +120,19 @@ function save_a_class_to_database(teacher, client, duration, starttime ){
         if(teacherlistobject[i].firstName == teacher.firstName && teacherlistobject[i].lastName == teacher.lastName){
             //we have find the teacher add the class to this teacher
             var theTeacher = teacherlistobject[i];
-            theTeacher.add_a_class(newClass);
+
+
+
+                //console.log(" add a new class to a teacher" +" which starts at"+newClass.startTime);
+                //theTeacher.list_class = new Array(newClass);
+                theTeacher.list_class.push(newClass);
+                console.log("after add a class to the teach now this teacher has "+ theTeacher.list_class.length + " class");
 
             //we will replace the old teacher information with the new teacher information
             teacherlistobject[i]=theTeacher;
             //we will store the new teacher information to the DB
-            localStorage.setItem('teacherlist',JSON.stringify(teacherlistobject));
+
+            localStorage.setItem('teacherList',JSON.stringify(teacherlistobject));
         }
     }
 
@@ -146,10 +156,29 @@ function get_classlist_from_DB(){
     return originalObject;
 }
 
+function find_a_teacher_by_name(firstname,lastname){
 
 
 
-function add_some_object_to_init_db(){
+    //add the class information to a teacher
+    //1.get the teacher list
+    var teacherlistData = localStorage.getItem('teacherList');
+    var teacherlistobject = JSON.parse(teacherlistData);
+
+
+
+    //Traverse in the teacher list to find the teacher
+    for(var i = 0; i <= teacherlistobject.length -1 ; i++){
+        if(teacherlistobject[i].firstName == firstname && teacherlistobject[i].lastName == lastname ){
+            //we have find the teacher add the class to this teacher
+            console.log("find the teacher" + firstname);
+          return teacherlistobject[i];
+        }
+    }
+}
+
+
+function add_some_teacher_to_init_db(){
 
 
 
@@ -166,4 +195,14 @@ function add_some_object_to_init_db(){
     localStorage.setItem('teacherList',JSON.stringify(newlist));
 
 
+}
+
+function add_some_test_data_to_db(){
+
+
+
+    save_a_class_to_database(find_a_teacher_by_name('cheng','cheng'),'jsp',1,8);
+    var tea = find_a_teacher_by_name('cheng','cheng');
+    //console.log("In function add some test data to db we find : "+tea.lastName);
+    console.log("this teacher has "+tea.list_class.length + "lessons" );
 }

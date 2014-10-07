@@ -2,24 +2,15 @@
  * Created by CHENG Xiaojun et JIN Benli on 01/10/14.
  */
 function initObjects() {
-    /*cl = new Class.LectureClass('toto');
-
-    teacherList = [];
-    jps = new Person.Teacher('jps', 'jsp', 'jsp', 8);
-    ns = new Person.Teacher('ns', 'ns', 'ns', 9);
-    bs = new Person.Teacher('bs', 'bs', 'bs', 'bs', 10);
-    cheng = new Person.Teacher('cheng', 'cheng', 'cheng', 20);
-    teacherList.push(jps);
-    teacherList.push(ns);
-    teacherList.push(bs);
-    teacherList.push(cheng);
-    */
 
     initDataHelper();
-    add_some_object_to_init_db();
+    add_some_teacher_to_init_db();
+
     teacherList = get_teacherlist_from_DB();
 
-    console.log(teacherList.length);
+
+    add_some_test_data_to_db();
+
 
 }
 
@@ -63,11 +54,17 @@ function editTable(table_name) {
 
 }
 
+
+
 window.onload = function () {
     initObjects();
     //addTimeLine('student_table', 4);
     editTable('secretary_table', 4);
+   update_secretary_table();
 
+
+
+    update_secretary_table();
     /*
     // Check browser support
     if (typeof(Storage) != 'undefined') {

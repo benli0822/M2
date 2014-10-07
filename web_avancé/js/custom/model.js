@@ -10,6 +10,7 @@ Person = function (firstName, lastName, address) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
+    this.list_class = new Array();
 }
 
 Person.prototype = {
@@ -21,9 +22,11 @@ Person.prototype = {
     say: function () {
         console.log("This is" + this.firstName + " " + this.lastName + ", I live in " + this.address);
     },
-    add_a_class: function(value){
-        this.list_class.push(value);
+
+    get_class_list: function(){
+        return this.list_class;
     }
+
 }
 
 
@@ -47,7 +50,9 @@ Person.Teacher = function (firstName, lastName, address, freeTime) {
     this.type_of_person = "Teacher";
     this.freeTime = freeTime;
 
-
+    this.add_a_class = function (value) {
+        this.list_class.push(value);
+    }
 
 
 }
@@ -58,28 +63,29 @@ Person.Teacher = function (firstName, lastName, address, freeTime) {
  * @type_of_person {{name: string, type_of_person: string, description: description}}
  */
 
-Class = function (name) {
+Class = function (name,teacher,duration,client,starttime) {
     this.name = name;
+    this.teacher = teacher;
+    this.duration = duration;
+    this.client = client;
+    this.startTime = starttime;
 }
 
 Class.prototype = {
     name: "",
     type: "",
     duration:"",
-    teacher:"",
-    student:"",
-    startTime:"",
-    description: function () {
-        console.log("This is " + this.name + " of type_of_person " + this.type);
-    }
+    teacher:{},
+    client:{},
+    startTime:""
 }
 
-Class.DriveClass = function (name, duration,teacher,student,startTime) {
-    Class.call(this, name);
+Class.DriveClass = function (name, duration,teacher,client,startTime) {
+    Class.call(name,teacher,duration,client,startTime);
     this.type = "Drive";
     this.duration = duration;
     this.teacher = teacher;
-    this.student = student;
+    this.client = client;
     this.startTime = startTime;
 
 }
