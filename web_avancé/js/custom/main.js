@@ -2,7 +2,7 @@
  * Created by CHENG Xiaojun et JIN Benli on 01/10/14.
  */
 function initObjects() {
-    cl = new Class.LectureClass('toto');
+    /*cl = new Class.LectureClass('toto');
 
     teacherList = [];
     jps = new Person.Teacher('jps', 'jsp', 'jsp', 8);
@@ -13,6 +13,13 @@ function initObjects() {
     teacherList.push(ns);
     teacherList.push(bs);
     teacherList.push(cheng);
+    */
+
+   
+
+    teacherList = get_teacherlist_from_DB();
+
+
 }
 
 function addTimeLine(table_name, column_nb) {

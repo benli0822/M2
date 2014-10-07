@@ -127,3 +127,43 @@ function save_a_class_to_database(teacher, client, duration, starttime ){
     }
 
 }
+
+
+function get_teacherlist_from_DB(){
+    var retrievedObjectData = localStorage.getItem('teacherList');
+    var originalObject = JSON.parse(retrievedObjectData);
+    return originalObject;
+}
+function get_clientlist_from_DB(){
+    var retrievedObjectData = localStorage.getItem('clientList');
+    var originalObject = JSON.parse(retrievedObjectData);
+    return originalObject;
+}
+
+function get_classlist_from_DB(){
+    var retrievedObjectData = localStorage.getItem('classList');
+    var originalObject = JSON.parse(retrievedObjectData);
+    return originalObject;
+}
+
+
+
+
+function add_some_object_to_init_db(){
+
+
+
+        newlist = [];
+        jps = new Person.Teacher('jps', 'jsp', 'jsp', 8);
+        ns = new Person.Teacher('ns', 'ns', 'ns', 9);
+        bs = new Person.Teacher('bs', 'bs', 'bs', 'bs', 10);
+        cheng = new Person.Teacher('cheng', 'cheng', 'cheng', 20);
+        newlist.push(jps);
+        newlist.push(ns);
+        newlist.push(bs);
+        newlist.push(cheng);
+
+    localStorage.setItem('teacherList',JSON.stringify(newlist));
+
+
+}
