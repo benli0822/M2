@@ -15,10 +15,11 @@ function initObjects() {
     teacherList.push(cheng);
     */
 
-   
-
+    initDataHelper();
+    add_some_object_to_init_db();
     teacherList = get_teacherlist_from_DB();
 
+    console.log(teacherList.length);
 
 }
 
@@ -67,6 +68,7 @@ window.onload = function () {
     //addTimeLine('student_table', 4);
     editTable('secretary_table', 4);
 
+    /*
     // Check browser support
     if (typeof(Storage) != 'undefined') {
         // Store
@@ -76,4 +78,6 @@ window.onload = function () {
     } else {
         document.getElementById('student_table_0_0').innerHTML = 'Sorry, your browser does not support Web Storage...';
     }
+    */
+    
 }
