@@ -1,5 +1,5 @@
 /**
- * Created by benli on 01/10/14.
+ * Created by CHENG Xiaojun et JIN Benli on 01/10/14.
  */
 function initObjects() {
     cl = new Class.LectureClass('toto');
