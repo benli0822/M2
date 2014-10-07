@@ -57,7 +57,7 @@ function editTable(table_name) {
 
 window.onload = function () {
     initObjects();
-    addTimeLine('student_table', 4);
+    //addTimeLine('student_table', 4);
     editTable('secretary_table', 4);
 
     // Check browser support
