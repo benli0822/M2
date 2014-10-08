@@ -106,8 +106,8 @@ Person.Teacher = function (firstName, lastName, address) {
  * Representation for a secretary
  * @constructor
  */
-Person.Secretary = function () {
-    Person.call(this);
+Person.Secretary = function (firstName, lastName, address) {
+    Person.call(this, firstName, lastName, address);
     this._type_of_person = "Secretary";
     this.__defineGetter__("type_of_person", function () {
         return this._type_of_person;
