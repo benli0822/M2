@@ -22,7 +22,7 @@
             <p class="help-block" id="searchResult"> 123</p>
         </form>
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover table-bordered">
                 <tbody id="student_table">
                 <tr>
                     <th id="abc">Date</th>
@@ -39,7 +39,7 @@
         <h3>Secretary</h3>
 
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover table-bordered">
                 <tbody id="secretary_table">
                 </tbody>
             </table>
@@ -67,7 +67,7 @@
     </form>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/custom/model.js"></script>
@@ -75,16 +75,18 @@
 <script type="text/javascript" src="js/custom/dataHelper.js"></script>
 <script type="text/javascript" src="js/custom/controller.js"></script>
 <script type="text/javascript">
+    var options = {
+        html: true,
+        trigger: "hover focus",
+        title: function () {
+            return $("#popover-head").html();
+        },
+        content: function () {
+            return $("#popover-content").html();
+        }
+    }
     $.getScript("js/custom/controller.js", function () {
-        $('.myPopover').popover({
-            html: true,
-            title: function () {
-                return $("#popover-head").html();
-            },
-            content: function () {
-                return $("#popover-content").html();
-            }
-        });
+        $('.myPopover').popover(options);
     });
 </script>
 </body>
