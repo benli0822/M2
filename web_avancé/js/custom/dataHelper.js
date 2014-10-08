@@ -188,7 +188,23 @@ function find_a_client_by_name(firstname,lastname){
         }
     }
 }
+function find_a_client_by_firstname(firstname){
 
+    //1.get the client list
+    var clientlistData = localStorage.getItem('clientList');
+    var clientlistobject = JSON.parse(clientlistData);
+
+
+
+    //Traverse in the client list to find the client
+    for(var i = 0; i <= clientlistobject.length -1 ; i++){
+        if(clientlistobject[i].firstName == firstname ){
+            //we have find the teacher add the class to this client
+            //console.log("find the client" + firstname);
+            return clientlistobject[i];
+        }
+    }
+}
 function add_some_teacher_to_init_db(){
 
 
