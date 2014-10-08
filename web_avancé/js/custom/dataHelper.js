@@ -72,14 +72,14 @@ function add_person_to_dataBase(someone){
  * @param duration
  * @param starttime
  */
-function save_a_class_to_database(teacher, client, duration, starttime ){
+function save_a_class_to_database(teacher, client, duration, starttime,day_date ){
 
     //create a class and save it to db
 
     //1. create the class locally
-    newClass = new Class.DriveClass("class_name", duration, teacher, client,starttime);
+    newClass = new Class.DriveClass("class_name", duration, teacher, client,starttime,day_date);
 
-
+    console.log('try to add a class which day_date is : ' + newClass.day_date);
     //2. add the class to the DB
     var retrievedObjectData = localStorage.getItem('classList');
     var originalObject = JSON.parse(retrievedObjectData);
@@ -126,7 +126,6 @@ function save_a_class_to_database(teacher, client, duration, starttime ){
                 //console.log(" add a new class to a teacher" +" which starts at"+newClass.startTime);
                 //theTeacher.list_class = new Array(newClass);
                 theTeacher.list_class.push(newClass);
-                console.log("after add a class to the teach now this teacher has "+ theTeacher.list_class.length + " class");
 
             //we will replace the old teacher information with the new teacher information
             teacherlistobject[i]=theTeacher;
@@ -167,22 +166,24 @@ function find_a_teacher_by_name(firstname,lastname){
     for(var i = 0; i <= teacherlistobject.length -1 ; i++){
         if(teacherlistobject[i].firstName == firstname && teacherlistobject[i].lastName == lastname ){
             //we have find the teacher add the class to this teacher
-            console.log("find the teacher" + firstname);
+            //console.log("find the teacher" + firstname);
           return teacherlistobject[i];
         }
     }
 }
 function find_a_client_by_name(firstname,lastname){
 
-    //1.get the student list
+    //1.get the client list
     var clientlistData = localStorage.getItem('clientList');
     var clientlistobject = JSON.parse(clientlistData);
 
-    //Traverse in the teacher list to find the teacher
+
+
+    //Traverse in the client list to find the client
     for(var i = 0; i <= clientlistobject.length -1 ; i++){
         if(clientlistobject[i].firstName == firstname && clientlistobject[i].lastName == lastname ){
-            //we have find the teacher add the class to this teacher
-            console.log("find the client" + firstname);
+            //we have find the teacher add the class to this client
+            //console.log("find the client" + firstname);
             return clientlistobject[i];
         }
     }
@@ -208,16 +209,16 @@ function add_some_teacher_to_init_db(){
 
 function add_some_test_data_to_db(){
 
-
-
-    save_a_class_to_database(find_a_teacher_by_name('cheng','cheng'),'jsp',1,8);
-    var tea = find_a_teacher_by_name('cheng','cheng');
-    //console.log("In function add some test data to db we find : "+tea.lastName);
-    console.log("this teacher has "+tea.list_class.length + "lessons" );
-
     test_add_teacher = new Person.Teacher('testT','testT','lille',11);
     stu1 = new Person.Client('stu1','stu1','stu1',11);
     stu2 = new Person.Client('stu2','stu2','stu2',22);
     add_person_to_dataBase(test_add_teacher);
+    add_person_to_dataBase(stu1);
+    add_person_to_dataBase(stu2);
+
+    save_a_class_to_database(find_a_teacher_by_name('cheng','cheng'),find_a_client_by_name('stu1','stu1'),1,8,'10-14');
+
+
+
 
 }
