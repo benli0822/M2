@@ -80,7 +80,9 @@ function search_button_click(){
 
     console.log("you want to search : " + search_text);
 
-    document.getElementById("searchResult").innerHTML = 'clicked';
-    var the_student = find_a_client_by_firstname(search_text);
-    update_student_table(the_student);
+        document.getElementById("searchResult").innerHTML = 'clicked';
+        var the_student = find_a_client_by_firstname(search_text);
+    if(typeof  the_student != undefined) {
+        update_student_table(the_student);
+    }
 }
