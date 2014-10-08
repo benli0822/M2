@@ -72,13 +72,13 @@ Class = function (name, teacher, duration, client, startTime, date) {
  * @type {{name: string, type: string, day_date: string, duration: string, teacher: {}, client: {}, startTime: string}}
  */
 Class.prototype = {
-    name: "",
-    type: "",
-    day_date: "",
-    duration: "",
-    teacher: {},
-    client: {},
-    startTime: ""
+    _name: "",
+    _type: "",
+    _date: "",
+    _duration: "",
+    _teacher: {},
+    _client: {},
+    _startTime: ""
 }
 
 /**
