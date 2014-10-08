@@ -172,18 +172,18 @@ function find_a_teacher_by_name(firstname,lastname){
         }
     }
 }
-function find_a_student_by_name(firstname,lastname){
+function find_a_client_by_name(firstname,lastname){
 
     //1.get the student list
-    var studentlistData = localStorage.getItem('studentList');
-    var studentlistobject = JSON.parse(studentlistData);
+    var clientlistData = localStorage.getItem('clientList');
+    var clientlistobject = JSON.parse(clientlistData);
 
     //Traverse in the teacher list to find the teacher
-    for(var i = 0; i <= studentlistobject.length -1 ; i++){
-        if(studentlistobject[i].firstName == firstname && studentlistobject[i].lastName == lastname ){
+    for(var i = 0; i <= clientlistobject.length -1 ; i++){
+        if(clientlistobject[i].firstName == firstname && clientlistobject[i].lastName == lastname ){
             //we have find the teacher add the class to this teacher
-            console.log("find the student" + firstname);
-            return studentlistobject[i];
+            console.log("find the client" + firstname);
+            return clientlistobject[i];
         }
     }
 }
@@ -201,7 +201,7 @@ function add_some_teacher_to_init_db(){
         newlist.push(bs);
         newlist.push(cheng);
 
-    localStorage.setItem('teacherList',JSON.stringify(newlist));
+        localStorage.setItem('teacherList',JSON.stringify(newlist));
 
 
 }
@@ -216,6 +216,8 @@ function add_some_test_data_to_db(){
     console.log("this teacher has "+tea.list_class.length + "lessons" );
 
     test_add_teacher = new Person.Teacher('testT','testT','lille',11);
+    stu1 = new Person.Client('stu1','stu1','stu1',11);
+    stu2 = new Person.Client('stu2','stu2','stu2',22);
     add_person_to_dataBase(test_add_teacher);
 
 }
