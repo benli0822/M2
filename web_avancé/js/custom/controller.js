@@ -74,7 +74,7 @@ function update_student_table(student){
 
 }
 
-
+//123
 function search_button_click(){
     search_text = document.getElementById("searchTextField").value;
 
