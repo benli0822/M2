@@ -28,6 +28,6 @@ function update_secretary_table(){
         }
     }
 
-    secretary_table.rows[5].cells[2].innerHTML = 'Hello';
+    
 
 }
