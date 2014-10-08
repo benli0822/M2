@@ -73,3 +73,14 @@ function update_student_table(student){
 
 
 }
+
+
+function search_button_click(){
+    search_text = document.getElementById("searchTextField").value;
+
+    console.log("you want to search : " + search_text);
+
+    document.getElementById("searchResult").innerHTML = 'clicked';
+    var the_student = find_a_client_by_firstname(search_text);
+    update_student_table(the_student);
+}
