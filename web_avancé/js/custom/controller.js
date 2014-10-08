@@ -2,7 +2,13 @@
  * Created by CHENG Xiaojun et JIN Benli on 08/10/14.
  */
 function update_secretary_table(){
+
     var secretary_table = document.getElementById('secretary_table');
+    //to detele all the content in the table
+    secretary_table.innerHTML = "";
+
+    updateTeacherTableElement("secretary_table",4);
+
     //secretary_table.rows[1].cells[1].innerHTML = 'Hello';
 
     //To update the secretary table we need to traverse the teacher list and for each teacher we display
@@ -19,7 +25,7 @@ function update_secretary_table(){
             for (var j = 0; j <= the_teacher.list_class.length - 1; j++) {
                 console.log("Find a lesson");
                 var the_class = the_teacher.list_class[j];
-                secretary_table.rows[the_class.startTime - 7].cells[i+1].innerHTML = '有课';
+                secretary_table.rows[the_class.startTime - 7].cells[i+1].innerHTML = 'YES';
 
             }
         }
@@ -28,6 +34,6 @@ function update_secretary_table(){
         }
     }
 
-    secretary_table.rows[5].cells[2].innerHTML = 'Hello';
+    
 
 }
