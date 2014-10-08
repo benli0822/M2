@@ -63,30 +63,34 @@ Person.Teacher = function (firstName, lastName, address, freeTime) {
  * @type_of_person {{name: string, type_of_person: string, description: description}}
  */
 
-Class = function (name,teacher,duration,client,starttime) {
+Class = function (name,teacher,duration,client,starttime,day_date) {
+
     this.name = name;
     this.teacher = teacher;
     this.duration = duration;
     this.client = client;
     this.startTime = starttime;
+    this.day_date = day_date;
 }
 
 Class.prototype = {
     name: "",
     type: "",
+    day_date:"",
     duration:"",
     teacher:{},
     client:{},
     startTime:""
 }
 
-Class.DriveClass = function (name, duration,teacher,client,startTime) {
-    Class.call(name,teacher,duration,client,startTime);
+Class.DriveClass = function (name, duration,teacher,client,startTime,day_date) {
+    Class.call(name,teacher,duration,client,startTime,day_date);
     this.type = "Drive";
     this.duration = duration;
     this.teacher = teacher;
     this.client = client;
     this.startTime = startTime;
+    this.day_date = day_date;
 
 }
 

@@ -23,7 +23,7 @@ function update_secretary_table(){
         if(typeof  the_teacher.list_class != 'undefined') {
 
             for (var j = 0; j <= the_teacher.list_class.length - 1; j++) {
-                console.log("Find a lesson");
+
                 var the_class = the_teacher.list_class[j];
                 secretary_table.rows[the_class.startTime - 7].cells[i+1].innerHTML = 'YES';
 
@@ -34,6 +34,42 @@ function update_secretary_table(){
         }
     }
 
-    
+}
+
+function update_student_table(student){
+    var table = document.getElementById("student_table");
+    document.getElementById("searchResult").innerHTML = student.firstName;
+
+    //travese the class list
+    for( var i = 0 ; i <= student.list_class.length -1 ; i++){
+
+        var tem_class = student.list_class[i];
+
+        //add a new row for this class
+        var new_row = document.createElement('tr');
+
+        //add the day_date
+        var dateElement = document.createElement('td');
+        dateElement.innerHTML = tem_class.day_date;
+        new_row.appendChild(dateElement);
+
+        //add the time
+        var timeElement = document.createElement('td');
+        timeElement.innerHTML = tem_class.startTime + ':00';
+        new_row.appendChild(timeElement);
+
+        //add the duration
+        var durationElement = document.createElement('td');
+        durationElement.innerHTML = tem_class.duration;
+        new_row.appendChild(durationElement);
+
+        //add the teacher
+        var teacherElement = document.createElement('td');
+        teacherElement.innerHTML = tem_class.teacher.firstName;
+        new_row.appendChild(teacherElement);
+
+        table.appendChild(new_row);
+    }
+
 
 }

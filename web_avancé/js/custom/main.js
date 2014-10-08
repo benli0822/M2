@@ -42,6 +42,7 @@ function addTimeLine(table_name, column_nb) {
 }
 
 function updateTeacherTableElement(table_name) {
+
     teacherList = get_teacherlist_from_DB();
 
     var table = document.getElementById(table_name);
@@ -61,6 +62,8 @@ function updateTeacherTableElement(table_name) {
 
 
 
+
+
 window.onload = function () {
     initObjects();
     //addTimeLine('student_table', 4);
@@ -70,6 +73,7 @@ window.onload = function () {
 
 
     update_secretary_table();
+    update_student_table(find_a_client_by_name('stu1','stu1'));
     /*
     // Check browser support
     if (typeof(Storage) != 'undefined') {
