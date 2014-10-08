@@ -26,10 +26,13 @@ function addTimeLine(table_name, column_nb) {
         new_row.appendChild(new_item);
         for (var i = 0; i < column_nb - 1; i++) {
             var temp_elem = document.createElement('td');
+            var att1 = document.createAttribute('class');
+            att1.value = 'myPopover'
             temp_elem.id = table_name + '_' + i + '_' + count;
-            var att = document.createAttribute('contenteditable');
-            att.value = 'true';
-            temp_elem.setAttributeNode(att);
+//            var att2 = document.createAttribute('contenteditable');
+//            att2.value = 'true';
+            temp_elem.setAttributeNode(att1);
+//            temp_elem.setAttributeNode(att2)
             new_row.appendChild(temp_elem);
         }
         table.appendChild(new_row);

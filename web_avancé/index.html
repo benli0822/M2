@@ -5,28 +5,6 @@
     <title></title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!--<style type="text/css">-->
-    <!--.bubble.has-bottom-prong {-->
-    <!--margin-bottom: 9px;-->
-    <!--}-->
-
-    <!--.bubble {-->
-    <!--background: none repeat scroll 0 0 #fff;-->
-    <!--border: 1px solid #ccc;-->
-    <!--box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);-->
-    <!--position: absolute;-->
-    <!--top: 0;-->
-    <!--visibility: hidden;-->
-    <!--}-->
-    <!--</style>-->
 </head>
 <body>
 <div class="row">
@@ -46,7 +24,7 @@
             <table class="table table-hover">
                 <tbody id="student_table">
                 <tr>
-                    <th>Date</th>
+                    <th id="abc">Date</th>
                     <th>Time</th>
                     <th>Duration</th>
                     <th>Teacher</th>
@@ -56,8 +34,6 @@
         </div>
 
     </div>
-
-
     <div class="col-xs-6">
         <h3>Secretary</h3>
 
@@ -72,65 +48,43 @@
 
 </div>
 
-
-<!--<div class="bubble has-bottom-prong"-->
-<!--style="z-index: 1001; width: 400px; left: 865.083px; top: 67px; visibility: visible;">-->
-<!--<div id="bubblePromo:f" style="display: none;"></div>-->
-<!--<div class="bubblemain">-->
-<!--<div class="bubbleclose" id="bubbleClose:f"></div>-->
-<!--<div id="bubbleContent:f" class="bubblecontent">-->
-<!--<div>-->
-<!--<div></div>-->
-<!--<div class="cb-root">-->
-<!--<form action="javascript:(void)" id=":y.form" autocomplete="off">-->
-<!--<table cellspacing="0" cellpadding="0" class="cb-table">-->
-<!--<tbody>-->
-<!--<tr>-->
-<!--<th class="cb-key">When:</th>-->
-<!--<td class="cb-value">Sat, October 11, 10:30am &ndash; 11:30am</td>-->
-<!--</tr>-->
-<!--<tr>-->
-<!--<th class="cb-key">What:</th>-->
-<!--<td class="cb-value">-->
-<!--<div class="textbox-fill-wrapper">-->
-<!--<div class="textbox-fill-mid"><input type="text"-->
-<!--class="textbox-fill-input cb-event-title-input"-->
-<!--id=":y.what"></div>-->
-<!--</div>-->
-<!--<div class="cb-example">e.g., Breakfast at Tiffany's</div>-->
-<!--</td>-->
-<!--</tr>-->
-<!--<tr>-->
-<!--<td class="cb-actions" colspan="2"><input type="hidden" id=":y.calendar"><span-->
-<!--id=":y.create-button"><div class="goog-inline-block goog-imageless-button"-->
-<!--role="button" style="-moz-user-select: none;"-->
-<!--tabindex="0">-->
-<!--<div class="goog-inline-block goog-imageless-button-outer-box">-->
-<!--<div class="goog-inline-block goog-imageless-button-inner-box">-->
-<!--<div class="goog-imageless-button-pos">-->
-<!--<div class="goog-imageless-button-top-shadow">&nbsp;</div>-->
-<!--<div class="goog-imageless-button-content">Create event</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div></span> &nbsp; <a class="lk" id=":y.editLink" href="javascript:void(0)">Edit event-->
-<!--<strong>»</strong></a></td>-->
-<!--</tr>-->
-<!--</tbody>-->
-<!--</table>-->
-<!--</form>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="bottom-prong" id="prong:f" style="left: 182px;">-->
-<!--<div class="prong-dk"></div>-->
-<!--<div class="prong-lt"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
+<div id="popover-head" class="hide"><h4>Create a new event</h4></div>
+<div id="popover-content" class="hide">
+    <form>
+        <div class="form-group">
+            <label>When: </label>
+        </div>
+        <div class="form-group">
+            <label>Which Student: </label>
+            <select>
+                <option>1</option>
+                <option>2</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default">Create Event</button>
+        <button type="submit" class="btn btn-default">Edit Event</button>
+    </form>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/custom/model.js"></script>
 <script type="text/javascript" src="js/custom/main.js"></script>
 <script type="text/javascript" src="js/custom/dataHelper.js"></script>
 <script type="text/javascript" src="js/custom/controller.js"></script>
+<script type="text/javascript">
+    $.getScript("js/custom/controller.js", function () {
+        $('.myPopover').popover({
+            html: true,
+            title: function () {
+                return $("#popover-head").html();
+            },
+            content: function () {
+                return $("#popover-content").html();
+            }
+        });
+    });
+</script>
 </body>
 </html>
