@@ -19,7 +19,7 @@ function update_secretary_table(){
             for (var j = 0; j <= the_teacher.list_class.length - 1; j++) {
                 console.log("Find a lesson");
                 var the_class = the_teacher.list_class[j];
-                secretary_table.rows[the_class.startTime - 7].cells[i+1].innerHTML = '有课';
+                secretary_table.rows[the_class.startTime - 7].cells[i+1].innerHTML = 'YES';
 
             }
         }
