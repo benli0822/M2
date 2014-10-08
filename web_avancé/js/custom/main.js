@@ -6,7 +6,7 @@ function initObjects() {
     initDataHelper();
     add_some_teacher_to_init_db();
 
-    teacherList = get_teacherlist_from_DB();
+
 
 
     add_some_test_data_to_db();
@@ -38,7 +38,9 @@ function addTimeLine(table_name, column_nb) {
     }
 }
 
-function editTable(table_name) {
+function updateTeacherTableElement(table_name) {
+    teacherList = get_teacherlist_from_DB();
+
     var table = document.getElementById(table_name);
     var title_row = document.createElement('tr');
     var title_name1 = document.createElement('th');
@@ -59,7 +61,7 @@ function editTable(table_name) {
 window.onload = function () {
     initObjects();
     //addTimeLine('student_table', 4);
-    editTable('secretary_table', 4);
+    updateTeacherTableElement('secretary_table', 4);
    update_secretary_table();
 
 

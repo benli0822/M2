@@ -157,10 +157,6 @@ function get_classlist_from_DB(){
 }
 
 function find_a_teacher_by_name(firstname,lastname){
-
-
-
-    //add the class information to a teacher
     //1.get the teacher list
     var teacherlistData = localStorage.getItem('teacherList');
     var teacherlistobject = JSON.parse(teacherlistData);
@@ -176,10 +172,23 @@ function find_a_teacher_by_name(firstname,lastname){
         }
     }
 }
+function find_a_student_by_name(firstname,lastname){
 
+    //1.get the student list
+    var studentlistData = localStorage.getItem('studentList');
+    var studentlistobject = JSON.parse(studentlistData);
+
+    //Traverse in the teacher list to find the teacher
+    for(var i = 0; i <= studentlistobject.length -1 ; i++){
+        if(studentlistobject[i].firstName == firstname && studentlistobject[i].lastName == lastname ){
+            //we have find the teacher add the class to this teacher
+            console.log("find the student" + firstname);
+            return studentlistobject[i];
+        }
+    }
+}
 
 function add_some_teacher_to_init_db(){
-
 
 
         newlist = [];
@@ -205,4 +214,8 @@ function add_some_test_data_to_db(){
     var tea = find_a_teacher_by_name('cheng','cheng');
     //console.log("In function add some test data to db we find : "+tea.lastName);
     console.log("this teacher has "+tea.list_class.length + "lessons" );
+
+    test_add_teacher = new Person.Teacher('testT','testT','lille',11);
+    add_person_to_dataBase(test_add_teacher);
+
 }
