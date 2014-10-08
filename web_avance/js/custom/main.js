@@ -74,6 +74,22 @@ window.onload = function () {
 
     update_secretary_table();
     update_student_table(find_a_client_by_name('stu1','stu1'));
+
+
+
+    var options = {
+        html: true,
+        trigger: "hover focus",
+        title: function () {
+            return $("#popover-head").html();
+        },
+        content: function () {
+            return $("#popover-content").html();
+        }
+    }
+//    $.getScript("js/custom/controller.js", function () {
+    $('.myPopover').popover(options);
+//    });
     /*
     // Check browser support
     if (typeof(Storage) != 'undefined') {

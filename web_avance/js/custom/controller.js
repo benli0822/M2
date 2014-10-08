@@ -50,7 +50,7 @@ function update_student_table(student){
 
         //add the day_date
         var dateElement = document.createElement('td');
-        dateElement.innerHTML = tem_class.day_date;
+        dateElement.innerHTML = tem_class.date;
         new_row.appendChild(dateElement);
 
         //add the time

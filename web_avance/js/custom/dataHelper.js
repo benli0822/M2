@@ -72,14 +72,14 @@ function add_person_to_dataBase(someone){
  * @param duration
  * @param starttime
  */
-function save_a_class_to_database(teacher, client, duration, starttime,day_date ){
+function save_a_class_to_database(teacher, client, duration, starttime,date ){
 
     //create a class and save it to db
 
     //1. create the class locally
-    newClass = new Class.DriveClass("class_name", duration, teacher, client,starttime,day_date);
+    newClass = new Class.DriveClass("class_name", duration, teacher, client,starttime,date);
 
-    console.log('try to add a class which day_date is : ' + newClass.day_date);
+    console.log('try to add a class which date is : ' + newClass.date);
     //2. add the class to the DB
     var retrievedObjectData = localStorage.getItem('classList');
     var originalObject = JSON.parse(retrievedObjectData);

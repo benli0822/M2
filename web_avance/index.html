@@ -70,24 +70,10 @@
 <script src="js/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/custom/model.js"></script>
+<script type="text/javascript" src="js/custom/model/person.js"></script>
+<script type="text/javascript" src="js/custom/model/class.js"></script>
 <script type="text/javascript" src="js/custom/main.js"></script>
 <script type="text/javascript" src="js/custom/dataHelper.js"></script>
 <script type="text/javascript" src="js/custom/controller.js"></script>
-<script type="text/javascript">
-    var options = {
-        html: true,
-        trigger: "hover focus",
-        title: function () {
-            return $("#popover-head").html();
-        },
-        content: function () {
-            return $("#popover-content").html();
-        }
-    }
-    $.getScript("js/custom/controller.js", function () {
-        $('.myPopover').popover(options);
-    });
-</script>
 </body>
 </html>
