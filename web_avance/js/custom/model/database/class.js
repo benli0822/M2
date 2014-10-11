@@ -1,7 +1,7 @@
 /**
  * Created by benli on 08/10/14.
  */
-classDB = function() {
+classDB = function () {
     var _classList = [];
     // initialization for class database, normally only needed once
     init = function () {
@@ -11,7 +11,7 @@ classDB = function() {
             return;
         }
         //init class List list in the DB
-        localStorage.setItem('classList', JSON.stringify(classList));
+        localStorage.setItem('classList', JSON.stringify(_classList));
     };
     // add a class into memory without charge local storage
     addClass = function (name, teacher, client, duration, startTime, date, type) {
@@ -24,12 +24,43 @@ classDB = function() {
                 console.log("Adding " + teacher.name + "'s " + name + "'s " + type + " class" + "start from"
                     + startTime + "last for " + duration + "with " + client.name);
                 //2. add the class to the temp list
-                try{
+                try {
                     _classList.push(newDriveClass);
                 }
-                catch(error) {
-                    var errorElement = document.createElement("div");
-                    errorElement.innerHTML = error.message;
+                catch (error) {
+                    var errorElement1 = document.createElement("div");
+                    errorElement1.innerHTML = error.message;
+                    document.getElementsByTagName("body").item[0].appendChild(errorElement1);
+                }
+                // add class info into student's database
+                if(typeof(studentDB) == "undefined") {
+                    // there should be an exception
+                    alert("Check student database js has already loaded!");
+                    return;
+                } else {
+                    // find the client
+                    var _studentList = studentDB.studentList;
+                    for(var i = 0; i < _studentList.length; i++) {
+                        if(_studentList[i] === client) {
+                            // add the class into student's class list
+                            _studentList[i].list_class.push(newDriveClass);
+                        }
+                    }
+                }
+                // add class info into teacher's database
+                if(typeof(teacherDB) == "undefined") {
+                    // there should be an exception
+                    alert("Check teacher database js has already loaded!");
+                    return;
+                } else {
+                    // find the teacher
+                    var _teacherList = teacherDB.teacherList;
+                    for(var i = 0; i < _teacherList.length; i++) {
+                        if(_teacherList[i] == teacher) {
+                            // add the class info teacher's class list
+                            _teacherList[i].list_class.push(newDriveClass);
+                        }
+                    }
                 }
                 break;
             }
@@ -39,12 +70,43 @@ classDB = function() {
                 var newLectureClass = new Class.LectureClass(name, duration, teacher, client, startTime, date);
                 console.log("Adding " + teacher.name + "'s " + name + "'s " + type + " class" + "start from"
                     + startTime + "last for " + duration + "with " + client.name);
-                try{
+                try {
                     _classList.push(newLectureClass);
                 }
-                catch(error) {
-                    var errorElement = document.createElement("div");
-                    errorElement.innerHTML = error.message;
+                catch (error) {
+                    var errorElement2 = document.createElement("div");
+                    errorElement2.innerHTML = error.message;
+                    document.getElementsByTagName("body").item[0].appendChild(errorElement2);
+                }
+                // add class info into student's database
+                if(typeof(studentDB) == "undefined") {
+                    // there should be an exception
+                    alert("Check student database js has already loaded!");
+                    return;
+                } else {
+                    // find the client
+                    var _studentList = studentDB.studentList;
+                    for(var i = 0; i < _studentList.length; i++) {
+                        if(_studentList[i] === client) {
+                            // add the class into student's class list
+                            _studentList[i].list_class.push(newDriveClass);
+                        }
+                    }
+                }
+                // add class info into teacher's database
+                if(typeof(teacherDB) == "undefined") {
+                    // there should be an exception
+                    alert("Check teacher database js has already loaded!");
+                    return;
+                } else {
+                    // find the teacher
+                    var _teacherList = teacherDB.teacherList;
+                    for(var i = 0; i < _teacherList.length; i++) {
+                        if(_teacherList[i] == teacher) {
+                            // add the class info teacher's class list
+                            _teacherList[i].list_class.push(newDriveClass);
+                        }
+                    }
                 }
                 break;
             }
@@ -52,7 +114,7 @@ classDB = function() {
     };
     //TODO removeClass need to be find by condition ex. {name: abc} {teacher: abc} condition should gived in detail
 
-    this.__defineGetter__("classList", function(){
+    this.__defineGetter__("classList", function () {
         return _classList;
     });
 
