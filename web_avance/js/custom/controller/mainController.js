@@ -60,7 +60,46 @@ function updateTeacherTableElement(table_name) {
 
 }
 
+main = {
+    addTeacher : function(firstName, lastName, address) {
+        teacherDB.addTeacher(firstName, lastName, address);
+    },
+    addTeacherObject : function(teacher) {
+        teacherDB.addTeacherObject(teacher);
+    },
+    addStudent : function(firstName, lastName, address) {
+        studentDB.addStudent(firstName, lastName, address);
+    },
+    addStudentObject : function(student) {
+        studenDB.addStudentObject(student);
+    },
+    addAClass : function(name, teacher, client, duration, startTime,
+        date, type) {
+        // check teacher if exist, if not, create the teacher
+        if(!teacherDB.hasTeacher(teacher)) {
+            teacherDB.addTeacherObject(teacher);
+        }
+        if(!studentDB.hasStudent(client)) {
+            studentDB.addStudentObject(client);
+        }
+        classDB.addAClass(name, teacher, client, duration, startTime,
+        date, type);
+    }
+};
 
+test = {
+    addTeacherExamples : function() {
+        jps = new Person.Teacher('jps', 'jsp', 'jsp', 8);
+        ns = new Person.Teacher('ns', 'ns', 'ns', 9);
+        bs = new Person.Teacher('bs', 'bs', 'bs', 'bs', 10);
+        cheng = new Person.Teacher('cheng', 'cheng', 'cheng', 20);
+        main.addTeacherObject(jps);
+        main.addTeacherObject(ns);
+        main.addTeacherObject(bs);
+        main.addTeacherObject(cheng);
+    }
+
+};
 
 
 
