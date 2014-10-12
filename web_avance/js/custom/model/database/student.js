@@ -1,5 +1,5 @@
 /**
- * Created by benli on 09/10/14.
+ * Created by CHENG Xiaojun et JIN Benli on 09/10/14.
  */
 studentDB = function() {
     var _studentList = [];
