@@ -40,6 +40,36 @@ function update_student_table(student){
     var table = document.getElementById("student_table");
     document.getElementById("searchResult").innerHTML = student.firstName;
 
+    //clear all the existeds elements
+    while(table.hasChildNodes()){
+        table.removeChild(table.lastChild);
+    }
+
+    //create the first row
+    /*
+     <tr>
+     <th id="abc">Date</th>
+     <th>Time</th>
+     <th>Duration</th>
+     <th>Teacher</th>
+     </tr>
+     */
+    var first_row = document.createElement('tr');
+    var elementDate = document.createElement('th');
+    elementDate.innerHTML="Date";
+    first_row.appendChild(elementDate);
+    var elementDate = document.createElement('th');
+    elementDate.innerHTML="Time";
+    first_row.appendChild(elementDate);
+    var elementDate = document.createElement('th');
+    elementDate.innerHTML="Duration";
+    first_row.appendChild(elementDate);
+    var elementDate = document.createElement('th');
+    elementDate.innerHTML="Teacher";
+    first_row.appendChild(elementDate);
+    table.appendChild(first_row);
+
+
     //travese the class list
     for( var i = 0 ; i <= student.list_class.length -1 ; i++){
 
@@ -74,7 +104,7 @@ function update_student_table(student){
 
 }
 
-//123
+
 function search_button_click(){
     search_text = document.getElementById("searchTextField").value;
 

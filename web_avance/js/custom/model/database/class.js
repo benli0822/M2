@@ -1,5 +1,5 @@
 /**
- * Created by benli on 08/10/14.
+ * Created by CHENG Xiaojun et JIN Benli on 08/10/14.
  */
 classDB = function () {
     var _classList = [];

@@ -234,6 +234,7 @@ function add_some_test_data_to_db(){
 
     save_a_class_to_database(find_a_teacher_by_name('cheng','cheng'),find_a_client_by_name('stu1','stu1'),1,8,'10-14');
 
+    save_a_class_to_database(find_a_teacher_by_name('cheng','cheng'),find_a_client_by_name('stu2','stu2'),1,9,'11-14');
 
 
 
