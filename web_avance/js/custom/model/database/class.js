@@ -125,7 +125,7 @@ classDB.addAClass = function (name, teacher, client, duration, startTime, date, 
 };
 
 // close database operation, 1 for local storage, 0 for abandon memory change
-teacherDB.close = function(option) {
+classDB.close = function(option) {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
         alert("Your browser don't support local storage");
@@ -134,18 +134,18 @@ teacherDB.close = function(option) {
     switch(option) {
         case 1 : {
             // if the studentList haven't been initialised
-            if(localStorage.getItem("teacherList") === null) {
-                localStorage.setItem("teacherList", teacherDB.teacherList);
+            if(localStorage.getItem("classList") === null) {
+                localStorage.setItem("classList", classDB.classList);
             } else {
-                var tempTeacherList =  localStorage.getItem("teacherList");
+                var tempClassList =  localStorage.getItem("classList");
                 // concatenate the current to the exist one
-                var finalTeacherList = tempTeacherList.concat(teacherDB.teacherList);
-                localStorage.setItem("teacherList", finalTeacherList);
+                var finalClassList = tempClassList.concat(classDB.classList);
+                localStorage.setItem("classList", finalClassList);
             }
             break;
         }
         case 0 : {
-            console.log("You have requested to discard teacher's changes of this time");
+            console.log("You have requested to discard class's changes of this time");
             break;
         }
     }

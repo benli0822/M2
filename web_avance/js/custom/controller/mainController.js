@@ -1,19 +1,6 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 01/10/14.
  */
-function initObjects() {
-
-    initDataHelper();
-    add_some_teacher_to_init_db();
-
-
-
-
-    add_some_test_data_to_db();
-
-
-}
-
 function addTimeLine(table_name, column_nb) {
     var table = document.getElementById(table_name);
     var time = 8;
@@ -50,70 +37,77 @@ function updateTeacherTableElement(table_name) {
     var title_name1 = document.createElement('th');
     title_name1.appendChild(document.createTextNode('Time'));
     title_row.appendChild(title_name1);
-    for(var i = 0; i< teacherList.length; i ++ ){
+    for (var i = 0; i < teacherList.length; i++) {
         var title_temp = document.createElement('th');
         title_temp.appendChild(document.createTextNode(teacherList[i].firstName));
         title_row.appendChild(title_temp);
     }
     table.appendChild(title_row);
-    addTimeLine(table_name,teacherList.length+1);
+    addTimeLine(table_name, teacherList.length + 1);
 
 }
 
 main = {
-    addTeacher : function(firstName, lastName, address) {
+    addTeacher: function (firstName, lastName, address) {
         teacherDB.addTeacher(firstName, lastName, address);
     },
-    addTeacherObject : function(teacher) {
+    addTeacherObject: function (teacher) {
         teacherDB.addTeacherObject(teacher);
     },
-    addStudent : function(firstName, lastName, address) {
+    addStudent: function (firstName, lastName, address) {
         studentDB.addStudent(firstName, lastName, address);
     },
-    addStudentObject : function(student) {
+    addStudentObject: function (student) {
         studenDB.addStudentObject(student);
     },
-    addAClass : function(name, teacher, client, duration, startTime,
-        date, type) {
+    addAClass: function (name, teacher, client, duration, startTime, date, type) {
         // check teacher if exist, if not, create the teacher
-        if(!teacherDB.hasTeacher(teacher)) {
+        if (!teacherDB.hasTeacher(teacher)) {
             teacherDB.addTeacherObject(teacher);
         }
-        if(!studentDB.hasStudent(client)) {
+        if (!studentDB.hasStudent(client)) {
             studentDB.addStudentObject(client);
         }
         classDB.addAClass(name, teacher, client, duration, startTime,
-        date, type);
+            date, type);
     }
 };
 
 test = {
-    addTeacherExamples : function() {
-        jps = new Person.Teacher('jps', 'jsp', 'jsp', 8);
-        ns = new Person.Teacher('ns', 'ns', 'ns', 9);
-        bs = new Person.Teacher('bs', 'bs', 'bs', 'bs', 10);
-        cheng = new Person.Teacher('cheng', 'cheng', 'cheng', 20);
+    addTeacherExamples: function () {
+        var jps = new Person.Teacher('jps', 'jsp', 'jsp');
+        var ns = new Person.Teacher('ns', 'ns', 'ns');
+        var bs = new Person.Teacher('bs', 'bs', 'bs');
+        var cheng = new Person.Teacher('cheng', 'cheng', 'cheng');
         main.addTeacherObject(jps);
         main.addTeacherObject(ns);
         main.addTeacherObject(bs);
         main.addTeacherObject(cheng);
+    },
+    addTestDataToDB: function () {
+        var teacher = new Person.Teacher('testT', 'testT', 'lille1');
+        var stu1 = new Person.Client('stu1', 'stu1', 'stu1');
+        var stu2 = new Person.Client('stu2', 'stu2', 'stu2');
+        main.addTeacherObject(teacher);
+        main.addStudentObject(stu1);
+        main.addStudentObject(stu2);
+        classDB.addAClass('drive', teacher, stu1, 1, 8, '10-14', 'drive');
+        classDB.addAClass('lecture', teacher, stu2, 1, 8, '10-14', 'lecture');
     }
 
 };
 
 
-
 window.onload = function () {
-    initObjects();
+    test.addTeacherExamples();
+    test.addTestDataToDB();
     //addTimeLine('student_table', 4);
     updateTeacherTableElement('secretary_table', 4);
-   update_secretary_table();
-
+    update_secretary_table();
 
 
     update_secretary_table();
-    update_student_table(find_a_client_by_name('stu1','stu1'));
-
+    update_student_table(find_a_client_by_name('stu1', 'stu1'));
 
 
     var options = {
@@ -130,15 +124,15 @@ window.onload = function () {
     $('.myPopover').popover(options);
 //    });
     /*
-    // Check browser support
-    if (typeof(Storage) != 'undefined') {
-        // Store
-        localStorage.setItem('period1', '20');
-        // Retrieve
-        document.getElementById('student_table_0_0').innerHTML = localStorage.getItem('period1');
-    } else {
-        document.getElementById('student_table_0_0').innerHTML = 'Sorry, your browser does not support Web Storage...';
-    }
-    */
-    
+     // Check browser support
+     if (typeof(Storage) != 'undefined') {
+     // Store
+     localStorage.setItem('period1', '20');
+     // Retrieve
+     document.getElementById('student_table_0_0').innerHTML = localStorage.getItem('period1');
+     } else {
+     document.getElementById('student_table_0_0').innerHTML = 'Sorry, your browser does not support Web Storage...';
+     }
+     */
+
 }
