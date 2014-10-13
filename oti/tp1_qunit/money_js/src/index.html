@@ -1,0 +1,51 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="money.js"></script>
+    <script src="money_ops.js"></script>
+    <script src="money_exc.js"></script>
+    <script src="calc.js"></script>
+
+</head>
+<body>
+<div id="res">
+
+</div>
+<hr width='20%' align='left'></hr>
+<form id='form0'>
+    <table>
+        <tr>
+            <td>Valeur</td>
+            <td>Devise</td>
+            <td>Opération</td>
+        </tr>
+        <tr>
+            <td><input type='text' id='v1' name='v1' value=''/></td>
+            <td><input type='text' id='c1' name='c1' value=''/></td>
+            <td><select name='ops'>
+                <option value='ADD'>+</option>
+                <option value='SUB'>-</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td><input type='text' id='v2' name='v2' value=''/></td>
+            <td><input type='text' id='c2' name='c2' value=''/></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan='5' align='right'>
+                <input type='button' value='calculer'
+                       onclick="javascript:doComputation(document.getElementById('form0'),document.getElementById('res'));"/>
+            </td>
+        </tr>
+    </table>
+    <form>
+</body>
+</html>
