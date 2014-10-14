@@ -31,7 +31,7 @@ StudentDB.prototype.addStudent = function (firstName, lastName, address) {
         " who live in " + address);
     // add the student into temp list
     try{
-        _studentList.push(newStudent);
+        this.studentList.push(newStudent);
     }
     catch(error) {
         var errorElement1 = document.createElement("div");
@@ -42,13 +42,12 @@ StudentDB.prototype.addStudent = function (firstName, lastName, address) {
 
 // add a student object into memory
 StudentDB.prototype.addStudentObject = function (student) {
-    StudentDB.studentList.push(student);
+    this.studentList.push(student);
 };
 
 StudentDB.prototype.find_a_client_by_name = function(firstname, lastname) {
     //1.get the client list
-    var clientlistData = localStorage.getItem('clientList');
-    var clientlistobject = JSON.parse(clientlistData);
+    var clientlistobject = this.studentList;
 
     //Traverse in the client list to find the client
     for(var i = 0; i <= clientlistobject.length -1 ; i++){
@@ -62,8 +61,7 @@ StudentDB.prototype.find_a_client_by_name = function(firstname, lastname) {
 
 StudentDB.prototype.find_a_client_by_firstname = function(firstname) {
     //1.get the client list
-    var clientlistData = localStorage.getItem('clientList');
-    var clientlistobject = JSON.parse(clientlistData);
+    var clientlistobject = this.studentList;
 
     //Traverse in the client list to find the client
     for(var i = 0; i <= clientlistobject.length -1 ; i++){
@@ -77,7 +75,7 @@ StudentDB.prototype.find_a_client_by_firstname = function(firstname) {
 
 // check a teacher's existence
 StudentDB.prototype.hasStudent = function(student) {
-    var _studentList = StudentDB().studentList;
+    var _studentList = this.studentList;
     for(var i = 0; _studentList.length; i++) {
         if(_studentList[i] === student) {
             return true;
@@ -101,7 +99,7 @@ StudentDB.prototype.close = function(option) {
             } else {
                 var tempStudentList =  localStorage.getItem("studentList");
                 // concatenate the current to the exist one
-                var finalStudentList = tempStudentList.concat(StudentDB.studentList);
+                var finalStudentList = tempStudentList.concat(this.studentList);
                 localStorage.setItem("studentList", finalStudentList);
             }
             break;

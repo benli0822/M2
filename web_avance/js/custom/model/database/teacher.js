@@ -28,7 +28,7 @@ TeacherDB.prototype.addTeacher = function (firstName, lastName, address) {
     console.log("Adding " + firstName + " " + lastName + " lived in: " + address);
     // add the class into temp list
     try {
-        _teacherList.push(newTeacher);
+        this.teacherList.push(newTeacher);
     }
     catch (error) {
         var errorElement1 = document.createElement("div");
@@ -39,28 +39,27 @@ TeacherDB.prototype.addTeacher = function (firstName, lastName, address) {
 
 // add a teacher object into memory
 TeacherDB.prototype.addTeacherObject = function (teacher) {
-    TeacherDB.teacherList.push(teacher);
+    this.teacherList.push(teacher);
 };
 
 TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
     //1.get the teacher list
-    var teacherlistData = localStorage.getItem('teacherList');
-    var teacherlistobject = JSON.parse(teacherlistData);
+    var _teacherList = this.teacherList;
 
 
     //Traverse in the teacher list to find the teacher
-    for (var i = 0; i <= teacherlistobject.length - 1; i++) {
-        if (teacherlistobject[i].firstName == firstname && teacherlistobject[i].lastName == lastname) {
+    for (var i = 0; i <= _teacherList.length - 1; i++) {
+        if (_teacherList[i].firstName == firstname && _teacherList[i].lastName == lastname) {
             //we have find the teacher add the class to this teacher
             //console.log("find the teacher" + firstname);
-            return teacherlistobject[i];
+            return _teacherList[i];
         }
     }
 };
 
 // check a teacher's existence
 TeacherDB.prototype.hasTeacher = function (teacher) {
-    var _teacherList = TeacherDB().teacherList;
+    var _teacherList = this.teacherList;
     for (var i = 0; _teacherList.length; i++) {
         if (_teacherList[i] === teacher) {
             return true;
@@ -84,7 +83,7 @@ TeacherDB.prototype.close = function(option) {
             } else {
                 var tempTeacherList =  localStorage.getItem("teacherList");
                 // concatenate the current to the exist one
-                var finalTeacherList = tempTeacherList.concat(TeacherDB.teacherList);
+                var finalTeacherList = tempTeacherList.concat(this.teacherList);
                 localStorage.setItem("teacherList", finalTeacherList);
             }
             break;

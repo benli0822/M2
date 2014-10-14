@@ -25,7 +25,7 @@ ClassDB.prototype.init = function () {
 
 
 // add a class into memory without charge local storage
-ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTime, date, type) {
+ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTime, date, type, sdb, tdb) {
     //create a class and save it to db
     switch (type) {
         case "Drive" :
@@ -36,7 +36,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 + startTime + "last for " + duration + "with " + client.name);
             //2. add the class to the temp list
             try {
-                _classList.push(newDriveClass);
+                this.classList.push(newDriveClass);
             }
             catch (error) {
                 var errorElement1 = document.createElement("div");
@@ -44,13 +44,13 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 document.getElementsByTagName("body").item[0].appendChild(errorElement1);
             }
             // add class info into student's database
-            if(typeof(StudentDB) == "undefined") {
+            if(typeof(sdb) == "undefined") {
                 // there should be an exception
                 alert("Check student database js has already loaded!");
                 return;
             } else {
                 // find the client
-                var _studentList = StudentDB.studentList;
+                var _studentList = sdb.studentList;
                 for(var i = 0; i < _studentList.length; i++) {
                     if(_studentList[i] === client) {
                         // add the class into student's class list
@@ -59,13 +59,13 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 }
             }
             // add class info into teacher's database
-            if(typeof(TeacherDB) == "undefined") {
+            if(typeof(tdb) == "undefined") {
                 // there should be an exception
                 alert("Check teacher database js has already loaded!");
                 return;
             } else {
                 // find the teacher
-                var _teacherList = TeacherDB.teacherList;
+                var _teacherList = tdb.teacherList;
                 for(var i = 0; i < _teacherList.length; i++) {
                     if(_teacherList[i] == teacher) {
                         // add the class info teacher's class list
@@ -82,7 +82,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             console.log("Adding " + teacher.name + "'s " + name + "'s " + type + " class" + "start from"
                 + startTime + "last for " + duration + "with " + client.name);
             try {
-                _classList.push(newLectureClass);
+                this.classList.push(newLectureClass);
             }
             catch (error) {
                 var errorElement2 = document.createElement("div");
@@ -90,13 +90,13 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 document.getElementsByTagName("body").item[0].appendChild(errorElement2);
             }
             // add class info into student's database
-            if(typeof(StudentDB) == "undefined") {
+            if(typeof(sdb) == "undefined") {
                 // there should be an exception
                 alert("Check student database js has already loaded!");
                 return;
             } else {
                 // find the client
-                var _studentList = StudentDB.studentList;
+                var _studentList = sdb.studentList;
                 for(var i = 0; i < _studentList.length; i++) {
                     if(_studentList[i] === client) {
                         // add the class into student's class list
@@ -105,13 +105,13 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 }
             }
             // add class info into teacher's database
-            if(typeof(TeacherDB) == "undefined") {
+            if(typeof(tdb) == "undefined") {
                 // there should be an exception
                 alert("Check teacher database js has already loaded!");
                 return;
             } else {
                 // find the teacher
-                var _teacherList = TeacherDB.teacherList;
+                var _teacherList = tdb.teacherList;
                 for(var i = 0; i < _teacherList.length; i++) {
                     if(_teacherList[i] == teacher) {
                         // add the class info teacher's class list
@@ -135,11 +135,11 @@ ClassDB.prototype.close = function(option) {
         case 1 : {
             // if the studentList haven't been initialised
             if(localStorage.getItem("classList") === null) {
-                localStorage.setItem("classList", ClassDB.classList);
+                localStorage.setItem("classList", this.classList);
             } else {
                 var tempClassList =  localStorage.getItem("classList");
                 // concatenate the current to the exist one
-                var finalClassList = tempClassList.concat(ClassDB.classList);
+                var finalClassList = tempClassList.concat(this.classList);
                 localStorage.setItem("classList", finalClassList);
             }
             break;
