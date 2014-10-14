@@ -1,7 +1,7 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 09/10/14.
  */
-teacherDB = function () {
+TeacherDB = function () {
     var _teacherList = [];
 
     //TODO removeTeacher need to be done
@@ -11,7 +11,7 @@ teacherDB = function () {
     })
 };
 
-teacherDB.init = function () {
+TeacherDB.prototype.init = function () {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
         alert("Your browser don't support local storage");
@@ -22,7 +22,7 @@ teacherDB.init = function () {
 };
 
 // add a teacher into memory without charge local sotrage
-teacherDB.addTeacher = function (firstName, lastName, address) {
+TeacherDB.prototype.addTeacher = function (firstName, lastName, address) {
     // create a teacher and save it into db
     var newTeacher = new Person.Teacher(firstName, lastName, address);
     console.log("Adding " + firstName + " " + lastName + " lived in: " + address);
@@ -38,11 +38,11 @@ teacherDB.addTeacher = function (firstName, lastName, address) {
 };
 
 // add a teacher object into memory
-teacherDB.addTeacherObject = function (teacher) {
-    teacherDB.teacherList.push(teacher);
+TeacherDB.prototype.addTeacherObject = function (teacher) {
+    TeacherDB.teacherList.push(teacher);
 };
 
-teacherDB.find_a_teacher_by_name = function (firstname, lastname) {
+TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
     //1.get the teacher list
     var teacherlistData = localStorage.getItem('teacherList');
     var teacherlistobject = JSON.parse(teacherlistData);
@@ -59,8 +59,8 @@ teacherDB.find_a_teacher_by_name = function (firstname, lastname) {
 };
 
 // check a teacher's existence
-teacherDB.hasTeacher = function (teacher) {
-    var _teacherList = teacherDB().teacherList;
+TeacherDB.prototype.hasTeacher = function (teacher) {
+    var _teacherList = TeacherDB().teacherList;
     for (var i = 0; _teacherList.length; i++) {
         if (_teacherList[i] === teacher) {
             return true;
@@ -70,7 +70,7 @@ teacherDB.hasTeacher = function (teacher) {
 };
 
 // close database operation, 1 for local storage, 0 for abandon memory change
-teacherDB.close = function(option) {
+TeacherDB.prototype.close = function(option) {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
         alert("Your browser don't support local storage");
@@ -80,11 +80,11 @@ teacherDB.close = function(option) {
         case 1 : {
             // if the studentList haven't been initialised
             if(localStorage.getItem("teacherList") === null) {
-                localStorage.setItem("teacherList", teacherDB.teacherList);
+                localStorage.setItem("teacherList", TeacherDB.teacherList);
             } else {
                 var tempTeacherList =  localStorage.getItem("teacherList");
                 // concatenate the current to the exist one
-                var finalTeacherList = tempTeacherList.concat(teacherDB.teacherList);
+                var finalTeacherList = tempTeacherList.concat(TeacherDB.teacherList);
                 localStorage.setItem("teacherList", finalTeacherList);
             }
             break;

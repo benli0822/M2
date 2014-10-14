@@ -1,7 +1,7 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 08/10/14.
  */
-classDB = function () {
+ClassDB = function () {
     var _classList = [];
 
     //TODO removeClass need to be find by condition ex. {name: abc} {teacher: abc} condition should gived in detail
@@ -13,7 +13,7 @@ classDB = function () {
 };
 
 // initialization for class database, normally only needed once
-classDB.init = function () {
+ClassDB.prototype.init = function () {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
         alert("Your browser don't support local storage");
@@ -25,7 +25,7 @@ classDB.init = function () {
 
 
 // add a class into memory without charge local storage
-classDB.addAClass = function (name, teacher, client, duration, startTime, date, type) {
+ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTime, date, type) {
     //create a class and save it to db
     switch (type) {
         case "Drive" :
@@ -44,13 +44,13 @@ classDB.addAClass = function (name, teacher, client, duration, startTime, date, 
                 document.getElementsByTagName("body").item[0].appendChild(errorElement1);
             }
             // add class info into student's database
-            if(typeof(studentDB) == "undefined") {
+            if(typeof(StudentDB) == "undefined") {
                 // there should be an exception
                 alert("Check student database js has already loaded!");
                 return;
             } else {
                 // find the client
-                var _studentList = studentDB.studentList;
+                var _studentList = StudentDB.studentList;
                 for(var i = 0; i < _studentList.length; i++) {
                     if(_studentList[i] === client) {
                         // add the class into student's class list
@@ -59,13 +59,13 @@ classDB.addAClass = function (name, teacher, client, duration, startTime, date, 
                 }
             }
             // add class info into teacher's database
-            if(typeof(teacherDB) == "undefined") {
+            if(typeof(TeacherDB) == "undefined") {
                 // there should be an exception
                 alert("Check teacher database js has already loaded!");
                 return;
             } else {
                 // find the teacher
-                var _teacherList = teacherDB.teacherList;
+                var _teacherList = TeacherDB.teacherList;
                 for(var i = 0; i < _teacherList.length; i++) {
                     if(_teacherList[i] == teacher) {
                         // add the class info teacher's class list
@@ -90,13 +90,13 @@ classDB.addAClass = function (name, teacher, client, duration, startTime, date, 
                 document.getElementsByTagName("body").item[0].appendChild(errorElement2);
             }
             // add class info into student's database
-            if(typeof(studentDB) == "undefined") {
+            if(typeof(StudentDB) == "undefined") {
                 // there should be an exception
                 alert("Check student database js has already loaded!");
                 return;
             } else {
                 // find the client
-                var _studentList = studentDB.studentList;
+                var _studentList = StudentDB.studentList;
                 for(var i = 0; i < _studentList.length; i++) {
                     if(_studentList[i] === client) {
                         // add the class into student's class list
@@ -105,13 +105,13 @@ classDB.addAClass = function (name, teacher, client, duration, startTime, date, 
                 }
             }
             // add class info into teacher's database
-            if(typeof(teacherDB) == "undefined") {
+            if(typeof(TeacherDB) == "undefined") {
                 // there should be an exception
                 alert("Check teacher database js has already loaded!");
                 return;
             } else {
                 // find the teacher
-                var _teacherList = teacherDB.teacherList;
+                var _teacherList = TeacherDB.teacherList;
                 for(var i = 0; i < _teacherList.length; i++) {
                     if(_teacherList[i] == teacher) {
                         // add the class info teacher's class list
@@ -125,7 +125,7 @@ classDB.addAClass = function (name, teacher, client, duration, startTime, date, 
 };
 
 // close database operation, 1 for local storage, 0 for abandon memory change
-classDB.close = function(option) {
+ClassDB.prototype.close = function(option) {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
         alert("Your browser don't support local storage");
@@ -135,11 +135,11 @@ classDB.close = function(option) {
         case 1 : {
             // if the studentList haven't been initialised
             if(localStorage.getItem("classList") === null) {
-                localStorage.setItem("classList", classDB.classList);
+                localStorage.setItem("classList", ClassDB.classList);
             } else {
                 var tempClassList =  localStorage.getItem("classList");
                 // concatenate the current to the exist one
-                var finalClassList = tempClassList.concat(classDB.classList);
+                var finalClassList = tempClassList.concat(ClassDB.classList);
                 localStorage.setItem("classList", finalClassList);
             }
             break;

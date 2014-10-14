@@ -49,26 +49,26 @@ function updateTeacherTableElement(table_name) {
 
 main = {
     addTeacher: function (firstName, lastName, address) {
-        teacherDB.addTeacher(firstName, lastName, address);
+        TeacherDB.addTeacher(firstName, lastName, address);
     },
     addTeacherObject: function (teacher) {
-        teacherDB.addTeacherObject(teacher);
+        TeacherDB.addTeacherObject(teacher);
     },
     addStudent: function (firstName, lastName, address) {
-        studentDB.addStudent(firstName, lastName, address);
+        StudentDB.addStudent(firstName, lastName, address);
     },
     addStudentObject: function (student) {
         studenDB.addStudentObject(student);
     },
     addAClass: function (name, teacher, client, duration, startTime, date, type) {
         // check teacher if exist, if not, create the teacher
-        if (!teacherDB.hasTeacher(teacher)) {
-            teacherDB.addTeacherObject(teacher);
+        if (!TeacherDB.hasTeacher(teacher)) {
+            TeacherDB.addTeacherObject(teacher);
         }
-        if (!studentDB.hasStudent(client)) {
-            studentDB.addStudentObject(client);
+        if (!StudentDB.hasStudent(client)) {
+            StudentDB.addStudentObject(client);
         }
-        classDB.addAClass(name, teacher, client, duration, startTime,
+        ClassDB.addAClass(name, teacher, client, duration, startTime,
             date, type);
     }
 };
@@ -91,8 +91,8 @@ test = {
         main.addTeacherObject(teacher);
         main.addStudentObject(stu1);
         main.addStudentObject(stu2);
-        classDB.addAClass('drive', teacher, stu1, 1, 8, '10-14', 'drive');
-        classDB.addAClass('lecture', teacher, stu2, 1, 8, '10-14', 'lecture');
+        ClassDB.addAClass('drive', teacher, stu1, 1, 8, '10-14', 'drive');
+        ClassDB.addAClass('lecture', teacher, stu2, 1, 8, '10-14', 'lecture');
     }
 
 };

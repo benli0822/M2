@@ -1,7 +1,7 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 09/10/14.
  */
-studentDB = function() {
+StudentDB = function() {
     var _studentList = [];
 
     //TODO removeStudent
@@ -13,7 +13,7 @@ studentDB = function() {
 };
 
 // initialization for student database, normally only needed once
-studentDB.init = function() {
+StudentDB.prototype.init = function() {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
         alert("Your browser don't support local storage");
@@ -24,7 +24,7 @@ studentDB.init = function() {
 };
 
 // add a student into memory without charge local storage
-studentDB.addStudent = function (firstName, lastName, address) {
+StudentDB.prototype.addStudent = function (firstName, lastName, address) {
     // create a student and save it to db
     var newStudent = new Person.Client(firstName, lastName, address);
     console.log("Adding student:" + firstName + " " + lastName +
@@ -41,11 +41,11 @@ studentDB.addStudent = function (firstName, lastName, address) {
 };
 
 // add a student object into memory
-studentDB.addStudentObject = function (student) {
-    studentDB.studentList.push(student);
+StudentDB.prototype.addStudentObject = function (student) {
+    StudentDB.studentList.push(student);
 };
 
-studentDB.find_a_client_by_name = function(firstname, lastname) {
+StudentDB.prototype.find_a_client_by_name = function(firstname, lastname) {
     //1.get the client list
     var clientlistData = localStorage.getItem('clientList');
     var clientlistobject = JSON.parse(clientlistData);
@@ -60,7 +60,7 @@ studentDB.find_a_client_by_name = function(firstname, lastname) {
     }
 };
 
-studentDB.find_a_client_by_firstname = function(firstname) {
+StudentDB.prototype.find_a_client_by_firstname = function(firstname) {
     //1.get the client list
     var clientlistData = localStorage.getItem('clientList');
     var clientlistobject = JSON.parse(clientlistData);
@@ -76,8 +76,8 @@ studentDB.find_a_client_by_firstname = function(firstname) {
 };
 
 // check a teacher's existence
-studentDB.hasStudent = function(student) {
-    var _studentList = studentDB().studentList;
+StudentDB.prototype.hasStudent = function(student) {
+    var _studentList = StudentDB().studentList;
     for(var i = 0; _studentList.length; i++) {
         if(_studentList[i] === student) {
             return true;
@@ -87,7 +87,7 @@ studentDB.hasStudent = function(student) {
 };
 
 // close database operation, 1 for local storage, 0 for abandon memory change
-studentDB.close = function(option) {
+StudentDB.prototype.close = function(option) {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
         alert("Your browser don't support local storage");
@@ -97,11 +97,11 @@ studentDB.close = function(option) {
         case 1 : {
             // if the studentList haven't been initialised
             if(localStorage.getItem("studentList") === null) {
-                localStorage.setItem("studentList", studentDB.studentList);
+                localStorage.setItem("studentList", StudentDB.studentList);
             } else {
                 var tempStudentList =  localStorage.getItem("studentList");
                 // concatenate the current to the exist one
-                var finalStudentList = tempStudentList.concat(studentDB.studentList);
+                var finalStudentList = tempStudentList.concat(StudentDB.studentList);
                 localStorage.setItem("studentList", finalStudentList);
             }
             break;
