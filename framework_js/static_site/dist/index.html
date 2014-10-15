@@ -1,0 +1,36 @@
+<hr>
+<p>title : premier post
+date : 2013-12-12 12:00:00</p>
+<h2 id="description-une-courte-description">description : une courte description</h2>
+<h1 id="page-d-accueil">Page d&#39;accueil</h1>
+<p>Ceci est la page d&#39;accueil du site statique</p>
+<ul>
+<li><a href="post1/index.html">Lien direct vers un post (répertoire)</a></li>
+<li><a href="about.html">Lien direct vers une autre page</a></li>
+</ul>
+<pre><code class="lang-javascript">
+<span class="hljs-keyword">var</span> callback = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, data)</span> {</span>
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> console.error(err);
+    console.log(data);
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readJSON</span><span class="hljs-params">(filename, callback)</span>{</span>
+  fs.readFile(filename, <span class="hljs-string">'utf8'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err, res)</span>{</span>
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> callback(err);
+    <span class="hljs-keyword">try</span> {
+      res = <span class="hljs-built_in">JSON</span>.parse(res);
+    } <span class="hljs-keyword">catch</span> (ex) {
+      <span class="hljs-keyword">return</span> callback(ex);
+    }
+    callback(<span class="hljs-literal">null</span>, res);
+  });
+}
+</code></pre>
+<p>Lorem markdownum illam alis aratri, cum diversa omine, erat in subiectaque ulvis
+sic secretaque urbemque. Fons arripit lumina cinnama de cantat dona qui minasque
+victorem expetitur flammis.</p>
+<h2 id="iamque-et-et-ulterius-exhausta">Iamque et et ulterius exhausta</h2>
+<p>Virum illa haec spatiumque. Verba et quod exercent Chromis. Figuram se medicina,
+cognosceret verbaque, et imago <em>vicit</em> foret. Bellator rustica demittite in
+corde Iuppiter perque conplexusque tamen fretumque et formae studiis habet
+amores <strong>sapiente</strong>.</p>

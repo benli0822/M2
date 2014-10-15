@@ -1,0 +1,91 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'grunt-contrib-u-uglify',
+1 verbose cli   '--savei' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 warn package.json static_site@1.0.0 No description
+5 warn package.json static_site@1.0.0 No repository field.
+6 warn package.json static_site@1.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'grunt-contrib-u-uglify', null ]
+9 verbose cache add name=undefined spec="grunt-contrib-u-uglify" args=["grunt-contrib-u-uglify",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'grunt-contrib-u-uglify',
+10 verbose parsed url   path: 'grunt-contrib-u-uglify',
+10 verbose parsed url   href: 'grunt-contrib-u-uglify' }
+11 silly lockFile 68db1a1f-grunt-contrib-u-uglify grunt-contrib-u-uglify
+12 verbose lock grunt-contrib-u-uglify /Users/benli/.npm/68db1a1f-grunt-contrib-u-uglify.lock
+13 silly lockFile 68db1a1f-grunt-contrib-u-uglify grunt-contrib-u-uglify
+14 silly lockFile 68db1a1f-grunt-contrib-u-uglify grunt-contrib-u-uglify
+15 verbose addNamed [ 'grunt-contrib-u-uglify', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile e2116b6e-grunt-contrib-u-uglify grunt-contrib-u-uglify@
+18 verbose lock grunt-contrib-u-uglify@ /Users/benli/.npm/e2116b6e-grunt-contrib-u-uglify.lock
+19 silly addNameRange { name: 'grunt-contrib-u-uglify', range: '*', hasData: false }
+20 verbose request where is /grunt-contrib-u-uglify
+21 verbose request registry https://registry.npmjs.org/
+22 verbose request id 1fc11fe09ef16959
+23 verbose url raw /grunt-contrib-u-uglify
+24 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-contrib-u-uglify' ]
+25 verbose url resolved https://registry.npmjs.org/grunt-contrib-u-uglify
+26 verbose request where is https://registry.npmjs.org/grunt-contrib-u-uglify
+27 info trying registry request attempt 1 at 17:28:38
+28 http GET https://registry.npmjs.org/grunt-contrib-u-uglify
+29 http 404 https://registry.npmjs.org/grunt-contrib-u-uglify
+30 verbose headers { date: 'Wed, 15 Oct 2014 15:29:19 GMT',
+30 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+30 verbose headers   'content-type': 'application/json',
+30 verbose headers   'cache-control': 'max-age=0',
+30 verbose headers   'content-length': '52',
+30 verbose headers   'accept-ranges': 'bytes',
+30 verbose headers   via: '1.1 varnish',
+30 verbose headers   age: '0',
+30 verbose headers   'x-served-by': 'cache-fra1238-FRA',
+30 verbose headers   'x-cache': 'MISS',
+30 verbose headers   'x-cache-hits': '0',
+30 verbose headers   'x-timer': 'S1413386959.746524,VS0,VE107',
+30 verbose headers   'keep-alive': 'timeout=10, max=50',
+30 verbose headers   connection: 'Keep-Alive' }
+31 silly registry.get cb [ 404,
+31 silly registry.get   { date: 'Wed, 15 Oct 2014 15:29:19 GMT',
+31 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+31 silly registry.get     'content-type': 'application/json',
+31 silly registry.get     'cache-control': 'max-age=0',
+31 silly registry.get     'content-length': '52',
+31 silly registry.get     'accept-ranges': 'bytes',
+31 silly registry.get     via: '1.1 varnish',
+31 silly registry.get     age: '0',
+31 silly registry.get     'x-served-by': 'cache-fra1238-FRA',
+31 silly registry.get     'x-cache': 'MISS',
+31 silly registry.get     'x-cache-hits': '0',
+31 silly registry.get     'x-timer': 'S1413386959.746524,VS0,VE107',
+31 silly registry.get     'keep-alive': 'timeout=10, max=50',
+31 silly registry.get     connection: 'Keep-Alive' } ]
+32 silly lockFile e2116b6e-grunt-contrib-u-uglify grunt-contrib-u-uglify@
+33 silly lockFile e2116b6e-grunt-contrib-u-uglify grunt-contrib-u-uglify@
+34 error 404 404 Not Found: grunt-contrib-u-uglify
+34 error 404
+34 error 404 'grunt-contrib-u-uglify' is not in the npm registry.
+34 error 404 You should bug the author to publish it
+34 error 404 It was specified as a dependency of 'static_site'
+34 error 404
+34 error 404 Note that you can also install from a
+34 error 404 tarball, folder, or http url, or git url.
+35 error System Darwin 14.0.0
+36 error command "node" "/usr/local/bin/npm" "install" "grunt-contrib-u-uglify" "--savei"
+37 error cwd /Users/benli/Desktop/static_site
+38 error node -v v0.10.32
+39 error npm -v 1.4.28
+40 error code E404
+41 verbose exit [ 1, true ]
