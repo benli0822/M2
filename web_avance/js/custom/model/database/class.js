@@ -28,12 +28,12 @@ ClassDB.prototype.init = function () {
 ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTime, date, type, sdb, tdb) {
     //create a class and save it to db
     switch (type) {
-        case "Drive" :
+        case "drive" :
         {
             //1. create the class locally
             var newDriveClass = new Class.DriveClass(name, duration, teacher, client, startTime, date);
-            console.log("Adding " + teacher.name + "'s " + name + "'s " + type + " class" + "start from"
-                + startTime + "last for " + duration + "with " + client.name);
+            console.log("Adding " + teacher.firstName + "'s " + name + "'s " + type + " class" + " start from "
+                + startTime + " last for " + duration + " with " + client.firstName);
             //2. add the class to the temp list
             try {
                 this.classList.push(newDriveClass);
@@ -75,12 +75,12 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             }
             break;
         }
-        case "Lecture" :
+        case "lecture" :
         {
             // almost same thing
             var newLectureClass = new Class.LectureClass(name, duration, teacher, client, startTime, date);
-            console.log("Adding " + teacher.name + "'s " + name + "'s " + type + " class" + "start from"
-                + startTime + "last for " + duration + "with " + client.name);
+            console.log("Adding " + teacher.firstName + "'s " + name + "'s " + type + " class" + " start from "
+                + startTime + " last for " + duration + " with " + client.firstName);
             try {
                 this.classList.push(newLectureClass);
             }
@@ -100,7 +100,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 for(var i = 0; i < _studentList.length; i++) {
                     if(_studentList[i] === client) {
                         // add the class into student's class list
-                        _studentList[i].list_class.push(newDriveClass);
+                        _studentList[i].list_class.push(newLectureClass);
                     }
                 }
             }
@@ -115,7 +115,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 for(var i = 0; i < _teacherList.length; i++) {
                     if(_teacherList[i] == teacher) {
                         // add the class info teacher's class list
-                        _teacherList[i].list_class.push(newDriveClass);
+                        _teacherList[i].list_class.push(newLectureClass);
                     }
                 }
             }
