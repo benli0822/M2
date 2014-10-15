@@ -6,18 +6,48 @@ var sdb = new StudentDB();
 var cdb = new ClassDB();
 
 main = {
+    /**
+     * create a teacher object and add it to db
+     * @param firstName
+     * @param lastName
+     * @param address
+     */
     addTeacher: function (firstName, lastName, address) {
         tdb.addTeacher(firstName, lastName, address);
     },
+    /**
+     * add a exist teacher object to db
+     * @param teacher
+     */
     addTeacherObject: function (teacher) {
         tdb.addTeacherObject(teacher);
     },
+    /**
+     * create a student object and add it to db
+     * @param firstName
+     * @param lastName
+     * @param address
+     */
     addStudent: function (firstName, lastName, address) {
         tdb.addStudent(firstName, lastName, address);
     },
+    /**
+     * add a exist student object to db
+     * @param student
+     */
     addStudentObject: function (student) {
         sdb.addStudentObject(student);
     },
+    /**
+     * add a class and associate the teacher and the student
+     * @param name
+     * @param teacher
+     * @param client
+     * @param duration
+     * @param startTime
+     * @param date
+     * @param type
+     */
     addAClass: function (name, teacher, client, duration, startTime, date, type) {
         // check teacher if exist, if not, create the teacher
         if (!tdb.hasTeacher(teacher)) {
@@ -29,6 +59,11 @@ main = {
         cdb.addAClass(name, teacher, client, duration, startTime,
             date, type, sdb, tdb);
     },
+    /**
+     * table tool for adding time line into the first column
+     * @param table_name
+     * @param column_nb
+     */
     addTimeLine: function (table_name, column_nb) {
         var table = document.getElementById(table_name);
         var time = 8;
@@ -55,6 +90,11 @@ main = {
             count++;
         }
     },
+    /**
+     * Creation for secretary table
+     * @param table_name
+     */
+        //TODO need to consider whether we do need this function or not
     createSecretaryTable: function (table_name) {
         var teacherList = tdb.teacherList;
 
@@ -71,6 +111,9 @@ main = {
         table.appendChild(title_row);
         this.addTimeLine(table_name, teacherList.length + 1);
     },
+    /**
+     * update with the information of teacher database
+     */
     updateSecretaryTableContent: function () {
         var secretary_table = document.getElementById('secretary_table');
         //to delete all the content in the table
@@ -91,7 +134,7 @@ main = {
             //we should detect if the list class is null. if is null then the type of list class is undefined
             if (typeof(the_teacher.list_class) != 'undefined') {
 
-                for (var j = 0; j <= the_teacher.list_class.length - 1; j++) {
+                for (var j = 0; j < the_teacher.list_class.length; j++) {
 
                     var the_class = the_teacher.list_class[j];
                     secretary_table.rows[the_class.startTime - 7].cells[i + 1].innerHTML = 'YES';
@@ -103,6 +146,10 @@ main = {
             }
         }
     },
+    /**
+     * update student table with the information provided by student database
+     * @param student
+     */
     update_student_table: function (student) {
         var table = document.getElementById("student_table");
         document.getElementById("searchResult").innerHTML = student.firstName;
@@ -170,11 +217,17 @@ main = {
 
 
     },
+    /**
+     * take effect this time's operation to local storage
+     */
     closeNormal: function () {
         sdb.close(1);
         tdb.close(1);
         cdb.close(1);
     },
+    /**
+     * take effect this  time's operation to local storage
+     */
     closeException: function () {
         sdb.close(0);
         tdb.close(0);
@@ -183,6 +236,9 @@ main = {
 };
 
 test = {
+    /**
+     * add some teacher examples
+     */
     addTeacherExamples: function () {
         var jps = new Person.Teacher('jps', 'jsp', 'jsp');
         var ns = new Person.Teacher('ns', 'ns', 'ns');
@@ -193,6 +249,9 @@ test = {
         main.addTeacherObject(bs);
         main.addTeacherObject(cheng);
     },
+    /**
+     * add some test
+     */
     addTestDataToDB: function () {
         var teacher = new Person.Teacher('testT', 'testT', 'lille1');
         var stu1 = new Person.Client('stu1', 'stu1', 'stu1');
@@ -201,7 +260,7 @@ test = {
         main.addStudentObject(stu1);
         main.addStudentObject(stu2);
         cdb.addAClass('drive', teacher, stu1, 1, 8, '10-14', 'drive', sdb, tdb);
-        cdb.addAClass('lecture', teacher, stu2, 1, 8, '10-14', 'lecture', sdb, tdb);
+        cdb.addAClass('lecture', teacher, stu2, 1, 9, '10-14', 'lecture', sdb, tdb);
     }
 
 };
