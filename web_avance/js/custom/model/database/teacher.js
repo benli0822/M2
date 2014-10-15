@@ -18,7 +18,7 @@ TeacherDB.prototype.init = function () {
         return;
     }
     //init _teacherList list in the DB
-    localStorage.setItem('teacherList', JSON.stringify(_teacherList));
+    localStorage.setItem('teacherList', JSON.stringify(this.teacherList));
 };
 
 // add a teacher into memory without charge local sotrage

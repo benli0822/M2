@@ -20,7 +20,7 @@ StudentDB.prototype.init = function() {
         return;
     }
     // init studentList list in the DB
-    localStorage.setItem('studentList', JSON.stringify(_studentList));
+    localStorage.setItem('studentList', JSON.stringify(this.studentList));
 };
 
 // add a student into memory without charge local storage
@@ -53,7 +53,7 @@ StudentDB.prototype.find_a_client_by_name = function(firstname, lastname) {
     for(var i = 0; i <= clientlistobject.length -1 ; i++){
         if(clientlistobject[i].firstName == firstname && clientlistobject[i].lastName == lastname ){
             //we have find the teacher add the class to this client
-            //console.log("find the client" + firstname);
+            console.log("find the client " + firstname);
             return clientlistobject[i];
         }
     }

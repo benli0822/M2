@@ -20,7 +20,7 @@ ClassDB.prototype.init = function () {
         return;
     }
     //init class List list in the DB
-    localStorage.setItem('classList', JSON.stringify(_classList));
+    localStorage.setItem('classList', JSON.stringify(this.classList));
 };
 
 
