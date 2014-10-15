@@ -67,18 +67,14 @@ Class = function (name, teacher, duration, client, startTime, date) {
     })
 }
 
-/**
- * Prototype for class
- * @type {{name: string, type: string, day_date: string, duration: string, teacher: {}, client: {}, startTime: string}}
- */
-Class.prototype = {
-    _name: "",
-    _type: "",
-    _date: "",
-    _duration: "",
-    _teacher: {},
-    _client: {},
-    _startTime: ""
+
+Class.prototype.equals = function (theclass) {
+    return (this.name === theclass.name) &&
+        (this.teacher === theclass.teacher) &&
+        (this.date === theclass.date) &&
+        (this.duration === theclass.duration) &&
+        (this.client === theclass.client) &&
+        (this.startTime == theclass.startTime);
 }
 
 /**
@@ -95,13 +91,16 @@ Class.DriveClass = function (name, duration, teacher, client, startTime, date) {
     Class.call(this, name, teacher, duration, client, startTime, date);
     this._type = "Drive";
 
-    this.__defineGetter__("type", function() {
+    this.__defineGetter__("type", function () {
         return this._type;
     });
-    this.__defineSetter__("type", function(value) {
+    this.__defineSetter__("type", function (value) {
         return this._type = value;
     })
+}
 
+Class.DriveClass.prototype.equals = function (theclass) {
+    return (this.type === theclass.type) && this.equals(theclass);
 }
 
 /**
@@ -113,10 +112,15 @@ Class.LectureClass = function (name, duration, teacher, client, startTime, date)
     Class.call(this, name, teacher, duration, client, startTime, date);
     this.type = "Lecture";
 
-    this.__defineGetter__("type", function() {
+    this.__defineGetter__("type", function () {
         return this._type;
     });
-    this.__defineSetter__("type", function(value) {
+    this.__defineSetter__("type", function (value) {
         return this._type = value;
     })
 }
+
+Class.LectureClass.prototype.equals = function (theclass) {
+    return (this.type === theclass.type) && this.equals(theclass);
+}
+

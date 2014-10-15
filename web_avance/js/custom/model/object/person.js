@@ -49,21 +49,16 @@ Person = function (firstName, lastName, address) {
  * Prototype for Person
  * @type_of_person {{firstName: string, lastName: string, address: string, type_of_person: string, say: say}}
  */
-Person.prototype = {
-    _firstName: "",
-    _lastName: "",
-    _address: "",
-    _type_of_person: "",
-    _list_class: [],
-    say: function () {
-        console.log("This is" + this.firstName + " " + this.lastName + ", I live in " + this.address);
-    },
-    get_class_list: function () {
-        return this.list_class;
-    }
-
+Person.prototype.say = function () {
+    console.log("This is" + this.firstName + " " + this.lastName + ", I live in " + this.address);
 }
 
+Person.prototype.equals = function (theperson) {
+    return (this.firstName === theperson.firstName) &&
+        (this.lastName === theperson.lastName) &&
+        (this.address === theperson.address) &&
+        (this.list_class === theperson.list_class);
+}
 /**
  * Representation of a client
  * @param firstName
@@ -84,6 +79,10 @@ Person.Client = function (firstName, lastName, address) {
     });
 }
 
+Person.Client.prototype.equals = function (theperson) {
+    return (this.type === theperson.type) && this.equals(theperson);
+}
+
 /**
  * Representation for a teacher
  * @param firstName
@@ -102,6 +101,10 @@ Person.Teacher = function (firstName, lastName, address) {
     });
 }
 
+Person.Teacher.prototype.equals = function (theperson) {
+    return (this.type === theperson.type) && this.equals(theperson);
+}
+
 /**
  * Representation for a secretary
  * @constructor
@@ -115,4 +118,8 @@ Person.Secretary = function (firstName, lastName, address) {
     this.__defineSetter__("type_of_person", function (value) {
         return this._type_of_person = value;
     });
+}
+
+Person.Secretary.prototype.equals = function (theperson) {
+    return (this.type === theperson.type) && this.equals(theperson);
 }
