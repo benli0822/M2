@@ -3,10 +3,24 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+
+<div class="page-container">
+    <h1>SJBS Schedule System</h1>
+
+    <h3>Login</h3>
+
+        <form action="" method="post">
+            <input type="text" name="username" class="username" placeholder="Please insert your name！">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="error"><span>if there is error, show here</span></div>
+        </form>
+</div>
+
 <div class="row">
     <div class="col-xs-6">
         <h3>Student</h3>
@@ -18,7 +32,8 @@
                     <input class="form-control" placeholder="Enter student name" id="searchTextField"/>
                 </div>
             </div>
-            <button type="button" class="btn btn-default" id="searchButton" onclick="search_button_click()">Search</button>
+            <button type="button" class="btn btn-default" id="searchButton" onclick="search_button_click()">Search
+            </button>
             <p class="help-block" id="searchResult"></p>
         </form>
         <div class="table-responsive">
@@ -69,15 +84,18 @@
 <script src="js/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="js/custom/model/object/person.js"></script>
 <script type="text/javascript" src="js/custom/model/object/class.js"></script>
 
 <!--<script type="text/javascript" src="js/custom/dataHelper.js"></script>-->
 <script type="text/javascript" src="js/custom/controller/controller.js"></script>
-<script type="text/javascript" src="js/custom/model/database/class.js"></script>
-<script type="text/javascript" src="js/custom/model/database/teacher.js"></script>
-<script type="text/javascript" src="js/custom/model/database/student.js"></script>
+<script type="text/javascript" src="js/custom/model/database/classDB.js"></script>
+<script type="text/javascript" src="js/custom/model/database/teacherDB.js"></script>
+<script type="text/javascript" src="js/custom/model/database/studentDB.js"></script>
 
 <script type="text/javascript" src="js/custom/controller/mainController.js"></script>
+
+
 </body>
 </html>
