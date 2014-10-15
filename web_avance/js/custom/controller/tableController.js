@@ -19,13 +19,26 @@ table = {
             new_row.appendChild(new_item);
             for (var i = 0; i < column_nb - 1; i++) {
                 var temp_elem = document.createElement('td');
-                var att1 = document.createAttribute('class');
-                att1.value = 'myPopover';
                 temp_elem.id = table_name + '_' + i + '_' + count;
-//            var att2 = document.createAttribute('contenteditable');
-//            att2.value = 'true';
-                temp_elem.setAttributeNode(att1);
-//            temp_elem.setAttributeNode(att2)
+                var temp_div = document.createElement('div');
+                temp_div.innerHTML = '<span id="myPopover' + i + '' + count + '\" ref="popover">Click to pop</span>';
+                var selector = '\'#myPopover' + i + '' + count + '\'';
+                var script = document.createElement('script');
+                script.innerHTML = '$(' + selector + ').popover({\n\t' +
+                    'html: true,\n\t' +
+                    'title: \'Create a new event<a class="close" href="");">&times;</a>\',\n\t' +
+                    'content: $("#popover-content").html()\n' +
+                    '});\n' +
+                    '$(' + selector + ').click(function (e) {\n\t' +
+                    'e.stopPropagation();\n' +
+                    '});\n' +
+                    '$(document).click(function (e) {\n\t' +
+                    'if (($(\'.popover\').has(e.target).length == 0) || $(e.target).is(\'.close\')) {\n\t\t' +
+                    '$(' + selector + ').popover(\'hide\');\n\t' +
+                    '}\n' +
+                    '});';
+                temp_div.appendChild(script)
+                temp_elem.appendChild(temp_div);
                 new_row.appendChild(temp_elem);
             }
             table.appendChild(new_row);
