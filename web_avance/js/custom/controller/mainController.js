@@ -55,7 +55,7 @@ main = {
             count++;
         }
     },
-    createSecretaryTable: function(table_name) {
+    createSecretaryTable: function (table_name) {
         var teacherList = tdb.teacherList;
 
         var table = document.getElementById(table_name);
@@ -71,7 +71,7 @@ main = {
         table.appendChild(title_row);
         this.addTimeLine(table_name, teacherList.length + 1);
     },
-    updateSecretaryTableContent: function() {
+    updateSecretaryTableContent: function () {
         var secretary_table = document.getElementById('secretary_table');
         //to delete all the content in the table
         secretary_table.innerHTML = "";
@@ -85,30 +85,30 @@ main = {
         //To update the secretary table we need to traverse the teacher list and for each teacher we display
         // YES(at this moment) in the time area if he has a lesson in that time
 
-        for( var i = 0 ; i <= teacherList.length -1 ; i++){
+        for (var i = 0; i <= teacherList.length - 1; i++) {
             var the_teacher = teacherList[i];
 
             //we should detect if the list class is null. if is null then the type of list class is undefined
-            if(typeof(the_teacher.list_class) != 'undefined') {
+            if (typeof(the_teacher.list_class) != 'undefined') {
 
                 for (var j = 0; j <= the_teacher.list_class.length - 1; j++) {
 
                     var the_class = the_teacher.list_class[j];
-                    secretary_table.rows[the_class.startTime - 7].cells[i+1].innerHTML = 'YES';
+                    secretary_table.rows[the_class.startTime - 7].cells[i + 1].innerHTML = 'YES';
 
                 }
             }
-            else{
+            else {
                 console.log("Teacher " + the_teacher.lastName + " not find a lesson");
             }
         }
     },
-    update_student_table: function(student) {
+    update_student_table: function (student) {
         var table = document.getElementById("student_table");
         document.getElementById("searchResult").innerHTML = student.firstName;
 
         //clear all the existeds elements
-        while(table.hasChildNodes()){
+        while (table.hasChildNodes()) {
             table.removeChild(table.lastChild);
         }
 
@@ -123,22 +123,22 @@ main = {
          */
         var first_row = document.createElement('tr');
         var elementDate = document.createElement('th');
-        elementDate.innerHTML="Date";
+        elementDate.innerHTML = "Date";
         first_row.appendChild(elementDate);
         var elementDate = document.createElement('th');
-        elementDate.innerHTML="Time";
+        elementDate.innerHTML = "Time";
         first_row.appendChild(elementDate);
         var elementDate = document.createElement('th');
-        elementDate.innerHTML="Duration";
+        elementDate.innerHTML = "Duration";
         first_row.appendChild(elementDate);
         var elementDate = document.createElement('th');
-        elementDate.innerHTML="Teacher";
+        elementDate.innerHTML = "Teacher";
         first_row.appendChild(elementDate);
         table.appendChild(first_row);
 
 
         //travese the class list
-        for( var i = 0 ; i <= student.list_class.length -1 ; i++){
+        for (var i = 0; i <= student.list_class.length - 1; i++) {
 
             var tem_class = student.list_class[i];
 
@@ -170,12 +170,12 @@ main = {
 
 
     },
-    closeNormal: function() {
+    closeNormal: function () {
         sdb.close(1);
         tdb.close(1);
         cdb.close(1);
     },
-    closeException: function() {
+    closeException: function () {
         sdb.close(0);
         tdb.close(0);
         cdb.close(0);
@@ -216,19 +216,23 @@ window.onload = function () {
     main.update_student_table(sdb.find_a_client_by_name('stu1', 'stu1'));
     main.updateSecretaryTableContent();
 
-    var options = {
+    $('.myPopover').popover({
         html: true,
-        trigger: "hover focus",
-        title: function () {
-            return $("#popover-head").html();
-        },
-        content: function () {
-            return $("#popover-content").html();
+        title: 'Create a new event<a class="close" href="#");">&times;</a>',
+        content: $("#popover-content").html()
+    });
+
+    $('.myPopover').click(function (e) {
+        e.stopPropagation();
+    });
+
+    $(document).click(function (e) {
+        if (($('.myPopover').has(e.target).length == 1) || $(e.target).is('.close')) {
+            $('.myPopover').popover('hide');
         }
-    }
-//    $.getScript("js/custom/controller.js", function () {
-    $('.myPopover').popover(options);
-//    });
+    });
+
+
     /*
      // Check browser support
      if (typeof(Storage) != 'undefined') {
