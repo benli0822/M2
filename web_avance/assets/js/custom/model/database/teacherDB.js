@@ -46,6 +46,10 @@ TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
     //1.get the teacher list
     var _teacherList = this.teacherList;
 
+    if(localStorage.getItem('teacherList') != 'undefined') {
+        _teacherList = _teacherList.concat(JSON.parse(localStorage.getItem('teacherList')));
+    }
+
 
     //Traverse in the teacher list to find the teacher
     for (var i = 0; i <= _teacherList.length - 1; i++) {
@@ -60,6 +64,11 @@ TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
 // check a teacher's existence
 TeacherDB.prototype.hasTeacher = function (teacher) {
     var _teacherList = this.teacherList;
+
+    if(localStorage.getItem('teacherList') != 'undefined') {
+        _teacherList = _teacherList.concat(JSON.parse(localStorage.getItem('teacherList')));
+    }
+
     for (var i = 0; _teacherList.length; i++) {
         if (_teacherList[i] === teacher) {
             return true;
