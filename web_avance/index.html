@@ -8,6 +8,100 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="assets/js/jquery.min.js"></script>
+    <link href='assets/fullcalendar.css' rel='stylesheet' />
+    <link href='assets/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <script src='assets/lib/moment.min.js'></script>
+    <script src='assets/lib/jquery.min.js'></script>
+    <script src='assets/fullcalendar.min.js'></script>
+    <script>
+
+        $(document).ready(function() {
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: '2014-09-12',
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end) {
+                    var title = prompt('Event Title:');
+                    var eventData;
+                    if (title) {
+                        eventData = {
+                            title: title,
+                            start: start,
+                            end: end
+                        };
+                        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                    }
+                    $('#calendar').fullCalendar('unselect');
+                },
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: '2014-09-01'
+                    },
+                    {
+                        title: 'Long Event',
+                        start: '2014-09-07',
+                        end: '2014-09-10'
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: '2014-09-09T16:00:00'
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: '2014-09-16T16:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2014-09-11',
+                        end: '2014-09-13'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2014-09-12T10:30:00',
+                        end: '2014-09-12T12:30:00'
+                    },
+                    {
+                        title: 'Lunch',
+                        start: '2014-09-12T12:00:00'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2014-09-12T14:30:00'
+                    },
+                    {
+                        title: 'Happy Hour',
+                        start: '2014-09-12T17:30:00'
+                    },
+                    {
+                        title: 'Dinner',
+                        start: '2014-09-12T20:00:00'
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: '2014-09-13T07:00:00'
+                    },
+                    {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2014-09-28'
+                    }
+                ]
+            });
+
+        });
+
+    </script>
 </head>
 <body>
 
@@ -67,13 +161,23 @@
     </ul>
     <div class="tab-content" id="myTabContent">
         <div id="home" class="tab-pane fade active in">
-            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+            <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
         </div>
         <div id="profile" class="tab-pane fade">
-            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                            <tbody id="secretary_table">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <div id="dropdown1" class="tab-pane fade">
-            <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+            <div id='calendar'></div>
         </div>
         <div id="dropdown2" class="tab-pane fade">
             <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
@@ -81,21 +185,7 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-10">
-        <h3>Secretary</h3>
 
-        <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
-
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered">
-                <tbody id="secretary_table">
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-</div>
 
 <div id="popover-content" class="hide">
     <form>
