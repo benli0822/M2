@@ -5,9 +5,9 @@
     <title></title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
 </head>
 <body>
 
@@ -53,9 +53,39 @@
     </div>
 </div>
 
+<div class="">
+    <ul role="tablist" class="nav nav-tabs" id="myTab">
+        <li class="active"><a data-toggle="tab" role="tab" href="#home">Home</a></li>
+        <li class=""><a data-toggle="tab" role="tab" href="#profile">Profile</a></li>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop1" href="#">Dropdown <span class="caret"></span></a>
+            <ul aria-labelledby="myTabDrop1" role="menu" class="dropdown-menu">
+                <li><a data-toggle="tab" role="tab" tabindex="-1" href="#dropdown1">@fat</a></li>
+                <li><a data-toggle="tab" role="tab" tabindex="-1" href="#dropdown2">@mdo</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div id="home" class="tab-pane fade active in">
+            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+        </div>
+        <div id="profile" class="tab-pane fade">
+            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+        </div>
+        <div id="dropdown1" class="tab-pane fade">
+            <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+        </div>
+        <div id="dropdown2" class="tab-pane fade">
+            <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-lg-10">
         <h3>Secretary</h3>
+
+        <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
 
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
@@ -73,10 +103,16 @@
             <label>When: </label>
         </div>
         <div class="form-group">
-            <label>Which Student: </label>
+            <label>Which Teacher: </label>
             <select>
                 <option>1</option>
                 <option>2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Which Student: </label>
+            <select>
+
             </select>
         </div>
         <button type="submit" class="btn btn-default">Create Event</button>
@@ -85,21 +121,21 @@
 </div>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="js/custom/model/object/person.js"></script>
-<script type="text/javascript" src="js/custom/model/object/class.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/object/person.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/object/class.js"></script>
 
 <!--<script type="text/javascript" src="js/custom/dataHelper.js"></script>-->
-<script type="text/javascript" src="js/custom/controller/controller.js"></script>
-<script type="text/javascript" src="js/custom/model/database/classDB.js"></script>
-<script type="text/javascript" src="js/custom/model/database/teacherDB.js"></script>
-<script type="text/javascript" src="js/custom/model/database/studentDB.js"></script>
+<script type="text/javascript" src="assets/js/custom/controller/controller.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/database/classDB.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/database/teacherDB.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/database/studentDB.js"></script>
 
-<script type="text/javascript" src="js/custom/controller/mainController.js"></script>
-<script type="text/javascript" src="js/custom/controller/tableController.js"></script>
+<script type="text/javascript" src="assets/js/custom/controller/mainController.js"></script>
+<script type="text/javascript" src="assets/js/custom/controller/tableController.js"></script>
 
-<script type="text/javascript" src="js/custom/app.js"></script>
+<script type="text/javascript" src="assets/js/custom/app.js"></script>
 
 
 </body>
