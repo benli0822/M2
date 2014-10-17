@@ -8,11 +8,10 @@
  * @param address
  * @constructor
  */
-Person = function (firstName, lastName, address, pwd) {
+Person = function (firstName, lastName, address) {
     this._firstName = firstName;
     this._lastName = lastName;
     this._address = address;
-    this._pwd = pwd;
     this._list_class = [];
 
     /* getter and setter for firstName */
@@ -36,14 +35,6 @@ Person = function (firstName, lastName, address, pwd) {
     this.__defineSetter__("address", function (value) {
         return this._address = value;
     });
-    /* getter and setter for password */
-    this.__defineGetter__("pwd", function () {
-        return this._pwd;
-    });
-    this.__defineSetter__("pwd", function (value) {
-        return this._pwd = value;
-    });
-
     /* getter and setter list_class */
     this.__defineGetter__("list_class", function () {
         return this._list_class;
@@ -68,5 +59,67 @@ Person.prototype.equals = function (theperson) {
         (this.address === theperson.address) &&
         (this.list_class === theperson.list_class);
 }
+/**
+ * Representation of a client
+ * @param firstName
+ * @param lastName
+ * @param address
+ * @param freeTime
+ * @constructor
+ */
+Person.Client = function (firstName, lastName, address) {
+    Person.call(this, firstName, lastName, address);
+    this._type_of_person = "Client";
+    /* getter and setter for type_of_person */
+    this.__defineGetter__("type_of_person", function () {
+        return this._type_of_person;
+    });
+    this.__defineSetter__("type_of_person", function (value) {
+        return this._type_of_person = value;
+    });
+}
 
+Person.Client.prototype.equals = function (theperson) {
+    return (this.type === theperson.type) && this.equals(theperson);
+}
 
+/**
+ * Representation for a teacher
+ * @param firstName
+ * @param lastName
+ * @param address
+ * @constructor
+ */
+Person.Teacher = function (firstName, lastName, address) {
+    Person.call(this, firstName, lastName, address);
+    this._type_of_person = "Teacher";
+    this.__defineGetter__("type_of_person", function () {
+        return this._type_of_person;
+    });
+    this.__defineSetter__("type_of_person", function (value) {
+        return this._type_of_person = value;
+    });
+}
+
+Person.Teacher.prototype.equals = function (theperson) {
+    return (this.type === theperson.type) && this.equals(theperson);
+}
+
+/**
+ * Representation for a secretary
+ * @constructor
+ */
+Person.Secretary = function (firstName, lastName, address) {
+    Person.call(this, firstName, lastName, address);
+    this._type_of_person = "Secretary";
+    this.__defineGetter__("type_of_person", function () {
+        return this._type_of_person;
+    });
+    this.__defineSetter__("type_of_person", function (value) {
+        return this._type_of_person = value;
+    });
+}
+
+Person.Secretary.prototype.equals = function (theperson) {
+    return (this.type === theperson.type) && this.equals(theperson);
+}
