@@ -9,6 +9,6 @@ function search_button_click(){
         document.getElementById("searchResult").innerHTML = 'clicked';
         var the_student = sdb.find_a_client_by_firstname(search_text);
     if(typeof(the_student) != 'undefined') {
-        main.update_student_table(the_student);
+        table.update_student_table(the_student);
     }
 }

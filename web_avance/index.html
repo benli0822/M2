@@ -5,35 +5,27 @@
     <title></title>
 
     <!-- Latest compiled and minified CSS -->
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/datepicker.css">
+    <link rel="stylesheet" href="assets/css/datepicker.css">
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
 
 
-
-
-
-=======
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-=======
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
->>>>>>> FETCH_HEAD
+
     <script src="assets/js/jquery.min.js"></script>
-    <link href='assets/fullcalendar.css' rel='stylesheet' />
-    <link href='assets/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <link href='assets/fullcalendar.css' rel='stylesheet'/>
+    <link href='assets/fullcalendar.print.css' rel='stylesheet' media='print'/>
     <script src='assets/lib/moment.min.js'></script>
     <script src='assets/lib/jquery.min.js'></script>
     <script src='assets/fullcalendar.min.js'></script>
     <script>
 
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $('#calendar').fullCalendar({
                 header: {
@@ -44,7 +36,7 @@
                 defaultDate: '2014-09-12',
                 selectable: true,
                 selectHelper: true,
-                select: function(start, end) {
+                select: function (start, end) {
                     var title = prompt('Event Title:');
                     var eventData;
                     if (title) {
@@ -120,10 +112,7 @@
         });
 
     </script>
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
+
 </head>
 <body>
 
@@ -134,6 +123,7 @@
 
     <form action="" method="post" id="loginForm">
         <input type="text" name="username" class="username" placeholder="Please insert your name！">
+
         <div></div>
         <input type="password" name="password" class="password">
         <button type="button" class="btn btn-primary">Login</button>
@@ -177,7 +167,8 @@
         <li class="active"><a data-toggle="tab" role="tab" href="#home">Home</a></li>
         <li class=""><a data-toggle="tab" role="tab" href="#profile">Profile</a></li>
         <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop1" href="#">Dropdown <span class="caret"></span></a>
+            <a data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop1" href="#">Dropdown <span
+                    class="caret"></span></a>
             <ul aria-labelledby="myTabDrop1" role="menu" class="dropdown-menu">
                 <li><a data-toggle="tab" role="tab" tabindex="-1" href="#dropdown1">@fat</a></li>
                 <li><a data-toggle="tab" role="tab" tabindex="-1" href="#dropdown2">@mdo</a></li>
@@ -187,6 +178,9 @@
     <div class="tab-content" id="myTabContent">
         <div id="home" class="tab-pane fade active in">
             <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
+        </div>
+        <div class="well">
+            <input type="text" class="span2" value="16-10-2014" id="dp1" data-date-format="dd-mm-yyyy">
         </div>
         <div id="profile" class="tab-pane fade">
             <div class="row">
@@ -198,38 +192,24 @@
                         </table>
                     </div>
                 </div>
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-
-        <div class="well">
-            <input type="text" class="span2" value="16-10-2014" id="dp1" data-date-format="dd-mm-yyyy">
-        </div>
-
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered">
-                <tbody id="secretary_table">
-                </tbody>
-            </table>
-=======
-=======
-
->>>>>>> FETCH_HEAD
             </div>
         </div>
-        <div id="dropdown1" class="tab-pane fade">
-            <div id='calendar'></div>
-        </div>
-        <div id="dropdown2" class="tab-pane fade">
-            <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
-        </div>
+    </div>
+
+
+    <div id="dropdown1" class="tab-pane fade">
+        <div id='calendar'></div>
+    </div>
+    <div id="dropdown2" class="tab-pane fade">
+        <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse
+            gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf
+            cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
+            farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh
+            craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
+
     </div>
 </div>
-
+</div>
 
 
 <div id="popover-content" class="hide">
@@ -257,53 +237,28 @@
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="assets/js/bootstrap.min.js"></script>
-<<<<<<< HEAD
-
-<<<<<<< HEAD
 
 
-<script src="js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="js/custom/model/object/person.js"></script>
-<script type="text/javascript" src="js/custom/model/object/class.js"></script>
-<script type="text/javascript" src="js/custom/model/object/client.js"></script>
-<script type="text/javascript" src="js/custom/model/object/teacher.js"></script>
-<script type="text/javascript" src="js/custom/model/object/secretary.js"></script>
-<!--<script type="text/javascript" src="js/custom/dataHelper.js"></script>-->
-<script type="text/javascript" src="js/custom/controller/actionController.js"></script>
-<script type="text/javascript" src="js/custom/model/database/classDB.js"></script>
-<script type="text/javascript" src="js/custom/model/database/teacherDB.js"></script>
-<script type="text/javascript" src="js/custom/model/database/studentDB.js"></script>
-=======
+<script src="assets/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/object/person.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/object/class.js"></script>
-
+<script type="text/javascript" src="assets/js/custom/model/object/client.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/object/teacher.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/object/secretary.js"></script>
 <!--<script type="text/javascript" src="js/custom/dataHelper.js"></script>-->
-=======
 
-<script type="text/javascript" src="assets/js/custom/model/object/person.js"></script>
-<script type="text/javascript" src="assets/js/custom/model/object/class.js"></script>
-
-<!--<script type="text/javascript" src="js/custom/dataHelper.js"></script>-->
->>>>>>> FETCH_HEAD
-<script type="text/javascript" src="assets/js/custom/controller/controller.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/database/classDB.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/database/teacherDB.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/database/studentDB.js"></script>
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
+
+
+<script type="text/javascript" src="assets/js/custom/controller/controller.js"></script>
+
 
 <script type="text/javascript" src="assets/js/custom/controller/mainController.js"></script>
 <script type="text/javascript" src="assets/js/custom/controller/tableController.js"></script>
 
 <script type="text/javascript" src="assets/js/custom/app.js"></script>
-
-=======
-
-<script type="text/javascript" src="assets/js/custom/controller/mainController.js"></script>
-<script type="text/javascript" src="assets/js/custom/controller/tableController.js"></script>
-
-<script type="text/javascript" src="assets/js/custom/app.js"></script>
->>>>>>> FETCH_HEAD
 
 
 </body>
