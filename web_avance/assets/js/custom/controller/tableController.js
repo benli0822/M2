@@ -100,7 +100,7 @@ table = {
 
                 for (var j = 0; j < the_teacher.list_class.length; j++) {
 
-                    var the_class = the_teacher.list_class[j];
+                    the_class = the_teacher.list_class[j];
 
 
                     if(the_class.date.toDateString() == date.toDateString()) {

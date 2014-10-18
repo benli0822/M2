@@ -6,7 +6,6 @@ var sdb = new StudentDB();
 var cdb = new ClassDB();
 window.onload = function () {
 
-
     test.addTeacherExamples();
     test.addTestDataToDB();
     table.addTimeLine('student_table', 4);
