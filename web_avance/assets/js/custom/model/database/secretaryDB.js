@@ -6,6 +6,9 @@ SecretaryDB = function () {
     var _secretaryList = [];
 
     this.__defineGetter__('secretaryList', function () {
+        if (localStorage.getItem('secretaryList') != null) {
+            _secretaryList = _secretaryList.concat(JSON.parse(localStorage.getItem('secretaryList')));
+        }
         return _secretaryList;
     });
 };
@@ -27,7 +30,7 @@ SecretaryDB.prototype.init = function () {
  * @returns {boolean}
  */
 SecretaryDB.prototype.validate = function (firstName, lastName) {
-    if (localStorage.getItem('secretaryList') != 'undefined') {
+    if (localStorage.getItem('secretaryList') != null) {
         var _sl = JSON.parse(localStorage.getItem('secretaryList'));
         for (var i = 0; i < _sl.length; i++) {
             if (_sl[i].firstName === firstName && _sl[i].lastName === lastName) {

@@ -7,6 +7,9 @@ StudentDB = function() {
     //TODO removeStudent
 
     this.__defineGetter__("studentList", function() {
+        if (localStorage.getItem('studentList') != null) {
+            _studentList = _studentList.concat(JSON.parse(localStorage.getItem('studentList')));
+        }
         return _studentList;
     });
 
@@ -49,7 +52,7 @@ StudentDB.prototype.find_a_client_by_name = function(firstname, lastname) {
     //1.get the client list
     var clientlistobject = this.studentList;
 
-    if(localStorage.getItem('studentList') != 'undefined') {
+    if(localStorage.getItem('studentList') != null) {
         clientlistobject = clientlistobject.concat(JSON.parse(localStorage.getItem('studentList')));
     }
 
@@ -67,7 +70,7 @@ StudentDB.prototype.find_a_client_by_firstname = function(firstname) {
     //1.get the client list
     var clientlistobject = this.studentList;
 
-    if(localStorage.getItem('studentList') != 'undefined') {
+    if(localStorage.getItem('studentList') != null) {
         clientlistobject = clientlistobject.concat(JSON.parse(localStorage.getItem('studentList')));
     }
 
@@ -85,7 +88,7 @@ StudentDB.prototype.find_a_client_by_firstname = function(firstname) {
 StudentDB.prototype.hasStudent = function(student) {
     var _studentList = this.studentList;
 
-    if(localStorage.getItem('studentList') != 'undefined') {
+    if(localStorage.getItem('studentList') != null) {
         _studentList = _studentList.concat(JSON.parse(localStorage.getItem('studentList')));
     }
 

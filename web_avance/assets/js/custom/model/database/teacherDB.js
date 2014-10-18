@@ -7,6 +7,9 @@ TeacherDB = function () {
     //TODO removeTeacher need to be done
 
     this.__defineGetter__("teacherList", function () {
+        if (localStorage.getItem('teacherList') != null) {
+            _teacherList = _teacherList.concat(JSON.parse(localStorage.getItem('teacherList')));
+        }
         return _teacherList;
     })
 };
@@ -22,9 +25,9 @@ TeacherDB.prototype.init = function () {
 };
 
 // add a teacher into memory without charge local sotrage
-TeacherDB.prototype.addTeacher = function (firstName, lastName, address,pwd) {
+TeacherDB.prototype.addTeacher = function (firstName, lastName, address, pwd) {
     // create a teacher and save it into dbs
-    var newTeacher = new Person.Teacher(firstName, lastName, address,pwd);
+    var newTeacher = new Person.Teacher(firstName, lastName, address, pwd);
     console.log("Adding " + firstName + " " + lastName + " lived in: " + address);
     // add the class into temp list
     try {
@@ -46,7 +49,7 @@ TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
     //1.get the teacher list
     var _teacherList = this.teacherList;
 
-    if(localStorage.getItem('teacherList') != 'undefined') {
+    if (localStorage.getItem('teacherList') != null) {
         _teacherList = _teacherList.concat(JSON.parse(localStorage.getItem('teacherList')));
     }
 
@@ -65,7 +68,7 @@ TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
 TeacherDB.prototype.hasTeacher = function (teacher) {
     var _teacherList = this.teacherList;
 
-    if(localStorage.getItem('teacherList') != 'undefined') {
+    if (localStorage.getItem('teacherList') != null) {
         _teacherList = _teacherList.concat(JSON.parse(localStorage.getItem('teacherList')));
     }
 
@@ -78,26 +81,28 @@ TeacherDB.prototype.hasTeacher = function (teacher) {
 };
 
 // close database operation, 1 for local storage, 0 for abandon memory change
-TeacherDB.prototype.close = function(option) {
+TeacherDB.prototype.close = function (option) {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
         alert("Your browser don't support local storage");
         return;
     }
-    switch(option) {
-        case 1 : {
+    switch (option) {
+        case 1 :
+        {
             // if the studentList haven't been initialised
-            if(localStorage.getItem("teacherList") === null) {
+            if (localStorage.getItem("teacherList") === null) {
                 localStorage.setItem("teacherList", TeacherDB.teacherList);
             } else {
-                var tempTeacherList =  localStorage.getItem("teacherList");
+                var tempTeacherList = localStorage.getItem("teacherList");
                 // concatenate the current to the exist one
                 var finalTeacherList = tempTeacherList.concat(this.teacherList);
                 localStorage.setItem("teacherList", finalTeacherList);
             }
             break;
         }
-        case 0 : {
+        case 0 :
+        {
             console.log("You have requested to discard teacher's changes of this time");
             break;
         }
