@@ -1,5 +1,5 @@
 /**
- * Created by benli on 15/10/14.
+ * Created by CHENG Xiaojun et JIN Benli on 15/10/14.
  */
 table = {
     /**
@@ -70,10 +70,18 @@ table = {
     /**
      * update with the information of teacher database
      */
-    updateSecretaryTableContent: function () {
+    updateSecretaryTableContent: function (date) {
         var secretary_table = document.getElementById('secretary_table');
         //to delete all the content in the table
-        secretary_table.innerHTML = "";
+        //secretary_table.innerHTML = "";
+
+        console.log("try to update secretart table");
+
+
+        //clear all the existeds elements
+        while (secretary_table.hasChildNodes()) {
+            secretary_table.removeChild(secretary_table.lastChild);
+        }
 
         this.createSecretaryTable('secretary_table');
 
@@ -93,8 +101,11 @@ table = {
                 for (var j = 0; j < the_teacher.list_class.length; j++) {
 
                     var the_class = the_teacher.list_class[j];
-                    secretary_table.rows[the_class.startTime - 7].cells[i + 1].innerHTML = 'YES';
 
+
+                    if(the_class.date.toDateString() == date.toDateString()) {
+                        secretary_table.rows[the_class.startTime - 7].cells[i + 1].innerHTML = 'YES';
+                    }
                 }
             }
             else {

@@ -98,10 +98,22 @@ test = {
         main.addStudentObject(stu1);
         main.addStudentObject(stu2);
 
-        var testdate1 = new Date(2014,10,16, 8, 0, 0, 0);
-        var testdate2 = new Date(2014,10,16, 9, 0, 0, 0);
+        //TODO new Date the month is start with 0, so the oct is the 9
+        var testdate1 = new Date(2014,9,18, 8, 0, 0, 0);
+
+        var testdate2 = new Date(2014,9,18, 9, 0, 0, 0);
+
+        var testdate3 = new Date(2014,9,19, 9, 0, 0, 0);
+        var testdate4 = new Date(2014,9,20, 9, 0, 0, 0);
+        var testdate5 = new Date(2014,9,21, 9, 0, 0, 0);
+
+
         cdb.addAClass('drive', teacher, stu1, 1, 8, testdate1, 'drive', sdb, tdb);
         cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate2, 'lecture', sdb, tdb);
+        cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate3, 'lecture', sdb, tdb);
+        cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate4, 'lecture', sdb, tdb);
+        cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate5, 'lecture', sdb, tdb);
+
     }
 
 };
