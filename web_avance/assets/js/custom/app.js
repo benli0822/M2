@@ -4,6 +4,18 @@
 var tdb = new TeacherDB();
 var sdb = new StudentDB();
 var cdb = new ClassDB();
+
+//set up datepicker
+var datepicker = $('#dp1').datepicker().on('changeDate', function (ev) {
+    datepicker.hide();
+
+    //we update the secretary table with the choosen date
+    table.updateSecretaryTableContent(new Date(ev.date));
+
+    console.log("change value to :" + ev.date.toDateString());
+    date = ev.date;
+}).data('datepicker');
+
 window.onload = function () {
     localStorage.clear();
     test.addTeacherExamples();
@@ -16,17 +28,4 @@ window.onload = function () {
 //    popover.updateTableContent();
 
     popover.initPopover();
-
-    //set up datepicker
-    var datepicker = $('#dp1').datepicker({
-
-    }).on('changeDate', function (ev) {
-        datepicker.hide();
-
-        //we update the secretary table with the choosen date
-        table.updateSecretaryTableContent(new Date(ev.date));
-
-        console.log("change value to :" + ev.date.toDateString());
-    }).data('datepicker');
-
 }
