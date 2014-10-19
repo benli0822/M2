@@ -22,7 +22,7 @@ loginController = {
             $("#studentModule").fadeIn();
         }
         else{//we don't find the user
-
+            alert("Wrong username or password, try again");
         }
     }
 }
