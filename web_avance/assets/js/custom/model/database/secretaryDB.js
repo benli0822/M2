@@ -5,10 +5,11 @@
 SecretaryDB = function () {
     var _secretaryList = [];
 
+    if (localStorage.getItem('secretaryList') != null) {
+        _secretaryList = _secretaryList.concat(JSON.parse(localStorage.getItem('secretaryList')));
+    }
+
     this.__defineGetter__('secretaryList', function () {
-        if (localStorage.getItem('secretaryList') != null) {
-            _secretaryList = _secretaryList.concat(JSON.parse(localStorage.getItem('secretaryList')));
-        }
         return _secretaryList;
     });
 };

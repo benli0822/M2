@@ -4,12 +4,12 @@
 StudentDB = function() {
     var _studentList = [];
 
+    if (localStorage.getItem('studentList') != null) {
+        _studentList = _studentList.concat(JSON.parse(localStorage.getItem('studentList')));
+    }
     //TODO removeStudent
 
     this.__defineGetter__("studentList", function() {
-        if (localStorage.getItem('studentList') != null) {
-            _studentList = _studentList.concat(JSON.parse(localStorage.getItem('studentList')));
-        }
         return _studentList;
     });
 
@@ -52,10 +52,6 @@ StudentDB.prototype.find_a_client_by_name = function(firstname, lastname) {
     //1.get the client list
     var clientlistobject = this.studentList;
 
-    if(localStorage.getItem('studentList') != null) {
-        clientlistobject = clientlistobject.concat(JSON.parse(localStorage.getItem('studentList')));
-    }
-
     //Traverse in the client list to find the client
     for(var i = 0; i <= clientlistobject.length -1 ; i++){
         if(clientlistobject[i].firstName == firstname && clientlistobject[i].lastName == lastname ){
@@ -70,10 +66,6 @@ StudentDB.prototype.find_a_client_by_firstname = function(firstname) {
     //1.get the client list
     var clientlistobject = this.studentList;
 
-    if(localStorage.getItem('studentList') != null) {
-        clientlistobject = clientlistobject.concat(JSON.parse(localStorage.getItem('studentList')));
-    }
-
     //Traverse in the client list to find the client
     for(var i = 0; i <= clientlistobject.length -1 ; i++){
         if(clientlistobject[i].firstName == firstname ){
@@ -87,10 +79,6 @@ StudentDB.prototype.find_a_client_by_firstname = function(firstname) {
 // check a teacher's existence
 StudentDB.prototype.hasStudent = function(student) {
     var _studentList = this.studentList;
-
-    if(localStorage.getItem('studentList') != null) {
-        _studentList = _studentList.concat(JSON.parse(localStorage.getItem('studentList')));
-    }
 
     for(var i = 0; _studentList.length; i++) {
         if(_studentList[i] === student) {

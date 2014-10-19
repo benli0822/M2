@@ -4,12 +4,13 @@
 ClassDB = function () {
     var _classList = [];
 
+    if (localStorage.getItem('classList') != null) {
+        _classList = _classList.concat(JSON.parse(localStorage.getItem('classList')));
+    }
+
     //TODO removeClass need to be find by condition ex. {name: abc} {teacher: abc} condition should gived in detail
 
     this.__defineGetter__("classList", function () {
-        if (localStorage.getItem('classList') != null) {
-            _classList = _classList.concat(JSON.parse(localStorage.getItem('classList')));
-        }
         return _classList;
     });
 
