@@ -13,7 +13,6 @@ var datepicker = $('#dp1').datepicker().on('changeDate', function (ev) {
     table.updateSecretaryTableContent(new Date(ev.date));
 
     console.log("change value to :" + ev.date.toDateString());
-    date = ev.date;
 }).data('datepicker');
 
 window.onload = function () {

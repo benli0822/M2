@@ -3,7 +3,7 @@
  */
 var settings = {
     trigger: 'click',
-    title: 'Create a event',
+    title: '<h4>Create a event</h4>',
     content: function () {
         return $('#popover-content').html();
     },
@@ -59,7 +59,7 @@ popover = {
         var divHour = document.createElement('div');
         divHour.setAttribute('class', 'col-sm-5 col-sm-offset-2');
         var whenHour = document.createElement('p');
-        var text2 = document.createTextNode(hour + ":00");
+        var text2 = document.createTextNode(datepicker.date.getMonth()+1 + " " +datepicker.date.getDate() + " " + hour + ":00");
         whenLabel.appendChild(text1);
         whenHour.appendChild(text2);
         whenLabel.setAttribute('class', 'col-sm-2 col-sm-offset-2 control-label');
