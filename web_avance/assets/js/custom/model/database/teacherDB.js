@@ -3,8 +3,12 @@
  */
 TeacherDB = function () {
     var _teacherList = [];
+
     if (localStorage.getItem('teacherList') != null) {
-        _teacherList = _teacherList.concat(JSON.parse(localStorage.getItem('teacherList')));
+        var localTeacherList = JSON.parse(localStorage.getItem('teacherList'));
+        for (var i = 0; i < localTeacherList.length; i++) {
+            _teacherList.push(localTeacherList[i]);
+        }
     }
 
     //TODO removeTeacher need to be done
@@ -81,15 +85,15 @@ TeacherDB.prototype.close = function (option) {
     switch (option) {
         case 1 :
         {
-            // if the studentList haven't been initialised
-            if (localStorage.getItem("teacherList") === null) {
-                localStorage.setItem("teacherList", TeacherDB.teacherList);
-            } else {
-                var tempTeacherList = localStorage.getItem("teacherList");
-                // concatenate the current to the exist one
-                var finalTeacherList = tempTeacherList.concat(this.teacherList);
-                localStorage.setItem("teacherList", finalTeacherList);
-            }
+            var seen = [];
+            localStorage.setItem("teacherList", JSON.stringify(this.teacherList, function(key, val) {
+                if (typeof val == "object") {
+                    if (seen.indexOf(val) >= 0)
+                        return
+                    seen.push(val)
+                }
+                return val
+            }));
             break;
         }
         case 0 :

@@ -46,7 +46,7 @@ function login_button_click(){
 }
 
 function logout_button_click(){
-    //main.closeNormal();
+    main.closeNormal();
     $("#studentModule").fadeOut();
     $("#secretaryModule").fadeOut();
     $("#loginModule").fadeIn();

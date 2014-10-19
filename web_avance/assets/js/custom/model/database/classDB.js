@@ -5,7 +5,10 @@ ClassDB = function () {
     var _classList = [];
 
     if (localStorage.getItem('classList') != null) {
-        _classList = _classList.concat(JSON.parse(localStorage.getItem('classList')));
+        var localClassList = JSON.parse(localStorage.getItem('classList'));
+        for (var i = 0; i < localClassList.length; i++) {
+            _classList.push(localClassList[i]);
+        }
     }
 
     //TODO removeClass need to be find by condition ex. {name: abc} {teacher: abc} condition should gived in detail
@@ -48,30 +51,30 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 document.getElementsByTagName("body").item[0].appendChild(errorElement1);
             }
             // add class info into student's database
-            if(typeof(sdb) == "undefined") {
+            if (typeof(sdb) == "undefined") {
                 // there should be an exception
                 alert("Check student database js has already loaded!");
                 return;
             } else {
                 // find the client
                 var _studentList = sdb.studentList;
-                for(var i = 0; i < _studentList.length; i++) {
-                    if(_studentList[i] === client) {
+                for (var i = 0; i < _studentList.length; i++) {
+                    if (_studentList[i] === client) {
                         // add the class into student's class list
                         _studentList[i].list_class.push(newDriveClass);
                     }
                 }
             }
             // add class info into teacher's database
-            if(typeof(tdb) == "undefined") {
+            if (typeof(tdb) == "undefined") {
                 // there should be an exception
                 alert("Check teacher database js has already loaded!");
                 return;
             } else {
                 // find the teacher
                 var _teacherList = tdb.teacherList;
-                for(var i = 0; i < _teacherList.length; i++) {
-                    if(_teacherList[i] == teacher) {
+                for (var i = 0; i < _teacherList.length; i++) {
+                    if (_teacherList[i] == teacher) {
                         // add the class info teacher's class list
                         _teacherList[i].list_class.push(newDriveClass);
                     }
@@ -94,30 +97,30 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 document.getElementsByTagName("body").item[0].appendChild(errorElement2);
             }
             // add class info into student's database
-            if(typeof(sdb) == "undefined") {
+            if (typeof(sdb) == "undefined") {
                 // there should be an exception
                 alert("Check student database js has already loaded!");
                 return;
             } else {
                 // find the client
                 var _studentList = sdb.studentList;
-                for(var i = 0; i < _studentList.length; i++) {
-                    if(_studentList[i] === client) {
+                for (var i = 0; i < _studentList.length; i++) {
+                    if (_studentList[i] === client) {
                         // add the class into student's class list
                         _studentList[i].list_class.push(newLectureClass);
                     }
                 }
             }
             // add class info into teacher's database
-            if(typeof(tdb) == "undefined") {
+            if (typeof(tdb) == "undefined") {
                 // there should be an exception
                 alert("Check teacher database js has already loaded!");
                 return;
             } else {
                 // find the teacher
                 var _teacherList = tdb.teacherList;
-                for(var i = 0; i < _teacherList.length; i++) {
-                    if(_teacherList[i] == teacher) {
+                for (var i = 0; i < _teacherList.length; i++) {
+                    if (_teacherList[i] == teacher) {
                         // add the class info teacher's class list
                         _teacherList[i].list_class.push(newLectureClass);
                     }
@@ -129,26 +132,29 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
 };
 
 // close database operation, 1 for local storage, 0 for abandon memory change
-ClassDB.prototype.close = function(option) {
+ClassDB.prototype.close = function (option) {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
         alert("Your browser don't support local storage");
         return;
     }
-    switch(option) {
-        case 1 : {
+    switch (option) {
+        case 1 :
+        {
+            var seen = [];
             // if the studentList haven't been initialised
-            if(localStorage.getItem("classList") === null) {
-                localStorage.setItem("classList", this.classList);
-            } else {
-                var tempClassList =  localStorage.getItem("classList");
-                // concatenate the current to the exist one
-                var finalClassList = tempClassList.concat(this.classList);
-                localStorage.setItem("classList", finalClassList);
-            }
+            localStorage.setItem("classList", JSON.stringify(this.classList, function (key, val) {
+                if (typeof val == "object") {
+                    if (seen.indexOf(val) >= 0)
+                        return
+                    seen.push(val)
+                }
+                return val
+            }));
             break;
         }
-        case 0 : {
+        case 0 :
+        {
             console.log("You have requested to discard class's changes of this time");
             break;
         }

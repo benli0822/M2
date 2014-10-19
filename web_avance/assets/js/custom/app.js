@@ -22,7 +22,7 @@ window.onload = function () {
     $("#studentModule").fadeOut();
     $("#secretaryModule").fadeOut();
 
-    localStorage.clear();
+//    localStorage.clear();
     test.addTeacherExamples();
     test.addTestDataToDB();
     table.addTimeLine('student_table', 4);
