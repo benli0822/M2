@@ -1,6 +1,7 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 08/10/14.
  */
+
 function search_button_click(){
     var search_text = document.getElementById("searchTextField").value;
 
