@@ -7,7 +7,7 @@ var settings = {
     content: function () {
         return $('#popover-content').html();
     },
-    width: 300,
+    width: 400,
     multi: false,
     closeable: true,
     style: '',
@@ -46,6 +46,7 @@ popover = {
         this.updateHour(hour);
         this.showTheTeacher(theTeacher);
         this.showStudentList();
+        this.showClassOption();
     },
 
     updateHour: function (hour) {
@@ -56,7 +57,7 @@ popover = {
         var whenLabel = document.createElement('label');
         var text1 = document.createTextNode('When: ');
         var divHour = document.createElement('div');
-        divHour.setAttribute('class', 'col-sm-6 col-sm-offset-2');
+        divHour.setAttribute('class', 'col-sm-5 col-sm-offset-2');
         var whenHour = document.createElement('p');
         var text2 = document.createTextNode(hour + ":00");
         whenLabel.appendChild(text1);
@@ -80,7 +81,7 @@ popover = {
         var teacherLabel = document.createElement('label');
         var text1 = document.createTextNode('Teacher: ');
         var divTeacher = document.createElement('div');
-        divTeacher.setAttribute('class', 'col-sm-6 col-sm-offset-2');
+        divTeacher.setAttribute('class', 'col-sm-5 col-sm-offset-2');
         var teacherName = document.createElement('p');
         var text2 = document.createTextNode(theTeacher.firstName + "." + theTeacher.lastName);
         teacherLabel.appendChild(text1);
@@ -118,6 +119,29 @@ popover = {
         divStudent.appendChild(studentsName);
         students.appendChild(studentsLabel);
         students.appendChild(divStudent);
+    },
+
+    showClassOption: function() {
+        var classes = document.getElementById('classes');
+        while (classes.firstChild) {
+            classes.removeChild(classes.firstChild);
+        }
+        var classesLabel = document.createElement('label');
+        var text1 = document.createTextNode('Class\'s Type: ');
+        var divClasses = document.createElement('div');
+        divClasses.setAttribute('class', 'col-sm-6 col-sm-offset-2 radio');
+        divClasses.innerHTML = '<label>' +
+            '<input type="radio" name="optionsRadios" id="drive" value="drive" checked>' +
+        'Drive Class' +
+        '</label>';
+        divClasses.innerHTML += '<label>' +
+            '<input type="radio" name="optionsRadios" id="lecture" value="lecture">' +
+            'Lecture Class' +
+            '</label>';
+        classesLabel.appendChild(text1);
+        classesLabel.setAttribute('class', 'col-sm-2 col-sm-offset-2 control-label');
+        classes.appendChild(classesLabel);
+        classes.appendChild(divClasses);
     }
 
 }

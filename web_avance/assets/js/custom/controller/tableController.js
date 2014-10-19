@@ -9,6 +9,7 @@ table = {
      */
     addTimeLine: function (table_name, column_nb) {
         var table = document.getElementById(table_name);
+        var body = document.createElement('tbody');
         var time = 8;
         var count = 0;
         while (time < 18) {
@@ -32,10 +33,11 @@ table = {
                 temp_elem.appendChild(temp_div);
                 new_row.appendChild(temp_elem);
             }
-            table.appendChild(new_row);
+            body.appendChild(new_row)
             time++;
             count++;
         }
+        table.appendChild(body);
     },
     /**
      * Creation for secretary table
@@ -46,6 +48,7 @@ table = {
         var teacherList = tdb.teacherList;
 
         var table = document.getElementById(table_name);
+        var head = document.createElement('thead');
         var title_row = document.createElement('tr');
         var title_name1 = document.createElement('th');
         title_name1.appendChild(document.createTextNode('Time'));
@@ -55,7 +58,8 @@ table = {
             title_temp.appendChild(document.createTextNode(teacherList[i].firstName));
             title_row.appendChild(title_temp);
         }
-        table.appendChild(title_row);
+        head.appendChild(title_row)
+        table.appendChild(head);
         this.addTimeLine(table_name, teacherList.length + 1);
     },
     /**
@@ -71,7 +75,7 @@ table = {
 
         //clear all the existeds elements
         while (secretary_table.hasChildNodes()) {
-            secretary_table.removeChild(secretary_table.lastChild);
+            secretary_table.removeChild(secretary_table.firstChild);
         }
 
         this.createSecretaryTable('secretary_table');
@@ -103,6 +107,7 @@ table = {
                 console.log("Teacher " + the_teacher.lastName + " not find a lesson");
             }
         }
+        popover.initPopover();
     },
     /**
      * update student table with the information provided by student database
@@ -113,7 +118,7 @@ table = {
         document.getElementById("searchResult").innerHTML = student.firstName;
 
         //clear all the existeds elements
-        while (table.hasChildNodes()) {
+        while (table.childNodes.length > 2) {
             table.removeChild(table.lastChild);
         }
 
@@ -126,22 +131,22 @@ table = {
          <th>Teacher</th>
          </tr>
          */
-        var first_row = document.createElement('tr');
-        var elementDate = document.createElement('th');
-        elementDate.innerHTML = "Date";
-        first_row.appendChild(elementDate);
-        var elementDate = document.createElement('th');
-        elementDate.innerHTML = "Time";
-        first_row.appendChild(elementDate);
-        var elementDate = document.createElement('th');
-        elementDate.innerHTML = "Duration";
-        first_row.appendChild(elementDate);
-        var elementDate = document.createElement('th');
-        elementDate.innerHTML = "Teacher";
-        first_row.appendChild(elementDate);
-        table.appendChild(first_row);
+//        var first_row = document.createElement('tr');
+//        var elementDate = document.createElement('th');
+//        elementDate.innerHTML = "Date";
+//        first_row.appendChild(elementDate);
+//        var elementDate = document.createElement('th');
+//        elementDate.innerHTML = "Time";
+//        first_row.appendChild(elementDate);
+//        var elementDate = document.createElement('th');
+//        elementDate.innerHTML = "Duration";
+//        first_row.appendChild(elementDate);
+//        var elementDate = document.createElement('th');
+//        elementDate.innerHTML = "Teacher";
+//        first_row.appendChild(elementDate);
+//        table.appendChild(first_row);
 
-
+        var body = document.createElement('tbody');
         //travese the class list
         for (var i = 0; i <= student.list_class.length - 1; i++) {
 
@@ -170,7 +175,8 @@ table = {
             teacherElement.innerHTML = tem_class.teacher.firstName;
             new_row.appendChild(teacherElement);
 
-            table.appendChild(new_row);
+            body.appendChild(new_row);
         }
+        table.appendChild(body);
     }
 }

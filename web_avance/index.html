@@ -5,10 +5,51 @@
     <title></title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
 
     <link rel="stylesheet" href="assets/css/datepicker.css">
     <link rel="stylesheet" href="assets/css/jquery.webui-popover.css">
+    <!--<style>-->
+        <!--table {-->
+            <!--border-spacing: 0;-->
+            <!--border-collapse: collapse;-->
+            <!--overflow: hidden;-->
+            <!--z-index: 1;-->
+        <!--}-->
+
+        <!--td, th, .row, .col, .ff-fix {-->
+            <!--cursor: pointer;-->
+            <!--padding: 10px;-->
+            <!--position: relative;-->
+        <!--}-->
+
+        <!--td:hover::before,-->
+        <!--.row:hover::before,-->
+        <!--.ff-fix:hover::before {-->
+            <!--background-color: #ffa;-->
+            <!--content: '\00a0';-->
+            <!--height: 100%;-->
+            <!--left: -5000px;-->
+            <!--position: absolute;-->
+            <!--top: 0;-->
+            <!--width: 10000px;-->
+            <!--z-index: -1;-->
+        <!--}-->
+
+        <!--td:hover::after,-->
+        <!--.col:hover::after,-->
+        <!--.ff-fix:hover::after {-->
+            <!--background-color: #ffa;-->
+            <!--content: '\00a0';-->
+            <!--height: 10000px;-->
+            <!--left: 0;-->
+            <!--position: absolute;-->
+            <!--top: -5000px;-->
+            <!--width: 100%;-->
+            <!--z-index: -1;-->
+        <!--}-->
+
+    <!--</style>-->
 </head>
 <body>
 
@@ -44,65 +85,32 @@
             <p class="help-block" id="searchResult"></p>
         </form>
         <div class="table-responsive">
-            <table class="table table-hover table-bordered">
-                <tbody id="student_table">
+            <table class="table table-hover table-bordered" id="student_table">
+                <thead>
                 <tr>
                     <th id="abc">Date</th>
                     <th>Time</th>
                     <th>Duration</th>
                     <th>Teacher</th>
                 </tr>
-                </tbody>
+                </thead>
             </table>
         </div>
     </div>
 </div>
 
-<div class="">
-    <ul role="tablist" class="nav nav-tabs" id="myTab">
-        <li class="active"><a data-toggle="tab" role="tab" href="#home">Home</a></li>
-        <li class=""><a data-toggle="tab" role="tab" href="#profile">Profile</a></li>
-        <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop1" href="#">Dropdown <span
-                    class="caret"></span></a>
-            <ul aria-labelledby="myTabDrop1" role="menu" class="dropdown-menu">
-                <li><a data-toggle="tab" role="tab" tabindex="-1" href="#dropdown1">@fat</a></li>
-                <li><a data-toggle="tab" role="tab" tabindex="-1" href="#dropdown2">@mdo</a></li>
-            </ul>
-        </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-        <div id="home" class="tab-pane fade active in">
-            <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
+<div id="home" class="tab-pane fade active in">
+    <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
+</div>
+<div class="well">
+    <input type="text" class="span2" value="16-10-2014" id="dp1" data-date-format="dd-mm-yyyy">
+</div>
+<div class="row">
+    <div class="col-lg-10">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered" id="secretary_table">
+            </table>
         </div>
-        <div class="well">
-            <input type="text" class="span2" value="16-10-2014" id="dp1" data-date-format="dd-mm-yyyy">
-        </div>
-        <div id="profile" class="tab-pane fade">
-            <div class="row">
-                <div class="col-lg-10">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered">
-                            <tbody id="secretary_table">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="dropdown1" class="tab-pane fade">
-        <div id='calendar'></div>
-    </div>
-    <div id="dropdown2" class="tab-pane fade">
-        <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse
-            gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf
-            cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
-            farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh
-            craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.</p>
-
     </div>
 </div>
 
@@ -114,8 +122,14 @@
         </div>
         <div class="form-group" id="student">
         </div>
-        <button type="submit" class="btn btn-default">Create Event</button>
-        <button type="submit" class="btn btn-default">Edit Event</button>
+        <div class="form-group" id="classes">
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-2">
+                <button type="submit" class="btn btn-default">Create Event</button>
+                <button type="submit" class="btn btn-default">Edit Event</button>
+            </div>
+        </div>
     </form>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
