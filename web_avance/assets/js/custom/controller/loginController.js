@@ -4,7 +4,19 @@
 
 
 loginController = {
-    loginWithUserNamePassword : function (usename, password){
+    loginWithUserNamePassword : function (username, password){
 
+
+
+        var name = username.split('.');
+        if (sedb.login_secretary(name[0],name[1],password)){
+            console.log("find the secretary" + username);
+        }
+        else if (sdb.student_login(name[0],name[1],password)){
+            console.log("find the stu" + username);
+        }
+        else{//we don't find the user
+
+        }
     }
 }

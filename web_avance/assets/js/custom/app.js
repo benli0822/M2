@@ -4,6 +4,8 @@
 var tdb = new TeacherDB();
 var sdb = new StudentDB();
 var cdb = new ClassDB();
+var sedb = new SecretaryDB();
+
 
 //set up datepicker
 var datepicker = $('#dp1').datepicker().on('changeDate', function (ev) {

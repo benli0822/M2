@@ -62,6 +62,22 @@ StudentDB.prototype.find_a_client_by_name = function(firstname, lastname) {
     }
 };
 
+
+StudentDB.prototype.student_login = function(firstname, lastname,password) {
+    //1.get the client list
+    var clientlistobject = this.studentList;
+
+    //Traverse in the client list to find the client
+    for(var i = 0; i <= clientlistobject.length -1 ; i++){
+        
+        if(clientlistobject[i].firstName == firstname && clientlistobject[i].lastName == lastname && clientlistobject[i].pwd == password ){
+            return true;
+        }
+    }
+
+    return false;
+};
+
 StudentDB.prototype.find_a_client_by_firstname = function(firstname) {
     //1.get the client list
     var clientlistobject = this.studentList;
@@ -76,6 +92,7 @@ StudentDB.prototype.find_a_client_by_firstname = function(firstname) {
     }
 };
 
+
 // check a teacher's existence
 StudentDB.prototype.hasStudent = function(student) {
     var _studentList = this.studentList;
@@ -87,6 +104,9 @@ StudentDB.prototype.hasStudent = function(student) {
     }
     return false;
 };
+
+
+
 
 // close database operation, 1 for local storage, 0 for abandon memory change
 StudentDB.prototype.close = function(option) {

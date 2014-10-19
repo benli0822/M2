@@ -59,11 +59,11 @@
     <h3>Login</h3>
 
     <form action="" method="post" id="loginForm">
-        <input type="text" name="username" class="username" placeholder="Please insert your name！">
+        <input type="text" name="username" class="username" placeholder="Please insert your name！" id="username">
 
         <div></div>
-        <input type="password" name="password" class="password">
-        <button type="button" class="btn btn-primary">Login</button>
+        <input type="password" name="password" class="password" id="password">
+        <button type="button" class="btn btn-primary" onclick="login_button_click()">Login</button>
 
         <div class="error"><span>if there is error, show here</span></div>
     </form>
@@ -148,13 +148,14 @@
 <script type="text/javascript" src="assets/js/custom/model/database/classDB.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/database/teacherDB.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/database/studentDB.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/database/secretaryDB.js"></script>
 
 <script type="text/javascript" src="assets/js/custom/controller/buttonActionController.js"></script>
 
 <script type="text/javascript" src="assets/js/custom/controller/popoverController.js"></script>
 <script type="text/javascript" src="assets/js/custom/controller/mainController.js"></script>
 <script type="text/javascript" src="assets/js/custom/controller/tableController.js"></script>
-
+<script type="text/javascript" src="assets/js/custom/controller/loginController.js"></script>
 <script type="text/javascript" src="assets/js/custom/app.js"></script>
 
 
