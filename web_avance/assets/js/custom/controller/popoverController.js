@@ -1,96 +1,123 @@
 /**
  * Created by benli on 16/10/14.
  */
+var settings = {
+    trigger: 'click',
+    title: 'Create a event',
+    content: function () {
+        return $('#popover-content').html();
+    },
+    width: 300,
+    multi: false,
+    closeable: true,
+    style: '',
+    padding: true
+};
+
+document.addEventListener('click', function (e) {
+    var id = $(e.target).attr('id');
+//    console.log(id);
+    if (typeof(id) != 'undefined') {
+        var i = id.substring(0, 1);
+        var count = id.substring(1, 2);
+        popover.updatePopoverContent(i + '' + count);
+    }
+}, true);
+
+
 popover = {
+    initPopover: function () {
+        $('div.show-pop').webuiPopover('destroy').webuiPopover(settings);
+    },
     updatePopoverContent: function (divid) {
-        if(typeof(tdb) == "undefined") {
+        if (typeof(tdb) == "undefined") {
             console.log("Teacher database is not loaded, please make sure it is loaded!");
             return;
         }
-        if(typeof(divid) != "undefined") {
+        if (typeof(divid) != "undefined") {
             console.log('div id is: ' + divid);
         }
-        var id_column = parseInt(divid.substring(9, 10));
-        var id_row = parseInt(divid.substring(10, 11));
+        var id_column = parseInt(divid.substring(0, 1));
+        var id_row = parseInt(divid.substring(1, 2));
 
         var theTeacher = tdb.teacherList[id_column];
         var hour = id_row + 8;
 
         this.updateHour(hour);
         this.showTheTeacher(theTeacher);
+        this.showStudentList();
     },
 
-    updateTableContent: function() {
-        for(var i=0; i<tdb.teacherList.length; i++) {
-            for(var count=0;count<10;count++) {
-                var selector = '\'#myPopover' + i + '' + count + '\'';
-                var script = document.createElement('script');
-                script.innerHTML = '$(' + selector + ').popover({\n\t' +
-                    'html: true,\n\t' +
-                    'title: \'Create a new event<a class="close");">&times;</a>\',\n\t' +
-                    'content: $("#popover-content").html()\n' +
-                    '});\n' +
-//                    '$(' + selector + ').on(\'shown.bs.popover\', function () {\n\t' +
-//                    '$(\'.popoverThis\').not(' + selector + ').popover(\'hide\');' +
-//                    '\n});\n' +
-                    '$(' + selector + ').on(\'blur\', function () {\n\t' +
-                    '$(' + selector + ').popover(\'hide\');\t' +
-                    '\n});\n' +
-                    '$(' + selector + ').on(\'shown.bs.popover\', function () {\n\t' +
-                    'popover.updatePopoverContent(\'myPopover' + i + '' + count + '\')' +
-                    '\n});\n' +
-                    '$(' + selector + ').click(function (e) {\n\t' +
-                    '$(".popoverThis").not(' + selector + ').popover(\'hide\');\n\t' +
-                    'e.stopPropagation();\n' +
-                    '});\n' +
-                    '$(document).click(function (e) {\n\t' +
-                    'if ($(\'.popoverThis\').has(e.target).length == 0 || $(e.target).is(\'.close\')) {\n\t\t' +
-                    '$(' + selector + ').popover(\'hide\');\n\t' +
-                    '}\n' +
-                    '});';
-                document.body.appendChild(script);
-            }
-        }
-    },
-
-    updateHour: function(hour) {
+    updateHour: function (hour) {
         var when = document.getElementById('when');
-        while(when.firstChild) {
+        while (when.firstChild) {
             when.removeChild(when.firstChild);
         }
         var whenLabel = document.createElement('label');
         var text1 = document.createTextNode('When: ');
         var divHour = document.createElement('div');
-        divHour.setAttribute('class', 'col-sm-6 col-sm-offset-3');
+        divHour.setAttribute('class', 'col-sm-6 col-sm-offset-2');
         var whenHour = document.createElement('p');
         var text2 = document.createTextNode(hour + ":00");
         whenLabel.appendChild(text1);
         whenHour.appendChild(text2);
-        whenLabel.setAttribute('class', 'col-sm-2 control-label');
+        whenLabel.setAttribute('class', 'col-sm-2 col-sm-offset-2 control-label');
         whenHour.setAttribute('class', 'form-control-static');
         divHour.appendChild(whenHour);
         when.appendChild(whenLabel);
         when.appendChild(divHour);
     },
 
-    showTheTeacher: function(theTeacher) {
+    showTheTeacher: function (theTeacher) {
+        if(typeof(theTeacher) == 'undefined') {
+            console.log('error with loading the teacher');
+            return;
+        }
         var teacher = document.getElementById('teacher');
-        while(teacher.firstChild) {
+        while (teacher.firstChild) {
             teacher.removeChild(teacher.firstChild);
         }
         var teacherLabel = document.createElement('label');
         var text1 = document.createTextNode('Teacher: ');
         var divTeacher = document.createElement('div');
-        divTeacher.setAttribute('class', 'col-sm-6 col-sm-offset-3');
+        divTeacher.setAttribute('class', 'col-sm-6 col-sm-offset-2');
         var teacherName = document.createElement('p');
-        var text2 = document.createTextNode(theTeacher.firstName + " " + theTeacher.lastName);
+        var text2 = document.createTextNode(theTeacher.firstName + "." + theTeacher.lastName);
         teacherLabel.appendChild(text1);
         teacherName.appendChild(text2);
-        teacherLabel.setAttribute('class', 'col-sm-2 control-label');
+        teacherLabel.setAttribute('class', 'col-sm-2 col-sm-offset-2 control-label');
         teacherName.setAttribute('class', 'form-control-static');
         divTeacher.appendChild(teacherName);
         teacher.appendChild(teacherLabel);
         teacher.appendChild(divTeacher);
+    },
+
+    showStudentList: function() {
+        if (typeof(sdb) == "undefined") {
+            console.log("Student database is not loaded, please make sure it is loaded!");
+            return;
+        }
+        var studentList = sdb.studentList;
+        var students = document.getElementById('student');
+        while (students.firstChild) {
+            students.removeChild(students.firstChild);
+        }
+        var studentsLabel = document.createElement('label');
+        var text1 = document.createTextNode('Students: ');
+        var divStudent = document.createElement('div');
+        divStudent.setAttribute('class', 'col-sm-6 col-sm-offset-2');
+        var studentsName = document.createElement('select');
+        for(var i=0; i<studentList.length; i++) {
+            var studentOption = document.createElement('option');
+            var text2 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
+            studentOption.appendChild(text2);
+            studentsName.appendChild(studentOption);
+        }
+        studentsLabel.appendChild(text1);
+        studentsLabel.setAttribute('class', 'col-sm-2 col-sm-offset-2 control-label');
+        divStudent.appendChild(studentsName);
+        students.appendChild(studentsLabel);
+        students.appendChild(divStudent);
     }
 
 }

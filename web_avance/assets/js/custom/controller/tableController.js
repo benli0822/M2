@@ -22,9 +22,9 @@ table = {
                 temp_elem.id = table_name + '_' + i + '_' + count;
                 var temp_div = document.createElement('div');
                 var popid = document.createAttribute('id');
-                popid.value = 'myPopover' + i + '' + count;
+                popid.value = i + '' + count;
                 var popclass = document.createAttribute('class');
-                popclass.value = 'popoverThis';
+                popclass.value = 'show-pop';
                 temp_div.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 //                temp_div.innerHTML = '<span id="myPopover' + i + '' + count + '\" class="popover">asdasd</span>';
                 temp_div.setAttributeNode(popid);
