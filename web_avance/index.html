@@ -52,8 +52,10 @@
     <!--</style>-->
 </head>
 <body>
-
-<div class="page-container">
+<div id="disconnectDiv">
+   
+</div>
+<div class="page-container" id="loginModule">
     <h1>SJBS Schedule System</h1>
 
     <h3>Login</h3>
@@ -69,7 +71,7 @@
     </form>
 </div>
 
-<div class="row">
+<div class="row" id="studentModule">
     <div class="col-lg-10">
         <h3>Student</h3>
 
@@ -98,22 +100,23 @@
         </div>
     </div>
 </div>
-
-<div id="home" class="tab-pane fade active in">
-    <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
-</div>
-<div class="well">
-    <input type="text" class="span2" value="16-10-2014" id="dp1" data-date-format="dd-mm-yyyy">
-</div>
-<div class="row">
-    <div class="col-lg-10">
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered" id="secretary_table">
-            </table>
+<div id="secretaryModule">
+    <div id="home" class="tab-pane fade active in" >
+        <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
+    </div>
+    <div class="well">
+        <input type="text" class="span2" value="16-10-2014" id="dp1" data-date-format="dd-mm-yyyy">
+    </div>
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="secretary_table">
+                </table>
+             </div>
         </div>
     </div>
 </div>
-
+</div>
 <div id="popover-content" class="hide">
     <form class="form-horizontal" role="form">
         <div class="form-group" id="when">

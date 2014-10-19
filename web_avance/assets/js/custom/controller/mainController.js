@@ -24,6 +24,12 @@ main = {
      * @param lastName
      * @param address
      */
+
+    addSecretaryObject: function (secretary) {
+        sedb.addSecretary(secretary);
+    },
+
+
     addStudent: function (firstName, lastName, address) {
         tdb.addStudent(firstName, lastName, address);
     },
@@ -62,6 +68,7 @@ main = {
         sdb.close(1);
         tdb.close(1);
         cdb.close(1);
+        sedb.close(1);
     },
     /**
      * take effect this  time's operation to local storage
@@ -70,6 +77,7 @@ main = {
         sdb.close(0);
         tdb.close(0);
         cdb.close(0);
+        sedb.close(0);
     }
 };
 
@@ -114,6 +122,8 @@ test = {
         cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate4, 'lecture', sdb, tdb);
         cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate5, 'lecture', sdb, tdb);
 
+        var admin = new Person.Secretary('admin', '', 'lille1','admin');
+        main.addSecretaryObject(admin);
     }
 
 };
