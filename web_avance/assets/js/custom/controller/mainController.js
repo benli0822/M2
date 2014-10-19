@@ -26,7 +26,7 @@ main = {
      */
 
     addSecretaryObject: function (secretary) {
-        sedb.addSecretary(secretary);
+        sedb.addSecretaryObject(secretary);
     },
 
 
@@ -122,7 +122,7 @@ test = {
         cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate4, 'lecture', sdb, tdb);
         cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate5, 'lecture', sdb, tdb);
 
-        var admin = new Person.Secretary('admin', '', 'lille1','admin');
+        var admin = new Person.Secretary('admin', 'admin', 'lille1','admin');
         main.addSecretaryObject(admin);
     }
 
