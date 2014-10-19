@@ -21,23 +21,14 @@ table = {
                 var temp_elem = document.createElement('td');
                 temp_elem.id = table_name + '_' + i + '_' + count;
                 var temp_div = document.createElement('div');
-                temp_div.innerHTML = '<span id="myPopover' + i + '' + count + '\" ref="popover">Click to pop</span>';
-                var selector = '\'#myPopover' + i + '' + count + '\'';
-                var script = document.createElement('script');
-                script.innerHTML = '$(' + selector + ').popover({\n\t' +
-                    'html: true,\n\t' +
-                    'title: \'Create a new event<a class="close" href="");">&times;</a>\',\n\t' +
-                    'content: $("#popover-content").html()\n' +
-                    '});\n' +
-                    '$(' + selector + ').click(function (e) {\n\t' +
-                    'e.stopPropagation();\n' +
-                    '});\n' +
-                    '$(document).click(function (e) {\n\t' +
-                    'if (($(\'.popover\').has(e.target).length == 0) || $(e.target).is(\'.close\')) {\n\t\t' +
-                    '$(' + selector + ').popover(\'hide\');\n\t' +
-                    '}\n' +
-                    '});';
-                temp_div.appendChild(script)
+                var popid = document.createAttribute('id');
+                popid.value = 'myPopover' + i + '' + count;
+                var popclass = document.createAttribute('class');
+                popclass.value = 'popoverThis';
+                temp_div.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+//                temp_div.innerHTML = '<span id="myPopover' + i + '' + count + '\" class="popover">asdasd</span>';
+                temp_div.setAttributeNode(popid);
+                temp_div.setAttributeNode(popclass);
                 temp_elem.appendChild(temp_div);
                 new_row.appendChild(temp_elem);
             }
@@ -100,7 +91,7 @@ table = {
 
                 for (var j = 0; j < the_teacher.list_class.length; j++) {
 
-                    the_class = the_teacher.list_class[j];
+                    var the_class = the_teacher.list_class[j];
 
 
                     if(the_class.date.toDateString() == date.toDateString()) {

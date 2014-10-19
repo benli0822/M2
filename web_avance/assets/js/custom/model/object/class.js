@@ -87,6 +87,7 @@ Class.prototype.equals = function (theclass) {
  * @param day_date
  * @constructor
  */
+//TODO drive class should be one teacher with one student
 Class.DriveClass = function (name, duration, teacher, client, startTime, date) {
     Class.call(this, name, teacher, duration, client, startTime, date);
     this._type = "Drive";
@@ -108,6 +109,7 @@ Class.DriveClass.prototype.equals = function (theclass) {
  * @param name
  * @constructor
  */
+// TODO lecture class should be one teacher with multiple students, should we consider the max number of a class?
 Class.LectureClass = function (name, duration, teacher, client, startTime, date) {
     Class.call(this, name, teacher, duration, client, startTime, date);
     this.type = "Lecture";

@@ -3,108 +3,11 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="assets/js/jquery.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="assets/css/datepicker.css">
-
-    <link href='assets/fullcalendar.css' rel='stylesheet'/>
-    <link href='assets/fullcalendar.print.css' rel='stylesheet' media='print'/>
-    <script src='assets/lib/moment.min.js'></script>
-    <script src='assets/lib/jquery.min.js'></script>
-    <script src='assets/fullcalendar.min.js'></script>
-    <script>
-
-        $(document).ready(function () {
-
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                defaultDate: '2014-09-12',
-                selectable: true,
-                selectHelper: true,
-                select: function (start, end) {
-                    var title = prompt('Event Title:');
-                    var eventData;
-                    if (title) {
-                        eventData = {
-                            title: title,
-                            start: start,
-                            end: end
-                        };
-                        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-                    }
-                    $('#calendar').fullCalendar('unselect');
-                },
-                editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                events: [
-                    {
-                        title: 'All Day Event',
-                        start: '2014-09-01'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: '2014-09-07',
-                        end: '2014-09-10'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2014-09-09T16:00:00'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2014-09-16T16:00:00'
-                    },
-                    {
-                        title: 'Conference',
-                        start: '2014-09-11',
-                        end: '2014-09-13'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2014-09-12T10:30:00',
-                        end: '2014-09-12T12:30:00'
-                    },
-                    {
-                        title: 'Lunch',
-                        start: '2014-09-12T12:00:00'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2014-09-12T14:30:00'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2014-09-12T17:30:00'
-                    },
-                    {
-                        title: 'Dinner',
-                        start: '2014-09-12T20:00:00'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: '2014-09-13T07:00:00'
-                    },
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: '2014-09-28'
-                    }
-                ]
-            });
-
-        });
-
-    </script>
-
 </head>
 <body>
 
@@ -201,22 +104,14 @@
 
     </div>
 </div>
-</div>
-
 
 <div id="popover-content" class="hide">
-    <form>
-        <div class="form-group">
-            <label>When: </label>
+    <form class="form-horizontal" role="form">
+        <div class="form-group" id="when">
         </div>
-        <div class="form-group">
-            <label>Which Teacher: </label>
-            <select>
-                <option>1</option>
-                <option>2</option>
-            </select>
+        <div class="form-group" id="teacher">
         </div>
-        <div class="form-group">
+        <div class="form-group" id="student">
             <label>Which Student: </label>
             <select>
 
@@ -226,12 +121,11 @@
         <button type="submit" class="btn btn-default">Edit Event</button>
     </form>
 </div>
-
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="assets/js/bootstrap.min.js"></script>
-
-
-<script src="assets/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/object/person.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/object/class.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/object/client.js"></script>
@@ -243,10 +137,9 @@
 <script type="text/javascript" src="assets/js/custom/model/database/teacherDB.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/database/studentDB.js"></script>
 
-
 <script type="text/javascript" src="assets/js/custom/controller/controller.js"></script>
 
-
+<script type="text/javascript" src="assets/js/custom/controller/popoverController.js"></script>
 <script type="text/javascript" src="assets/js/custom/controller/mainController.js"></script>
 <script type="text/javascript" src="assets/js/custom/controller/tableController.js"></script>
 
