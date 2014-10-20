@@ -173,7 +173,7 @@ table = {
 
             //add the teacher
             var teacherElement = document.createElement('td');
-            teacherElement.innerHTML = tem_class.teacher.firstName;
+            teacherElement.innerHTML = tem_class.teacher;
             new_row.appendChild(teacherElement);
 
             body.appendChild(new_row);

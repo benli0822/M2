@@ -65,7 +65,10 @@ StudentDB.prototype.find_a_client_by_name = function (firstname, lastname) {
             console.log("find the client " + firstname);
             return clientlistobject[i];
         }
+
     }
+    return false;
+
 };
 
 
@@ -124,7 +127,6 @@ StudentDB.prototype.close = function (option) {
     switch (option) {
         case 1 :
         {
-            seen = [];
             localStorage.setItem("studentList", JSON.stringify(this.studentList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)

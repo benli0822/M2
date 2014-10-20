@@ -34,15 +34,19 @@ ClassDB.prototype.init = function () {
 
 
 // add a class into memory without charge local storage
-ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTime, date, type, sdb, tdb) {
+ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTime, date, type) {
     //create a class and save it to db
     switch (type) {
         case "drive" :
         {
+
+            var teachername = teacher.split('.');
+            var studentname = client.split('.');
+
             //1. create the class locally
             var newDriveClass = new Class.DriveClass(name, duration, teacher, client, startTime, date);
-            console.log("Adding " + teacher.firstName + "'s " + name + "'s " + type + " class" + " start from "
-                + startTime + " last for " + duration + " with " + client.firstName);
+            console.log("Adding " + teacher + "'s " + name + "'s " + type + " class" + " start from "
+                + startTime + " last for " + duration + " with " + client);
             //2. add the class to the temp list
             try {
                 this.classList.push(newDriveClass);
@@ -59,13 +63,12 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 return;
             } else {
                 // find the client
-                var _studentList = sdb.studentList;
-                for (var i = 0; i < _studentList.length; i++) {
-                    if (_studentList[i] === client) {
-                        // add the class into student's class list
-                        _studentList[i].list_class.push(newDriveClass);
-                    }
+
+                if(sdb.find_a_client_by_name(studentname[0],studentname[1])!= false){
+                    sdb.find_a_client_by_name(studentname[0],studentname[1]).list_class.push(newDriveClass);
+                       // client_result.addAClassToClient(newDriveClass);
                 }
+
             }
             // add class info into teacher's database
             if (typeof(tdb) == "undefined") {
@@ -74,29 +77,30 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 return;
             } else {
                 // find the teacher
-                var _teacherList = tdb.teacherList;
-                for (var i = 0; i < _teacherList.length; i++) {
-                    if (_teacherList[i] == teacher) {
-                        // add the class info teacher's class list
-                        _teacherList[i].list_class.push(newDriveClass);
-                    }
+                if(tdb.find_a_teacher_by_name(teachername[0],teachername[1])!= false){
+                    var teacher_result = tdb.find_a_teacher_by_name(teachername[0],teachername[1]).list_class.push(newDriveClass);
+                    //teacher_result.addAClassToTeacher(newDriveClass);
                 }
             }
             break;
         }
         case "lecture" :
         {
-            // almost same thing
+            var teachername = teacher.split('.');
+            var studentname = client.split('.');
+
+            //1. create the class locally
             var newLectureClass = new Class.LectureClass(name, duration, teacher, client, startTime, date);
-            console.log("Adding " + teacher.firstName + "'s " + name + "'s " + type + " class" + " start from "
-                + startTime + " last for " + duration + " with " + client.firstName);
+            console.log("Adding " + teacher + "'s " + name + "'s " + type + " class" + " start from "
+                + startTime + " last for " + duration + " with " + client);
+            //2. add the class to the temp list
             try {
                 this.classList.push(newLectureClass);
             }
             catch (error) {
-                var errorElement2 = document.createElement("div");
-                errorElement2.innerHTML = error.message;
-                document.getElementsByTagName("body").item[0].appendChild(errorElement2);
+                var errorElement1 = document.createElement("div");
+                errorElement1.innerHTML = error.message;
+                document.getElementsByTagName("body").item[0].appendChild(errorElement1);
             }
             // add class info into student's database
             if (typeof(sdb) == "undefined") {
@@ -105,13 +109,12 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 return;
             } else {
                 // find the client
-                var _studentList = sdb.studentList;
-                for (var i = 0; i < _studentList.length; i++) {
-                    if (_studentList[i] === client) {
-                        // add the class into student's class list
-                        _studentList[i].list_class.push(newLectureClass);
-                    }
+
+                if(sdb.find_a_client_by_name(studentname[0],studentname[1])!= false){
+                    var student_result =sdb.find_a_client_by_name(studentname[0],studentname[1]).list_class.push(newLectureClass);
+                        //student_result.addAClassToClient(newLectureClass);
                 }
+
             }
             // add class info into teacher's database
             if (typeof(tdb) == "undefined") {
@@ -120,12 +123,9 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 return;
             } else {
                 // find the teacher
-                var _teacherList = tdb.teacherList;
-                for (var i = 0; i < _teacherList.length; i++) {
-                    if (_teacherList[i] == teacher) {
-                        // add the class info teacher's class list
-                        _teacherList[i].list_class.push(newLectureClass);
-                    }
+                if(tdb.find_a_teacher_by_name(teachername[0],teachername[1])!= false){
+                    var teacher_result = tdb.find_a_teacher_by_name(teachername[0],teachername[1]).list_class.push(newLectureClass);
+                        //teacher_result.addAClassToTeacher(newLectureClass);
                 }
             }
             break;
@@ -159,7 +159,7 @@ ClassDB.prototype.close = function (option) {
         {
             var seen = [];
             // if the studentList haven't been initialised
-            localStorage.setItem("classList", JSON.stringify(this.classList, function (key, val) {
+            localStorage.setItem("classList+", JSON.stringify(this.classList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
                         return
@@ -167,6 +167,10 @@ ClassDB.prototype.close = function (option) {
                 }
                 return val
             }));
+
+
+            //localStorage.setItem("classList", JSON.stringify(this.classList));
+
             break;
         }
         case 0 :

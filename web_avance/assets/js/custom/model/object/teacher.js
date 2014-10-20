@@ -23,3 +23,6 @@ Person.Teacher = function (firstName, lastName, address,pwd) {
 Person.Teacher.prototype.equals = function (theperson) {
     return (this.type === theperson.type) && this.equals(theperson);
 }
+Person.Teacher.prototype.addAClassToTeacher = function (the_class){
+    this.list_class.push(the_class);
+}

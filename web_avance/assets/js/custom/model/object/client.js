@@ -24,3 +24,6 @@ Person.Client = function (firstName, lastName, address,pwd) {
 Person.Client.prototype.equals = function (theperson) {
     return (this.type === theperson.type) && this.equals(theperson);
 }
+Person.Client.prototype.addAClassToClient = function (the_class){
+    this.list_class.push(the_class);
+}

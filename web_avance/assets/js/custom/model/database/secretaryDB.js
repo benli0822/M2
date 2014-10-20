@@ -46,7 +46,10 @@ SecretaryDB.prototype.addSecretary = function (firstName, lastName, address, pwd
         document.getElementsByTagName("body").item[0].appendChild(errorElement1);
     }
 };
-
+// add a student object into memory
+SecretaryDB.prototype.addSecretaryObject = function (value) {
+    this.secretaryList.push(value);
+};
 //check the existance of a secretary
 SecretaryDB.prototype.login_secretary = function (firstname, lastname, password) {
     //1.get the secretary list
@@ -54,7 +57,7 @@ SecretaryDB.prototype.login_secretary = function (firstname, lastname, password)
 
     //Traverse in the secretary list to find the secretary
     for (var i = 0; i <= secretarylistobject.length - 1; i++) {
-        if (secretarylistobject[i].firstName == firstname && secretarylistobject[i].lastName == lastname, secretarylistobject[i].pwd = password) {
+        if (secretarylistobject[i].firstName == firstname && secretarylistobject[i].lastName == lastname && secretarylistobject[i].pwd == password) {
             return true;
         }
     }
@@ -120,6 +123,8 @@ SecretaryDB.prototype.close = function (option) {
                 }
                 return val
             }));
+            //localStorage.setItem("secretaryList", JSON.stringify(this.secretaryList));
+
             break;
         }
         case 0 :

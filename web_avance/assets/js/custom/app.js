@@ -1,6 +1,8 @@
 /**
  * Created by benli on 15/10/14.
  */
+
+localStorage.clear();
 var tdb = new TeacherDB();
 var sdb = new StudentDB();
 var cdb = new ClassDB();
@@ -22,7 +24,7 @@ window.onload = function () {
     $("#studentModule").fadeOut();
     $("#secretaryModule").fadeOut();
 
-//    localStorage.clear();
+  //localStorage.clear();
     test.addTeacherExamples();
     test.addTestDataToDB();
     table.addTimeLine('student_table', 4);
