@@ -127,6 +127,7 @@ StudentDB.prototype.close = function (option) {
     switch (option) {
         case 1 :
         {
+            var seen = [];
             localStorage.setItem("studentList", JSON.stringify(this.studentList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
