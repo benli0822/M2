@@ -44,7 +44,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             var studentname = client.split('.');
 
             //1. create the class locally
-            var newDriveClass = new Class.DriveClass(name, duration, teacher, client, startTime, date);
+            var newDriveClass = new DriveClass(name, duration, teacher, client, startTime, date);
             console.log("Adding " + teacher + "'s " + name + "'s " + type + " class" + " start from "
                 + startTime + " last for " + duration + " with " + client);
             //2. add the class to the temp list
@@ -80,7 +80,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 // find the teacher
                 if (tdb.find_a_teacher_by_name(teachername[0], teachername[1]) != false) {
                     var teacher_result = tdb.find_a_teacher_by_name(teachername[0], teachername[1]).list_class.push(newDriveClass);
-                    //teacher_result.addAClassToTeacher(newDriveClass);
+//                    teacher_result.addAClassToTeacher(newDriveClass);
                 }
             }
             break;
@@ -91,7 +91,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             var studentname = client.split('.');
 
             //1. create the class locally
-            var newLectureClass = new Class.LectureClass(name, duration, teacher, client, startTime, date);
+            var newLectureClass = new LectureClass(name, duration, teacher, client, startTime, date);
             console.log("Adding " + teacher + "'s " + name + "'s " + type + " class" + " start from "
                 + startTime + " last for " + duration + " with " + client);
             //2. add the class to the temp list

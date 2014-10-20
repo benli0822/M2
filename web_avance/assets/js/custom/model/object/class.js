@@ -12,6 +12,7 @@
  * @constructor
  */
 Class = function (name, teacher, duration, client, startTime, date) {
+
     this._name = name; // class's name
     this._teacher = teacher;
     this._duration = duration;
@@ -88,7 +89,7 @@ Class.prototype.equals = function (theclass) {
  * @constructor
  */
 //TODO drive class should be one teacher with one student
-Class.DriveClass = function (name, duration, teacher, client, startTime, date) {
+DriveClass = function (name, duration, teacher, client, startTime, date) {
     Class.call(this, name, teacher, duration, client, startTime, date);
     this._type = "Drive";
 
@@ -100,7 +101,7 @@ Class.DriveClass = function (name, duration, teacher, client, startTime, date) {
     })
 }
 
-Class.DriveClass.prototype.equals = function (theclass) {
+DriveClass.prototype.equals = function (theclass) {
     return (this.type === theclass.type) && this.equals(theclass);
 }
 
@@ -110,7 +111,7 @@ Class.DriveClass.prototype.equals = function (theclass) {
  * @constructor
  */
 // TODO lecture class should be one teacher with multiple students, should we consider the max number of a class?
-Class.LectureClass = function (name, duration, teacher, client, startTime, date) {
+LectureClass = function (name, duration, teacher, client, startTime, date) {
     Class.call(this, name, teacher, duration, client, startTime, date);
     this.type = "Lecture";
 
@@ -122,7 +123,7 @@ Class.LectureClass = function (name, duration, teacher, client, startTime, date)
     })
 }
 
-Class.LectureClass.prototype.equals = function (theclass) {
+LectureClass.prototype.equals = function (theclass) {
     return (this.type === theclass.type) && this.equals(theclass);
 }
 
