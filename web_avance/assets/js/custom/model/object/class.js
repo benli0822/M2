@@ -92,7 +92,7 @@ Class.prototype.equals = function (theclass) {
 //TODO drive class should be one teacher with one student
 DriveClass = function (name, duration, teacher, client, startTime, date) {
     Class.call(this, name, teacher, duration, client, startTime, date);
-    this._type = "Drive";
+    this._type = "drive";
 
     this.__defineGetter__("type", function () {
         return this._type;
@@ -108,7 +108,7 @@ DriveClass.prototype.equals = function (theclass) {
 
 DriveClassObjectHelper = {
     createFromObject: function (object) {
-        var theDriveClass = new DriveClass(object.name, object.duration, object.teacher, object.client, object.startTime, object.date);
+        var theDriveClass = new DriveClass(object.name, object.duration, object.teacher, object.client, object.startTime, new Date(object.date));
         return theDriveClass;
     }
 }
@@ -121,7 +121,7 @@ DriveClassObjectHelper = {
 // TODO lecture class should be one teacher with multiple students, should we consider the max number of a class?
 LectureClass = function (name, duration, teacher, client, startTime, date) {
     Class.call(this, name, teacher, duration, client, startTime, date);
-    this.type = "Lecture";
+    this._type = "lecture";
 
     this.__defineGetter__("type", function () {
         return this._type;
@@ -137,7 +137,7 @@ LectureClass.prototype.equals = function (theclass) {
 
 LectureClassObjectHelper = {
     createFromObject: function (object) {
-        var theLectureClass = new LectureClass(object.name, object.duration, object.teacher, object.client, object.startTime, object.date);
+        var theLectureClass = new LectureClass(object.name, object.duration, object.teacher, object.client, object.startTime, new Date(object.date));
         return theLectureClass;
     }
 }
