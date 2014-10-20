@@ -116,11 +116,11 @@ test = {
         var testdate5 = new Date(2014,9,21, 9, 0, 0, 0);
 
 
-        cdb.addAClass('drive', teacher, stu1, 1, 8, testdate1, 'drive', sdb, tdb);
-        cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate2, 'lecture', sdb, tdb);
-        cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate3, 'lecture', sdb, tdb);
-        cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate4, 'lecture', sdb, tdb);
-        cdb.addAClass('lecture', teacher, stu2, 1, 9,testdate5, 'lecture', sdb, tdb);
+        cdb.addAClass('drive', teacher.firstName+"."+teacher.lastName, stu1.firstName+"."+stu1.lastName, 1, 8, testdate1, 'drive', sdb, tdb);
+        cdb.addAClass('lecture',teacher.firstName+"."+teacher.lastName, stu2.firstName+"."+stu2.lastName, 1, 9,testdate2, 'lecture', sdb, tdb);
+        cdb.addAClass('lecture', teacher.firstName+"."+teacher.lastName, stu2.firstName+"."+stu2.lastName, 1, 9,testdate3, 'lecture', sdb, tdb);
+        cdb.addAClass('lecture', teacher.firstName+"."+teacher.lastName, stu2.firstName+"."+stu2.lastName, 1, 9,testdate4, 'lecture', sdb, tdb);
+        cdb.addAClass('lecture', teacher.firstName+"."+teacher.lastName, stu2.firstName+"."+stu2.lastName, 1, 9,testdate5, 'lecture', sdb, tdb);
 
         var admin = new Person.Secretary('admin', 'admin', 'lille1','admin');
         main.addSecretaryObject(admin);

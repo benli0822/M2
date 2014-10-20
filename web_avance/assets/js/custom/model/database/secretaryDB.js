@@ -104,6 +104,8 @@ SecretaryDB.prototype.close = function (option) {
                 }
                 return val
             }));
+            //localStorage.setItem("secretaryList", JSON.stringify(this.secretaryList));
+
             break;
         }
         case 0 :

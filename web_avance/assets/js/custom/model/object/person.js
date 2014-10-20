@@ -61,6 +61,10 @@ Person.prototype.say = function () {
     console.log("This is" + this.firstName + " " + this.lastName + ", I live in " + this.address);
 }
 
+Person.prototype.addAClass = function (the_class){
+    this.list_class.push(the_class);
+}
+
 Person.prototype.equals = function (theperson) {
     return (this.firstName === theperson.firstName) &&
         (this.lastName === theperson.lastName) &&

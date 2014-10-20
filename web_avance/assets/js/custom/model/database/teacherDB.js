@@ -61,6 +61,9 @@ TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
             return _teacherList[i];
         }
     }
+
+
+    return false;
 };
 
 // check a teacher's existence
@@ -95,6 +98,8 @@ TeacherDB.prototype.close = function (option) {
                 return val
             }));
             break;
+
+            //localStorage.setItem("teacherList", JSON.stringify(this.teacherList));
         }
         case 0 :
         {
