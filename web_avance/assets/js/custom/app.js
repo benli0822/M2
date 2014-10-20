@@ -2,7 +2,7 @@
  * Created by benli on 15/10/14.
  */
 
-localStorage.clear();
+//localStorage.clear();
 var tdb = new TeacherDB();
 var sdb = new StudentDB();
 var cdb = new ClassDB();

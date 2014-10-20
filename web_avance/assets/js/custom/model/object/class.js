@@ -12,13 +12,14 @@
  * @constructor
  */
 Class = function (name, teacher, duration, client, startTime, date) {
-
     this._name = name; // class's name
     this._teacher = teacher;
     this._duration = duration;
     this._client = client;
     this._startTime = startTime;
     this._date = date;
+    this._id = date.getFullYear() + "." + (date.getMonth()+1) + "." + date.getDate() + "." + date.getHours() +
+        "." + teacher;
     /* getter and setter for name */
     this.__defineGetter__("name", function () {
         return this._name;
@@ -66,6 +67,11 @@ Class = function (name, teacher, duration, client, startTime, date) {
     this.__defineSetter__("date", function (value) {
         return this._date = value;
     })
+
+    /* getter for id */
+    this.__defineGetter__("id", function() {
+        return this._id;
+    })
 }
 
 
@@ -105,6 +111,13 @@ DriveClass.prototype.equals = function (theclass) {
     return (this.type === theclass.type) && this.equals(theclass);
 }
 
+DriveClassObjectHelper = {
+    createFromObject: function (object) {
+        var theDriveClass = new DriveClass(object.name, object.duration, object.teacher, object.client, object.startTime, object.date);
+        return theDriveClass;
+    }
+}
+
 /**
  * A representation for lecture class
  * @param name
@@ -125,5 +138,12 @@ LectureClass = function (name, duration, teacher, client, startTime, date) {
 
 LectureClass.prototype.equals = function (theclass) {
     return (this.type === theclass.type) && this.equals(theclass);
+}
+
+LectureClassObjectHelper = {
+    createFromObject: function (object) {
+        var theLectureClass = new LectureClass(object.name, object.duration, object.teacher, object.client, object.startTime, object.date);
+        return theLectureClass;
+    }
 }
 

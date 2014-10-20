@@ -7,8 +7,9 @@ StudentDB = function () {
     if (localStorage.getItem('studentList') != null) {
         var localStudentList = JSON.parse(localStorage.getItem('studentList'));
         for (var i = 0; i < localStudentList.length; i++) {
-            if (!this.hasStudent(localStudentList[i])) {
-                _studentList.push(localStudentList[i]);
+            theStudent = ClientObjectHelper.createFromObject(localStudentList[i]);
+            if (!this.hasStudent(theStudent)) {
+                _studentList.push(theStudent);
             }
         }
     }
@@ -40,7 +41,9 @@ StudentDB.prototype.addStudent = function (firstName, lastName, address, pwd) {
         " who live in " + address);
     // add the student into temp list
     try {
-        this.studentList.push(newStudent);
+        if (!this.hasStudent(newStudent)) {
+            this.studentList.push(newStudent);
+        }
     }
     catch (error) {
         var errorElement1 = document.createElement("div");
@@ -67,7 +70,7 @@ StudentDB.prototype.find_a_client_by_name = function (firstname, lastname) {
         }
 
     }
-    return;
+    return false;
 
 };
 
@@ -108,7 +111,7 @@ StudentDB.prototype.hasStudent = function (student) {
         var _studentList = this.studentList;
 
         for (var i = 0; _studentList.length; i++) {
-            if (_studentList[i] === student) {
+            if (_studentList[i].equals(student)) {
                 return true;
             }
         }
@@ -127,7 +130,7 @@ StudentDB.prototype.close = function (option) {
     switch (option) {
         case 1 :
         {
-            var seen = [];
+            seen = [];
             localStorage.setItem("studentList", JSON.stringify(this.studentList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)

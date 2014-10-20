@@ -62,7 +62,7 @@ Person.prototype.say = function () {
 }
 
 Person.prototype.addAClass = function (the_class){
-    this.list_class.push(the_class);
+    this.list_class.push(the_class.id);
 }
 
 Person.prototype.equals = function (theperson) {

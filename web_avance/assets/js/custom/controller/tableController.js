@@ -95,7 +95,7 @@ table = {
 
                 for (var j = 0; j < the_teacher.list_class.length; j++) {
 
-                    var the_class = the_teacher.list_class[j];
+                    var the_class = cdb.getClassById(the_teacher.list_class[j]);
 
 
                     if(the_class.date.toDateString() == date.toDateString()) {
@@ -151,7 +151,7 @@ table = {
         //travese the class list
         for (var i = 0; i <= student.list_class.length - 1; i++) {
 
-            var tem_class = student.list_class[i];
+            var tem_class = cdb.getClassById(student.list_class[i]);
 
             //add a new row for this class
             var new_row = document.createElement('tr');

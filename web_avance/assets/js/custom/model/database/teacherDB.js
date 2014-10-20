@@ -7,8 +7,9 @@ TeacherDB = function () {
     if (localStorage.getItem('teacherList') != null) {
         var localTeacherList = JSON.parse(localStorage.getItem('teacherList'));
         for (var i = 0; i < localTeacherList.length; i++) {
-            if (this.hasTeacher(localTeacherList[i])) {
-                _teacherList.push(localTeacherList[i]);
+            var theTeacher = TeacherObjectHelper.createFromObject(localTeacherList[i]);
+            if (this.hasTeacher(theTeacher)) {
+                _teacherList.push(theTeacher);
             }
         }
     }
@@ -37,7 +38,9 @@ TeacherDB.prototype.addTeacher = function (firstName, lastName, address, pwd) {
     console.log("Adding " + firstName + " " + lastName + " lived in: " + address);
     // add the class into temp list
     try {
-        this.teacherList.push(newTeacher);
+        if (!this.hasTeacher(newTeacher)) {
+            this.teacherList.push(newTeacher);
+        }
     }
     catch (error) {
         var errorElement1 = document.createElement("div");
@@ -63,18 +66,16 @@ TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
             return _teacherList[i];
         }
     }
-
-
     return false;
 };
 
 // check a teacher's existence
 TeacherDB.prototype.hasTeacher = function (teacher) {
-    if(typeof(this.teacherList) != 'undefined') {
+    if (typeof(this.teacherList) != 'undefined') {
         var _teacherList = this.teacherList;
 
         for (var i = 0; _teacherList.length; i++) {
-            if (_teacherList[i] === teacher) {
+            if (_teacherList[i].equals(teacher)) {
                 return true;
             }
         }

@@ -4,11 +4,20 @@
 ClassDB = function () {
     var _classList = [];
 
-    if (localStorage.getItem('classList') != null) {
+    if (localStorage.getItem('classIdList') != null) {
         var localClassList = JSON.parse(localStorage.getItem('classList'));
         for (var i = 0; i < localClassList.length; i++) {
-            if (!this.hasClass(localClassList[i])) {
-                _classList.push(localClassList[i]);
+            var theClass;
+            switch (localClassList[i].type) {
+                case "Drive" :
+                    theClass = DriveClassObjectHelper.createFromObject(localClassList[i]);
+                    break;
+                case "Lecture" :
+                    theClass = LectureClassObjectHelper.createFromObject(localClassList[i]);
+                    break;
+            }
+            if (!this.hasClass(theClass) && theClass.type != 'undefined') {
+                _classList.push(theClass);
             }
         }
     }
@@ -64,9 +73,9 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             } else {
                 // find the client
 
-                if (typeof(sdb.find_a_client_by_name(studentname[0], studentname[1])) != 'undefined') {
-                    var client_result = sdb.find_a_client_by_name(studentname[0], studentname[1]);
-                    client_result.list_class.push(newDriveClass);
+                if (sdb.find_a_client_by_name(studentname[0], studentname[1])) {
+                    client_result = sdb.find_a_client_by_name(studentname[0], studentname[1]);
+//                    client_result.list_class.push(newDriveClass);
                     client_result.addAClassToClient(newDriveClass);
                 }
 
@@ -78,9 +87,9 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 return;
             } else {
                 // find the teacher
-                if (tdb.find_a_teacher_by_name(teachername[0], teachername[1]) != false) {
-                    var teacher_result = tdb.find_a_teacher_by_name(teachername[0], teachername[1]).list_class.push(newDriveClass);
-//                    teacher_result.addAClassToTeacher(newDriveClass);
+                if (tdb.find_a_teacher_by_name(teachername[0], teachername[1])) {
+                    var teacher_result = tdb.find_a_teacher_by_name(teachername[0], teachername[1]);
+                    teacher_result.addAClassToTeacher(newDriveClass);
                 }
             }
             break;
@@ -111,9 +120,9 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             } else {
                 // find the client
 
-                if (sdb.find_a_client_by_name(studentname[0], studentname[1]) != false) {
-                    var student_result = sdb.find_a_client_by_name(studentname[0], studentname[1]).list_class.push(newLectureClass);
-                    //student_result.addAClassToClient(newLectureClass);
+                if (sdb.find_a_client_by_name(studentname[0], studentname[1])) {
+                    var student_result = sdb.find_a_client_by_name(studentname[0], studentname[1]);
+                    student_result.addAClassToClient(newLectureClass);
                 }
 
             }
@@ -124,9 +133,9 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 return;
             } else {
                 // find the teacher
-                if (tdb.find_a_teacher_by_name(teachername[0], teachername[1]) != false) {
-                    var teacher_result = tdb.find_a_teacher_by_name(teachername[0], teachername[1]).list_class.push(newLectureClass);
-                    //teacher_result.addAClassToTeacher(newLectureClass);
+                if (tdb.find_a_teacher_by_name(teachername[0], teachername[1])) {
+                    var teacher_result = tdb.find_a_teacher_by_name(teachername[0], teachername[1]);
+                    teacher_result.addAClassToTeacher(newLectureClass);
                 }
             }
             break;
@@ -134,13 +143,31 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
     }
 };
 
+ClassDB.prototype.getClassById = function (id) {
+    if (typeof(this.classList) != "undefined") {
+        var _classList = this.classList;
+
+        for (var i = 0; i < _classList.length; i++) {
+            if (_classList[i].id === id) {
+                return _classList[i];
+            }
+        }
+        console.log('The class with id: ' + id + " does not exist!");
+        return;
+    } else {
+        console.log('Class database not available!');
+        return;
+    }
+
+}
+
 // check a teacher's existence
 ClassDB.prototype.hasClass = function (theClass) {
     if (typeof(this.classList) != 'undefined') {
         var _classList = this.classList;
 
-        for (var i = 0; _classList.length; i++) {
-            if (_classList[i] === theClass) {
+        for (var i = 0; i < _classList.length; i++) {
+            if (_classList[i].id === theClass.id) {
                 return true;
             }
         }
@@ -160,7 +187,7 @@ ClassDB.prototype.close = function (option) {
         {
             var seen = [];
             // if the studentList haven't been initialised
-            localStorage.setItem("classList+", JSON.stringify(this.classList, function (key, val) {
+            localStorage.setItem("classList", JSON.stringify(this.classList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
                         return

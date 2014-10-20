@@ -22,8 +22,19 @@ Client = function (firstName, lastName, address,pwd) {
 }
 
 Client.prototype.equals = function (theperson) {
-    return (this.type === theperson.type) && this.equals(theperson);
+    return (this.type === theperson.type) && (this.firstName === theperson.firstName) && (this.lastName === theperson.lastName)
+        && (this.address == theperson.address) && (this.pwd === theperson.pwd);
 }
 Client.prototype.addAClassToClient = function (the_class){
-    this.list_class.push(the_class);
+    this.list_class.push(the_class.id);
+}
+
+ClientObjectHelper = {
+    createFromObject: function (object) {
+        var theClient = new Client(object.firstName, object.lastName, object.address, object.pwd);
+        if (object.list_class) {
+            theClient.list_class = object.list_class;
+        }
+        return theClient;
+    }
 }

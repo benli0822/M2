@@ -8,7 +8,7 @@
  * @param address
  * @constructor
  */
-Teacher = function (firstName, lastName, address,pwd) {
+Teacher = function (firstName, lastName, address, pwd) {
 
     Person.call(this, firstName, lastName, address, pwd);
     this._type_of_person = "Teacher";
@@ -21,8 +21,19 @@ Teacher = function (firstName, lastName, address,pwd) {
 }
 
 Teacher.prototype.equals = function (theperson) {
-    return (this.type === theperson.type) && this.equals(theperson);
+    return (this.type === theperson.type) && (this.firstName === theperson.firstName) && (this.lastName === theperson.lastName)
+        && (this.address == theperson.address) && (this.pwd === theperson.pwd);
 }
-Teacher.prototype.addAClassToTeacher = function (the_class){
-    this.list_class.push(the_class);
+Teacher.prototype.addAClassToTeacher = function (the_class) {
+    this.list_class.push(the_class.id);
+}
+
+TeacherObjectHelper = {
+    createFromObject: function (object) {
+        var theTeacher = new Teacher(object.firstName, object.lastName, object.address, object.pwd);
+        if (object.list_class) {
+            theTeacher.list_class = object.list_class;
+        }
+        return theTeacher;
+    }
 }
