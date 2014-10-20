@@ -8,7 +8,9 @@ SecretaryDB = function () {
     if (localStorage.getItem('secretaryList') != null) {
         var localSecretaryList = JSON.parse(localStorage.getItem('secretaryList'));
         for (var i = 0; i < localSecretaryList.length; i++) {
-            _secretaryList.push(localSecretaryList[i]);
+            if (!this.hasSecretary(localSecretaryList[i])) {
+                _secretaryList.push(localSecretaryList[i]);
+            }
         }
     }
 
@@ -82,6 +84,23 @@ SecretaryDB.prototype.validate = function (firstName, lastName) {
 
     return false;
 }
+
+
+// check a student's existence
+SecretaryDB.prototype.hasSecretary = function (secretary) {
+    if (typeof(this.secretaryList) != 'undefined') {
+        var _secretaryList = this.secretaryList;
+
+        for (var i = 0; _secretaryList.length; i++) {
+            if (_secretaryList[i] === secretary) {
+                return true;
+            }
+        }
+    }
+    return false;
+};
+
+
 // close database operation, 1 for local storage, 0 for abandon memory change
 SecretaryDB.prototype.close = function (option) {
     if (typeof(Storage) == "undefined") {
@@ -93,7 +112,7 @@ SecretaryDB.prototype.close = function (option) {
         case 1 :
         {
             var seen = [];
-            localStorage.setItem("secretaryList", JSON.stringify(this.secretaryList,function (key, val) {
+            localStorage.setItem("secretaryList", JSON.stringify(this.secretaryList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
                         return

@@ -7,7 +7,9 @@ ClassDB = function () {
     if (localStorage.getItem('classList') != null) {
         var localClassList = JSON.parse(localStorage.getItem('classList'));
         for (var i = 0; i < localClassList.length; i++) {
-            _classList.push(localClassList[i]);
+            if (!this.hasClass(localClassList[i])) {
+                _classList.push(localClassList[i]);
+            }
         }
     }
 
@@ -129,6 +131,20 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             break;
         }
     }
+};
+
+// check a teacher's existence
+ClassDB.prototype.hasClass = function (theClass) {
+    if (typeof(this.classList) != 'undefined') {
+        var _classList = this.classList;
+
+        for (var i = 0; _classList.length; i++) {
+            if (_classList[i] === theClass) {
+                return true;
+            }
+        }
+    }
+    return false;
 };
 
 // close database operation, 1 for local storage, 0 for abandon memory change

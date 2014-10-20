@@ -7,7 +7,9 @@ StudentDB = function () {
     if (localStorage.getItem('studentList') != null) {
         var localStudentList = JSON.parse(localStorage.getItem('studentList'));
         for (var i = 0; i < localStudentList.length; i++) {
-            _studentList.push(localStudentList[i]);
+            if (!this.hasStudent(localStudentList[i])) {
+                _studentList.push(localStudentList[i]);
+            }
         }
     }
 
@@ -97,13 +99,15 @@ StudentDB.prototype.find_a_client_by_firstname = function (firstname) {
 };
 
 
-// check a teacher's existence
+// check a student's existence
 StudentDB.prototype.hasStudent = function (student) {
-    var _studentList = this.studentList;
+    if (typeof(this.studentList) != 'undefined') {
+        var _studentList = this.studentList;
 
-    for (var i = 0; _studentList.length; i++) {
-        if (_studentList[i] === student) {
-            return true;
+        for (var i = 0; _studentList.length; i++) {
+            if (_studentList[i] === student) {
+                return true;
+            }
         }
     }
     return false;
@@ -120,7 +124,7 @@ StudentDB.prototype.close = function (option) {
     switch (option) {
         case 1 :
         {
-            var seen = [];
+            seen = [];
             localStorage.setItem("studentList", JSON.stringify(this.studentList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)

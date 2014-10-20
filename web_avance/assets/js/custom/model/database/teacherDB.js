@@ -7,7 +7,9 @@ TeacherDB = function () {
     if (localStorage.getItem('teacherList') != null) {
         var localTeacherList = JSON.parse(localStorage.getItem('teacherList'));
         for (var i = 0; i < localTeacherList.length; i++) {
-            _teacherList.push(localTeacherList[i]);
+            if (this.hasTeacher(localTeacherList[i])) {
+                _teacherList.push(localTeacherList[i]);
+            }
         }
     }
 
@@ -65,11 +67,13 @@ TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
 
 // check a teacher's existence
 TeacherDB.prototype.hasTeacher = function (teacher) {
-    var _teacherList = this.teacherList;
+    if(typeof(this.teacherList) != 'undefined') {
+        var _teacherList = this.teacherList;
 
-    for (var i = 0; _teacherList.length; i++) {
-        if (_teacherList[i] === teacher) {
-            return true;
+        for (var i = 0; _teacherList.length; i++) {
+            if (_teacherList[i] === teacher) {
+                return true;
+            }
         }
     }
     return false;
@@ -86,7 +90,7 @@ TeacherDB.prototype.close = function (option) {
         case 1 :
         {
             var seen = [];
-            localStorage.setItem("teacherList", JSON.stringify(this.teacherList, function(key, val) {
+            localStorage.setItem("teacherList", JSON.stringify(this.teacherList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
                         return
