@@ -35,7 +35,7 @@ StudentDB.prototype.init = function () {
 // add a student into memory without charge local storage
 StudentDB.prototype.addStudent = function (firstName, lastName, address, pwd) {
     // create a student and save it to db
-    var newStudent = new Person.Client(firstName, lastName, address, pwd);
+    var newStudent = new Client(firstName, lastName, address, pwd);
     console.log("Adding student:" + firstName + " " + lastName +
         " who live in " + address);
     // add the student into temp list
@@ -67,7 +67,7 @@ StudentDB.prototype.find_a_client_by_name = function (firstname, lastname) {
         }
 
     }
-    return false;
+    return;
 
 };
 

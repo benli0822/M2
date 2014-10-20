@@ -9,7 +9,7 @@
  * @param freeTime
  * @constructor
  */
-Person.Client = function (firstName, lastName, address,pwd) {
+Client = function (firstName, lastName, address,pwd) {
     Person.call(this, firstName, lastName, address,pwd);
     this._type_of_person = "Client";
     /* getter and setter for type_of_person */
@@ -21,9 +21,9 @@ Person.Client = function (firstName, lastName, address,pwd) {
     });
 }
 
-Person.Client.prototype.equals = function (theperson) {
+Client.prototype.equals = function (theperson) {
     return (this.type === theperson.type) && this.equals(theperson);
 }
-Person.Client.prototype.addAClassToClient = function (the_class){
+Client.prototype.addAClassToClient = function (the_class){
     this.list_class.push(the_class);
 }

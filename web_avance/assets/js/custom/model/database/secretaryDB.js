@@ -33,7 +33,7 @@ SecretaryDB.prototype.init = function () {
 // add a Secretary into memory without charge local storage
 SecretaryDB.prototype.addSecretary = function (firstName, lastName, address, pwd) {
     // create a Secretary and save it to db
-    var newSecretary = new Person.Secretary(firstName, lastName, address, pwd);
+    var newSecretary = new Secretary(firstName, lastName, address, pwd);
     console.log("Adding Secretary:" + firstName + " " + lastName +
         " who live in " + address);
     // add the Secretary into temp list

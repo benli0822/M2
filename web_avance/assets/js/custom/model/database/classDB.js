@@ -64,9 +64,10 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             } else {
                 // find the client
 
-                if(sdb.find_a_client_by_name(studentname[0],studentname[1])!= false){
-                    sdb.find_a_client_by_name(studentname[0],studentname[1]).list_class.push(newDriveClass);
-                       // client_result.addAClassToClient(newDriveClass);
+                if (typeof(sdb.find_a_client_by_name(studentname[0], studentname[1])) != 'undefined') {
+                    var client_result = sdb.find_a_client_by_name(studentname[0], studentname[1]);
+                    client_result.list_class.push(newDriveClass);
+                    client_result.addAClassToClient(newDriveClass);
                 }
 
             }
@@ -77,8 +78,8 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 return;
             } else {
                 // find the teacher
-                if(tdb.find_a_teacher_by_name(teachername[0],teachername[1])!= false){
-                    var teacher_result = tdb.find_a_teacher_by_name(teachername[0],teachername[1]).list_class.push(newDriveClass);
+                if (tdb.find_a_teacher_by_name(teachername[0], teachername[1]) != false) {
+                    var teacher_result = tdb.find_a_teacher_by_name(teachername[0], teachername[1]).list_class.push(newDriveClass);
                     //teacher_result.addAClassToTeacher(newDriveClass);
                 }
             }
@@ -110,9 +111,9 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             } else {
                 // find the client
 
-                if(sdb.find_a_client_by_name(studentname[0],studentname[1])!= false){
-                    var student_result =sdb.find_a_client_by_name(studentname[0],studentname[1]).list_class.push(newLectureClass);
-                        //student_result.addAClassToClient(newLectureClass);
+                if (sdb.find_a_client_by_name(studentname[0], studentname[1]) != false) {
+                    var student_result = sdb.find_a_client_by_name(studentname[0], studentname[1]).list_class.push(newLectureClass);
+                    //student_result.addAClassToClient(newLectureClass);
                 }
 
             }
@@ -123,9 +124,9 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 return;
             } else {
                 // find the teacher
-                if(tdb.find_a_teacher_by_name(teachername[0],teachername[1])!= false){
-                    var teacher_result = tdb.find_a_teacher_by_name(teachername[0],teachername[1]).list_class.push(newLectureClass);
-                        //teacher_result.addAClassToTeacher(newLectureClass);
+                if (tdb.find_a_teacher_by_name(teachername[0], teachername[1]) != false) {
+                    var teacher_result = tdb.find_a_teacher_by_name(teachername[0], teachername[1]).list_class.push(newLectureClass);
+                    //teacher_result.addAClassToTeacher(newLectureClass);
                 }
             }
             break;

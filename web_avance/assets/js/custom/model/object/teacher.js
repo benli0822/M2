@@ -8,7 +8,7 @@
  * @param address
  * @constructor
  */
-Person.Teacher = function (firstName, lastName, address,pwd) {
+Teacher = function (firstName, lastName, address,pwd) {
 
     Person.call(this, firstName, lastName, address, pwd);
     this._type_of_person = "Teacher";
@@ -20,9 +20,9 @@ Person.Teacher = function (firstName, lastName, address,pwd) {
     });
 }
 
-Person.Teacher.prototype.equals = function (theperson) {
+Teacher.prototype.equals = function (theperson) {
     return (this.type === theperson.type) && this.equals(theperson);
 }
-Person.Teacher.prototype.addAClassToTeacher = function (the_class){
+Teacher.prototype.addAClassToTeacher = function (the_class){
     this.list_class.push(the_class);
 }

@@ -33,7 +33,7 @@ TeacherDB.prototype.init = function () {
 // add a teacher into memory without charge local sotrage
 TeacherDB.prototype.addTeacher = function (firstName, lastName, address, pwd) {
     // create a teacher and save it into dbs
-    var newTeacher = new Person.Teacher(firstName, lastName, address, pwd);
+    var newTeacher = new Teacher(firstName, lastName, address, pwd);
     console.log("Adding " + firstName + " " + lastName + " lived in: " + address);
     // add the class into temp list
     try {
