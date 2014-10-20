@@ -31,7 +31,7 @@ main = {
 
 
     addStudent: function (firstName, lastName, address) {
-        tdb.addStudent(firstName, lastName, address);
+        sdb.addStudent(firstName, lastName, address);
     },
     /**
      * add a exist student object to db
