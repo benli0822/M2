@@ -4,19 +4,20 @@
 ClassDB = function () {
     var _classList = [];
 
-    if (localStorage.getItem('classIdList') != null) {
+    if (localStorage.getItem('classList') != null) {
         var localClassList = JSON.parse(localStorage.getItem('classList'));
         for (var i = 0; i < localClassList.length; i++) {
             var theClass;
             switch (localClassList[i].type) {
-                case "Drive" :
+                case "drive" :
                     theClass = DriveClassObjectHelper.createFromObject(localClassList[i]);
                     break;
-                case "Lecture" :
+                case "lecture" :
                     theClass = LectureClassObjectHelper.createFromObject(localClassList[i]);
                     break;
             }
-            if (!this.hasClass(theClass) && theClass.type != 'undefined') {
+            if (!this.hasClass(theClass)) {
+                console.log(theClass);
                 _classList.push(theClass);
             }
         }
@@ -43,14 +44,17 @@ ClassDB.prototype.init = function () {
 
 
 // add a class into memory without charge local storage
-ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTime, date, type) {
+ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTime, date, type, sdb, tdb) {
     //create a class and save it to db
+    var teachername;
+    var studentname;
+    var errorElement1;
     switch (type) {
         case "drive" :
         {
 
-            var teachername = teacher.split('.');
-            var studentname = client.split('.');
+            teachername = teacher.split('.');
+            studentname = client.split('.');
 
             //1. create the class locally
             var newDriveClass = new DriveClass(name, duration, teacher, client, startTime, date);
@@ -66,7 +70,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 }
             }
             catch (error) {
-                var errorElement1 = document.createElement("div");
+                errorElement1 = document.createElement("div");
                 errorElement1.innerHTML = error.message;
                 document.getElementsByTagName("body").item[0].appendChild(errorElement1);
             }
@@ -79,7 +83,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 // find the client
 
                 if (sdb.find_a_client_by_name(studentname[0], studentname[1])) {
-                    client_result = sdb.find_a_client_by_name(studentname[0], studentname[1]);
+                    var client_result = sdb.find_a_client_by_name(studentname[0], studentname[1]);
 //                    client_result.list_class.push(newDriveClass);
                     client_result.addAClassToClient(newDriveClass);
                 }
@@ -101,8 +105,8 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
         }
         case "lecture" :
         {
-            var teachername = teacher.split('.');
-            var studentname = client.split('.');
+            teachername = teacher.split('.');
+            studentname = client.split('.');
 
             //1. create the class locally
             var newLectureClass = new LectureClass(name, duration, teacher, client, startTime, date);
@@ -118,7 +122,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 }
             }
             catch (error) {
-                var errorElement1 = document.createElement("div");
+                errorElement1 = document.createElement("div");
                 errorElement1.innerHTML = error.message;
                 document.getElementsByTagName("body").item[0].appendChild(errorElement1);
             }
@@ -163,13 +167,11 @@ ClassDB.prototype.getClassById = function (id) {
             }
         }
         console.log('The class with id: ' + id + " does not exist!");
-        return;
     } else {
         console.log('Class database not available!');
-        return;
     }
 
-}
+};
 
 // check a teacher's existence
 ClassDB.prototype.hasClass = function (theClass) {
@@ -181,6 +183,7 @@ ClassDB.prototype.hasClass = function (theClass) {
                 return true;
             }
         }
+        return false;
     }
     return false;
 };
@@ -200,7 +203,7 @@ ClassDB.prototype.close = function (option) {
             localStorage.setItem("classList", JSON.stringify(this.classList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
-                        return
+                        return;
                     seen.push(val)
                 }
                 return val
