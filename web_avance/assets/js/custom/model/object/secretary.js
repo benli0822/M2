@@ -18,5 +18,14 @@ Secretary = function (firstName, lastName, address,pwd) {
 }
 
 Secretary.prototype.equals = function (theperson) {
-    return (this.type === theperson.type) && this.equals(theperson);
+    return (this.type === theperson.type) && (this.firstName === theperson.firstName) && (this.lastName === theperson.lastName)
+        && (this.address == theperson.address) && (this.pwd === theperson.pwd);
+}
+
+
+SecretaryObjectHelper = {
+    createFromObject: function (object) {
+        var theSecretary = new Secretary(object.firstName, object.lastName, object.address, object.pwd);
+        return theSecretary;
+    }
 }

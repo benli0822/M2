@@ -58,7 +58,12 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 + startTime + " last for " + duration + " with " + client);
             //2. add the class to the temp list
             try {
-                this.classList.push(newDriveClass);
+                if(!this.hasClass(newDriveClass)) {
+                    this.classList.push(newDriveClass);
+                } else {
+                    console.log('Error while adding class 1');
+                    return;
+                }
             }
             catch (error) {
                 var errorElement1 = document.createElement("div");
@@ -105,7 +110,12 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 + startTime + " last for " + duration + " with " + client);
             //2. add the class to the temp list
             try {
-                this.classList.push(newLectureClass);
+                if(!this.hasClass(newLectureClass)) {
+                    this.classList.push(newLectureClass);
+                } else {
+                    console.log('Error while adding class 2');
+                    return;
+                }
             }
             catch (error) {
                 var errorElement1 = document.createElement("div");
@@ -167,7 +177,7 @@ ClassDB.prototype.hasClass = function (theClass) {
         var _classList = this.classList;
 
         for (var i = 0; i < _classList.length; i++) {
-            if (_classList[i].id === theClass.id) {
+            if (_classList[i].equals(theClass)) {
                 return true;
             }
         }

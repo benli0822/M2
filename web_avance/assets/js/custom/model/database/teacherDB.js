@@ -51,7 +51,9 @@ TeacherDB.prototype.addTeacher = function (firstName, lastName, address, pwd) {
 
 // add a teacher object into memory
 TeacherDB.prototype.addTeacherObject = function (teacher) {
-    this.teacherList.push(teacher);
+    if (!this.hasTeacher(teacher)) {
+        this.teacherList.push(teacher);
+    }
 };
 
 TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
@@ -74,7 +76,7 @@ TeacherDB.prototype.hasTeacher = function (teacher) {
     if (typeof(this.teacherList) != 'undefined') {
         var _teacherList = this.teacherList;
 
-        for (var i = 0; _teacherList.length; i++) {
+        for (var i = 0; i < _teacherList.length; i++) {
             if (_teacherList[i].equals(teacher)) {
                 return true;
             }

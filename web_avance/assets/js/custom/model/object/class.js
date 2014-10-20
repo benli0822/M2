@@ -76,12 +76,7 @@ Class = function (name, teacher, duration, client, startTime, date) {
 
 
 Class.prototype.equals = function (theclass) {
-    return (this.name === theclass.name) &&
-        (this.teacher === theclass.teacher) &&
-        (this.date === theclass.date) &&
-        (this.duration === theclass.duration) &&
-        (this.client === theclass.client) &&
-        (this.startTime == theclass.startTime);
+    return this.id === theclass.id;
 }
 
 /**
@@ -108,7 +103,7 @@ DriveClass = function (name, duration, teacher, client, startTime, date) {
 }
 
 DriveClass.prototype.equals = function (theclass) {
-    return (this.type === theclass.type) && this.equals(theclass);
+    return this.id === theclass.id;
 }
 
 DriveClassObjectHelper = {
@@ -137,7 +132,7 @@ LectureClass = function (name, duration, teacher, client, startTime, date) {
 }
 
 LectureClass.prototype.equals = function (theclass) {
-    return (this.type === theclass.type) && this.equals(theclass);
+    return this.id === theclass.id;
 }
 
 LectureClassObjectHelper = {

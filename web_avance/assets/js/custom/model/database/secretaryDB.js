@@ -8,8 +8,9 @@ SecretaryDB = function () {
     if (localStorage.getItem('secretaryList') != null) {
         var localSecretaryList = JSON.parse(localStorage.getItem('secretaryList'));
         for (var i = 0; i < localSecretaryList.length; i++) {
-            if (!this.hasSecretary(localSecretaryList[i])) {
-                _secretaryList.push(localSecretaryList[i]);
+            var theSecretary = SecretaryObjectHelper.createFromObject(localSecretaryList[i]);
+            if (!this.hasSecretary(theSecretary)) {
+                _secretaryList.push(theSecretary);
             }
         }
     }
@@ -38,7 +39,9 @@ SecretaryDB.prototype.addSecretary = function (firstName, lastName, address, pwd
         " who live in " + address);
     // add the Secretary into temp list
     try {
-        this.secretaryList.push(newSecretary);
+        if(!this.hasSecretary(newSecretary)) {
+            this.secretaryList.push(newSecretary);
+        }
     }
     catch (error) {
         var errorElement1 = document.createElement("div");
@@ -48,7 +51,9 @@ SecretaryDB.prototype.addSecretary = function (firstName, lastName, address, pwd
 };
 // add a student object into memory
 SecretaryDB.prototype.addSecretaryObject = function (value) {
-    this.secretaryList.push(value);
+    if(!this.hasSecretary(value)) {
+        this.secretaryList.push(value);
+    }
 };
 //check the existance of a secretary
 SecretaryDB.prototype.login_secretary = function (firstname, lastname, password) {
@@ -94,8 +99,8 @@ SecretaryDB.prototype.hasSecretary = function (secretary) {
     if (typeof(this.secretaryList) != 'undefined') {
         var _secretaryList = this.secretaryList;
 
-        for (var i = 0; _secretaryList.length; i++) {
-            if (_secretaryList[i] === secretary) {
+        for (var i = 0; i < _secretaryList.length; i++) {
+            if (_secretaryList[i].equals(secretary)) {
                 return true;
             }
         }

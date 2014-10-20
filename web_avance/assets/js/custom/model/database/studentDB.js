@@ -7,7 +7,7 @@ StudentDB = function () {
     if (localStorage.getItem('studentList') != null) {
         var localStudentList = JSON.parse(localStorage.getItem('studentList'));
         for (var i = 0; i < localStudentList.length; i++) {
-            theStudent = ClientObjectHelper.createFromObject(localStudentList[i]);
+            var theStudent = ClientObjectHelper.createFromObject(localStudentList[i]);
             if (!this.hasStudent(theStudent)) {
                 _studentList.push(theStudent);
             }
@@ -42,6 +42,7 @@ StudentDB.prototype.addStudent = function (firstName, lastName, address, pwd) {
     // add the student into temp list
     try {
         if (!this.hasStudent(newStudent)) {
+            console.log("Adding new student");
             this.studentList.push(newStudent);
         }
     }
@@ -54,7 +55,9 @@ StudentDB.prototype.addStudent = function (firstName, lastName, address, pwd) {
 
 // add a student object into memory
 StudentDB.prototype.addStudentObject = function (student) {
-    this.studentList.push(student);
+    if (!this.hasStudent(student)) {
+        this.studentList.push(student);
+    }
 };
 
 StudentDB.prototype.find_a_client_by_name = function (firstname, lastname) {
@@ -110,7 +113,7 @@ StudentDB.prototype.hasStudent = function (student) {
     if (typeof(this.studentList) != 'undefined') {
         var _studentList = this.studentList;
 
-        for (var i = 0; _studentList.length; i++) {
+        for (var i = 0; i < _studentList.length; i++) {
             if (_studentList[i].equals(student)) {
                 return true;
             }
