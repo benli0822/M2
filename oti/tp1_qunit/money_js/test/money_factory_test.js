@@ -10,7 +10,8 @@ test("test construct money", function () {
         var moneyFactory = new MoneyFactory();
         m = moneyFactory.createMoney({
             v: 1,
-            curr: "EUR"
+            curr: "EUR",
+            currValue: 1
         });
         ok(m.getValue() == 1, "valeur = 1");
         equal(m.getCurrency(), "EUR", "currency = EUR");
@@ -21,7 +22,8 @@ test("test accesseurs", 2, function () {
         var moneyFactory = new MoneyFactory();
         m = moneyFactory.createMoney({
             v: 1,
-            curr: "EUR"
+            curr: "EUR",
+            currValue: 1
         });
         ok(m.getValue() == 1, "valeur = 1");
         equal(m.getCurrency(), "EUR", "currency = EUR");
@@ -32,17 +34,23 @@ test("test equals", 4, function () {
         var moneyFactory = new MoneyFactory();
         var m1EUR = new money(1, "EUR");
         var m1eur = new money(1, "eur");
-        var m1CHF = new money(1, "CHF");
+        m1CHF = new money(1, "CHF");
         var m10eur = new money(10, "eur");
-        var f1EUR = moneyFactory.createMoney({
+        f1EUR = moneyFactory.createMoney({
             v: 1,
-            curr: "EUR"
+            curr: "EUR",
+            currValue: 1
+        });
+        f12CHF = moneyFactory.createMoney({
+            v: 1.2,
+            curr: "CHF",
+            currValue: 1.2
         });
 
         ok(m1EUR.equals(f1EUR), "1 EUR égal à 1 EUR");
         ok(f1EUR.equals(m1eur), "1 EUR égal à 1 eur");
-        ok(!f1EUR.equals(m1CHF), "1 EUR diff de 1 CHF");
-        ok(!f1EUR.equals(m10eur), "1 EUR diff de 10 eur");
+        ok(!m1CHF.equals(f1EUR), "1 EUR diff de 1 CHF");
+        ok(f1EUR.equals(f12CHF), "1 EUR égal de 1.2 CHF");
     }
 );
 

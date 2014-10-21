@@ -2,18 +2,18 @@
  * Created by benli on 20/10/14.
  */
 function moneyEUR(options) {
-    this.v = options.v;
+    this.v = options.v * options.currValue;
+    this.currValue = options.currValue;
     this.curr = options.curr;
-    money.call(this.v, this.curr);
+
 }
 
 
 function moneyCHF(options) {
-    this.v = options.v / 1.2;
+    this.v = options.v / options.currValue;
+    this.currValue = options.currValue;
     this.curr = options.curr;
-    money.call(this.v, this.curr);
 }
-
 
 function MoneyFactory() {
 }
@@ -29,57 +29,42 @@ MoneyFactory.prototype.createMoney = function (options) {
             this.moneyClass = moneyCHF;
             break;
         default:
-            throw new UnexistingCurrencyExc(options.curr);
+            throw new UnexistingCurrencyExc();
     }
 
     return new this.moneyClass(options);
 
 };
 
-moneyEUR.prototype.getCurrency =
-    function () {
-        return this.curr;
-    };
 
-moneyEUR.prototype.getValue =
-    function () {
-        return this.v;
-    };
+moneyEUR.prototype = new money(this.v * this.currValue , this.curr);
+moneyCHF.prototype = new money(this.v * this.currValue , this.curr);
+
 
 moneyEUR.prototype.equals =
-    function (otherM) {
-        if (typeof(otherM) == "undefined") {
+    function (other) {
+        if (typeof(other) == "undefined") {
             return false;
         }
-        return (otherM.getValue() == this.getValue() &&
-            otherM.getCurrency().toLowerCase() === this.getCurrency().toLowerCase());
-    };
-
-moneyEUR.prototype.toString =
-    function () {
-        return this.getValue() + " (" + this.getCurrency() + ")";
-    };
-
-moneyCHF.prototype.getCurrency =
-    function () {
-        return this.curr;
-    };
-
-moneyCHF.prototype.getValue =
-    function () {
-        return this.v;
+        if(other instanceof moneyEUR) {
+            return (other.getValue() == this.getValue());
+        } else if (other instanceof moneyCHF) {
+            return other.__proto__.__proto__.equals(this);
+        } else if (other instanceof money) {
+            return other.equals(this);
+        }
     };
 
 moneyCHF.prototype.equals =
-    function (otherM) {
-        if (typeof(otherM) == "undefined") {
+    function (other) {
+        if (typeof(other) == "undefined") {
             return false;
         }
-        return (otherM.getValue() == this.getValue() &&
-            otherM.getCurrency().toLowerCase() === this.getCurrency().toLowerCase());
-    };
-
-moneyCHF.prototype.toString =
-    function () {
-        return this.getValue() + " (" + this.getCurrency() + ")";
+        if(other instanceof moneyCHF) {
+            return (other.getValue() == this.getValue());
+        } else if (other instanceof moneyEUR) {
+            return other.__proto__.__proto__.equals(this);
+        } else if (other instanceof money) {
+            return other.equals(this);
+        }
     };

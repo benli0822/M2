@@ -15,3 +15,12 @@ function UnexistingCurrencyExc(_curr) {
 UnexistingCurrencyExc.prototype.toString = function () {
     return "Currency " + curr + " is unknown !"
 }
+
+function SubtrationImpossibleExc(_v1, _v2) {
+    this.v1 = _v1;
+    this.v2 = _v2;
+}
+
+SubtrationImpossibleExc.prototype.toString = function() {
+    return _v1 + " sub " + _v2 + " impossible";
+}
