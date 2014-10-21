@@ -81,7 +81,6 @@ StudentDB.prototype.sortClasslist =function(student){
 }
 
 
-
 StudentDB.prototype.find_a_client_by_name = function (firstname, lastname) {
     //1.get the client list
     var clientlistobject = this.studentList;

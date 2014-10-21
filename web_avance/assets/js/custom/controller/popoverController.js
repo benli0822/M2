@@ -83,11 +83,14 @@ popover = {
         var id = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour +
             "." + theTeacher.firstName + "." + theTeacher.lastName;
 
+        var idWithoutTeacher = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour;
+
         console.log(id);
+        console.log(idWithoutTeacher);
 
         this.updateHour(hour);
         this.showTheTeacher(theTeacher);
-        this.showStudentList(type, id);
+        this.showStudentList(type, id, idWithoutTeacher);
         this.showClassOption(type);
         this.buttonControl(type);
 
@@ -140,7 +143,7 @@ popover = {
         teacher.appendChild(divTeacher);
     },
 
-    showStudentList: function (type, id) {
+    showStudentList: function (type, id, idtime) {
         if (typeof(sdb) == "undefined") {
             console.log("Student database is not loaded, please make sure it is loaded!");
             return;
@@ -161,16 +164,16 @@ popover = {
         } else if (type == 'info') {
             var studentsName1 = document.createElement('select');
             for (var i = 0; i < studentList.length; i++) {
-                var studentOption1 = document.createElement('option');
-                var text3 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
-                studentOption1.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
-                var index = studentList[i].hasClass(id);
-                console.log(index);
-                if (index != -1) {
-                    studentOption1.setAttribute('selected', 'selected');
-                }
-                studentOption1.appendChild(text3);
-                studentsName1.appendChild(studentOption1);
+                    var studentOption1 = document.createElement('option');
+                    var text3 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
+                    studentOption1.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
+                    var index = studentList[i].hasClass(id);
+                    console.log(index);
+                    if (index != -1) {
+                        studentOption1.setAttribute('selected', 'selected');
+                    }
+                    studentOption1.appendChild(text3);
+                    studentsName1.appendChild(studentOption1);
             }
             studentsName1.setAttribute('id', 'pop_student');
             studentsName1.setAttribute('multiple', 'multiple');
@@ -178,11 +181,13 @@ popover = {
         } else {
             var studentsName2 = document.createElement('select');
             for (var i = 0; i < studentList.length; i++) {
+                if (!studentList[i].hasClassAlready(idtime)) {
                 var studentOption2 = document.createElement('option');
                 var text4 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
                 studentOption2.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
                 studentOption2.appendChild(text4);
                 studentsName2.appendChild(studentOption2);
+                }
             }
             studentsName2.setAttribute('id', 'pop_student');
 //            studentsName2.setAttribute('multiple', 'multiple');

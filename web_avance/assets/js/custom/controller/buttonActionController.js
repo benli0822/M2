@@ -16,21 +16,24 @@ buttonAction = {
         console.log("you want to search : " + search_text);
 
 
-
-        var the_student = sdb.find_a_client_by_name(name[0],name[1]);
-        if (typeof(the_student) != 'undefined' && the_student!= false) {
+        var the_student = sdb.find_a_client_by_name(name[0], name[1]);
+        if (typeof(the_student) != 'undefined' && the_student != false) {
             table.update_student_table_for_secretary(the_student);
             document.getElementById("searchResult").innerHTML = 'here is the search result';
             $(".alert").show();
 
             $(".alert strong").text("Student found");
-            window.setTimeout(function() { $(".alert").fadeOut(); }, 2000);
+            window.setTimeout(function () {
+                $(".alert").fadeOut();
+            }, 2000);
         }
-        else{
+        else {
             $(".alert").show();
 
             $(".alert strong").text("Student not found");
-            window.setTimeout(function() { $(".alert").fadeOut(); }, 3000);
+            window.setTimeout(function () {
+                $(".alert").fadeOut();
+            }, 3000);
         }
     },
 
@@ -62,14 +65,8 @@ buttonAction = {
         var id = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour +
             "." + teacher;
 
-        if (cdb.getClassById(id)) {
-            var studentName = selectedStudents.split(".");
-            var theStudent = sdb.find_a_client_by_name(studentName[0], studentName[1]);
-            theStudent.list_class.push(id);
-        } else {
-            var theDate = new Date(year, month, day, hour);
-            cdb.addAClass(selectedClass, teacher, selectedStudents, 1, hour, theDate, selectedClass, sdb, tdb);
-        }
+        var theDate = new Date(year, month, day, hour);
+        cdb.addAClass(selectedClass, teacher, selectedStudents, 1, hour, theDate, selectedClass, sdb, tdb);
         table.updateSecretaryTableContent(theDate);
         $('.webui-popover:last').hide();
     },
@@ -140,7 +137,7 @@ buttonAction = {
         $("#loginModule").fadeIn();
     },
 
-    add_Teacher_button_click:function(){
+    add_Teacher_button_click: function () {
 
         var firstname = document.getElementById("addTeacherFirstname").value;
         var lastname = document.getElementById("addTeacherLastname").value;
@@ -148,29 +145,32 @@ buttonAction = {
         var pwd = document.getElementById("addTeacherPassword").value;
 
 
-        if(firstname.length >= 2 && lastname.length >= 2 && address.length >= 2 && pwd.length >= 2){
-            tdb.addTeacher(firstname,lastname,address,pwd);
+        if (firstname.length >= 2 && lastname.length >= 2 && address.length >= 2 && pwd.length >= 2) {
+            tdb.addTeacher(firstname, lastname, address, pwd);
             secretaryMenuController.display_home_page_for_secretary();
 
             $(".alert").show();
 
             $(".alert strong").text("Add teacher success,and go to home page");
-            window.setTimeout(function() { $(".alert").fadeOut(); }, 1000);
+            window.setTimeout(function () {
+                $(".alert").fadeOut();
+            }, 1000);
 
         }
-        else{
+        else {
             //alert("Try to correct information. each words should be more then 2 words");
 
             $(".alert").show();
 
             $(".alert strong").text("Try to correct information. each words should be more then 2 words");
-            window.setTimeout(function() { $(".alert").fadeOut(); }, 2000);
+            window.setTimeout(function () {
+                $(".alert").fadeOut();
+            }, 2000);
         }
     },
 
 
-
-    add_Student_button_click:function(){
+    add_Student_button_click: function () {
 
         var firstname = document.getElementById("addStudentFirstname").value;
         var lastname = document.getElementById("addStudentLastname").value;
@@ -178,23 +178,27 @@ buttonAction = {
         var pwd = document.getElementById("addStudentPassword").value;
 
 
-        if(firstname.length >= 2 && lastname.length >= 2 && address.length >= 2 && pwd.length >= 2){
-            sdb.addStudent(firstname,lastname,address,pwd);
+        if (firstname.length >= 2 && lastname.length >= 2 && address.length >= 2 && pwd.length >= 2) {
+            sdb.addStudent(firstname, lastname, address, pwd);
             secretaryMenuController.display_home_page_for_secretary();
 
             $(".alert").show();
 
             $(".alert strong").text("Add Student success,and go to home page");
-            window.setTimeout(function() { $(".alert").fadeOut(); }, 1000);
+            window.setTimeout(function () {
+                $(".alert").fadeOut();
+            }, 1000);
 
         }
-        else{
+        else {
             //alert("Try to correct information. each words should be more then 2 words");
 
             $(".alert").show();
 
             $(".alert strong").text("Try to correct information. each words should be more then 2 words");
-            window.setTimeout(function() { $(".alert").fadeOut(); }, 2000);
+            window.setTimeout(function () {
+                $(".alert").fadeOut();
+            }, 2000);
         }
     }
 }
