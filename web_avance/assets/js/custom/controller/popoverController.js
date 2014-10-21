@@ -68,7 +68,7 @@ popover = {
         var whenHour = document.createElement('p');
         var text2 = document.createTextNode(this.showMonth(datepicker.date.getMonth() + 1) + " " + datepicker.date.getDate() + " at " + hour + ":00");
         whenHour.setAttribute('id', 'pop_time');
-        whenHour.setAttribute('value', (datepicker.date.getMonth() + 1) + '' + datepicker.date.getDate() + '' + hour);
+        whenHour.setAttribute('value', datepicker.date.getFullYear() + "." + datepicker.date.getMonth() + "." + datepicker.date.getDate() + "." + hour);
         whenLabel.appendChild(text1);
         whenHour.appendChild(text2);
         whenLabel.setAttribute('class', 'col-sm-2 col-sm-offset-2 control-label');
@@ -120,8 +120,8 @@ popover = {
         var studentsName = document.createElement('select');
         for (var i = 0; i < studentList.length; i++) {
             var studentOption = document.createElement('option');
-            var text2 = document.createTextNode(studentList[i].firstName + "" + studentList[i].lastName);
-            studentOption.setAttribute('value', studentList[i].firstName + "" + studentList[i].lastName);
+            var text2 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
+            studentOption.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
             studentOption.appendChild(text2);
             studentsName.appendChild(studentOption);
         }

@@ -71,6 +71,7 @@ table = {
         //secretary_table.innerHTML = "";
 
         console.log("try to update secretart table");
+        console.log(date);
 
 
         //clear all the existeds elements
@@ -96,7 +97,7 @@ table = {
                 for (var j = 0; j < the_teacher.list_class.length; j++) {
 
                     var the_class = cdb.getClassById(the_teacher.list_class[j]);
-
+                    console.log(the_class);
 
                     if(the_class.date.toDateString() == date.toDateString()) {
                         secretary_table.rows[the_class.startTime - 7].cells[i + 1].innerHTML = 'YES';

@@ -98,6 +98,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 // find the teacher
                 if (tdb.find_a_teacher_by_name(teachername[0], teachername[1])) {
                     var teacher_result = tdb.find_a_teacher_by_name(teachername[0], teachername[1]);
+                    console.log(teacher_result);
                     teacher_result.addAClassToTeacher(newDriveClass);
                 }
             }

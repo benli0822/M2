@@ -29,6 +29,18 @@ buttonAction = {
         console.log('Selected student: ' + student);
         console.log('Selected selectedClass: ' + selectedClass);
 
+        var times = time.split(".");
+        var year = times[0];
+        var month = times[1];
+        var day = times[2];
+        var hour = times[3];
+        console.log(year);
+        console.log(month);
+        console.log(day);
+        console.log(hour);
+        var theDate = new Date(year, month, day, hour);
+        cdb.addAClass(selectedClass, teacher, student, 1, hour, theDate, selectedClass, sdb, tdb);
+        table.updateSecretaryTableContent(theDate);
     }
 
 }

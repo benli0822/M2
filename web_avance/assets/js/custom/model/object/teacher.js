@@ -18,6 +18,7 @@ Teacher = function (firstName, lastName, address, pwd) {
     this.__defineSetter__("type_of_person", function (value) {
         return this._type_of_person = value;
     });
+
 }
 
 Teacher.prototype.equals = function (theperson) {
@@ -31,8 +32,13 @@ Teacher.prototype.addAClassToTeacher = function (the_class) {
 TeacherObjectHelper = {
     createFromObject: function (object) {
         var theTeacher = new Teacher(object.firstName, object.lastName, object.address, object.pwd);
-        if (object.list_class) {
-            theTeacher.list_class = object.list_class;
+        var key = theTeacher.firstName + "" + theTeacher.lastName + "" + theTeacher.address;
+        var list_class = JSON.parse(localStorage.getItem(key));
+        if(list_class != 'undefined' && list_class != null) {
+            for(var i = 0; i< list_class.length; i++) {
+                console.log(list_class[i]);
+                theTeacher.list_class.push(list_class[i]);
+            }
         }
         return theTeacher;
     }

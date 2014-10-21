@@ -8,7 +8,7 @@ TeacherDB = function () {
         var localTeacherList = JSON.parse(localStorage.getItem('teacherList'));
         for (var i = 0; i < localTeacherList.length; i++) {
             var theTeacher = TeacherObjectHelper.createFromObject(localTeacherList[i]);
-            if (this.hasTeacher(theTeacher)) {
+            if (!this.hasTeacher(theTeacher)) {
                 _teacherList.push(theTeacher);
             }
         }
@@ -104,6 +104,15 @@ TeacherDB.prototype.close = function (option) {
                 }
                 return val
             }));
+            for(var i = 0; i < this.teacherList.length; i ++) {
+                var theTeacher = this.teacherList[i];
+                if(theTeacher.list_class.length != 0) {
+                    var key = theTeacher.firstName + "" + theTeacher.lastName + "" + theTeacher.address;
+
+                    console.log(theTeacher.list_class);
+                    localStorage.setItem(key, JSON.stringify(theTeacher.list_class));
+                }
+            }
             break;
 
             //localStorage.setItem("teacherList", JSON.stringify(this.teacherList));

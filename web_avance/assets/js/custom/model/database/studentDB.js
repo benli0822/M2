@@ -133,7 +133,7 @@ StudentDB.prototype.close = function (option) {
     switch (option) {
         case 1 :
         {
-            seen = [];
+            var seen = [];
             localStorage.setItem("studentList", JSON.stringify(this.studentList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
@@ -142,6 +142,15 @@ StudentDB.prototype.close = function (option) {
                 }
                 return val
             }));
+            for(var i = 0; i < this.studentList.length; i ++) {
+                var theStudent = this.studentList[i];
+                if(theStudent.list_class.length != 0) {
+                    var key = theStudent.firstName + "" + theStudent.lastName + "" + theStudent.address;
+
+                    console.log(theStudent.list_class);
+                    localStorage.setItem(key, JSON.stringify(theStudent.list_class));
+                }
+            }
             break;
         }
         case 0 :
