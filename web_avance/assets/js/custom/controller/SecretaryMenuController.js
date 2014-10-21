@@ -44,10 +44,14 @@ document.getElementById("secretaryHomePageTab").className.replace
         $("#secretaryAddStudent").fadeOut();
         $("#secretaryAddTeacher").fadeOut();
         $("#secretarySearchStudent").fadeOut();
+
+
+        //update teacher table
+        table.updateSecretaryTableContent(new Date());
     },
 
     init_SecretaryMenu:function(){
-        
+        $(".alert").alert();
 
     },
     display_add_student_page :function(){

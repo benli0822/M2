@@ -65,6 +65,64 @@ buttonAction = {
         $("#studentModule").fadeOut();
         $("#secretaryModule").fadeOut();
         $("#loginModule").fadeIn();
+    },
+
+    add_Teacher_button_click:function(){
+
+        var firstname = document.getElementById("addTeacherFirstname").value;
+        var lastname = document.getElementById("addTeacherLastname").value;
+        var address = document.getElementById("addTeacherAddresse").value;
+        var pwd = document.getElementById("addTeacherPassword").value;
+
+
+        if(firstname.length >= 2 && lastname.length >= 2 && address.length >= 2 && pwd.length >= 2){
+            tdb.addTeacher(firstname,lastname,address,pwd);
+            secretaryMenuController.display_home_page_for_secretary();
+
+            $(".alert").show();
+
+            $(".alert strong").text("Add teacher success,and go to home page");
+            window.setTimeout(function() { $(".alert").fadeOut(); }, 1000);
+
+        }
+        else{
+            //alert("Try to correct information. each words should be more then 2 words");
+
+            $(".alert").show();
+
+            $(".alert strong").text("Try to correct information. each words should be more then 2 words");
+            window.setTimeout(function() { $(".alert").fadeOut(); }, 2000);
+        }
+    },
+
+
+
+    add_Student_button_click:function(){
+
+        var firstname = document.getElementById("addStudentFirstname").value;
+        var lastname = document.getElementById("addStudentLastname").value;
+        var address = document.getElementById("addStudentAddresse").value;
+        var pwd = document.getElementById("addStudentPassword").value;
+
+
+        if(firstname.length >= 2 && lastname.length >= 2 && address.length >= 2 && pwd.length >= 2){
+            sdb.addStudent(firstname,lastname,address,pwd);
+            secretaryMenuController.display_home_page_for_secretary();
+
+            $(".alert").show();
+
+            $(".alert strong").text("Add Student success,and go to home page");
+            window.setTimeout(function() { $(".alert").fadeOut(); }, 1000);
+
+        }
+        else{
+            //alert("Try to correct information. each words should be more then 2 words");
+          
+            $(".alert").show();
+
+            $(".alert strong").text("Try to correct information. each words should be more then 2 words");
+            window.setTimeout(function() { $(".alert").fadeOut(); }, 2000);
+        }
     }
 }
 
