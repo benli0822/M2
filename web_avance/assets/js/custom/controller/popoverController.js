@@ -18,6 +18,8 @@ var settings = {
 document.addEventListener('click', function (e) {
     if ($(e.target).attr('class') === 'show-pop') {
         var id = $(e.target).attr('id');
+        var parent = $(e.target).parent();
+        console.log(parent);
 //    console.log(id);
         if (typeof(id) != 'undefined') {
             var i = id.substring(0, 1);

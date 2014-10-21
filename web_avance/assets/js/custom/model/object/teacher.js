@@ -36,8 +36,8 @@ TeacherObjectHelper = {
 
         var key = lwrapper.getPersonKey(theTeacher);
         var list_class = JSON.parse(localStorage.getItem(key));
-        if(list_class != 'undefined' && list_class != null) {
-            for(var i = 0; i< list_class.length; i++) {
+        if (list_class != 'undefined' && list_class != null) {
+            for (var i = 0; i < list_class.length; i++) {
                 console.log(list_class[i]);
                 theTeacher.list_class.push(list_class[i]);
             }

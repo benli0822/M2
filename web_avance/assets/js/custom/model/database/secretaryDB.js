@@ -39,7 +39,7 @@ SecretaryDB.prototype.addSecretary = function (firstName, lastName, address, pwd
         " who live in " + address);
     // add the Secretary into temp list
     try {
-        if(!this.hasSecretary(newSecretary)) {
+        if (!this.hasSecretary(newSecretary)) {
             this.secretaryList.push(newSecretary);
         }
     }
@@ -51,7 +51,7 @@ SecretaryDB.prototype.addSecretary = function (firstName, lastName, address, pwd
 };
 // add a student object into memory
 SecretaryDB.prototype.addSecretaryObject = function (value) {
-    if(!this.hasSecretary(value)) {
+    if (!this.hasSecretary(value)) {
         this.secretaryList.push(value);
     }
 };

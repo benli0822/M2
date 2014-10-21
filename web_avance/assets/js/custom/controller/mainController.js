@@ -86,10 +86,10 @@ test = {
      * add some teacher examples
      */
     addTeacherExamples: function () {
-        var jps = new Teacher('jps', 'jsp', 'jsp','123');
-        var ns = new Teacher('ns', 'ns', 'ns','123');
-        var bs = new Teacher('bs', 'bs', 'bs','123');
-        var cheng = new Teacher('cheng', 'cheng', 'cheng','123');
+        var jps = new Teacher('jps', 'jsp', 'jsp', '123');
+        var ns = new Teacher('ns', 'ns', 'ns', '123');
+        var bs = new Teacher('bs', 'bs', 'bs', '123');
+        var cheng = new Teacher('cheng', 'cheng', 'cheng', '123');
         main.addTeacherObject(jps);
         main.addTeacherObject(ns);
         main.addTeacherObject(bs);
@@ -99,30 +99,30 @@ test = {
      * add some test
      */
     addTestDataToDB: function () {
-        var teacher = new Teacher('testT', 'testT', 'lille1','123');
-        var stu1 = new Client('stu1', 'stu1', 'stu1','123');
-        var stu2 = new Client('stu2', 'stu2', 'stu2','123');
+        var teacher = new Teacher('testT', 'testT', 'lille1', '123');
+        var stu1 = new Client('stu1', 'stu1', 'stu1', '123');
+        var stu2 = new Client('stu2', 'stu2', 'stu2', '123');
         main.addTeacherObject(teacher);
         main.addStudentObject(stu1);
         main.addStudentObject(stu2);
 
         //TODO new Date the month is start with 0, so the oct is the 9
-        var testdate1 = new Date(2014,9,18, 8, 0, 0, 0);
+        var testdate1 = new Date(2014, 9, 18, 8, 0, 0, 0);
 
-        var testdate2 = new Date(2014,9,18, 9, 0, 0, 0);
+        var testdate2 = new Date(2014, 9, 18, 9, 0, 0, 0);
 
-        var testdate3 = new Date(2014,9,19, 9, 0, 0, 0);
-        var testdate4 = new Date(2014,9,20, 9, 0, 0, 0);
-        var testdate5 = new Date(2014,9,21, 9, 0, 0, 0);
+        var testdate3 = new Date(2014, 9, 19, 9, 0, 0, 0);
+        var testdate4 = new Date(2014, 9, 20, 9, 0, 0, 0);
+        var testdate5 = new Date(2014, 9, 21, 9, 0, 0, 0);
 
 
-        cdb.addAClass('drive', teacher.firstName+"."+teacher.lastName, stu1.firstName+"."+stu1.lastName, 1, 8, testdate1, 'drive', sdb, tdb);
-        cdb.addAClass('lecture',teacher.firstName+"."+teacher.lastName, stu2.firstName+"."+stu2.lastName, 1, 9,testdate2, 'lecture', sdb, tdb);
-        cdb.addAClass('lecture', teacher.firstName+"."+teacher.lastName, stu2.firstName+"."+stu2.lastName, 1, 9,testdate3, 'lecture', sdb, tdb);
-        cdb.addAClass('lecture', teacher.firstName+"."+teacher.lastName, stu2.firstName+"."+stu2.lastName, 1, 9,testdate4, 'lecture', sdb, tdb);
-        cdb.addAClass('lecture', teacher.firstName+"."+teacher.lastName, stu2.firstName+"."+stu2.lastName, 1, 9,testdate5, 'lecture', sdb, tdb);
+        cdb.addAClass('drive', teacher.firstName + "." + teacher.lastName, stu1.firstName + "." + stu1.lastName, 1, 8, testdate1, 'drive', sdb, tdb);
+        cdb.addAClass('lecture', teacher.firstName + "." + teacher.lastName, stu2.firstName + "." + stu2.lastName, 1, 9, testdate2, 'lecture', sdb, tdb);
+        cdb.addAClass('lecture', teacher.firstName + "." + teacher.lastName, stu2.firstName + "." + stu2.lastName, 1, 9, testdate3, 'lecture', sdb, tdb);
+        cdb.addAClass('lecture', teacher.firstName + "." + teacher.lastName, stu2.firstName + "." + stu2.lastName, 1, 9, testdate4, 'lecture', sdb, tdb);
+        cdb.addAClass('lecture', teacher.firstName + "." + teacher.lastName, stu2.firstName + "." + stu2.lastName, 1, 9, testdate5, 'lecture', sdb, tdb);
 
-        var admin = new Secretary('admin', 'admin', 'lille1','admin');
+        var admin = new Secretary('admin', 'admin', 'lille1', 'admin');
         main.addSecretaryObject(admin);
     }
 

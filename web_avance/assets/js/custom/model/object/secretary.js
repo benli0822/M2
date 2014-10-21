@@ -6,8 +6,8 @@
  * Representation for a secretary
  * @constructor
  */
-Secretary = function (firstName, lastName, address,pwd) {
-    Person.call(this, firstName, lastName, address,pwd);
+Secretary = function (firstName, lastName, address, pwd) {
+    Person.call(this, firstName, lastName, address, pwd);
     this._type_of_person = "Secretary";
     this.__defineGetter__("type_of_person", function () {
         return this._type_of_person;

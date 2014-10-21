@@ -62,7 +62,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 + startTime + " last for " + duration + " with " + client);
             //2. add the class to the temp list
             try {
-                if(!this.hasClass(newDriveClass)) {
+                if (!this.hasClass(newDriveClass)) {
                     this.classList.push(newDriveClass);
                 } else {
                     console.log('Error while adding class 1');
@@ -115,7 +115,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 + startTime + " last for " + duration + " with " + client);
             //2. add the class to the temp list
             try {
-                if(!this.hasClass(newLectureClass)) {
+                if (!this.hasClass(newLectureClass)) {
                     this.classList.push(newLectureClass);
                 } else {
                     console.log('Error while adding class 2');

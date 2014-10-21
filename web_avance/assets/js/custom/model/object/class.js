@@ -18,7 +18,7 @@ Class = function (name, teacher, duration, client, startTime, date) {
     this._client = client;
     this._startTime = startTime;
     this._date = date;
-    this._id = date.getFullYear() + "." + (date.getMonth()+1) + "." + date.getDate() + "." + date.getHours() +
+    this._id = date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate() + "." + date.getHours() +
         "." + teacher;
     /* getter and setter for name */
     this.__defineGetter__("name", function () {
@@ -69,7 +69,7 @@ Class = function (name, teacher, duration, client, startTime, date) {
     })
 
     /* getter for id */
-    this.__defineGetter__("id", function() {
+    this.__defineGetter__("id", function () {
         return this._id;
     })
 }

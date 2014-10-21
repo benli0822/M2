@@ -47,19 +47,18 @@ buttonAction = {
 
 }
 
-function login_button_click(){
+function login_button_click() {
 
 
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
-    loginController.loginWithUserNamePassword(username,password);
-
+    loginController.loginWithUserNamePassword(username, password);
 
 
 }
 
-function logout_button_click(){
+function logout_button_click() {
     main.closeNormal();
     $(".webui-popover").hide();
     $("#studentModule").fadeOut();

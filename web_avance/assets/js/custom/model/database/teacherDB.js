@@ -104,9 +104,9 @@ TeacherDB.prototype.close = function (option) {
                 }
                 return val
             }));
-            for(var i = 0; i < this.teacherList.length; i ++) {
+            for (var i = 0; i < this.teacherList.length; i++) {
                 var theTeacher = this.teacherList[i];
-                if(theTeacher.list_class.length != 0) {
+                if (theTeacher.list_class.length != 0) {
                     var key = lwrapper.getPersonKey(theTeacher);
 
                     console.log(theTeacher.list_class);

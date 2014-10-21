@@ -10,44 +10,44 @@
     <link rel="stylesheet" href="assets/css/datepicker.css">
     <link rel="stylesheet" href="assets/css/jquery.webui-popover.css">
     <!--<style>-->
-        <!--table {-->
-            <!--border-spacing: 0;-->
-            <!--border-collapse: collapse;-->
-            <!--overflow: hidden;-->
-            <!--z-index: 1;-->
-        <!--}-->
+    <!--table {-->
+    <!--border-spacing: 0;-->
+    <!--border-collapse: collapse;-->
+    <!--overflow: hidden;-->
+    <!--z-index: 1;-->
+    <!--}-->
 
-        <!--td, th, .row, .col, .ff-fix {-->
-            <!--cursor: pointer;-->
-            <!--padding: 10px;-->
-            <!--position: relative;-->
-        <!--}-->
+    <!--td, th, .row, .col, .ff-fix {-->
+    <!--cursor: pointer;-->
+    <!--padding: 10px;-->
+    <!--position: relative;-->
+    <!--}-->
 
-        <!--td:hover::before,-->
-        <!--.row:hover::before,-->
-        <!--.ff-fix:hover::before {-->
-            <!--background-color: #ffa;-->
-            <!--content: '\00a0';-->
-            <!--height: 100%;-->
-            <!--left: -5000px;-->
-            <!--position: absolute;-->
-            <!--top: 0;-->
-            <!--width: 10000px;-->
-            <!--z-index: -1;-->
-        <!--}-->
+    <!--td:hover::before,-->
+    <!--.row:hover::before,-->
+    <!--.ff-fix:hover::before {-->
+    <!--background-color: #ffa;-->
+    <!--content: '\00a0';-->
+    <!--height: 100%;-->
+    <!--left: -5000px;-->
+    <!--position: absolute;-->
+    <!--top: 0;-->
+    <!--width: 10000px;-->
+    <!--z-index: -1;-->
+    <!--}-->
 
-        <!--td:hover::after,-->
-        <!--.col:hover::after,-->
-        <!--.ff-fix:hover::after {-->
-            <!--background-color: #ffa;-->
-            <!--content: '\00a0';-->
-            <!--height: 10000px;-->
-            <!--left: 0;-->
-            <!--position: absolute;-->
-            <!--top: -5000px;-->
-            <!--width: 100%;-->
-            <!--z-index: -1;-->
-        <!--}-->
+    <!--td:hover::after,-->
+    <!--.col:hover::after,-->
+    <!--.ff-fix:hover::after {-->
+    <!--background-color: #ffa;-->
+    <!--content: '\00a0';-->
+    <!--height: 10000px;-->
+    <!--left: 0;-->
+    <!--position: absolute;-->
+    <!--top: -5000px;-->
+    <!--width: 100%;-->
+    <!--z-index: -1;-->
+    <!--}-->
 
     <!--</style>-->
 </head>
@@ -58,13 +58,16 @@
 
 <div id="loginModule">
     <h1 class="center">Welcome to AutoEcole Class System</h1>
+
     <form role="form" class="form-signin">
         <h3 class="form-signin-heading">Please sign in</h3>
-        <input type="username" autofocus="" required="" name="username" placeholder="Please insert your name！" id="username" class="username form-control">
+        <input type="username" autofocus="" required="" name="username" placeholder="Please insert your name！"
+               id="username" class="username form-control">
         <input type="password" required="" placeholder="Password" class="form-control password" id="password">
         <button type="button" class="btn btn-lg btn-primary btn-block" onclick="login_button_click()">Sign in</button>
         <div class="form-control" style="display: none;" id="loginError"></div>
-        <div class="error"><span>just for test. (admin,usr: admin.admin pwd: admin),(client, usr:stu1.stu1 . pwd:123 ) )</span></div>
+        <div class="error">
+            <span>just for test. (admin,usr: admin.admin pwd: admin),(client, usr:stu1.stu1 . pwd:123 ) )</span></div>
     </form>
 
 </div>
@@ -100,7 +103,7 @@
     </div>
 </div>
 <div id="secretaryModule">
-    <div id="home" class="tab-pane fade active in" >
+    <div id="home" class="tab-pane fade active in">
         <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
     </div>
     <div class="well">
@@ -111,7 +114,7 @@
             <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="secretary_table">
                 </table>
-             </div>
+            </div>
         </div>
     </div>
 </div>
@@ -128,7 +131,8 @@
         </div>
         <div class="form-group">
             <div class="col-sm-8 col-sm-offset-2">
-                <button type="button" class="btn btn-default" onclick="buttonAction.create_event_click()">Create Event</button>
+                <button type="button" class="btn btn-default" onclick="buttonAction.create_event_click()">Create Event
+                </button>
                 <button type="button" class="btn btn-default">Edit Event</button>
             </div>
         </div>

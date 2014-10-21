@@ -99,8 +99,9 @@ table = {
                     var the_class = cdb.getClassById(the_teacher.list_class[j]);
                     console.log(the_class);
 
-                    if(the_class.date.toDateString() == date.toDateString()) {
-                        secretary_table.rows[the_class.startTime - 7].cells[i + 1].innerHTML = 'YES';
+                    if (the_class.date.toDateString() == date.toDateString()) {
+                        console.log(secretary_table.rows[the_class.startTime - 7].cells[i + 1]);
+                        secretary_table.rows[the_class.startTime - 7].cells[i + 1].setAttribute("class", "success");
                     }
                 }
             }
@@ -117,7 +118,7 @@ table = {
     update_student_table: function (student) {
         var theStudent = student;
         var table = document.getElementById("student_table");
-       /// document.getElementById("searchResult").innerHTML = student.firstName;
+        /// document.getElementById("searchResult").innerHTML = student.firstName;
 
         //clear all the existeds elements
         while (table.childNodes.length > 2) {
@@ -161,10 +162,10 @@ table = {
             var nowTemp = new Date();
             var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
-            if(tem_class.date.valueOf() > now.valueOf())
-              new_row.className="success";
+            if (tem_class.date.valueOf() > now.valueOf())
+                new_row.className = "success";
             else
-                new_row.className="active";
+                new_row.className = "active";
 
             //add the day_date
             var dateElement = document.createElement('td');
