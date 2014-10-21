@@ -13,6 +13,8 @@ loginController = {
             $("#secretaryModule").fadeIn();
             secretaryMenuController.display_home_page_for_secretary();
             $("#disconnectDiv").fadeIn();
+            $("#login_without_save_button").fadeIn();
+            document.getElementById("login_button").innerHTML="Logout and Save";
         }
         else if (sdb.student_login(name[0], name[1], password)) {
             console.log("find the stu" + username);
@@ -24,6 +26,8 @@ loginController = {
 
             $("#studentModule").fadeIn();
             $("#disconnectDiv").fadeIn();
+            $("#login_without_save_button").fadeOut();
+            document.getElementById("login_button").innerHTML="Logout";
         }
         else {//we don't find the user
 

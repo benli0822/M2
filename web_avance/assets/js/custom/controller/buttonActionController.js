@@ -138,8 +138,16 @@ buttonAction = {
         $("#studentModule").fadeOut();
         $("#secretaryModule").fadeOut();
         $("#loginModule").fadeIn();
+        document.getElementById("login_button").innerHTML="Logout and Save";
     },
-
+    logout_button_click: function () {
+        $("#disconnectDiv").fadeOut();
+        $(".webui-popover").hide();
+        $("#studentModule").fadeOut();
+        $("#secretaryModule").fadeOut();
+        $("#loginModule").fadeIn();
+        document.getElementById("login_button").innerHTML="Logout and Save";
+    },
     add_Teacher_button_click:function(){
 
         var firstname = document.getElementById("addTeacherFirstname").value;
