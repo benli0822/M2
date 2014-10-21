@@ -16,6 +16,7 @@ loginController = {
             console.log("find the stu" + username);
             $("#loginError").hide();
             //update student table
+            sdb.sortClasslist(sdb.find_a_client_by_name(name[0],name[1]));
             table.update_student_table(sdb.find_a_client_by_name(name[0],name[1]));
             $("#loginModule").fadeOut();
 
