@@ -25,10 +25,9 @@ document.addEventListener('click', function (e) {
             popover.updatePopoverContent(i + '' + count);
         }
     }
-    //TODO handler
-//    else {
-//        $('.webui-popover').webuiPopover('destroy');
-//    }
+    else {
+        $('.webui-popover').hide();
+    }
 }, true);
 
 

@@ -41,6 +41,8 @@ buttonAction = {
         var theDate = new Date(year, month, day, hour);
         cdb.addAClass(selectedClass, teacher, student, 1, hour, theDate, selectedClass, sdb, tdb);
         table.updateSecretaryTableContent(theDate);
+
+        $('.webui-popover:last').hide();
     }
 
 }
