@@ -7,7 +7,7 @@ var settings = {
     content: function () {
         return $('#popover-content').html();
     },
-    cache:false,
+    cache: false,
     width: 400,
     multi: false,
     closeable: true,
@@ -24,9 +24,6 @@ document.addEventListener('click', function (e) {
             var count = id.substring(1, 2);
             popover.updatePopoverContent(i + '' + count);
         }
-    }
-    else {
-        $('.webui-popover').hide();
     }
 }, true);
 

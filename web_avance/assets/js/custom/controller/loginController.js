@@ -5,24 +5,23 @@
 
 loginController = {
     loginWithUserNamePassword : function (username, password){
-
-
-
         var name = username.split('.');
         if (sedb.login_secretary(name[0],name[1],password)){
             console.log("find the secretary" + username);
-
+            $("#loginError").hide();
             $("#loginModule").fadeOut();
             $("#secretaryModule").fadeIn();
         }
         else if (sdb.student_login(name[0],name[1],password)){
             console.log("find the stu" + username);
+            $("#loginError").hide();
             $("#loginModule").fadeOut();
 
             $("#studentModule").fadeIn();
         }
         else{//we don't find the user
-            alert("Wrong username or password, try again");
+
+            $("#loginError").text("Wrong username or password, try again").show();
         }
     }
 }

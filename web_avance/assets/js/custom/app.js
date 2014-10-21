@@ -20,7 +20,6 @@ var datepicker = $('#dp1').datepicker().on('changeDate', function (ev) {
 }).data('datepicker');
 
 window.onload = function () {
-
     $("#studentModule").fadeOut();
     $("#secretaryModule").fadeOut();
 

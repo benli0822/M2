@@ -6,7 +6,7 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-
+    <link rel="stylesheet" href="assets/css/signin.css">
     <link rel="stylesheet" href="assets/css/datepicker.css">
     <link rel="stylesheet" href="assets/css/jquery.webui-popover.css">
     <!--<style>-->
@@ -55,20 +55,17 @@
 <div id="disconnectDiv">
     <button type="button" class="btn btn-danger" onclick="logout_button_click()">Logout</button>
 </div>
-<div class="page-container" id="loginModule">
-    <h1>SJBS Schedule System</h1>
 
-    <h3>Login</h3>
-
-    <form action="" method="post" id="loginForm">
-        <input type="text" name="username" class="username" placeholder="Please insert your name！" id="username">
-
-        <div></div>
-        <input type="password" name="password" class="password" id="password">
-        <button type="button" class="btn btn-primary" onclick="login_button_click()">Login</button>
-
-        <div class="error"><span>if there is error, show here</span></div>
+<div id="loginModule">
+    <h1 class="center">Welcome to AutoEcole Class System</h1>
+    <form role="form" class="form-signin">
+        <h3 class="form-signin-heading">Please sign in</h3>
+        <input type="username" autofocus="" required="" name="username" placeholder="Please insert your name！" id="username" class="username form-control">
+        <input type="password" required="" placeholder="Password" class="form-control password" id="password">
+        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="login_button_click()">Sign in</button>
+        <div class="form-control" style="display: none;" id="loginError"></div>
     </form>
+
 </div>
 
 <div class="row" id="studentModule">
