@@ -164,16 +164,16 @@ popover = {
         } else if (type == 'info') {
             var studentsName1 = document.createElement('select');
             for (var i = 0; i < studentList.length; i++) {
-                    var studentOption1 = document.createElement('option');
-                    var text3 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
-                    studentOption1.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
-                    var index = studentList[i].hasClass(id);
-                    console.log(index);
-                    if (index != -1) {
-                        studentOption1.setAttribute('selected', 'selected');
-                    }
-                    studentOption1.appendChild(text3);
-                    studentsName1.appendChild(studentOption1);
+                var studentOption1 = document.createElement('option');
+                var text3 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
+                studentOption1.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
+                var index = studentList[i].hasClass(id);
+                console.log(index);
+                if (index != -1) {
+                    studentOption1.setAttribute('selected', 'selected');
+                }
+                studentOption1.appendChild(text3);
+                studentsName1.appendChild(studentOption1);
             }
             studentsName1.setAttribute('id', 'pop_student');
             studentsName1.setAttribute('multiple', 'multiple');
@@ -182,11 +182,11 @@ popover = {
             var studentsName2 = document.createElement('select');
             for (var i = 0; i < studentList.length; i++) {
                 if (!studentList[i].hasClassAlready(idtime)) {
-                var studentOption2 = document.createElement('option');
-                var text4 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
-                studentOption2.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
-                studentOption2.appendChild(text4);
-                studentsName2.appendChild(studentOption2);
+                    var studentOption2 = document.createElement('option');
+                    var text4 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
+                    studentOption2.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
+                    studentOption2.appendChild(text4);
+                    studentsName2.appendChild(studentOption2);
                 }
             }
             studentsName2.setAttribute('id', 'pop_student');

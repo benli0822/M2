@@ -101,7 +101,7 @@ table = {
 
                     if (the_class.date.toDateString() == date.toDateString()) {
                         console.log(secretary_table.rows[the_class.startTime - 7].cells[i + 1].firstChild);
-                        if(the_class.type === "drive") {
+                        if (the_class.type === "drive") {
                             secretary_table.rows[the_class.startTime - 7].cells[i + 1].setAttribute("class", "success");
                             secretary_table.rows[the_class.startTime - 7].cells[i + 1].firstChild.innerHTML = "Drive Class";
 
@@ -204,9 +204,6 @@ table = {
         }
         table.appendChild(body);
     },
-
-
-
 
 
     ////

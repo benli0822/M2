@@ -110,7 +110,7 @@ buttonAction = {
                         var studentName = selectedStudents[i].split(".");
                         var theStudent = sdb.find_a_client_by_name(studentName[0], studentName[1]);
                         console.log(theStudent);
-                        if(theStudent.hasClass(id) == -1) {
+                        if (theStudent.hasClass(id) == -1) {
                             theStudent.list_class.push(id);
                             console.log("added to" + theStudent);
                         }

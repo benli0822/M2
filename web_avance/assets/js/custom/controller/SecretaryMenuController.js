@@ -8,17 +8,17 @@ secretaryMenuController = {
 
         //remove className
         document.getElementById("secretaryHomePageTab").className =
-document.getElementById("secretaryHomePageTab").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            document.getElementById("secretaryHomePageTab").className.replace
+            (/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryAddStudentTab").className =
             document.getElementById("secretaryAddStudentTab").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryAddTeacherTab").className =
             document.getElementById("secretaryAddTeacherTab").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
 
         //add className
-         document.getElementById("secretarySearchStudentTab").className="active";
+        document.getElementById("secretarySearchStudentTab").className = "active";
 
         $("#secretaryHomePage").fadeOut();
         $("#secretaryAddStudent").fadeOut();
@@ -29,16 +29,16 @@ document.getElementById("secretaryHomePageTab").className.replace
         //remove className
         document.getElementById("secretarySearchStudentTab").className =
             document.getElementById("secretarySearchStudentTab").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryAddStudentTab").className =
             document.getElementById("secretaryAddStudentTab").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryAddTeacherTab").className =
             document.getElementById("secretaryAddTeacherTab").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
 
         //add className
-        document.getElementById("secretaryHomePageTab").className="active";
+        document.getElementById("secretaryHomePageTab").className = "active";
 
         $("#secretaryHomePage").fadeIn();
         $("#secretaryAddStudent").fadeOut();
@@ -50,26 +50,25 @@ document.getElementById("secretaryHomePageTab").className.replace
         table.updateSecretaryTableContent(new Date());
     },
 
-    init_SecretaryMenu:function(){
+    init_SecretaryMenu: function () {
         $(".alert").alert();
 
     },
-    display_add_student_page :function(){
+    display_add_student_page: function () {
 
         //remove className
         document.getElementById("secretarySearchStudentTab").className =
             document.getElementById("secretarySearchStudentTab").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryHomePage").className =
             document.getElementById("secretaryHomePage").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryAddTeacherTab").className =
             document.getElementById("secretaryAddTeacherTab").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
 
         //add className
-        document.getElementById("secretaryAddStudentTab").className="active";
-
+        document.getElementById("secretaryAddStudentTab").className = "active";
 
 
         $("#secretaryHomePage").fadeOut();
@@ -79,21 +78,21 @@ document.getElementById("secretaryHomePageTab").className.replace
 
     },
 
-    display_add_teacher_page:function(){
+    display_add_teacher_page: function () {
 
         //remove className
         document.getElementById("secretarySearchStudentTab").className =
             document.getElementById("secretarySearchStudentTab").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryHomePage").className =
             document.getElementById("secretaryHomePage").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryAddStudentTab").className =
             document.getElementById("secretaryAddStudentTab").className.replace
-            ( /(?:^|\s)active(?!\S)/g , '' );
+            (/(?:^|\s)active(?!\S)/g, '');
 
         //add className
-        document.getElementById("secretaryAddTeacherTab").className="active";
+        document.getElementById("secretaryAddTeacherTab").className = "active";
 
 
         $("#secretaryHomePage").fadeOut();

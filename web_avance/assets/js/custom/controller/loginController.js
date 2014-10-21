@@ -15,20 +15,20 @@ loginController = {
             secretaryMenuController.display_home_page_for_secretary();
             $("#disconnectDiv").fadeIn();
             $("#login_without_save_button").fadeIn();
-            document.getElementById("login_button").innerHTML="Logout and Save to DB";
+            document.getElementById("login_button").innerHTML = "Logout and Save to DB";
         }
         else if (sdb.student_login(name[0], name[1], password)) {
             console.log("find the stu" + username);
             $("#loginError").hide();
             //update student table
-            sdb.sortClasslist(sdb.find_a_client_by_name(name[0],name[1]));
-            table.update_student_table(sdb.find_a_client_by_name(name[0],name[1]));
+            sdb.sortClasslist(sdb.find_a_client_by_name(name[0], name[1]));
+            table.update_student_table(sdb.find_a_client_by_name(name[0], name[1]));
             $("#loginModule").fadeOut();
 
             $("#studentModule").fadeIn();
             $("#disconnectDiv").fadeIn();
             $("#login_without_save_button").fadeOut();
-            document.getElementById("login_button").innerHTML="Logout";
+            document.getElementById("login_button").innerHTML = "Logout";
         }
         else {//we don't find the user
 

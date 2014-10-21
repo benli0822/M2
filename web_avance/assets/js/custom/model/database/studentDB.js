@@ -60,22 +60,20 @@ StudentDB.prototype.addStudentObject = function (student) {
     }
 };
 
-function compare(a,b) {
+function compare(a, b) {
 
     tempA = cdb.getClassById(a).date.valueOf();
     tempB = cdb.getClassById(b).date.valueOf();
 
 
-
-
     if (tempA < tempB)
         return -1;
-    if (tempA >tempB)
+    if (tempA > tempB)
         return 1;
     return 0;
 }
 
-StudentDB.prototype.sortClasslist =function(student){
+StudentDB.prototype.sortClasslist = function (student) {
     student.list_class.sort(compare);
     console.log(student.list_class);
 }

@@ -30,15 +30,15 @@ Client.prototype.addAClassToClient = function (the_class) {
     this.list_class.push(the_class.id);
 }
 
-Client.prototype.hasClass = function(id) {
+Client.prototype.hasClass = function (id) {
     return this.list_class.indexOf(id);
 }
 
-Client.prototype.hasClassAlready = function(time) {
-    for(var i = 0 ; i < this.list_class.length; i ++) {
+Client.prototype.hasClassAlready = function (time) {
+    for (var i = 0; i < this.list_class.length; i++) {
         console.log(time);
         console.log(this.list_class[i].contains(time));
-        if(this.list_class[i].contains(time)) {
+        if (this.list_class[i].contains(time)) {
             return true;
         }
     }
