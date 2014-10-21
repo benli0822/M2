@@ -145,8 +145,8 @@ StudentDB.prototype.close = function (option) {
             for(var i = 0; i < this.studentList.length; i ++) {
                 var theStudent = this.studentList[i];
                 if(theStudent.list_class.length != 0) {
-                    var key = theStudent.firstName + "" + theStudent.lastName + "" + theStudent.address;
-
+                    //var key = theStudent.firstName + "" + theStudent.lastName + "" + theStudent.address;
+                    var key = lwrapper.getPersonKey(theStudent);
                     console.log(theStudent.list_class);
                     localStorage.setItem(key, JSON.stringify(theStudent.list_class));
                 }

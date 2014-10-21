@@ -117,7 +117,7 @@ table = {
     update_student_table: function (student) {
         var theStudent = student;
         var table = document.getElementById("student_table");
-        document.getElementById("searchResult").innerHTML = student.firstName;
+       /// document.getElementById("searchResult").innerHTML = student.firstName;
 
         //clear all the existeds elements
         while (table.childNodes.length > 2) {
@@ -157,6 +157,15 @@ table = {
             //add a new row for this class
             var new_row = document.createElement('tr');
 
+
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+            if(tem_class.date.valueOf() > now.valueOf())
+              new_row.className="success";
+            else
+                new_row.className="active";
+
             //add the day_date
             var dateElement = document.createElement('td');
             dateElement.innerHTML = tem_class.date.toDateString();
@@ -176,6 +185,10 @@ table = {
             var teacherElement = document.createElement('td');
             teacherElement.innerHTML = tem_class.teacher;
             new_row.appendChild(teacherElement);
+
+            var classtypeElement = document.createElement('td');
+            classtypeElement.innerHTML = tem_class.type.toString();
+            new_row.appendChild(classtypeElement);
 
             body.appendChild(new_row);
         }

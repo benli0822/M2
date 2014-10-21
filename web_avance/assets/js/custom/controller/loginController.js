@@ -15,6 +15,8 @@ loginController = {
         else if (sdb.student_login(name[0],name[1],password)){
             console.log("find the stu" + username);
             $("#loginError").hide();
+            //update student table
+            table.update_student_table(sdb.find_a_client_by_name(name[0],name[1]));
             $("#loginModule").fadeOut();
 
             $("#studentModule").fadeIn();
