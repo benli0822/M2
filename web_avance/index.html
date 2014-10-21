@@ -53,7 +53,7 @@
     <!--</style>-->
 </head>
 <body>
-<div id="disconnectDiv">
+<div id="disconnectDiv" style="display: none">
     <button type="button" class="btn btn-warning" id="login_button" onclick="buttonAction.logout_button_click()">Logout</button>
     <button type="button" class="btn btn-danger" id="login_without_save_button" onclick="buttonAction.logout_button_click_without_save()">Logout without save to DB</button>
 </div>
@@ -74,7 +74,7 @@
 
 </div>
 
-<div class="row" id="studentModule">
+<div class="row" id="studentModule" style="display: none">
     <div class="col-lg-10">
         <h3 id="studentName">Student</h3>
 
@@ -94,7 +94,7 @@
         </div>
     </div>
 </div>
-<div id="secretaryModule">
+<div id="secretaryModule" style="display: none">
     <div role="alert" class="alert alert-warning fade in" style="display: none">
         <button data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
         <strong>Holy guacamole!</strong>

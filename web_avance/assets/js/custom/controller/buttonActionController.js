@@ -105,10 +105,15 @@ buttonAction = {
 
             if (selectedStudents.length != 0) {
                 for (var i = 0; i < selectedStudents.length; i++) {
-                    if (cdb.getClassById(id)) {
+                    console.log(cdb.getClassById(id));
+                    if (cdb.getClassById(id) != null) {
                         var studentName = selectedStudents[i].split(".");
                         var theStudent = sdb.find_a_client_by_name(studentName[0], studentName[1]);
-                        theStudent.list_class.push(id);
+                        console.log(theStudent);
+                        if(theStudent.hasClass(id) == -1) {
+                            theStudent.list_class.push(id);
+                            console.log("added to" + theStudent);
+                        }
                     } else {
                         cdb.addAClass(selectedClass, teacher, selectedStudents[i], 1, hour, theDate, selectedClass, sdb, tdb);
                     }
