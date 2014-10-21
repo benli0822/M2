@@ -117,6 +117,7 @@ table = {
      */
     update_student_table: function (student) {
         var theStudent = student;
+
         var table = document.getElementById("student_table");
         /// document.getElementById("searchResult").innerHTML = student.firstName;
 

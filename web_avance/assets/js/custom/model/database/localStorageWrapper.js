@@ -1,5 +1,5 @@
 /**
- * Created by jamesRMBP on 21/10/14.
+ * Created by CHENG Xiaojun et JIN Benli on 21/10/14.
  */
 
 LocalStorageWrapper = function () {

@@ -1,5 +1,5 @@
 /**
- * Created by jamesRMBP on 17/10/14.
+ * Created by CHENG Xiaojun et JIN Benli on 17/10/14.
  */
 /**
  * Representation of a client

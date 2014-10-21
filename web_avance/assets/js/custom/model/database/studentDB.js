@@ -60,6 +60,28 @@ StudentDB.prototype.addStudentObject = function (student) {
     }
 };
 
+function compare(a,b) {
+
+    tempA = cdb.getClassById(a).date.valueOf();
+    tempB = cdb.getClassById(b).date.valueOf();
+
+
+
+
+    if (tempA < tempB)
+        return -1;
+    if (tempA >tempB)
+        return 1;
+    return 0;
+}
+
+StudentDB.prototype.sortClasslist =function(student){
+    student.list_class.sort(compare);
+    console.log(student.list_class);
+}
+
+
+
 StudentDB.prototype.find_a_client_by_name = function (firstname, lastname) {
     //1.get the client list
     var clientlistobject = this.studentList;
