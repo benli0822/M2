@@ -11,6 +11,8 @@ loginController = {
             $("#loginError").hide();
             $("#loginModule").fadeOut();
             $("#secretaryModule").fadeIn();
+            secretaryMenuController.display_home_page_for_secretary();
+            $("#disconnectDiv").fadeIn();
         }
         else if (sdb.student_login(name[0], name[1], password)) {
             console.log("find the stu" + username);
@@ -21,6 +23,7 @@ loginController = {
             $("#loginModule").fadeOut();
 
             $("#studentModule").fadeIn();
+            $("#disconnectDiv").fadeIn();
         }
         else {//we don't find the user
 
