@@ -12,14 +12,25 @@ buttonAction = {
     search_button_click: function () {
         var search_text = document.getElementById("searchTextField").value;
 
-
+        var name = search_text.split(".");
         console.log("you want to search : " + search_text);
 
 
-        document.getElementById("searchResult").innerHTML = 'clicked';
-        var the_student = sdb.find_a_client_by_firstname(search_text);
-        if (typeof(the_student) != 'undefined') {
+
+        var the_student = sdb.find_a_client_by_name(name[0],name[1]);
+        if (typeof(the_student) != 'undefined' && the_student!= false) {
             table.update_student_table_for_secretary(the_student);
+            document.getElementById("searchResult").innerHTML = 'here is the search result';
+            $(".alert").show();
+
+            $(".alert strong").text("Student found");
+            window.setTimeout(function() { $(".alert").fadeOut(); }, 2000);
+        }
+        else{
+            $(".alert").show();
+
+            $(".alert strong").text("Student not found");
+            window.setTimeout(function() { $(".alert").fadeOut(); }, 3000);
         }
     },
 
@@ -117,7 +128,7 @@ buttonAction = {
         }
         else{
             //alert("Try to correct information. each words should be more then 2 words");
-          
+
             $(".alert").show();
 
             $(".alert strong").text("Try to correct information. each words should be more then 2 words");
