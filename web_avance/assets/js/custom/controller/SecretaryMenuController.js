@@ -29,6 +29,11 @@ secretaryMenuController = {
 
         $("#secretaryHomePage").fadeIn();
         $("#secretarySearchStudent").fadeOut();
+    },
+
+    init_SecretaryMenu:function(){
+        
+
     }
 }
 
