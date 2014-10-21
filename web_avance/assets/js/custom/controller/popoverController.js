@@ -24,17 +24,46 @@ document.addEventListener('click', function (e) {
         if (typeof(id) != 'undefined') {
             var i = id.substring(0, 1);
             var count = id.substring(1, 2);
-            popover.updatePopoverContent(i + '' + count);
+            popover.updatePopoverContent(i + '' + count, parent);
         }
     }
 }, true);
 
-
 popover = {
     initPopover: function () {
-        $('div.show-pop').webuiPopover('destroy').webuiPopover(settings);
+        $('div.show-pop').webuiPopover('destroy').webuiPopover(settings).on('click', function(){
+            $('.webui-popover-content:last .form-horizontal #student div #pop_student').multiselect({
+                onChange: function (option, checked) {
+// Get selected options.
+                    var selectedOptions = $('.webui-popover-content:last .form-horizontal #student div #pop_student option:selected');
+
+                    if (selectedOptions.length >= 1) {
+// Disable all other checkboxes.
+                        var nonSelectedOptions = $('.webui-popover-content:last .form-horizontal #student div #pop_student option').filter(function () {
+                            return !$(this).is(':selected');
+                        });
+
+                        var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
+                        nonSelectedOptions.each(function () {
+                            var input = $('input[value="' + $(this).val() + '"]');
+                            input.prop('disabled', true);
+                            input.parent('li').addClass('disabled');
+                        });
+                    }
+                    else {
+// Enable all checkboxes.
+                        var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
+                        $('.webui-popover-content:last .form-horizontal #student div #pop_student option').each(function () {
+                            var input = $('input[value="' + $(this).val() + '"]');
+                            input.prop('disabled', false);
+                            input.parent('li').addClass('disabled');
+                        });
+                    }
+                }
+            });
+        });
     },
-    updatePopoverContent: function (divid) {
+    updatePopoverContent: function (divid, parent) {
         if (typeof(tdb) == "undefined") {
             console.log("Teacher database is not loaded, please make sure it is loaded!");
             return;
@@ -48,10 +77,14 @@ popover = {
         var theTeacher = tdb.teacherList[id_column];
         var hour = id_row + 8;
 
+        var type = parent.attr('class');
+
         this.updateHour(hour);
         this.showTheTeacher(theTeacher);
-        this.showStudentList();
-        this.showClassOption();
+        this.showStudentList(type);
+        this.showClassOption(type);
+        this.buttonControl(type);
+
     },
 
     updateHour: function (hour) {
@@ -101,7 +134,7 @@ popover = {
         teacher.appendChild(divTeacher);
     },
 
-    showStudentList: function () {
+    showStudentList: function (type) {
         if (typeof(sdb) == "undefined") {
             console.log("Student database is not loaded, please make sure it is loaded!");
             return;
@@ -116,6 +149,7 @@ popover = {
         var divStudent = document.createElement('div');
         divStudent.setAttribute('class', 'col-sm-6 col-sm-offset-2');
         var studentsName = document.createElement('select');
+        var defaultOption = document.createElement('option');
         for (var i = 0; i < studentList.length; i++) {
             var studentOption = document.createElement('option');
             var text2 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
@@ -124,6 +158,7 @@ popover = {
             studentsName.appendChild(studentOption);
         }
         studentsName.setAttribute('id', 'pop_student');
+        studentsName.setAttribute('multiple', 'multiple');
         studentsLabel.appendChild(text1);
         studentsLabel.setAttribute('class', 'col-sm-2 col-sm-offset-2 control-label');
         divStudent.appendChild(studentsName);
@@ -131,7 +166,7 @@ popover = {
         students.appendChild(divStudent);
     },
 
-    showClassOption: function () {
+    showClassOption: function (type) {
         var classes = document.getElementById('classes');
         while (classes.firstChild) {
             classes.removeChild(classes.firstChild);
@@ -139,19 +174,39 @@ popover = {
         var classesLabel = document.createElement('label');
         var text1 = document.createTextNode('Class\'s Type: ');
         var divClasses = document.createElement('div');
-        divClasses.setAttribute('class', 'col-sm-6 col-sm-offset-2 radio');
-        divClasses.innerHTML = '<label>' +
-            '<input type="radio" name="optionClass" id="drive" value="drive" checked>' +
-            'Drive Class' +
-            '</label>';
-        divClasses.innerHTML += '<label>' +
-            '<input type="radio" name="optionClass" id="lecture" value="lecture">' +
-            'Lecture Class' +
-            '</label>';
+        if (type == "success") {
+            divClasses.setAttribute('class', 'col-sm-6 col-sm-offset-2');
+            var text2 = document.createTextNode("Drive Class");
+            divClasses.appendChild(text2);
+        } else if (type == "info") {
+            divClasses.setAttribute('class', 'col-sm-6 col-sm-offset-2');
+            var text3 = document.createTextNode("Lecture Class");
+            divClasses.appendChild(text3);
+        } else {
+            divClasses.setAttribute('class', 'col-sm-6 col-sm-offset-2 radio');
+            divClasses.innerHTML = '<label>' +
+                '<input type="radio" name="optionClass" id="drive" value="drive" checked>' +
+                'Drive Class' +
+                '</label>';
+            divClasses.innerHTML += '<label>' +
+                '<input type="radio" name="optionClass" id="lecture" value="lecture">' +
+                'Lecture Class' +
+                '</label>';
+        }
         classesLabel.appendChild(text1);
         classesLabel.setAttribute('class', 'col-sm-2 col-sm-offset-2 control-label');
         classes.appendChild(classesLabel);
         classes.appendChild(divClasses);
+    },
+
+    buttonControl: function (type) {
+        if (type != null) {
+            $("#create").hide();
+            $("#edit").show();
+        } else {
+            $("#create").show();
+            $("#edit").hide();
+        }
     },
 
     showMonth: function (month) {

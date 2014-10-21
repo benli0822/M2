@@ -2,6 +2,12 @@
  * Created by CHENG Xiaojun et JIN Benli on 08/10/14.
  */
 
+$(document).keypress(function (e) {
+    if (e.which == 13) {
+        $("#loginButton").click();
+    }
+});
+
 buttonAction = {
     search_button_click: function () {
         var search_text = document.getElementById("searchTextField").value;
@@ -43,25 +49,22 @@ buttonAction = {
         table.updateSecretaryTableContent(theDate);
 
         $('.webui-popover:last').hide();
+    },
+
+    login_button_click: function () {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        loginController.loginWithUserNamePassword(username, password);
+    },
+    logout_button_click: function () {
+        main.closeNormal();
+        $(".webui-popover").hide();
+        $("#studentModule").fadeOut();
+        $("#secretaryModule").fadeOut();
+        $("#loginModule").fadeIn();
     }
-
 }
 
-function login_button_click() {
 
 
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-
-    loginController.loginWithUserNamePassword(username, password);
-
-
-}
-
-function logout_button_click() {
-    main.closeNormal();
-    $(".webui-popover").hide();
-    $("#studentModule").fadeOut();
-    $("#secretaryModule").fadeOut();
-    $("#loginModule").fadeIn();
-}

@@ -100,8 +100,15 @@ table = {
                     console.log(the_class);
 
                     if (the_class.date.toDateString() == date.toDateString()) {
-                        console.log(secretary_table.rows[the_class.startTime - 7].cells[i + 1]);
-                        secretary_table.rows[the_class.startTime - 7].cells[i + 1].setAttribute("class", "success");
+                        console.log(secretary_table.rows[the_class.startTime - 7].cells[i + 1].firstChild);
+                        if(the_class.type === "drive") {
+                            secretary_table.rows[the_class.startTime - 7].cells[i + 1].setAttribute("class", "success");
+                            secretary_table.rows[the_class.startTime - 7].cells[i + 1].firstChild.innerHTML = "Drive Class";
+
+                        } else {
+                            secretary_table.rows[the_class.startTime - 7].cells[i + 1].setAttribute("class", "info");
+                            secretary_table.rows[the_class.startTime - 7].cells[i + 1].firstChild.innerHTML = "Lecture Class";
+                        }
                     }
                 }
             }

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/signin.css">
     <link rel="stylesheet" href="assets/css/datepicker.css">
     <link rel="stylesheet" href="assets/css/jquery.webui-popover.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-multiselect.css">
     <!--<style>-->
     <!--table {-->
     <!--border-spacing: 0;-->
@@ -53,7 +54,7 @@
 </head>
 <body>
 <div id="disconnectDiv">
-    <button type="button" class="btn btn-danger" onclick="logout_button_click()">Logout</button>
+    <button type="button" class="btn btn-danger" onclick="buttonAction.logout_button_click()">Logout</button>
 </div>
 
 <div id="loginModule">
@@ -64,7 +65,7 @@
         <input type="username" autofocus="" required="" name="username" placeholder="Please insert your name！"
                id="username" class="username form-control">
         <input type="password" required="" placeholder="Password" class="form-control password" id="password">
-        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="login_button_click()">Sign in</button>
+        <button type="button" class="btn btn-lg btn-primary btn-block" id="loginButton" onclick="buttonAction.login_button_click()">Sign in</button>
         <div class="form-control" style="display: none;" id="loginError"></div>
         <div class="error">
             <span>just for test. (admin,usr: admin.admin pwd: admin),(client, usr:stu1.stu1 . pwd:123 ) )</span></div>
@@ -130,10 +131,10 @@
         <div class="form-group" id="classes">
         </div>
         <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-2">
-                <button type="button" class="btn btn-default" onclick="buttonAction.create_event_click()">Create Event
+            <div class="col-sm-8 col-sm-offset-4">
+                <button type="button" class="btn btn-success" id="create" onclick="buttonAction.create_event_click()">Create Event
                 </button>
-                <button type="button" class="btn btn-default">Edit Event</button>
+                <button type="button" class="btn btn-primary" id="edit">Edit Event</button>
             </div>
         </div>
     </form>
@@ -144,6 +145,7 @@
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.webui-popover.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap-multiselect.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/object/person.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/object/class.js"></script>
 <script type="text/javascript" src="assets/js/custom/model/object/client.js"></script>

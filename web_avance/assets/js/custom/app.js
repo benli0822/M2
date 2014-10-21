@@ -36,4 +36,4 @@ window.onload = function () {
 //    popover.updateTableContent();
 
     popover.initPopover();
-}
+};
