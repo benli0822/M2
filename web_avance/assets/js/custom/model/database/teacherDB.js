@@ -107,7 +107,7 @@ TeacherDB.prototype.close = function (option) {
             for(var i = 0; i < this.teacherList.length; i ++) {
                 var theTeacher = this.teacherList[i];
                 if(theTeacher.list_class.length != 0) {
-                    var key = theTeacher.firstName + "" + theTeacher.lastName + "" + theTeacher.address;
+                    var key = lwrapper.getPersonKey(theTeacher);
 
                     console.log(theTeacher.list_class);
                     localStorage.setItem(key, JSON.stringify(theTeacher.list_class));

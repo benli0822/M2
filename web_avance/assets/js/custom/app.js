@@ -7,6 +7,7 @@ var tdb = new TeacherDB();
 var sdb = new StudentDB();
 var cdb = new ClassDB();
 var sedb = new SecretaryDB();
+var lwrapper = new LocalStorageWrapper();
 
 
 //set up datepicker
