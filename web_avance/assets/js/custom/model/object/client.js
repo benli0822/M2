@@ -30,6 +30,10 @@ Client.prototype.addAClassToClient = function (the_class) {
     this.list_class.push(the_class.id);
 }
 
+Client.prototype.hasClass = function(id) {
+    return this.list_class.indexOf(id);
+}
+
 ClientObjectHelper = {
     createFromObject: function (object) {
         var theClient = new Client(object.firstName, object.lastName, object.address, object.pwd);
