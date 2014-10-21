@@ -121,6 +121,7 @@ table = {
         var table = document.getElementById("student_table");
         /// document.getElementById("searchResult").innerHTML = student.firstName;
 
+        var student_name = document.getElementById("studentName").innerHTML = student.firstName + " " + student.lastName;
         //clear all the existeds elements
         while (table.childNodes.length > 2) {
             table.removeChild(table.lastChild);

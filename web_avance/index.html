@@ -74,24 +74,14 @@
 
 <div class="row" id="studentModule">
     <div class="col-lg-10">
-        <h3>Student</h3>
+        <h3 id="studentName">Student</h3>
 
-        <!--<form class="form-inline" role="form">
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">?</div>
-                    <input class="form-control" placeholder="Enter student name" id="searchTextField"/>
-                </div>
-            </div>
-            <button type="button" class="btn btn-default" id="searchButton" onclick="buttonAction.search_button_click()">Search
-            </button>
-            <p class="help-block" id="searchResult"></p>
-        </form>-->
+
         <div class="table-responsive">
             <table class="table table-hover table-bordered" id="student_table">
                 <thead>
                 <tr>
-                    <th id="abc">Date</th>
+                    <th id="s-date">Date</th>
                     <th>Time</th>
                     <th>Duration</th>
                     <th>Teacher</th>
@@ -103,34 +93,42 @@
     </div>
 </div>
 <div id="secretaryModule">
-    <div id="home" class="tab-pane fade active in">
+    <!--<div id="home" class="tab-pane fade active in">
         <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
-    </div>
-    <div class="well">
-        <input type="text" class="span2" value="16-10-2014" id="dp1" data-date-format="dd-mm-yyyy">
-    </div>
-    <div class="row">
-        <div class="col-lg-10">
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered" id="secretary_table">
-                </table>
+    </div>-->
+    <ul class="nav nav-pills">
+
+        <li id="secretaryHomePageTab" class="active"><a onclick="secretaryMenuController.display_home_page_for_secretary()" >Home</a></li>
+        <li id="secretarySearchStudentTab"><a onclick="secretaryMenuController.display_client_info()">Search Student</a></li>
+    </ul>
+
+    <div id="secretaryHomePage">
+        <div class="well">
+            <input type="text" class="span2" value="16-10-2014" id="dp1" data-date-format="dd-mm-yyyy">
+        </div>
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="secretary_table">
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-
     <!-- formule-->
     <div id="secretarySearchStudent">
-    <form class="form-inline" role="form">
-           <div class="form-group">
-               <div class="input-group">
-                   <div class="input-group-addon">?</div>
-                   <input class="form-control" placeholder="Enter student name" id="searchTextField"/>
-               </div>
-           </div>
-           <button type="button" class="btn btn-default" id="searchButton" onclick="buttonAction.search_button_click()">Search
-           </button>
-           <p class="help-block" id="searchResult"></p>
-       </form>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">?</div>
+                    <input class="form-control" placeholder="Enter student name" id="searchTextField"/>
+                </div>
+            </div>
+            <button type="button" class="btn btn-default" id="searchButton"
+                    onclick="buttonAction.search_button_click()">Search
+            </button>
+            <p class="help-block" id="searchResult"></p>
+        </form>
         <div class="table-responsive">
             <table class="table table-hover table-bordered" id="student_lesson_table">
                 <thead>
@@ -144,7 +142,7 @@
                 </thead>
             </table>
         </div>
-        </div>
+    </div>
 </div>
 </div>
 <div id="popover-content" class="hide">
@@ -191,6 +189,8 @@
 <script type="text/javascript" src="assets/js/custom/controller/mainController.js"></script>
 <script type="text/javascript" src="assets/js/custom/controller/tableController.js"></script>
 <script type="text/javascript" src="assets/js/custom/controller/loginController.js"></script>
+<script type="text/javascript" src="assets/js/custom/controller/secretaryMenuController.js"></script>
+
 <script type="text/javascript" src="assets/js/custom/app.js"></script>
 
 
