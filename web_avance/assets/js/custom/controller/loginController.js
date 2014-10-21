@@ -7,12 +7,15 @@ loginController = {
     loginWithUserNamePassword: function (username, password) {
         var name = username.split('.');
         if (sedb.login_secretary(name[0], name[1], password)) {
+            $('#dp1').datepicker('setValue', new Date());
             console.log("find the secretary" + username);
             $("#loginError").hide();
             $("#loginModule").fadeOut();
             $("#secretaryModule").fadeIn();
             secretaryMenuController.display_home_page_for_secretary();
             $("#disconnectDiv").fadeIn();
+            $("#login_without_save_button").fadeIn();
+            document.getElementById("login_button").innerHTML="Logout and Save to DB";
         }
         else if (sdb.student_login(name[0], name[1], password)) {
             console.log("find the stu" + username);
@@ -24,6 +27,8 @@ loginController = {
 
             $("#studentModule").fadeIn();
             $("#disconnectDiv").fadeIn();
+            $("#login_without_save_button").fadeOut();
+            document.getElementById("login_button").innerHTML="Logout";
         }
         else {//we don't find the user
 
