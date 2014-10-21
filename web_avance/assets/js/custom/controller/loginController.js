@@ -14,7 +14,7 @@ loginController = {
             secretaryMenuController.display_home_page_for_secretary();
             $("#disconnectDiv").fadeIn();
             $("#login_without_save_button").fadeIn();
-            document.getElementById("login_button").innerHTML="Logout and Save";
+            document.getElementById("login_button").innerHTML="Logout and Save to DB";
         }
         else if (sdb.student_login(name[0], name[1], password)) {
             console.log("find the stu" + username);

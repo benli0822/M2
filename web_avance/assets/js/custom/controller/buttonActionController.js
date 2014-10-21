@@ -62,14 +62,14 @@ buttonAction = {
         var id = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour +
             "." + teacher;
 
-        if (cdb.getClassById(id)) {
+       /* if (cdb.getClassById(id)) {
             var studentName = selectedStudents.split(".");
             var theStudent = sdb.find_a_client_by_name(studentName[0], studentName[1]);
             theStudent.list_class.push(id);
-        } else {
+        } else {*/
             var theDate = new Date(year, month, day, hour);
             cdb.addAClass(selectedClass, teacher, selectedStudents, 1, hour, theDate, selectedClass, sdb, tdb);
-        }
+        //}
         table.updateSecretaryTableContent(theDate);
         $('.webui-popover:last').hide();
     },
@@ -138,9 +138,9 @@ buttonAction = {
         $("#studentModule").fadeOut();
         $("#secretaryModule").fadeOut();
         $("#loginModule").fadeIn();
-        document.getElementById("login_button").innerHTML="Logout and Save";
+        document.getElementById("login_button").innerHTML="Logout";
     },
-    logout_button_click: function () {
+    logout_button_click_without_save: function () {
         $("#disconnectDiv").fadeOut();
         $(".webui-popover").hide();
         $("#studentModule").fadeOut();
