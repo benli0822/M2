@@ -195,5 +195,69 @@ table = {
             body.appendChild(new_row);
         }
         table.appendChild(body);
+    },
+
+
+
+
+
+    ////
+    update_student_table_for_secretary: function (student) {
+        var theStudent = student;
+
+        var table = document.getElementById("student_lesson_table");
+        /// document.getElementById("searchResult").innerHTML = student.firstName;
+
+        //clear all the existeds elements
+        while (table.childNodes.length > 2) {
+            table.removeChild(table.lastChild);
+        }
+
+
+        var body = document.createElement('tbody');
+        //travese the class list
+        for (var i = 0; i <= student.list_class.length - 1; i++) {
+
+            var tem_class = cdb.getClassById(student.list_class[i]);
+
+            //add a new row for this class
+            var new_row = document.createElement('tr');
+
+
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+            if (tem_class.date.valueOf() > now.valueOf())
+                new_row.className = "success";
+            else
+                new_row.className = "active";
+
+            //add the day_date
+            var dateElement = document.createElement('td');
+            dateElement.innerHTML = tem_class.date.toDateString();
+            new_row.appendChild(dateElement);
+
+            //add the time
+            var timeElement = document.createElement('td');
+            timeElement.innerHTML = tem_class.startTime + ':00';
+            new_row.appendChild(timeElement);
+
+            //add the duration
+            var durationElement = document.createElement('td');
+            durationElement.innerHTML = tem_class.duration;
+            new_row.appendChild(durationElement);
+
+            //add the teacher
+            var teacherElement = document.createElement('td');
+            teacherElement.innerHTML = tem_class.teacher;
+            new_row.appendChild(teacherElement);
+
+            var classtypeElement = document.createElement('td');
+            classtypeElement.innerHTML = tem_class.type.toString();
+            new_row.appendChild(classtypeElement);
+
+            body.appendChild(new_row);
+        }
+        table.appendChild(body);
     }
 }
