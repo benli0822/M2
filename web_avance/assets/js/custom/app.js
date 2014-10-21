@@ -23,7 +23,8 @@ var datepicker = $('#dp1').datepicker().on('changeDate', function (ev) {
 window.onload = function () {
     $("#studentModule").fadeOut();
     $("#secretaryModule").fadeOut();
-
+    $("#disconnectDiv").fadeOut();
+    secretaryMenuController.init_SecretaryMenu();
     //localStorage.clear();
     test.addTeacherExamples();
     test.addTestDataToDB();

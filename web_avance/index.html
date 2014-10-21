@@ -94,13 +94,21 @@
     </div>
 </div>
 <div id="secretaryModule">
+    <div role="alert" class="alert alert-warning fade in" style="display: none">
+        <button data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <strong>Holy guacamole!</strong>
+    </div>
     <!--<div id="home" class="tab-pane fade active in">
         <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
     </div>-->
     <ul class="nav nav-pills">
 
-        <li id="secretaryHomePageTab" class="active"><a onclick="secretaryMenuController.display_home_page_for_secretary()" >Home</a></li>
-        <li id="secretarySearchStudentTab"><a onclick="secretaryMenuController.display_client_info()">Search Student</a></li>
+        <li id="secretaryHomePageTab" class="active"><a
+                onclick="secretaryMenuController.display_home_page_for_secretary()">Home</a></li>
+        <li id="secretarySearchStudentTab"><a onclick="secretaryMenuController.display_client_info()">Find Student Lesson Information</a>
+        <li id="secretaryAddStudentTab"><a onclick="secretaryMenuController.display_add_student_page()">Add Student</a>
+        <li id="secretaryAddTeacherTab"><a onclick="secretaryMenuController.display_add_teacher_page()">Add Teacher</a>
+        </li>
     </ul>
 
     <div id="secretaryHomePage">
@@ -121,7 +129,7 @@
         <form class="form-inline" role="form">
             <div class="form-group">
                 <div class="input-group">
-                    <div class="input-group-addon">?</div>
+                    <div class="input-group-addon">Input student login name</div>
                     <input class="form-control" placeholder="Enter student name" id="searchTextField"/>
                 </div>
             </div>
@@ -144,6 +152,81 @@
             </table>
         </div>
     </div>
+    <!-- formule-->
+
+    <!-- addStudent-->
+    <div id="secretaryAddStudent">
+        <h3>Add a student</h3>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">firstname</span>
+                <input type="text" class="form-control" id="addStudentFirstname">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">lastname</span>
+                <input type="text" class="form-control" id="addStudentLastname">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">addresse</span>
+                <input type="text" class="form-control" id="addStudentAddresse">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">password</span>
+                <input type="password" class="form-control" id="addStudentPassword">
+            </div>
+        </div>
+        <br> </br>
+
+        <button type="button" class="btn btn-danger" onclick="secretaryMenuController.display_home_page_for_secretary()">Cancel</button>
+        <button type="button" class="btn active" onclick="buttonAction.add_Student_button_click()">Save</button>
+    </div>
+
+    <!-- addTeacher-->
+    <div id="secretaryAddTeacher">
+        <h3>Add a Teacher</h3>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">firstname</span>
+                <input type="text" class="form-control" id="addTeacherFirstname">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">lastname</span>
+                <input type="text" class="form-control" id="addTeacherLastname">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">addresse</span>
+                <input type="text" class="form-control" id="addTeacherAddresse">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">password</span>
+                <input type="password" class="form-control" id="addTeacherPassword">
+            </div>
+        </div>
+        <br> </br>
+        <button type="button" class="btn btn-danger" onclick="secretaryMenuController.display_home_page_for_secretary()">Cancel</button>
+        <button type="button" class="btn active" onclick="buttonAction.add_Teacher_button_click()">Save</button>
+    </div>
+
+
+
 </div>
 </div>
 <div id="popover-content" class="hide">
