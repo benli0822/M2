@@ -157,6 +157,15 @@ table = {
             //add a new row for this class
             var new_row = document.createElement('tr');
 
+
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+            if(tem_class.date.valueOf() > now.valueOf())
+              new_row.className="success";
+            else
+                new_row.className="active";
+
             //add the day_date
             var dateElement = document.createElement('td');
             dateElement.innerHTML = tem_class.date.toDateString();
