@@ -86,9 +86,9 @@ test = {
      * add some teacher examples
      */
     addTeacherExamples: function () {
-        var jps = new Teacher('jps', 'jsp', 'jsp', '123');
-        var ns = new Teacher('ns', 'ns', 'ns', '123');
-        var bs = new Teacher('bs', 'bs', 'bs', '123');
+        var jps = new Teacher('Jim', 'Potter', 'jsp', '123');
+        var ns = new Teacher('Romain', 'richard', 'ns', '123');
+        var bs = new Teacher('Mark', 'Tom', 'bs', '123');
         var cheng = new Teacher('cheng', 'cheng', 'cheng', '123');
         main.addTeacherObject(jps);
         main.addTeacherObject(ns);
@@ -99,7 +99,7 @@ test = {
      * add some test
      */
     addTestDataToDB: function () {
-        var teacher = new Teacher('testT', 'testT', 'lille1', '123');
+        var teacher = new Teacher('Jean', 'Pierre', 'lille1', '123');
         var stu1 = new Client('stu1', 'stu1', 'stu1', '123');
         var stu2 = new Client('stu2', 'stu2', 'stu2', '123');
         main.addTeacherObject(teacher);
