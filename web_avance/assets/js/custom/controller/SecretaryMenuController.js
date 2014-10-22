@@ -1,7 +1,7 @@
 /**
- * Created by jamesRMBP on 21/10/14.
+ * Created by CHENG Xiaojun et JIN benli on 21/10/14.
  */
-$('#secretarySearch').on('click', function(){
+$('#secretarySearch').on('click', function () {
     secretaryMenuController.updateStudentList();
     $("#student_list").multiselect('destroy').multiselect({
             buttonWidth: '200px',

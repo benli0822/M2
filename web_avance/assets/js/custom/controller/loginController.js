@@ -1,8 +1,10 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 19/10/14.
  */
-
-
+/**
+ * Login action controller
+ * @type {{loginWithUserNamePassword: loginWithUserNamePassword}}
+ */
 loginController = {
     loginWithUserNamePassword: function (username, password) {
         var name = username.split('.');

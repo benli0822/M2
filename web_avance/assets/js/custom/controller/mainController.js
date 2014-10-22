@@ -1,6 +1,10 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 01/10/14.
  */
+/**
+ * Main action controller, for all database connection's action
+ * @type {{addTeacher: addTeacher, addTeacherObject: addTeacherObject, addSecretaryObject: addSecretaryObject, addStudent: addStudent, addStudentObject: addStudentObject, addAClass: addAClass, closeNormal: closeNormal, closeException: closeException}}
+ */
 main = {
     /**
      * create a teacher object and add it to db

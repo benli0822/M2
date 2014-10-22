@@ -1,6 +1,11 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 08/10/14.
  */
+
+/**
+ * Button action controller for definition of all button like action
+ * @type {{search_button_click: search_button_click, create_event_click: create_event_click, edit_event_click: edit_event_click, login_button_click: login_button_click, logout_button_click: logout_button_click, logout_button_click_without_save: logout_button_click_without_save, add_Teacher_button_click: add_Teacher_button_click, add_Student_button_click: add_Student_button_click, delete_a_class_button_click: delete_a_class_button_click}}
+ */
 buttonAction = {
     search_button_click: function () {
         var search_text = $("#student_list").val();
@@ -56,7 +61,7 @@ buttonAction = {
 
         var theDate = new Date(year, month, day, hour);
 
-        if(selectedClass == "drive") {
+        if (selectedClass == "drive") {
             cdb.addAClass(selectedClass, teacher, selectedStudents, 1, hour, theDate, selectedClass, sdb, tdb);
             table.updateSecretaryTableContent(theDate);
             $('.webui-popover:last').hide();
@@ -231,7 +236,7 @@ buttonAction = {
         }
     },
 
-    delete_a_class_button_click:function(){
+    delete_a_class_button_click: function () {
         //delete action fire
         var time = $('.webui-popover-content:last .form-horizontal #when div #pop_time').attr('value');
         var teacher = $('.webui-popover-content:last .form-horizontal #teacher div #pop_teacher').text();
@@ -246,7 +251,7 @@ buttonAction = {
             "." + teacher;
         var theDate = new Date(year, month, day, hour);
 
-        
+
         cdb.deleteClass(id);
 
         //update secretary table
@@ -254,7 +259,6 @@ buttonAction = {
         table.updateSecretaryTableContent(theDate);
         //hide popover
         $('.webui-popover:last').hide();
-
 
 
     }

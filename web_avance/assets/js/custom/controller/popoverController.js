@@ -1,6 +1,15 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 16/10/14.
  */
+/**
+ * Popover controller, for controlling all popover div in secretary table
+ * @type {{trigger: string, title: string, content: content, cache: boolean, width: number, multi: boolean, closeable: boolean, style: string, padding: boolean}}
+ */
+
+/**
+ * General settings for popover, define its template
+ * @type {{trigger: string, title: string, content: content, cache: boolean, width: number, multi: boolean, closeable: boolean, style: string, padding: boolean}}
+ */
 var settings = {
     trigger: 'click',
     title: '<h4>Create a event</h4>',
@@ -15,6 +24,10 @@ var settings = {
     padding: true
 };
 
+/**
+ * Add click listener to the document, so each time when we click on a popover div, before the trigger happen, we will update
+ * the template with charging the corresponding information
+ */
 document.addEventListener('click', function (e) {
     if ($(e.target).attr('class') === 'show-pop') {
         var id = $(e.target).attr('id');
@@ -29,27 +42,74 @@ document.addEventListener('click', function (e) {
     }
 }, true);
 
-
+/**
+ * Popover controller methods
+ * @type {{initPopover: initPopover, updatePopoverContent: updatePopoverContent, updateHour: updateHour, showTheTeacher: showTheTeacher, showStudentList: showStudentList, updateStudentList: updateStudentList, showClassOption: showClassOption, buttonControl: buttonControl, showMonth: showMonth}}
+ */
 popover = {
+    /**
+     * init all popover, also it will listen to the radio options for choosing classes, because a drive class should have one student
+     * but a lecture class should have more than one student, so the listener will focus on changing between multiple options or simple
+     * option
+     */
     initPopover: function () {
         $('div.show-pop').webuiPopover('destroy').webuiPopover(settings).on('click', function () {
-            $('.webui-popover-content:last .form-horizontal #classes div input[name=optionClass]').on('click', function(){
-                console.log($(this).val())
-                if($(this).val() == 'lecture') {
-                    var time = $('.webui-popover-content:last .form-horizontal #when div #pop_time').attr('value');
-                    var teacher = $('.webui-popover-content:last .form-horizontal #teacher div #pop_teacher').text();
+            /**
+             * Listener handling radio change event
+             */
+            $('.webui-popover-content:last .form-horizontal #classes div input[name=optionClass]').on('click', function () {
+                console.log($(this).val());
+                var time = $('.webui-popover-content:last .form-horizontal #when div #pop_time').attr('value');
+                var teacher = $('.webui-popover-content:last .form-horizontal #teacher div #pop_teacher').text();
 
-                    var times = time.split(".");
-                    var year = times[0];
-                    var month = times[1];
-                    var day = times[2];
-                    var hour = times[3];
+                var times = time.split(".");
+                var year = times[0];
+                var month = times[1];
+                var day = times[2];
+                var hour = times[3];
 
-                    var id = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour +
-                        "." + teacher;
-                    var idtime = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour;
-                    console.log(id);
-                    popover.updateStudentList(id, idtime);
+                var id = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour +
+                    "." + teacher;
+                var idtime = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour;
+                console.log(id);
+                if ($(this).val() == 'lecture') {
+
+                    popover.updateStudentList(id, idtime, 1);
+
+                    $('.webui-popover-content:last .form-horizontal #student div #pop_student').multiselect('destroy').multiselect({
+                        enableFiltering: true,
+                        onChange: function (option, checked) {
+// Get selected options.
+                            var selectedOptions = $('.webui-popover-content:last .form-horizontal #student div #pop_student option:selected');
+
+                            if (selectedOptions.length >= 4) {
+// Disable all other checkboxes.
+                                var nonSelectedOptions = $('.webui-popover-content:last .form-horizontal #student div #pop_student option').filter(function () {
+                                    return !$(this).is(':selected');
+                                });
+
+                                var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
+                                nonSelectedOptions.each(function () {
+                                    var input = $('input[value="' + $(this).val() + '"]');
+                                    input.prop('disabled', true);
+                                    input.parent('li').addClass('disabled');
+                                });
+                            }
+                            else {
+// Enable all checkboxes.
+                                var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
+                                $('.webui-popover-content:last .form-horizontal #student div #pop_student option').each(function () {
+                                    var input = $('input[value="' + $(this).val() + '"]');
+                                    input.prop('disabled', false);
+                                    input.parent('li').addClass('disabled');
+                                });
+                            }
+                        }
+                    });
+                }
+                else {
+                    popover.updateStudentList(id, idtime, 0);
+
                     $('.webui-popover-content:last .form-horizontal #student div #pop_student').multiselect('destroy').multiselect({
                         enableFiltering: true,
                         onChange: function (option, checked) {
@@ -82,6 +142,10 @@ popover = {
                     });
                 }
             });
+
+            /**
+             * popover initialisation
+             */
             $('.webui-popover-content:last .form-horizontal #student div #pop_student').multiselect({
                 enableFiltering: true,
                 onChange: function (option, checked) {
@@ -114,6 +178,11 @@ popover = {
             });
         });
     },
+    /**
+     * General update template interface, all update demand will be sent here
+     * @param divid
+     * @param parent
+     */
     updatePopoverContent: function (divid, parent) {
         if (typeof(tdb) == "undefined") {
             console.log("Teacher database is not loaded, please make sure it is loaded!");
@@ -146,6 +215,10 @@ popover = {
 
     },
 
+    /**
+     * Update the time corresponding the cell chosen
+     * @param hour
+     */
     updateHour: function (hour) {
         var when = document.getElementById('when');
         while (when.firstChild) {
@@ -168,6 +241,10 @@ popover = {
         when.appendChild(divHour);
     },
 
+    /**
+     * Update the teacher name corresponding the cell chosen
+     * @param theTeacher
+     */
     showTheTeacher: function (theTeacher) {
         if (typeof(theTeacher) == 'undefined') {
             console.log('error with loading the teacher');
@@ -193,6 +270,15 @@ popover = {
         teacher.appendChild(divTeacher);
     },
 
+    /**
+     * show options for student list, there are three situation:
+     * 1. first time for creating a class, radio by default is on drive class, so it will be a simple option
+     * 2. when click on a existed drive class, should show simple option
+     * 3. whe click on a existed lecture class, should give multiple options
+     * @param type
+     * @param id
+     * @param idtime
+     */
     showStudentList: function (type, id, idtime) {
         if (typeof(sdb) == "undefined") {
             console.log("Student database is not loaded, please make sure it is loaded!");
@@ -207,11 +293,14 @@ popover = {
         var text1 = document.createTextNode('Students: ');
         var divStudent = document.createElement('div');
         divStudent.setAttribute('class', 'col-sm-6 col-sm-offset-2');
+        // type success stand for drive class, reference could be found with Bootstrap's table css
         if (type == 'success') {
             var theClass = cdb.getClassById(id);
             var text2 = document.createTextNode(theClass.client);
             divStudent.appendChild(text2);
-        } else if (type == 'info') {
+        }
+        // info stand for lecture class
+        else if (type == 'info') {
             var studentsName1 = document.createElement('select');
             for (var i = 0; i < studentList.length; i++) {
                 var studentOption1 = document.createElement('option');
@@ -228,7 +317,9 @@ popover = {
             studentsName1.setAttribute('id', 'pop_student');
             studentsName1.setAttribute('multiple', 'multiple');
             divStudent.appendChild(studentsName1);
-        } else {
+        }
+        // the last left should be the creation part
+        else {
             var studentsName2 = document.createElement('select');
             for (var i = 0; i < studentList.length; i++) {
                 if (!studentList[i].hasClassAlready(idtime)) {
@@ -249,7 +340,13 @@ popover = {
         students.appendChild(divStudent);
     },
 
-    updateStudentList: function(id, idtime) {
+    /**
+     * Update the list is called by radio listener defined in the beginning of this file, only triggered by changing
+     * class option
+     * @param id
+     * @param idtime
+     */
+    updateStudentList: function (id, idtime, type) {
         var studentList = sdb.studentList;
         $('.webui-popover-content:last .form-horizontal #student div').empty();
         var studentsName1 = document.createElement('select');
@@ -268,10 +365,16 @@ popover = {
             }
         }
         studentsName1.setAttribute('id', 'pop_student');
-        studentsName1.setAttribute('multiple', 'multiple');
+        if(type == 1) {
+            studentsName1.setAttribute('multiple', 'multiple');
+        }
         $('.webui-popover-content:last .form-horizontal #student div')[0].appendChild(studentsName1);
     },
 
+    /**
+     * Generate the radio options for classes
+     * @param type
+     */
     showClassOption: function (type) {
         var classes = document.getElementById('classes');
         while (classes.firstChild) {
@@ -303,6 +406,10 @@ popover = {
         classes.appendChild(divClasses);
     },
 
+    /**
+     * Controlling static buttons presence in different popover
+     * @param type
+     */
     buttonControl: function (type) {
         if (type != null) {
             $("#create").hide();
@@ -315,6 +422,11 @@ popover = {
         }
     },
 
+    /**
+     * Transform the number to string
+     * @param month
+     * @returns {*}
+     */
     showMonth: function (month) {
         var monthText;
         switch (month) {
