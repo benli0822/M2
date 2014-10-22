@@ -1,12 +1,19 @@
 /**
  * Created by jamesRMBP on 21/10/14.
  */
-
+$('#secretarySearch').on('click', function(){
+    secretaryMenuController.updateStudentList();
+    $("#student_list").multiselect('destroy').multiselect({
+            buttonWidth: '200px',
+            enableFiltering: true,
+            maxHeight: 200
+        }
+    );
+    secretaryMenuController.display_client_info();
+})
 
 secretaryMenuController = {
     display_client_info: function () {
-        this.updateStudentList();
-        $("#student_list").multiselect();
         //remove className
         document.getElementById("secretaryHomePageTab").className =
             document.getElementById("secretaryHomePageTab").className.replace
@@ -102,8 +109,12 @@ secretaryMenuController = {
         $("#secretarySearchStudent").fadeOut();
     },
 
-    updateStudentList: function() {
+    updateStudentList: function () {
         var studentsName1 = document.getElementById('student_list');
+        //clear all the existeds elements
+        while (studentsName1.hasChildNodes()) {
+            studentsName1.removeChild(studentsName1.firstChild);
+        }
         var studentList = sdb.studentList;
         for (var i = 0; i < studentList.length; i++) {
             var studentOption1 = document.createElement('option');

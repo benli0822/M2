@@ -3,7 +3,7 @@
  */
 buttonAction = {
     search_button_click: function () {
-        var search_text = document.getElementById("searchTextField").value;
+        var search_text = $("#student_list").val();
 
         var name = search_text.split(".");
         console.log("you want to search : " + search_text);
