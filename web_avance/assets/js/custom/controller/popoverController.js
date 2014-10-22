@@ -36,9 +36,20 @@ popover = {
             $('.webui-popover-content:last .form-horizontal #classes div input[name=optionClass]').on('click', function(){
                 console.log($(this).val())
                 if($(this).val() == 'lecture') {
-                    var id = $('.webui-popover-content:last .form-horizontal #when div p').val() + "." + $('.webui-popover-content:last .form-horizontal #teacher div p').val();
+                    var time = $('.webui-popover-content:last .form-horizontal #when div #pop_time').attr('value');
+                    var teacher = $('.webui-popover-content:last .form-horizontal #teacher div #pop_teacher').text();
+
+                    var times = time.split(".");
+                    var year = times[0];
+                    var month = times[1];
+                    var day = times[2];
+                    var hour = times[3];
+
+                    var id = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour +
+                        "." + teacher;
+                    var idtime = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour;
                     console.log(id);
-                    popover.updateStudentList(id);
+                    popover.updateStudentList(id, idtime);
                     $('.webui-popover-content:last .form-horizontal #student div #pop_student').multiselect('destroy').multiselect({
                         enableFiltering: true,
                         onChange: function (option, checked) {
@@ -238,21 +249,23 @@ popover = {
         students.appendChild(divStudent);
     },
 
-    updateStudentList: function(id) {
+    updateStudentList: function(id, idtime) {
         var studentList = sdb.studentList;
         $('.webui-popover-content:last .form-horizontal #student div').empty();
         var studentsName1 = document.createElement('select');
         for (var i = 0; i < studentList.length; i++) {
-            var studentOption1 = document.createElement('option');
-            var text3 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
-            studentOption1.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
-            var index = studentList[i].hasClass(id);
-            console.log(index);
-            if (index != -1) {
-                studentOption1.setAttribute('selected', 'selected');
+            if (!studentList[i].hasClassAlready(idtime)) {
+                var studentOption1 = document.createElement('option');
+                var text3 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
+                studentOption1.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
+                var index = studentList[i].hasClass(id);
+                console.log(index);
+                if (index != -1) {
+                    studentOption1.setAttribute('selected', 'selected');
+                }
+                studentOption1.appendChild(text3);
+                studentsName1.appendChild(studentOption1);
             }
-            studentOption1.appendChild(text3);
-            studentsName1.appendChild(studentOption1);
         }
         studentsName1.setAttribute('id', 'pop_student');
         studentsName1.setAttribute('multiple', 'multiple');
