@@ -5,7 +5,8 @@
 
 secretaryMenuController = {
     display_client_info: function () {
-
+        this.updateStudentList();
+        $("#student_list").multiselect();
         //remove className
         document.getElementById("secretaryHomePageTab").className =
             document.getElementById("secretaryHomePageTab").className.replace
@@ -99,8 +100,19 @@ secretaryMenuController = {
         $("#secretaryAddStudent").fadeOut();
         $("#secretaryAddTeacher").fadeIn();
         $("#secretarySearchStudent").fadeOut();
-    }
+    },
 
+    updateStudentList: function() {
+        var studentsName1 = document.getElementById('student_list');
+        var studentList = sdb.studentList;
+        for (var i = 0; i < studentList.length; i++) {
+            var studentOption1 = document.createElement('option');
+            var text3 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
+            studentOption1.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
+            studentOption1.appendChild(text3);
+            studentsName1.appendChild(studentOption1);
+        }
+    }
 }
 
 
