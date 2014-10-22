@@ -1,13 +1,6 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 08/10/14.
  */
-
-$(document).keypress(function (e) {
-    if (e.which == 13) {
-        $("#loginButton").click();
-    }
-});
-
 buttonAction = {
     search_button_click: function () {
         var search_text = document.getElementById("searchTextField").value;
