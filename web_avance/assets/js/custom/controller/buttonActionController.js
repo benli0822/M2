@@ -229,6 +229,33 @@ buttonAction = {
                 $(".alert").fadeOut();
             }, 2000);
         }
+    },
+
+    delete_a_class_button_click:function(){
+        //delete action fire
+        var time = $('.webui-popover-content:last .form-horizontal #when div #pop_time').attr('value');
+        var teacher = $('.webui-popover-content:last .form-horizontal #teacher div #pop_teacher').text();
+
+        var times = time.split(".");
+        var year = times[0];
+        var month = times[1];
+        var day = times[2];
+        var hour = times[3];
+
+        var id = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour +
+            "." + teacher;
+        var theDate = new Date(year, month, day, hour);
+
+        
+
+        //update secretary table
+
+        table.updateSecretaryTableContent(theDate);
+        //hide popover
+        $('.webui-popover:last').hide();
+
+
+
     }
 }
 
