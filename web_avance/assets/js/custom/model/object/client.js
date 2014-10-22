@@ -45,6 +45,25 @@ Client.prototype.hasClassAlready = function (time) {
     return false;
 }
 
+Client.prototype.deleteClass = function (id) {
+
+    // remove from student
+    for (var j = 0; j < this.list_class.length; j++) {
+        if (this.list_class[j] === id) {
+            this.list_class.splice(j, 1);
+        }
+    }
+
+    // if there is no class, clear local storage
+    if (this.list_class.length == 0) {
+        var key = lwrapper.getPersonKey(this);
+        localStorage.removeItem(key);
+    }
+
+    console.log('class ' + id + " deleted from " + this.say());
+
+}
+
 ClientObjectHelper = {
     createFromObject: function (object) {
         var theClient = new Client(object.firstName, object.lastName, object.address, object.pwd);
