@@ -47,7 +47,7 @@ secretaryMenuController = {
 
         //add className
         document.getElementById("secretaryHomePageTab").className = "active";
-
+        $('#dp1').datepicker('setValue', new Date());
         $("#secretaryHomePage").fadeIn();
         $("#secretaryAddStudent").fadeOut();
         $("#secretaryAddTeacher").fadeOut();
@@ -68,8 +68,8 @@ secretaryMenuController = {
         document.getElementById("secretarySearchStudentTab").className =
             document.getElementById("secretarySearchStudentTab").className.replace
             (/(?:^|\s)active(?!\S)/g, '');
-        document.getElementById("secretaryHomePage").className =
-            document.getElementById("secretaryHomePage").className.replace
+        document.getElementById("secretaryHomePageTab").className =
+            document.getElementById("secretaryHomePageTab").className.replace
             (/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryAddTeacherTab").className =
             document.getElementById("secretaryAddTeacherTab").className.replace
@@ -92,8 +92,8 @@ secretaryMenuController = {
         document.getElementById("secretarySearchStudentTab").className =
             document.getElementById("secretarySearchStudentTab").className.replace
             (/(?:^|\s)active(?!\S)/g, '');
-        document.getElementById("secretaryHomePage").className =
-            document.getElementById("secretaryHomePage").className.replace
+        document.getElementById("secretaryHomePageTab").className =
+            document.getElementById("secretaryHomePageTab").className.replace
             (/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryAddStudentTab").className =
             document.getElementById("secretaryAddStudentTab").className.replace
