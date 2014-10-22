@@ -33,7 +33,46 @@ document.addEventListener('click', function (e) {
 popover = {
     initPopover: function () {
         $('div.show-pop').webuiPopover('destroy').webuiPopover(settings).on('click', function () {
+            $('.webui-popover-content:last .form-horizontal #classes div input[name=optionClass]').on('click', function(){
+                console.log($(this).val())
+                if($(this).val() == 'lecture') {
+                    var id = $('.webui-popover-content:last .form-horizontal #when div p').val() + "." + $('.webui-popover-content:last .form-horizontal #teacher div p').val();
+                    console.log(id);
+                    popover.updateStudentList(id);
+                    $('.webui-popover-content:last .form-horizontal #student div #pop_student').multiselect('destroy').multiselect({
+                        enableFiltering: true,
+                        onChange: function (option, checked) {
+// Get selected options.
+                            var selectedOptions = $('.webui-popover-content:last .form-horizontal #student div #pop_student option:selected');
+
+                            if (selectedOptions.length >= 4) {
+// Disable all other checkboxes.
+                                var nonSelectedOptions = $('.webui-popover-content:last .form-horizontal #student div #pop_student option').filter(function () {
+                                    return !$(this).is(':selected');
+                                });
+
+                                var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
+                                nonSelectedOptions.each(function () {
+                                    var input = $('input[value="' + $(this).val() + '"]');
+                                    input.prop('disabled', true);
+                                    input.parent('li').addClass('disabled');
+                                });
+                            }
+                            else {
+// Enable all checkboxes.
+                                var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
+                                $('.webui-popover-content:last .form-horizontal #student div #pop_student option').each(function () {
+                                    var input = $('input[value="' + $(this).val() + '"]');
+                                    input.prop('disabled', false);
+                                    input.parent('li').addClass('disabled');
+                                });
+                            }
+                        }
+                    });
+                }
+            });
             $('.webui-popover-content:last .form-horizontal #student div #pop_student').multiselect({
+                enableFiltering: true,
                 onChange: function (option, checked) {
 // Get selected options.
                     var selectedOptions = $('.webui-popover-content:last .form-horizontal #student div #pop_student option:selected');
@@ -197,6 +236,27 @@ popover = {
         studentsLabel.setAttribute('class', 'col-sm-2 col-sm-offset-2 control-label');
         students.appendChild(studentsLabel);
         students.appendChild(divStudent);
+    },
+
+    updateStudentList: function(id) {
+        var studentList = sdb.studentList;
+        $('.webui-popover-content:last .form-horizontal #student div').empty();
+        var studentsName1 = document.createElement('select');
+        for (var i = 0; i < studentList.length; i++) {
+            var studentOption1 = document.createElement('option');
+            var text3 = document.createTextNode(studentList[i].firstName + "." + studentList[i].lastName);
+            studentOption1.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
+            var index = studentList[i].hasClass(id);
+            console.log(index);
+            if (index != -1) {
+                studentOption1.setAttribute('selected', 'selected');
+            }
+            studentOption1.appendChild(text3);
+            studentsName1.appendChild(studentOption1);
+        }
+        studentsName1.setAttribute('id', 'pop_student');
+        studentsName1.setAttribute('multiple', 'multiple');
+        $('.webui-popover-content:last .form-horizontal #student div')[0].appendChild(studentsName1);
     },
 
     showClassOption: function (type) {

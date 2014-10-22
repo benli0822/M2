@@ -54,14 +54,36 @@ buttonAction = {
         console.log(day);
         console.log(hour);
 
-
-        var id = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour +
-            "." + teacher;
-
         var theDate = new Date(year, month, day, hour);
-        cdb.addAClass(selectedClass, teacher, selectedStudents, 1, hour, theDate, selectedClass, sdb, tdb);
-        table.updateSecretaryTableContent(theDate);
-        $('.webui-popover:last').hide();
+
+        if(selectedClass == "drive") {
+            cdb.addAClass(selectedClass, teacher, selectedStudents, 1, hour, theDate, selectedClass, sdb, tdb);
+            table.updateSecretaryTableContent(theDate);
+            $('.webui-popover:last').hide();
+        } else {
+            var id = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour +
+                "." + teacher;
+
+            if (selectedStudents.length != 0) {
+                for (var i = 0; i < selectedStudents.length; i++) {
+                    console.log(cdb.getClassById(id));
+                    if (cdb.getClassById(id) != null) {
+                        var studentName = selectedStudents[i].split(".");
+                        var theStudent = sdb.find_a_client_by_name(studentName[0], studentName[1]);
+                        console.log(theStudent);
+                        if (theStudent.hasClass(id) == -1) {
+                            theStudent.list_class.push(id);
+                            console.log("added to" + theStudent);
+                        }
+                    } else {
+                        cdb.addAClass(selectedClass, teacher, selectedStudents[i], 1, hour, theDate, selectedClass, sdb, tdb);
+                    }
+                }
+                table.updateSecretaryTableContent(theDate);
+                $('.webui-popover:last').hide();
+            }
+        }
+
     },
 
     edit_event_click: function () {
