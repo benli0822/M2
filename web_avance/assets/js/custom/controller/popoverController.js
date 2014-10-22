@@ -294,9 +294,11 @@ popover = {
         if (type != null) {
             $("#create").hide();
             $("#edit").show();
+            $("#delete").show();
         } else {
             $("#create").show();
             $("#edit").hide();
+            $("#delete").hide();
         }
     },
 

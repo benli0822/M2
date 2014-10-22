@@ -247,6 +247,7 @@ buttonAction = {
         var theDate = new Date(year, month, day, hour);
 
         
+        cdb.deleteClass(id);
 
         //update secretary table
 

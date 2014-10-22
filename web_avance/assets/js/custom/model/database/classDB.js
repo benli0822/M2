@@ -189,6 +189,51 @@ ClassDB.prototype.hasClass = function (theClass) {
     return false;
 };
 
+ClassDB.prototype.deleteClass = function(id) {
+
+    // remove from teacher
+    for(var i = 0 ; i< tdb.teacherList.length; i ++) {
+        var theTeacher = tdb.teacherList[i];
+        for(var j = 0 ; j<theTeacher.list_class.length; j++) {
+            if(theTeacher.list_class[j] === id) {
+                theTeacher.list_class.splice(j, 1);
+            }
+        }
+        // if there is no class, clear local storage
+        if(theTeacher.list_class.length == 0) {
+            var key = lwrapper.getPersonKey(theTeacher);
+            localStorage.removeItem(key);
+        }
+    }
+
+    // remove from student
+    for(var i = 0 ; i< sdb.studentList.length; i ++) {
+        var theStudent = sdb.studentList[i];
+        for(var j = 0 ; j<theStudent.list_class.length; j++) {
+            if(theStudent.list_class[j] === id) {
+                theStudent.list_class.splice(j, 1);
+            }
+        }
+
+        // if there is no class, clear local storage
+        if(theStudent.list_class.length == 0) {
+            var key = lwrapper.getPersonKey(theStudent);
+            localStorage.removeItem(key);
+        }
+    }
+
+
+    for(var i = 0 ; i < this.classList.length; i ++) {
+        var theClass = this.classList[i];
+        if(theClass.id == id) {
+            this.classList.splice(i, 1);
+        }
+    }
+
+    console.log('class ' + id + " deleted");
+
+}
+
 // close database operation, 1 for local storage, 0 for abandon memory change
 ClassDB.prototype.close = function (option) {
     if (typeof(Storage) == "undefined") {
