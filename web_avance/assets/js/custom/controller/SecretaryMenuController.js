@@ -1,6 +1,10 @@
 /**
  * Created by CHENG Xiaojun et JIN benli on 21/10/14.
  */
+/**
+ * Secretary menu controller for switching between all secretary fonctions
+ *
+ */
 $('#secretarySearch').on('click', function () {
     secretaryMenuController.updateStudentList();
     $("#student_list").multiselect('destroy').multiselect({
@@ -13,6 +17,9 @@ $('#secretarySearch').on('click', function () {
 })
 
 secretaryMenuController = {
+    /**
+     * display the client information : search all class of a client
+     */
     display_client_info: function () {
         //remove className
         document.getElementById("secretaryHomePageTab").className =
@@ -33,6 +40,9 @@ secretaryMenuController = {
         $("#secretaryAddTeacher").fadeOut();
         $("#secretarySearchStudent").fadeIn();
     },
+    /**
+     * display the home page of secretary : select a date, then display all the class for teachers. secretary can ADD/EDIT/DELETE class information.
+     */
     display_home_page_for_secretary: function () {
         //remove className
         document.getElementById("secretarySearchStudentTab").className =
@@ -62,6 +72,9 @@ secretaryMenuController = {
         $(".alert").alert();
 
     },
+    /**
+     * display the add student page
+     */
     display_add_student_page: function () {
 
         //remove className
@@ -85,7 +98,9 @@ secretaryMenuController = {
         $("#secretarySearchStudent").fadeOut();
 
     },
-
+    /**
+     * display the add teacher page
+     */
     display_add_teacher_page: function () {
 
         //remove className

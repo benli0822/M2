@@ -1,6 +1,10 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 15/10/14.
  */
+/**
+ * the control for update the student list table or secretary table
+ * @type {{addTimeLine: addTimeLine, createSecretaryTable: createSecretaryTable, updateSecretaryTableContent: updateSecretaryTableContent, update_student_table: update_student_table, update_student_table_for_secretary: update_student_table_for_secretary}}
+ */
 table = {
     /**
      * table tool for adding time line into the first column
