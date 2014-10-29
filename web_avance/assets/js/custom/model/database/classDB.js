@@ -79,7 +79,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             //1. create the class locally
             var newDriveClass = new DriveClass(name, duration, teacher, client, startTime, date);
             console.log("Adding " + teacher + "'s " + name + "'s " + type + " class" + " start from "
-                + startTime + " last for " + duration + " with " + client);
+            + startTime + " last for " + duration + " with " + client);
             //2. add the class to the temp list
             try {
                 if (!this.hasClass(newDriveClass)) {
@@ -132,7 +132,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
             //1. create the class locally
             var newLectureClass = new LectureClass(name, duration, teacher, client, startTime, date);
             console.log("Adding " + teacher + "'s " + name + "'s " + type + " class" + " start from "
-                + startTime + " last for " + duration + " with " + client);
+            + startTime + " last for " + duration + " with " + client);
             //2. add the class to the temp list
             try {
                 if (!this.hasClass(newLectureClass)) {

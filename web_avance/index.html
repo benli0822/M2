@@ -10,52 +10,15 @@
     <link rel="stylesheet" href="assets/css/datepicker.css">
     <link rel="stylesheet" href="assets/css/jquery.webui-popover.css">
     <link rel="stylesheet" href="assets/css/bootstrap-multiselect.css">
-    <!--<style>-->
-    <!--table {-->
-    <!--border-spacing: 0;-->
-    <!--border-collapse: collapse;-->
-    <!--overflow: hidden;-->
-    <!--z-index: 1;-->
-    <!--}-->
-
-    <!--td, th, .row, .col, .ff-fix {-->
-    <!--cursor: pointer;-->
-    <!--padding: 10px;-->
-    <!--position: relative;-->
-    <!--}-->
-
-    <!--td:hover::before,-->
-    <!--.row:hover::before,-->
-    <!--.ff-fix:hover::before {-->
-    <!--background-color: #ffa;-->
-    <!--content: '\00a0';-->
-    <!--height: 100%;-->
-    <!--left: -5000px;-->
-    <!--position: absolute;-->
-    <!--top: 0;-->
-    <!--width: 10000px;-->
-    <!--z-index: -1;-->
-    <!--}-->
-
-    <!--td:hover::after,-->
-    <!--.col:hover::after,-->
-    <!--.ff-fix:hover::after {-->
-    <!--background-color: #ffa;-->
-    <!--content: '\00a0';-->
-    <!--height: 10000px;-->
-    <!--left: 0;-->
-    <!--position: absolute;-->
-    <!--top: -5000px;-->
-    <!--width: 100%;-->
-    <!--z-index: -1;-->
-    <!--}-->
-
-    <!--</style>-->
 </head>
 <body>
 <div id="disconnectDiv" style="display: none">
-    <button type="button" class="btn btn-warning" id="login_button" onclick="buttonAction.logout_button_click()">Logout</button>
-    <button type="button" class="btn btn-danger" id="login_without_save_button" onclick="buttonAction.logout_button_click_without_save()">Logout without save to DB</button>
+    <button type="button" class="btn btn-warning" id="login_button" onclick="buttonAction.logout_button_click()">
+        Logout
+    </button>
+    <button type="button" class="btn btn-danger" id="login_without_save_button"
+            onclick="buttonAction.logout_button_click_without_save()">Logout without save to DB
+    </button>
 </div>
 
 <div id="loginModule">
@@ -66,7 +29,9 @@
         <input type="username" autofocus="" required="" name="username" placeholder="Please insert your name！"
                id="username" class="username form-control">
         <input type="password" required="" placeholder="Password" class="form-control password" id="password">
-        <button type="button" class="btn btn-lg btn-primary btn-block" id="loginButton" onclick="buttonAction.login_button_click()">Sign in</button>
+        <button type="button" class="btn btn-lg btn-primary btn-block" id="loginButton"
+                onclick="buttonAction.login_button_click()">Sign in
+        </button>
         <div class="form-control" style="display: none;" id="loginError"></div>
         <div class="error">
             <span>just for test. (admin,usr: admin.admin pwd: admin),(client, usr:stu1.stu1 . pwd:123 ) )</span></div>
@@ -96,7 +61,8 @@
 </div>
 <div id="secretaryModule" style="display: none">
     <div role="alert" class="alert alert-warning fade in" style="display: none">
-        <button data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <button data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+        </button>
         <strong>Holy guacamole!</strong>
     </div>
     <!--<div id="home" class="tab-pane fade active in">
@@ -159,6 +125,7 @@
     <!-- addStudent-->
     <div id="secretaryAddStudent">
         <h3>Add a student</h3>
+
         <div class="col-lg-3">
             <div class="input-group">
                 <span class="input-group-addon">firstname</span>
@@ -188,13 +155,16 @@
         </div>
         <br> </br>
 
-        <button type="button" class="btn btn-danger" onclick="secretaryMenuController.display_home_page_for_secretary()">Cancel</button>
+        <button type="button" class="btn btn-danger"
+                onclick="secretaryMenuController.display_home_page_for_secretary()">Cancel
+        </button>
         <button type="button" class="btn active" onclick="buttonAction.add_Student_button_click()">Save</button>
     </div>
 
     <!-- addTeacher-->
     <div id="secretaryAddTeacher">
         <h3>Add a Teacher</h3>
+
         <div class="col-lg-3">
             <div class="input-group">
                 <span class="input-group-addon">firstname</span>
@@ -223,10 +193,11 @@
             </div>
         </div>
         <br> </br>
-        <button type="button" class="btn btn-danger" onclick="secretaryMenuController.display_home_page_for_secretary()">Cancel</button>
+        <button type="button" class="btn btn-danger"
+                onclick="secretaryMenuController.display_home_page_for_secretary()">Cancel
+        </button>
         <button type="button" class="btn active" onclick="buttonAction.add_Teacher_button_click()">Save</button>
     </div>
-
 
 
 </div>
@@ -243,10 +214,14 @@
         </div>
         <div class="form-group">
             <div class="col-sm-8 col-sm-offset-4">
-                <button type="button" class="btn btn-success" id="create" onclick="buttonAction.create_event_click()">Create Event
+                <button type="button" class="btn btn-success" id="create" onclick="buttonAction.create_event_click()">
+                    Create Event
                 </button>
-                <button type="button" class="btn btn-primary" id="edit" onclick="buttonAction.edit_event_click()">Edit Event</button>
-                <button type="button" class="btn btn-danger" id="delete" onclick="buttonAction.delete_a_class_button_click()">Delete Event
+                <button type="button" class="btn btn-primary" id="edit" onclick="buttonAction.edit_event_click()">Edit
+                    Event
+                </button>
+                <button type="button" class="btn btn-danger" id="delete"
+                        onclick="buttonAction.delete_a_class_button_click()">Delete Event
                 </button>
             </div>
         </div>

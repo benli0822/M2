@@ -30,13 +30,13 @@
         url: '',
         type: 'html',
         template: '<div class="webui-popover">' +
-            '<div class="arrow"></div>' +
-            '<div class="webui-popover-inner">' +
-            '<a href="#" class="close">x</a>' +
-            '<h3 class="webui-popover-title"></h3>' +
-            '<div class="webui-popover-content"><i class="glyphicon glyphicon-refresh"></i> <p></p></div>' +
-            '</div>' +
-            '</div>'
+        '<div class="arrow"></div>' +
+        '<div class="webui-popover-inner">' +
+        '<a href="#" class="close">x</a>' +
+        '<h3 class="webui-popover-title"></h3>' +
+        '<div class="webui-popover-content"><i class="glyphicon glyphicon-refresh"></i> <p></p></div>' +
+        '</div>' +
+        '</div>'
     };
 
 
@@ -141,7 +141,7 @@
             if (!this.options.arrow) {
                 $target.find('.arrow').remove();
             }
-            $target.remove().css({ top: -1000, left: -1000, display: 'block' }).appendTo(document.body);
+            $target.remove().css({top: -1000, left: -1000, display: 'block'}).appendTo(document.body);
             targetWidth = $target[0].offsetWidth;
             targetHeight = $target[0].offsetHeight;
             placement = this.getPlacement(elementPos, targetHeight);
@@ -341,21 +341,27 @@
                     position = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - targetWidth / 2};
                     break;
                 case 'top':
-                    position = {top: pos.top - targetHeight - arrowSize, left: pos.left + pos.width / 2 - targetWidth / 2};
+                    position = {
+                        top: pos.top - targetHeight - arrowSize,
+                        left: pos.left + pos.width / 2 - targetWidth / 2
+                    };
                     break;
                 case 'left':
-                    position = {top: pos.top + pos.height / 2 - targetHeight / 2, left: pos.left - targetWidth - arrowSize};
+                    position = {
+                        top: pos.top + pos.height / 2 - targetHeight / 2,
+                        left: pos.left - targetWidth - arrowSize
+                    };
                     break;
                 case 'right':
                     position = {top: pos.top + pos.height / 2 - targetHeight / 2, left: pos.left + pos.width};
                     break;
                 case 'top-right':
                     position = {top: pos.top - targetHeight - arrowSize, left: pos.left};
-                    arrowOffset = {left: elementW / 2 };
+                    arrowOffset = {left: elementW / 2};
                     break;
                 case 'top-left':
                     position = {top: pos.top - targetHeight - arrowSize, left: pos.left - targetWidth + pos.width};
-                    arrowOffset = {left: targetWidth - elementW / 2 };
+                    arrowOffset = {left: targetWidth - elementW / 2};
                     break;
                 case 'bottom-right':
                     position = {top: pos.top + pos.height, left: pos.left};
@@ -371,7 +377,7 @@
                     break;
                 case 'right-bottom':
                     position = {top: pos.top, left: pos.left + pos.width};
-                    arrowOffset = {top: elementH / 2 };
+                    arrowOffset = {top: elementH / 2};
                     break;
                 case 'left-top':
                     position = {top: pos.top - targetHeight + pos.height, left: pos.left - targetWidth};
@@ -379,14 +385,14 @@
                     break;
                 case 'left-bottom':
                     position = {top: pos.top, left: pos.left - targetWidth};
-                    arrowOffset = {top: elementH / 2 };
+                    arrowOffset = {top: elementH / 2};
                     break;
 
             }
             return {position: position, arrowOffset: arrowOffset};
         }
     };
-    $.fn[ pluginName ] = function (options) {
+    $.fn[pluginName] = function (options) {
         return this.each(function () {
             var webuiPopover = $.data(this, 'plugin_' + pluginName);
             if (!webuiPopover) {

@@ -52,7 +52,7 @@ SecretaryDB.prototype.addSecretary = function (firstName, lastName, address, pwd
     // create a Secretary and save it to db
     var newSecretary = new Secretary(firstName, lastName, address, pwd);
     console.log("Adding Secretary:" + firstName + " " + lastName +
-        " who live in " + address);
+    " who live in " + address);
     // add the Secretary into temp list
     try {
         if (!this.hasSecretary(newSecretary)) {

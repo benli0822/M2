@@ -365,7 +365,7 @@ popover = {
             }
         }
         studentsName1.setAttribute('id', 'pop_student');
-        if(type == 1) {
+        if (type == 1) {
             studentsName1.setAttribute('multiple', 'multiple');
         }
         $('.webui-popover-content:last .form-horizontal #student div')[0].appendChild(studentsName1);
@@ -392,13 +392,13 @@ popover = {
             divClasses.appendChild(text3);
         } else {
             divClasses.innerHTML = '<label>' +
-                '<input type="radio" name="optionClass" id="drive" value="drive" checked>' +
-                'Drive Class' +
-                '</label>';
+            '<input type="radio" name="optionClass" id="drive" value="drive" checked>' +
+            'Drive Class' +
+            '</label>';
             divClasses.innerHTML += '<label>' +
-                '<input type="radio" name="optionClass" id="lecture" value="lecture">' +
-                'Lecture Class' +
-                '</label>';
+            '<input type="radio" name="optionClass" id="lecture" value="lecture">' +
+            'Lecture Class' +
+            '</label>';
         }
         classesLabel.appendChild(text1);
         classesLabel.setAttribute('class', 'col-sm-2 col-sm-offset-2 control-label');

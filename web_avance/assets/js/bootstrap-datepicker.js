@@ -159,7 +159,7 @@
 
         update: function (newDate) {
             this.date = DPGlobal.parseDate(
-                    typeof newDate === 'string' ? newDate : (this.isInput ? this.element.prop('value') : this.element.data('date')),
+                typeof newDate === 'string' ? newDate : (this.isInput ? this.element.prop('value') : this.element.data('date')),
                 this.format
             );
             this.viewDate = new Date(this.date.getFullYear(), this.date.getMonth(), 1, 0, 0, 0, 0);
@@ -266,8 +266,8 @@
                             case 'next':
                                 this.viewDate['set' + DPGlobal.modes[this.viewMode].navFnc].call(
                                     this.viewDate,
-                                        this.viewDate['get' + DPGlobal.modes[this.viewMode].navFnc].call(this.viewDate) +
-                                        DPGlobal.modes[this.viewMode].navStep * (target[0].className === 'prev' ? -1 : 1)
+                                    this.viewDate['get' + DPGlobal.modes[this.viewMode].navFnc].call(this.viewDate) +
+                                    DPGlobal.modes[this.viewMode].navStep * (target[0].className === 'prev' ? -1 : 1)
                                 );
                                 this.fill();
                                 this.set();
@@ -443,33 +443,33 @@
             return date.join(format.separator);
         },
         headTemplate: '<thead>' +
-            '<tr>' +
-            '<th class="prev">&lsaquo;</th>' +
-            '<th colspan="5" class="switch"></th>' +
-            '<th class="next">&rsaquo;</th>' +
-            '</tr>' +
-            '</thead>',
+        '<tr>' +
+        '<th class="prev">&lsaquo;</th>' +
+        '<th colspan="5" class="switch"></th>' +
+        '<th class="next">&rsaquo;</th>' +
+        '</tr>' +
+        '</thead>',
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>'
     };
     DPGlobal.template = '<div class="datepicker dropdown-menu">' +
-        '<div class="datepicker-days">' +
-        '<table class=" table-condensed">' +
-        DPGlobal.headTemplate +
-        '<tbody></tbody>' +
-        '</table>' +
-        '</div>' +
-        '<div class="datepicker-months">' +
-        '<table class="table-condensed">' +
-        DPGlobal.headTemplate +
-        DPGlobal.contTemplate +
-        '</table>' +
-        '</div>' +
-        '<div class="datepicker-years">' +
-        '<table class="table-condensed">' +
-        DPGlobal.headTemplate +
-        DPGlobal.contTemplate +
-        '</table>' +
-        '</div>' +
-        '</div>';
+    '<div class="datepicker-days">' +
+    '<table class=" table-condensed">' +
+    DPGlobal.headTemplate +
+    '<tbody></tbody>' +
+    '</table>' +
+    '</div>' +
+    '<div class="datepicker-months">' +
+    '<table class="table-condensed">' +
+    DPGlobal.headTemplate +
+    DPGlobal.contTemplate +
+    '</table>' +
+    '</div>' +
+    '<div class="datepicker-years">' +
+    '<table class="table-condensed">' +
+    DPGlobal.headTemplate +
+    DPGlobal.contTemplate +
+    '</table>' +
+    '</div>' +
+    '</div>';
 
 }(window.jQuery);

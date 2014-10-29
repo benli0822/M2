@@ -356,7 +356,7 @@ if (typeof jQuery === "undefined") {
             $nextIndicator && $nextIndicator.addClass('active')
         }
 
-        var slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }) // yes, "slid"
+        var slidEvent = $.Event('slid.bs.carousel', {relatedTarget: relatedTarget, direction: direction}) // yes, "slid"
         if ($.support.transition && this.$element.hasClass('slide')) {
             $next.addClass(type)
             $next[0].offsetWidth // force reflow
@@ -486,7 +486,7 @@ if (typeof jQuery === "undefined") {
                 $('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
             }
 
-            var relatedTarget = { relatedTarget: this }
+            var relatedTarget = {relatedTarget: this}
             $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
 
             if (e.isDefaultPrevented()) return
@@ -538,7 +538,7 @@ if (typeof jQuery === "undefined") {
         $(backdrop).remove()
         $(toggle).each(function () {
             var $parent = getParent($(this))
-            var relatedTarget = { relatedTarget: this }
+            var relatedTarget = {relatedTarget: this}
             if (!$parent.hasClass('open')) return
             $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
             if (e.isDefaultPrevented()) return
@@ -647,7 +647,7 @@ if (typeof jQuery === "undefined") {
 
     Modal.prototype.show = function (_relatedTarget) {
         var that = this
-        var e = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
+        var e = $.Event('show.bs.modal', {relatedTarget: _relatedTarget})
 
         this.$element.trigger(e)
 
@@ -684,7 +684,7 @@ if (typeof jQuery === "undefined") {
 
             that.enforceFocus()
 
-            var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
+            var e = $.Event('shown.bs.modal', {relatedTarget: _relatedTarget})
 
             transition ?
                 that.$element.find('.modal-dialog') // wait for modal to slide in
@@ -867,7 +867,7 @@ if (typeof jQuery === "undefined") {
         var $this = $(this)
         var href = $this.attr('href')
         var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) // strip for ie7
-        var option = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
+        var option = $target.data('bs.modal') ? 'toggle' : $.extend({remote: !/#/.test(href) && href}, $target.data(), $this.data())
 
         if ($this.is('a')) e.preventDefault()
 
@@ -951,7 +951,7 @@ if (typeof jQuery === "undefined") {
         }
 
         this.options.selector ?
-            (this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' })) :
+            (this._options = $.extend({}, this.options, {trigger: 'manual', selector: ''})) :
             this.fixTitle()
     }
 
@@ -1053,7 +1053,7 @@ if (typeof jQuery === "undefined") {
 
             $tip
                 .detach()
-                .css({ top: 0, left: 0, display: 'block' })
+                .css({top: 0, left: 0, display: 'block'})
                 .addClass(placement)
                 .data('bs.' + this.type, this)
 
@@ -1069,10 +1069,10 @@ if (typeof jQuery === "undefined") {
                 var parentDim = this.getPosition($parent)
 
                 placement = placement == 'bottom' && pos.top + pos.height + actualHeight - parentDim.scroll > parentDim.height ? 'top' :
-                        placement == 'top' && pos.top - parentDim.scroll - actualHeight < 0 ? 'bottom' :
+                    placement == 'top' && pos.top - parentDim.scroll - actualHeight < 0 ? 'bottom' :
                         placement == 'right' && pos.right + actualWidth > parentDim.width ? 'left' :
-                        placement == 'left' && pos.left - actualWidth < parentDim.left ? 'right' :
-                    placement
+                            placement == 'left' && pos.left - actualWidth < parentDim.left ? 'right' :
+                                placement
 
                 $tip
                     .removeClass(orgPlacement)
@@ -1206,19 +1206,22 @@ if (typeof jQuery === "undefined") {
             scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop(),
             width: isBody ? $(window).width() : $element.outerWidth(),
             height: isBody ? $(window).height() : $element.outerHeight()
-        }, isBody ? { top: 0, left: 0 } : $element.offset())
+        }, isBody ? {top: 0, left: 0} : $element.offset())
     }
 
     Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
-        return placement == 'bottom' ? { top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2  } :
-                placement == 'top' ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2  } :
-                placement == 'left' ? { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth } :
-            /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width   }
+        return placement == 'bottom' ? {top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2} :
+            placement == 'top' ? {top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2} :
+                placement == 'left' ? {top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth} :
+                    /* placement == 'right' */ {
+                    top: pos.top + pos.height / 2 - actualHeight / 2,
+                    left: pos.left + pos.width
+                }
 
     }
 
     Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
-        var delta = { top: 0, left: 0 }
+        var delta = {top: 0, left: 0}
         if (!this.$viewport) return delta
 
         var viewportPadding = this.options.viewport && this.options.viewport.padding || 0
@@ -1251,7 +1254,7 @@ if (typeof jQuery === "undefined") {
         var o = this.options
 
         title = $e.attr('data-original-title')
-            || (typeof o.title == 'function' ? o.title.call($e[0]) : o.title)
+        || (typeof o.title == 'function' ? o.title.call($e[0]) : o.title)
 
         return title
     }
@@ -1649,7 +1652,7 @@ if (typeof jQuery === "undefined") {
         if (typeof offsetBottom == 'function') offsetBottom = offset.bottom(this.$element)
 
         var affix = this.unpin != null && (scrollTop + this.unpin <= position.top) ? false :
-                offsetBottom != null && (position.top + this.$element.height() >= scrollHeight - offsetBottom) ? 'bottom' :
+            offsetBottom != null && (position.top + this.$element.height() >= scrollHeight - offsetBottom) ? 'bottom' :
                 offsetTop != null && (scrollTop <= offsetTop) ? 'top' : false
 
         if (this.affixed === affix) return
@@ -2099,7 +2102,7 @@ if (typeof jQuery === "undefined") {
 
         for (var name in transEndEventNames) {
             if (el.style[name] !== undefined) {
-                return { end: transEndEventNames[name] }
+                return {end: transEndEventNames[name]}
             }
         }
 
