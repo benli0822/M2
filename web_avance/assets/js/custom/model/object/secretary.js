@@ -17,6 +17,10 @@ Secretary = function (firstName, lastName, address, pwd) {
     });
 }
 
+/**
+ * Hierarchy from person
+ * @type {Person}
+ */
 Secretary.prototype = new Person(this.firstName, this.lastName, this.address, this.pwd);
 
 Secretary.prototype.equals = function (theperson) {
@@ -24,7 +28,10 @@ Secretary.prototype.equals = function (theperson) {
         && (this.address == theperson.address) && (this.pwd === theperson.pwd);
 }
 
-
+/**
+ * A cast object helper, used by database object when retreating at beginning
+ * @type {{createFromObject: Function}}
+ */
 SecretaryObjectHelper = {
     createFromObject: function (object) {
         var theSecretary = new Secretary(object.firstName, object.lastName, object.address, object.pwd);

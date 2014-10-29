@@ -1,9 +1,17 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 09/10/14.
  */
+/**
+ * Student Database model, created for all database operation
+ * @constructor
+ */
 StudentDB = function () {
     var _studentList = [];
 
+    /**
+     * At each time we initialise the database object, we should treat from the local storage to figure out if we have
+     * some record to restore to keep the continuity of our program
+     */
     if (localStorage.getItem('studentList') != null) {
         var localStudentList = JSON.parse(localStorage.getItem('studentList'));
         for (var i = 0; i < localStudentList.length; i++) {
@@ -14,15 +22,15 @@ StudentDB = function () {
         }
     }
 
-    //TODO removeStudent
-
     this.__defineGetter__("studentList", function () {
         return _studentList;
     });
 
 };
 
-// initialization for student database, normally only needed once
+/**
+ * Initialization for student database, normally only needed once
+ */
 StudentDB.prototype.init = function () {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
@@ -33,12 +41,18 @@ StudentDB.prototype.init = function () {
     localStorage.setItem('studentList', JSON.stringify(this.studentList));
 };
 
-// add a student into memory without charge local storage
+/**
+ * Add a student into memory without charge local storage
+ * @param firstName
+ * @param lastName
+ * @param address
+ * @param pwd
+ */
 StudentDB.prototype.addStudent = function (firstName, lastName, address, pwd) {
     // create a student and save it to db
     var newStudent = new Client(firstName, lastName, address, pwd);
     console.log("Adding student:" + firstName + " " + lastName +
-        " who live in " + address);
+    " who live in " + address);
     // add the student into temp list
     try {
         if (!this.hasStudent(newStudent)) {
@@ -53,13 +67,21 @@ StudentDB.prototype.addStudent = function (firstName, lastName, address, pwd) {
     }
 };
 
-// add a student object into memory
+/**
+ * Add a student object into memory
+ * @param student
+ */
 StudentDB.prototype.addStudentObject = function (student) {
     if (!this.hasStudent(student)) {
         this.studentList.push(student);
     }
 };
-
+/**
+ * Comparison function
+ * @param a
+ * @param b
+ * @returns {number}
+ */
 function compare(a, b) {
 
     tempA = cdb.getClassById(a).date.valueOf();
@@ -73,12 +95,22 @@ function compare(a, b) {
     return 0;
 }
 
+/**
+ * Sort class by time, so it will print logical
+ * @param student
+ */
 StudentDB.prototype.sortClasslist = function (student) {
     student.list_class.sort(compare);
     console.log(student.list_class);
 }
 
 
+/**
+ * Find a student by his first name and last name
+ * @param firstname
+ * @param lastname
+ * @returns {*}
+ */
 StudentDB.prototype.find_a_client_by_name = function (firstname, lastname) {
     //1.get the client list
     var clientlistobject = this.studentList;
@@ -96,7 +128,13 @@ StudentDB.prototype.find_a_client_by_name = function (firstname, lastname) {
 
 };
 
-
+/**
+ * Student's login validation function
+ * @param firstname
+ * @param lastname
+ * @param password
+ * @returns {boolean}
+ */
 StudentDB.prototype.student_login = function (firstname, lastname, password) {
     //1.get the client list
     var clientlistobject = this.studentList;
@@ -112,22 +150,11 @@ StudentDB.prototype.student_login = function (firstname, lastname, password) {
     return false;
 };
 
-StudentDB.prototype.find_a_client_by_firstname = function (firstname) {
-    //1.get the client list
-    var clientlistobject = this.studentList;
-
-    //Traverse in the client list to find the client
-    for (var i = 0; i <= clientlistobject.length - 1; i++) {
-        if (clientlistobject[i].firstName == firstname) {
-            //we have find the teacher add the class to this client
-            //console.log("find the client" + firstname);
-            return clientlistobject[i];
-        }
-    }
-};
-
-
-// check a student's existence
+/**
+ * Check a student's existence
+ * @param student
+ * @returns {boolean}
+ */
 StudentDB.prototype.hasStudent = function (student) {
     if (typeof(this.studentList) != 'undefined') {
         var _studentList = this.studentList;
@@ -142,7 +169,10 @@ StudentDB.prototype.hasStudent = function (student) {
 };
 
 
-// close database operation, 1 for local storage, 0 for abandon memory change
+/**
+ * Close database operation, 1 for local storage, 0 for abandon memory change
+ * @param option
+ */
 StudentDB.prototype.close = function (option) {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
@@ -153,6 +183,7 @@ StudentDB.prototype.close = function (option) {
         case 1 :
         {
             var seen = [];
+            // to get rid of storing cyclic object, the second parameter filter objects
             localStorage.setItem("studentList", JSON.stringify(this.studentList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
@@ -161,6 +192,11 @@ StudentDB.prototype.close = function (option) {
                 }
                 return val
             }));
+            /**
+             * but with the first storage, we have filtered all object, including arrays, so this time we will store all
+             * list into local storage with using the predefined wrapper function, each person with a class list will be
+             * treat individually
+             */
             for (var i = 0; i < this.studentList.length; i++) {
                 var theStudent = this.studentList[i];
                 if (theStudent.list_class.length != 0) {

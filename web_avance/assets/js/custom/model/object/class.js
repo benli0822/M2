@@ -76,7 +76,6 @@ Class = function (name, teacher, duration, client, startTime, date) {
     })
 }
 
-
 Class.prototype.equals = function (theclass) {
     return this.id === theclass.id;
 }
@@ -110,6 +109,10 @@ DriveClass.prototype.equals = function (theclass) {
     return this.id === theclass.id;
 }
 
+/**
+ * A cast object helper, used by database object when retreating at beginning
+ * @type {{createFromObject: Function}}
+ */
 DriveClassObjectHelper = {
     createFromObject: function (object) {
         var theDriveClass = new DriveClass(object.name, object.duration, object.teacher, object.client, object.startTime, new Date(object.date));
@@ -122,7 +125,6 @@ DriveClassObjectHelper = {
  * @param name
  * @constructor
  */
-// TODO lecture class should be one teacher with multiple students, should we consider the max number of a class?
 LectureClass = function (name, duration, teacher, client, startTime, date) {
     Class.call(this, name, teacher, duration, client, startTime, date);
     this._type = "lecture";
@@ -135,12 +137,17 @@ LectureClass = function (name, duration, teacher, client, startTime, date) {
     })
 }
 
+
 LectureClass.prototype = new Class(this.name, this.teacher, this.duration, this.client, this.startTime, this.date);
 
 LectureClass.prototype.equals = function (theclass) {
     return this.id === theclass.id;
 }
 
+/**
+ * A cast object helper, used by database object when retreating at beginning
+ * @type {{createFromObject: Function}}
+ */
 LectureClassObjectHelper = {
     createFromObject: function (object) {
         var theLectureClass = new LectureClass(object.name, object.duration, object.teacher, object.client, object.startTime, new Date(object.date));

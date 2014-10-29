@@ -21,6 +21,10 @@ Teacher = function (firstName, lastName, address, pwd) {
 
 }
 
+/**
+ * Hierarchy from person
+ * @type {Person}
+ */
 Teacher.prototype = new Person(this.firstName, this.lastName, this.address, this.pwd);
 
 Teacher.prototype.equals = function (theperson) {
@@ -31,6 +35,10 @@ Teacher.prototype.addAClassToTeacher = function (the_class) {
     this.list_class.push(the_class.id);
 }
 
+/**
+ * A cast object helper, used by database object when retreating at beginning
+ * @type {{createFromObject: Function}}
+ */
 TeacherObjectHelper = {
     createFromObject: function (object) {
         var theTeacher = new Teacher(object.firstName, object.lastName, object.address, object.pwd);

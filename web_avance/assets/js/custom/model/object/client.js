@@ -21,6 +21,10 @@ Client = function (firstName, lastName, address, pwd) {
     });
 }
 
+/**
+ * Hierarchy from person
+ * @type {Person}
+ */
 Client.prototype = new Person(this.firstName, this.lastName, this.address, this.pwd);
 
 Client.prototype.equals = function (theperson) {
@@ -66,6 +70,10 @@ Client.prototype.deleteClass = function (id) {
 
 }
 
+/**
+ * A cast object helper, used by database object when retreating at beginning
+ * @type {{createFromObject: Function}}
+ */
 ClientObjectHelper = {
     createFromObject: function (object) {
         var theClient = new Client(object.firstName, object.lastName, object.address, object.pwd);

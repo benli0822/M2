@@ -2,9 +2,17 @@
  * Created by CHENG Xiaojun et JIN Benli on 15/10/14.
  */
 
+/**
+ * Secretary Database model, created for all database operation
+ * @constructor
+ */
 SecretaryDB = function () {
     var _secretaryList = [];
 
+    /**
+     * At each time we initialise the database object, we should treat from the local storage to figure out if we have
+     * some record to restore to keep the continuity of our program
+     */
     if (localStorage.getItem('secretaryList') != null) {
         var localSecretaryList = JSON.parse(localStorage.getItem('secretaryList'));
         for (var i = 0; i < localSecretaryList.length; i++) {
@@ -20,6 +28,9 @@ SecretaryDB = function () {
     });
 };
 
+/**
+ * Initialisation for local storage
+ */
 SecretaryDB.prototype.init = function () {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
@@ -30,8 +41,13 @@ SecretaryDB.prototype.init = function () {
     localStorage.setItem('secretaryList', JSON.stringify(this.secretaryList));
 };
 
-
-// add a Secretary into memory without charge local storage
+/**
+ * Add a Secretary into memory without charge local storage
+ * @param firstName
+ * @param lastName
+ * @param address
+ * @param pwd
+ */
 SecretaryDB.prototype.addSecretary = function (firstName, lastName, address, pwd) {
     // create a Secretary and save it to db
     var newSecretary = new Secretary(firstName, lastName, address, pwd);
@@ -49,13 +65,24 @@ SecretaryDB.prototype.addSecretary = function (firstName, lastName, address, pwd
         document.getElementsByTagName("body").item[0].appendChild(errorElement1);
     }
 };
-// add a student object into memory
+
+/**
+ * Add a student object into memory
+ * @param value
+ */
 SecretaryDB.prototype.addSecretaryObject = function (value) {
     if (!this.hasSecretary(value)) {
         this.secretaryList.push(value);
     }
 };
-//check the existance of a secretary
+
+/**
+ * Check the existance of a secretary
+ * @param firstname
+ * @param lastname
+ * @param password
+ * @returns {boolean}
+ */
 SecretaryDB.prototype.login_secretary = function (firstname, lastname, password) {
     //1.get the secretary list
     var secretarylistobject = this.secretaryList;
@@ -69,6 +96,7 @@ SecretaryDB.prototype.login_secretary = function (firstname, lastname, password)
 
     return false;
 };
+
 /**
  * Login validation
  * @param firstName
@@ -94,7 +122,11 @@ SecretaryDB.prototype.validate = function (firstName, lastName) {
 }
 
 
-// check a student's existence
+/**
+ * Check a student's existence
+ * @param secretary
+ * @returns {boolean}
+ */
 SecretaryDB.prototype.hasSecretary = function (secretary) {
     if (typeof(this.secretaryList) != 'undefined') {
         var _secretaryList = this.secretaryList;
@@ -109,7 +141,10 @@ SecretaryDB.prototype.hasSecretary = function (secretary) {
 };
 
 
-// close database operation, 1 for local storage, 0 for abandon memory change
+/**
+ * Close database operation, 1 for local storage, 0 for abandon memory change
+ * @param option
+ */
 SecretaryDB.prototype.close = function (option) {
     if (typeof(Storage) == "undefined") {
         // Sorry! No Web Storage support..
