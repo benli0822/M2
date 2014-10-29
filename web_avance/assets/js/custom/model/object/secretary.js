@@ -17,6 +17,8 @@ Secretary = function (firstName, lastName, address, pwd) {
     });
 }
 
+Secretary.prototype = new Person(this.firstName, this.lastName, this.address, this.pwd);
+
 Secretary.prototype.equals = function (theperson) {
     return (this.type === theperson.type) && (this.firstName === theperson.firstName) && (this.lastName === theperson.lastName)
         && (this.address == theperson.address) && (this.pwd === theperson.pwd);

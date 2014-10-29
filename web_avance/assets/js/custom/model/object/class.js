@@ -18,8 +18,8 @@ Class = function (name, teacher, duration, client, startTime, date) {
     this._client = client;
     this._startTime = startTime;
     this._date = date;
-    this._id = date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate() + "." + date.getHours() +
-        "." + teacher;
+    this._id;
+
     /* getter and setter for name */
     this.__defineGetter__("name", function () {
         return this._name;
@@ -70,6 +70,8 @@ Class = function (name, teacher, duration, client, startTime, date) {
 
     /* getter for id */
     this.__defineGetter__("id", function () {
+        this._id = this.date.getFullYear() + "." + (this.date.getMonth() + 1) + "." + this.date.getDate() + "." + this.date.getHours() +
+        "." + this.teacher;
         return this._id;
     })
 }
@@ -102,6 +104,8 @@ DriveClass = function (name, duration, teacher, client, startTime, date) {
     })
 }
 
+DriveClass.prototype = new Class(this.name, this.teacher, this.duration, this.client, this.startTime, this.date);
+
 DriveClass.prototype.equals = function (theclass) {
     return this.id === theclass.id;
 }
@@ -130,6 +134,8 @@ LectureClass = function (name, duration, teacher, client, startTime, date) {
         return this._type = value;
     })
 }
+
+LectureClass.prototype = new Class(this.name, this.teacher, this.duration, this.client, this.startTime, this.date);
 
 LectureClass.prototype.equals = function (theclass) {
     return this.id === theclass.id;
