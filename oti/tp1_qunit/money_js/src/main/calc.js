@@ -15,26 +15,23 @@ calc.prototype.computeResult = function (form) {
     c1 = form.elements['c1'].value;
     c2 = form.elements['c2'].value;
 
-    //console.log(v1);
-    //console.log(v2);
-
     // Tester si c'est un nombre normal
     if(!isNumber(v1) || !isNumber(v2)) {
         alert("Please insert number");
+        this.message = "Please insert number";
         return;
     }
 
     // Donc on va lancer des comparasions possibles, si'l marche pas, on arret le calcul.
     if (v1 < 0 || v2 < 0) {
         alert("Value can not be negative");
+        this.message = "Value can not be negative";
         return;
     }
 
-    //console.log(c1);
-    //console.log(c2);
-
-    if (c1 != c2) {
+    if (c1 !== c2) {
         alert("Not the same currency");
+        this.message = "Not the same currency";
         return;
     }
 

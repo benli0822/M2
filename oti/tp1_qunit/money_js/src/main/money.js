@@ -1,7 +1,7 @@
 var money = function (v, curr) {
     this.v = v;
     this.curr = curr;
-}
+};
 
 money.prototype.getCurrency =
     function () {
@@ -20,10 +20,10 @@ money.prototype.getValue =
  */
 money.prototype.equals =
     function (otherM) {
-        if (typeof(otherM) == "undefined") {
+        if (typeof(otherM) === "undefined") {
             return false;
         }
-        return (otherM.getValue() == this.getValue() &&
+        return (otherM.getValue() === this.getValue() &&
             otherM.getCurrency().toLowerCase() === this.getCurrency().toLowerCase());
     };
 
