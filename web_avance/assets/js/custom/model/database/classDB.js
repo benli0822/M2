@@ -23,6 +23,8 @@ ClassDB = function () {
                 case "lecture" :
                     theClass = LectureClassObjectHelper.createFromObject(localClassList[i]);
                     break;
+                default :
+                    break;
             }
             if (!this.hasClass(theClass)) {
                 console.log(theClass);
@@ -265,7 +267,7 @@ ClassDB.prototype.deleteClass = function (id) {
 
     console.log('class ' + id + " deleted");
 
-}
+};
 
 /**
  * close database operation, 1 for local storage, 0 for abandon memory change

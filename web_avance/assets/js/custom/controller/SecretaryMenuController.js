@@ -14,7 +14,7 @@ $('#secretarySearch').on('click', function () {
         }
     );
     secretaryMenuController.display_client_info();
-})
+});
 
 secretaryMenuController = {
     /**
@@ -139,6 +139,6 @@ secretaryMenuController = {
             studentsName1.appendChild(studentOption1);
         }
     }
-}
+};
 
 

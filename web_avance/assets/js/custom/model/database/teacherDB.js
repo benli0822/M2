@@ -131,7 +131,7 @@ TeacherDB.prototype.close = function (option) {
             localStorage.setItem("teacherList", JSON.stringify(this.teacherList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
-                        return
+                        return;
                     seen.push(val)
                 }
                 return val

@@ -102,7 +102,7 @@ function compare(a, b) {
 StudentDB.prototype.sortClasslist = function (student) {
     student.list_class.sort(compare);
     console.log(student.list_class);
-}
+};
 
 
 /**
@@ -187,7 +187,7 @@ StudentDB.prototype.close = function (option) {
             localStorage.setItem("studentList", JSON.stringify(this.studentList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
-                        return
+                        return;
                     seen.push(val)
                 }
                 return val

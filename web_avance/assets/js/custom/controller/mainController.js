@@ -110,7 +110,6 @@ test = {
         main.addStudentObject(stu1);
         main.addStudentObject(stu2);
 
-        //TODO new Date the month is start with 0, so the oct is the 9
         var testdate1 = new Date(2014, 9, 18, 8, 0, 0, 0);
 
         var testdate2 = new Date(2014, 9, 18, 9, 0, 0, 0);

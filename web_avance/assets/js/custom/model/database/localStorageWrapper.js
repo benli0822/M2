@@ -17,7 +17,10 @@ LocalStorageWrapper = function () {
  * @param person can be student or teacher
  * @returns {string} person class list key
  */
-LocalStorageWrapper.prototype.getPersonKey = function (person) {
+//noinspection UnterminatedStatementJS
+LocalStorageWrapper.prototype.getPersonKey = function (person)
+{
+    //noinspection UnnecessaryLocalVariableJS
     var key = person.firstName + "" + person.lastName + "" + person.address;
     return key;
-}
+};

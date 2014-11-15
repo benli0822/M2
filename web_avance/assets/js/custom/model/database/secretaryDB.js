@@ -119,7 +119,7 @@ SecretaryDB.prototype.validate = function (firstName, lastName) {
     }
 
     return false;
-}
+};
 
 
 /**
@@ -158,7 +158,7 @@ SecretaryDB.prototype.close = function (option) {
             localStorage.setItem("secretaryList", JSON.stringify(this.secretaryList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
-                        return
+                        return;
                     seen.push(val)
                 }
                 return val

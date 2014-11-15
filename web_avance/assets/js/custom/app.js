@@ -2,7 +2,6 @@
  * Created by CHENG Xiaojun et JIN Benli on 15/10/14.
  */
 
-//localStorage.clear();
 var lwrapper = new LocalStorageWrapper();
 var tdb = new TeacherDB();
 var sdb = new StudentDB();
@@ -25,16 +24,12 @@ window.onload = function () {
     $("#secretaryModule").fadeOut();
     $("#disconnectDiv").fadeOut();
     secretaryMenuController.init_SecretaryMenu();
-    //localStorage.clear();
     test.addTeacherExamples();
     test.addTestDataToDB();
     table.addTimeLine('student_table', 4);
     table.createSecretaryTable('secretary_table');
     table.updateSecretaryTableContent(new Date());
     $('#dp1').datepicker('setValue', new Date());
-    //table.update_student_table(sdb.find_a_client_by_name('stu1', 'stu1'));
-    //table.updateSecretaryTableContent();
-//    popover.updateTableContent();
 
     popover.initPopover();
 };
