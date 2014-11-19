@@ -49,7 +49,7 @@ public class TestLogin {
         WebElement element = driver.findElement(By.id("loginButton"));
         element.click();
 
-        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        // Wait for the page to load, timeout after 30 seconds
         new WebDriverWait(driver, 10).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return d.findElement(By.id("loginError")).isDisplayed();
@@ -84,7 +84,7 @@ public class TestLogin {
         element = driver.findElement(By.id("loginButton"));
         element.click();
 
-        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        // Wait for the page to load, timeout after 30 seconds
         new WebDriverWait(driver, 10).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return d.findElement(By.id("secretary_table")).isDisplayed();
@@ -120,7 +120,7 @@ public class TestLogin {
         element = driver.findElement(By.id("loginButton"));
         element.click();
 
-        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        // Wait for the page to load, timeout after 30 seconds
         new WebDriverWait(driver, 10).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return d.findElement(By.id("studentName")).isDisplayed();
