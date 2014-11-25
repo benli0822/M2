@@ -41,7 +41,7 @@ test("test for creating a secretary from json object", function () {
         }
 
         var createdSecretaryClass = SecretaryObjectHelper.createFromObject(testObject);
-        equal(createdSecretaryClass.firstName, "admin", "created client first name = admin");
+        equal(createdSecretaryClass.firstName, "admin", "created secretary first name = admin");
         equal(createdSecretaryClass.type_of_person, "Secretary", "created secretary type = Secretary");
     }
 );
