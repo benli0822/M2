@@ -12,7 +12,7 @@ test("test for class initialisation for the first time", function () {
         var cdb = new ClassDB();
 
         // here we use a deepEqual for a recursive comparison, especially for an empty array
-        deepEqual(cdb.classList, [], "First time class database store a empty list");
+        deepEqual(cdb.classList, [], "First time class database store an empty list");
     }
 );
 
@@ -43,6 +43,7 @@ test("test for class initialisation with reloading local storage's content", fun
 
         var cdb = new ClassDB();
 
+        //TODO should we add more?
         equal(cdb.classList[0].name, "drive", "Initialisation will take whatever already existed in localStorage");
     }
 );
