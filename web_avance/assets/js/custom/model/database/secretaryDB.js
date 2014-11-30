@@ -98,32 +98,7 @@ SecretaryDB.prototype.login_secretary = function (firstname, lastname, password)
 };
 
 /**
- * Login validation
- * @param firstName
- * @param lastName
- * @returns {boolean}
- */
-SecretaryDB.prototype.validate = function (firstName, lastName) {
-    if (localStorage.getItem('secretaryList') != null) {
-        var _sl = JSON.parse(localStorage.getItem('secretaryList'));
-        for (var i = 0; i < _sl.length; i++) {
-            if (_sl[i].firstName === firstName && _sl[i].lastName === lastName) {
-                return true;
-            }
-        }
-    }
-    for (var j = 0; j < this.secretaryList.length; j++) {
-        if (this.secretaryList[i].firstName === firstName && this.secretaryList[i].lastName === lastName) {
-            return true;
-        }
-    }
-
-    return false;
-};
-
-
-/**
- * Check a student's existence
+ * Check a secretary's existence
  * @param secretary
  * @returns {boolean}
  */
