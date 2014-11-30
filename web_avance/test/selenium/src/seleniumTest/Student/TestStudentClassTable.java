@@ -1,29 +1,23 @@
-package seleniumTest;
-
-
-import static org.junit.Assert.assertEquals;
-
-import java.io.File;
-import java.util.List;
+package seleniumTest.Student;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- * @author CHENG Xiaojun et JIN Benli
- */
+import java.io.File;
+import java.util.List;
 
-public class TestStudent {
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Created by jamesRMBP on 30/11/14.
+ */
+public class TestStudentClassTable {
     WebDriver driver;
 
     @Before
@@ -82,6 +76,49 @@ public class TestStudent {
 
         //if the student information table is shown, we can say the table is loaded correctly
         assertEquals(row_num>1,true);
+
+        new File("/tmp/screenshot_test.jpg").delete();
+    }
+
+
+    @Test
+    public void test_student_table_display_color() throws java.io.IOException {
+
+        driver.get(getURLString());
+
+        //to test all the functions of student we should login firstly
+        loginAsStudent();
+
+
+        //////
+        WebElement table_element = driver.findElement(By.id("student_table"));
+        List<WebElement> tr_collection=table_element.findElements(By.xpath("id('student_table')/tbody/tr"));
+
+        System.out.println("NUMBER OF ROWS IN THIS TABLE = "+tr_collection.size());
+        int row_num,col_num;
+        row_num=0;
+        //get the element of the first tr, just to test the color
+        WebElement trElement = tr_collection.get(row_num);
+
+        //in our case, we use the different class name to display the different color so we just need to get the class name
+        String className = trElement.getAttribute("class");
+
+
+
+
+
+        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        new WebDriverWait(driver, 10).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                return d.findElement(By.id("student_table")).isDisplayed();
+            }
+        });
+
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("/tmp/screenshot_test.jpg"));
+
+        //if the student information table is shown, we can say the table is loaded correctly
+        assertEquals(className,"active");
 
         new File("/tmp/screenshot_test.jpg").delete();
     }
