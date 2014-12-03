@@ -6,7 +6,7 @@ module("teacherDB", {
 //	teardown:function(){alert("teardown class individual test");}
 });
 
-test("test for teacher initialisation for the first time", function () {
+QUnit.test("test for teacher initialisation for the first time", function () {
         localStorage.clear();
 
         var tdb = new TeacherDB();
@@ -16,7 +16,7 @@ test("test for teacher initialisation for the first time", function () {
     }
 );
 
-test("test for teacher initialisation with reloading local storage's content", function () {
+QUnit.test("test for teacher initialisation with reloading local storage's content", function () {
 
     }
 );

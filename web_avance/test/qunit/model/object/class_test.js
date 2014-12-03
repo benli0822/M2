@@ -14,7 +14,6 @@ test("test construct lecture class", function () {
         var c = new LectureClass("OTI", 1, "Bob", "Alice", 8, testDate);
         equal(c.name, "OTI", "name = OTI");
         equal(c.type, "lecture", "type = lecture");
-
     }
 );
 

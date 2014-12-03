@@ -6,7 +6,7 @@ module("classDB", {
 //	teardown:function(){alert("teardown class individual test");}
 });
 
-test("test for class initialisation for the first time", function () {
+QUnit.test("test for class initialisation for the first time", 1, function () {
         localStorage.clear();
 
         var cdb = new ClassDB();
@@ -16,7 +16,7 @@ test("test for class initialisation for the first time", function () {
     }
 );
 
-test("test for class initialisation with reloading local storage's content", function () {
+QUnit.test("test for class initialisation with reloading local storage's content", function () {
 
         localStorage.clear();
 
@@ -49,7 +49,7 @@ test("test for class initialisation with reloading local storage's content", fun
 );
 
 //TODO tdb cdb sdb should work together
-test("test for adding a drive class", function () {
+QUnit.test("test for adding a drive class", function () {
         //localStorage.clear();
         //
         //var sdb = new StudentDB();
@@ -69,7 +69,7 @@ test("test for adding a drive class", function () {
     }
 );
 
-test("test for getting a class by its id", 3, function () {
+QUnit.test("test for getting a class by its id", 3, function () {
 
         // same as test 2 for initialisation
         localStorage.clear();
@@ -106,7 +106,7 @@ test("test for getting a class by its id", 3, function () {
     }
 );
 
-test("test for checking a class's existence", function () {
+QUnit.test("test for checking a class's existence", function () {
         localStorage.clear();
 
         var testDate = new Date(2014, 9, 18, 8, 0, 0, 0);
@@ -124,7 +124,7 @@ test("test for checking a class's existence", function () {
     }
 );
 
-test("test for deleting a class from class database", function () {
+QUnit.test("test for deleting a class from class database", function () {
         localStorage.clear();
 
         var testDate = new Date(2014, 9, 18, 8, 0, 0, 0);

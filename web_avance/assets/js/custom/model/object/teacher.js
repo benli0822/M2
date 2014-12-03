@@ -19,7 +19,7 @@ Teacher = function (firstName, lastName, address, pwd) {
         return this._type_of_person = value;
     });
 
-}
+};
 
 /**
  * Hierarchy from person
@@ -30,10 +30,10 @@ Teacher.prototype = new Person(this.firstName, this.lastName, this.address, this
 Teacher.prototype.equals = function (theperson) {
     return (this.type === theperson.type) && (this.firstName === theperson.firstName) && (this.lastName === theperson.lastName)
         && (this.address == theperson.address) && (this.pwd === theperson.pwd);
-}
+};
 Teacher.prototype.addAClassToTeacher = function (the_class) {
     this.list_class.push(the_class.id);
-}
+};
 
 /**
  * A cast object helper, used by database object when retreating at beginning
@@ -54,4 +54,4 @@ TeacherObjectHelper = {
         }
         return theTeacher;
     }
-}
+};

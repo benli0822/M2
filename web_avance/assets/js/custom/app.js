@@ -2,7 +2,6 @@
  * Created by CHENG Xiaojun et JIN Benli on 15/10/14.
  */
 
-//localStorage.clear();
 var lwrapper = new LocalStorageWrapper();
 var tdb = new TeacherDB();
 var sdb = new StudentDB();

@@ -14,7 +14,7 @@ $('#secretarySearch').on('click', function () {
         }
     );
     secretaryMenuController.display_client_info();
-})
+});
 
 secretaryMenuController = {
     /**
@@ -23,14 +23,11 @@ secretaryMenuController = {
     display_client_info: function () {
         //remove className
         document.getElementById("secretaryHomePageTab").className =
-            document.getElementById("secretaryHomePageTab").className.replace
-            (/(?:^|\s)active(?!\S)/g, '');
+            document.getElementById("secretaryHomePageTab").className.replace(/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryAddStudentTab").className =
-            document.getElementById("secretaryAddStudentTab").className.replace
-            (/(?:^|\s)active(?!\S)/g, '');
+            document.getElementById("secretaryAddStudentTab").className.replace(/(?:^|\s)active(?!\S)/g, '');
         document.getElementById("secretaryAddTeacherTab").className =
-            document.getElementById("secretaryAddTeacherTab").className.replace
-            (/(?:^|\s)active(?!\S)/g, '');
+            document.getElementById("secretaryAddTeacherTab").className.replace(/(?:^|\s)active(?!\S)/g, '');
 
         //add className
         document.getElementById("secretarySearchStudentTab").className = "active";

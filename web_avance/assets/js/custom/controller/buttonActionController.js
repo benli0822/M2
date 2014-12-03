@@ -15,7 +15,7 @@ buttonAction = {
 
 
         var the_student = sdb.find_a_client_by_name(name[0], name[1]);
-        if (typeof(the_student) != 'undefined' && the_student != false) {
+        if (typeof(the_student) !== 'undefined' && !the_student) {
             table.update_student_table_for_secretary(the_student);
             document.getElementById("searchResult").innerHTML = 'here is the search result';
             $(".alert").show();
@@ -262,7 +262,7 @@ buttonAction = {
 
 
     }
-}
+};
 
 
 

@@ -269,4 +269,4 @@ table = {
         }
         table.appendChild(body);
     }
-}
+};

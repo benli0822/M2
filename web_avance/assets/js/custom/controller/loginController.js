@@ -37,4 +37,4 @@ loginController = {
             $("#loginError").text("Wrong username or password, try again").show();
         }
     }
-}
+};

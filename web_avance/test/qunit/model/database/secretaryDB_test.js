@@ -6,7 +6,7 @@ module("secretaryDB", {
 //	teardown:function(){alert("teardown class individual test");}
 });
 
-test("test for secretary initialisation for the first time", function () {
+QUnit.test("test for secretary initialisation for the first time", function () {
         localStorage.clear();
 
         var sedb = new SecretaryDB();
@@ -16,7 +16,7 @@ test("test for secretary initialisation for the first time", function () {
     }
 );
 
-test("test for secretary initialisation with reloading local storage's content", function () {
+QUnit.test("test for secretary initialisation with reloading local storage's content", function () {
 
         localStorage.clear();
 
@@ -43,7 +43,7 @@ test("test for secretary initialisation with reloading local storage's content",
     }
 );
 
-test("test for adding a secretary", 3, function () {
+QUnit.test("test for adding a secretary", 3, function () {
         localStorage.clear();
 
         var sedb = new SecretaryDB();
@@ -56,7 +56,7 @@ test("test for adding a secretary", 3, function () {
     }
 );
 
-test("test for adding a secretary object", 3, function () {
+QUnit.test("test for adding a secretary object", 3, function () {
         localStorage.clear();
 
         var testSecretary = new Secretary("test", "test", "lille", "test");
@@ -71,7 +71,7 @@ test("test for adding a secretary object", 3, function () {
     }
 );
 
-test("test login", 2, function () {
+QUnit.test("test login", 2, function () {
         localStorage.clear();
 
         var testSecretary = new Secretary("test", "test", "lille", "test");
@@ -87,7 +87,7 @@ test("test login", 2, function () {
     }
 );
 
-test("test a secretary's existence", 2, function () {
+QUnit.test("test a secretary's existence", 2, function () {
         localStorage.clear();
 
         var testSecretary = new Secretary("test", "test", "lille", "test");
@@ -103,7 +103,7 @@ test("test a secretary's existence", 2, function () {
     }
 );
 
-test("test secretary close operation", function () {
+QUnit.test("test secretary close operation", function () {
         localStorage.clear();
 
         var testSecretary = new Secretary("test", "test", "lille", "test");

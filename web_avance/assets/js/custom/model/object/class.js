@@ -12,7 +12,7 @@
  * @constructor
  */
 Class = function (name, teacher, duration, client, startTime, date) {
-    this._name = name; // class's name
+    this._name = name;
     this._teacher = teacher;
     this._duration = duration;
     this._client = client;
@@ -48,6 +48,7 @@ Class = function (name, teacher, duration, client, startTime, date) {
     this.__defineGetter__("client", function () {
         return this._client;
     });
+
     this.__defineSetter__("client", function (value) {
         return this._client = value;
     });
@@ -58,7 +59,7 @@ Class = function (name, teacher, duration, client, startTime, date) {
     });
     this.__defineSetter__("startTime", function (value) {
         return this._startTime = value;
-    })
+    });
 
     /* getter and setter for date */
     this.__defineGetter__("date", function () {
@@ -66,7 +67,7 @@ Class = function (name, teacher, duration, client, startTime, date) {
     });
     this.__defineSetter__("date", function (value) {
         return this._date = value;
-    })
+    });
 
     /* getter for id */
     this.__defineGetter__("id", function () {
@@ -74,14 +75,13 @@ Class = function (name, teacher, duration, client, startTime, date) {
         "." + this.teacher;
         return this._id;
     })
-}
+};
 
 Class.prototype.equals = function (theclass) {
     return this.id === theclass.id;
-}
+};
 
-/**
- * A representation for drive class
+/** * A representation for drive class
  * @param name
  * @param duration
  * @param teacher
@@ -101,16 +101,16 @@ DriveClass = function (name, duration, teacher, client, startTime, date) {
     this.__defineSetter__("type", function (value) {
         return this._type = value;
     })
-}
+};
 
 DriveClass.prototype = new Class(this.name, this.teacher, this.duration, this.client, this.startTime, this.date);
 
 DriveClass.prototype.equals = function (theclass) {
     return this.id === theclass.id;
-}
+};
 
 /**
- * A cast object helper, used by database object when retreating at beginning
+  A cast object helper, used by database object when retreating at beginning
  * @type {{createFromObject: Function}}
  */
 DriveClassObjectHelper = {
@@ -118,10 +118,10 @@ DriveClassObjectHelper = {
         var theDriveClass = new DriveClass(object.name, object.duration, object.teacher, object.client, object.startTime, new Date(object.date));
         return theDriveClass;
     }
-}
+};
 
 /**
- * A representation for lecture class
+ *A representation for lecture class
  * @param name
  * @constructor
  */
@@ -135,17 +135,17 @@ LectureClass = function (name, duration, teacher, client, startTime, date) {
     this.__defineSetter__("type", function (value) {
         return this._type = value;
     })
-}
+};
 
 
 LectureClass.prototype = new Class(this.name, this.teacher, this.duration, this.client, this.startTime, this.date);
 
 LectureClass.prototype.equals = function (theclass) {
     return this.id === theclass.id;
-}
+};
 
 /**
- * A cast object helper, used by database object when retreating at beginning
+ * Acast object helper, used by database object when retreating at beginning
  * @type {{createFromObject: Function}}
  */
 LectureClassObjectHelper = {
@@ -153,5 +153,5 @@ LectureClassObjectHelper = {
         var theLectureClass = new LectureClass(object.name, object.duration, object.teacher, object.client, object.startTime, new Date(object.date));
         return theLectureClass;
     }
-}
+};
 

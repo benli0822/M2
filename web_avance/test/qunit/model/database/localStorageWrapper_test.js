@@ -6,7 +6,7 @@ module("localStorageWrapper", {
 //	teardown:function(){alert("teardown class individual test");}
 });
 
-test("test for wrapper function", function () {
+QUnit.test("test for wrapper function", function () {
         var lswrapper = new LocalStorageWrapper();
 
         var student = new Client("bob","bob","Lille","bob");

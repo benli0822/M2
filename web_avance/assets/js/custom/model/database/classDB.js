@@ -16,13 +16,10 @@ ClassDB = function () {
         var localClassList = JSON.parse(localStorage.getItem('classList'));
         for (var i = 0; i < localClassList.length; i++) {
             var theClass;
-            switch (localClassList[i].type) {
-                case "drive" :
-                    theClass = DriveClassObjectHelper.createFromObject(localClassList[i]);
-                    break;
-                case "lecture" :
-                    theClass = LectureClassObjectHelper.createFromObject(localClassList[i]);
-                    break;
+            if (localClassList[i].type === "drive") {
+                theClass = DriveClassObjectHelper.createFromObject(localClassList[i]);
+            } else if (localClassList[i].type === "lecture") {
+                theClass = LectureClassObjectHelper.createFromObject(localClassList[i]);
             }
             if (!this.hasClass(theClass)) {
                 console.log(theClass);
