@@ -27,6 +27,10 @@ public class TestSecretaryHomePage {
     @Before
     public void createDriver() {
         driver = new FirefoxDriver();
+        driver.get(getURLString());
+        //to test all the functions of secretary we should login firstly
+        loginAsTeacher();
+
     }
 
     @After
@@ -43,17 +47,12 @@ public class TestSecretaryHomePage {
     @Test
     public void test_home_page_display_datapicker() throws java.io.IOException {
 
-        driver.get(getURLString());
-
-        //to test all the functions of secretary we should login firstly
-        loginAsTeacher();
-
 
         //////get the data picker element
         WebElement dp = driver.findElement(By.id("dp1"));
 
 
-        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        // Wait for the page to load, timeout after 30 seconds, stop when element  present
         new WebDriverWait(driver, 10).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return d.findElement(By.id("dp1")).isDisplayed();
@@ -63,7 +62,7 @@ public class TestSecretaryHomePage {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile, new File("/tmp/screenshot_test.jpg"));
 
-        //if the student information table is shown, we can say the table is loaded correctly
+        //if the datapicker is shown, we can say the datapicker is loaded correctly
         assertEquals(driver.findElement(By.id("dp1")).isDisplayed(), true);
 
         new File("/tmp/screenshot_test.jpg").delete();
@@ -71,17 +70,11 @@ public class TestSecretaryHomePage {
 
     /**
      * test for add a class action
+     *
      * @throws java.io.IOException
      */
     @Test
     public void test_home_page_add_a_class() throws java.io.IOException {
-
-        driver.get(getURLString());
-
-        //to test all the functions of secretary we should login firstly
-        loginAsTeacher();
-
-
         //////get the table element which we will add a class
         WebElement table_element = driver.findElement(By.xpath("(//div[@id='00'])[2]"));
 
@@ -91,7 +84,7 @@ public class TestSecretaryHomePage {
         WebElement create_button = driver.findElement(By.xpath("//div[2]/div/form/div[5]/div/button"));
         create_button.click();
 
-        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        // Wait for the page to load, timeout after 30 seconds, stop when element  present
         new WebDriverWait(driver, 30).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return driver.findElement(By.xpath("(//div[@id='00'])[2]")).isDisplayed();
@@ -109,16 +102,11 @@ public class TestSecretaryHomePage {
 
     /**
      * test the usage of radio box to select which type of class will be added
+     *
      * @throws java.io.IOException
      */
     @Test
     public void test_home_page_add_a_lecture_class() throws java.io.IOException {
-
-        driver.get(getURLString());
-
-        //to test all the functions of secretary we should login firstly
-        loginAsTeacher();
-
         //////get the table element which we will add a class
         WebElement table_element = driver.findElement(By.xpath("(//div[@id='00'])[2]"));
         table_element.click();
@@ -131,7 +119,7 @@ public class TestSecretaryHomePage {
         WebElement create_button = driver.findElement(By.xpath("//div[2]/div/form/div[5]/div/button"));
         create_button.click();
 
-        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        // Wait for the page to load, timeout after 30 seconds, stop when element  present
         new WebDriverWait(driver, 30).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return driver.findElement(By.xpath("(//div[@id='00'])[2]")).isDisplayed();
@@ -149,16 +137,11 @@ public class TestSecretaryHomePage {
 
     /**
      * test the open and close of the popover
+     *
      * @throws java.io.IOException
      */
     @Test
     public void test_home_page_open_and_close_popover() throws java.io.IOException {
-
-        driver.get(getURLString());
-
-        //to test all the functions of secretary we should login firstly
-        loginAsTeacher();
-
         //////get the table element which we will add a class
         WebElement table_element = driver.findElement(By.xpath("(//div[@id='00'])[2]"));
         table_element.click();
@@ -168,7 +151,7 @@ public class TestSecretaryHomePage {
         create_button.click();
 
 
-        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        // Wait for the page to load, timeout after 30 seconds, stop when element  present
         new WebDriverWait(driver, 30).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return driver.findElement(By.xpath("(//div[@id='00'])[2]")).isDisplayed();
@@ -183,15 +166,9 @@ public class TestSecretaryHomePage {
 
         new File("/tmp/screenshot_test.jpg").delete();
     }
+
     @Test
     public void test_home_page_delete_a_class() throws java.io.IOException {
-
-        driver.get(getURLString());
-
-        //to test all the functions of secretary we should login firstly
-        loginAsTeacher();
-
-
         //////get the table element which we will add a class
         WebElement table_element = driver.findElement(By.xpath("(//div[@id='00'])[2]"));
 
@@ -212,7 +189,7 @@ public class TestSecretaryHomePage {
         delete_button.click();
 
 
-        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        // Wait for the page to load, timeout after 30 seconds, stop when element  present
         new WebDriverWait(driver, 30).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return driver.findElement(By.xpath("(//div[@id='00'])[2]")).isDisplayed();
@@ -227,6 +204,7 @@ public class TestSecretaryHomePage {
 
         new File("/tmp/screenshot_test.jpg").delete();
     }
+
     /**
      * this function is to the absolute file path of the index.html
      *
