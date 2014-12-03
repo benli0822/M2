@@ -15,7 +15,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by jamesRMBP on 30/11/14.
+ * Created by CHENGXIAOJUN ET JINBENLI on 30/11/14.
  */
 public class TestStudentClassTable {
     WebDriver driver;
