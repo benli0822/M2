@@ -23,6 +23,9 @@ public class TestStudentClassTable {
     @Before
     public void createDriver() {
         driver = new FirefoxDriver();
+        driver.get(getURLString());
+        //to test all the functions of student we should login firstly
+        loginAsStudent();
     }
 
     @After
@@ -37,14 +40,7 @@ public class TestStudentClassTable {
      */
     @Test
     public void test_student_information_table() throws java.io.IOException {
-
-        driver.get(getURLString());
-
-        //to test all the functions of student we should login firstly
-        loginAsStudent();
-
-
-        //////
+  //////
         WebElement table_element = driver.findElement(By.id("student_table"));
         List<WebElement> tr_collection=table_element.findElements(By.xpath("id('student_table')/tbody/tr"));
 
@@ -64,7 +60,7 @@ public class TestStudentClassTable {
             row_num++;
         }
 
-        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        // Wait for the page to load, timeout after 30 seconds, stop when element   present
         new WebDriverWait(driver, 10).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return d.findElement(By.id("student_table")).isDisplayed();
@@ -107,7 +103,7 @@ public class TestStudentClassTable {
 
 
 
-        // Wait for the page to load, timeout after 30 seconds, stop when element Créezunnouveauprojet present
+        // Wait for the page to load, timeout after 30 seconds, stop when element  present
         new WebDriverWait(driver, 10).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return d.findElement(By.id("student_table")).isDisplayed();
