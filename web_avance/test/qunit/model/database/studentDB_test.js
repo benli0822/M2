@@ -1,10 +1,6 @@
 /**
  * Created by benli on 03/12/14.
  */
-test_without_module_is_called = false;
-
-var lwrapper = new LocalStorageWrapper();
-
 module("studensdb", {
 //	setup:function(){alert("setup class individual test");},
 //	teardown:function(){alert("teardown class individual test");}

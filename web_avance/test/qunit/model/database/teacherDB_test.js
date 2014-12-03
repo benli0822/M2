@@ -1,8 +1,6 @@
 /**
  * Created by CHENG Xiaojun et JIN Benli on 29/11/14.
  */
-var lwrapper = new LocalStorageWrapper();
-
 module("teacherDB", {
 //	setup:function(){alert("setup class individual test");},
 //	teardown:function(){alert("teardown class individual test");}
