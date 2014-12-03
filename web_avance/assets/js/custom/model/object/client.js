@@ -21,6 +21,7 @@ Client = function (firstName, lastName, address, pwd) {
     });
 };
 
+//noinspection ThisExpressionReferencesGlobalObjectJS
 /**
  * Hierarchy from person
  * @type {Person}
@@ -61,7 +62,7 @@ Client.prototype.deleteClass = function (id) {
     }
 
     // if there is no class, clear local storage
-    if (this.list_class.length == 0) {
+    if (this.list_class.length === 0) {
         var key = lwrapper.getPersonKey(this);
         localStorage.removeItem(key);
     }
@@ -77,10 +78,9 @@ Client.prototype.deleteClass = function (id) {
 ClientObjectHelper = {
     createFromObject: function (object) {
         var theClient = new Client(object.firstName, object.lastName, object.address, object.pwd);
-        //var key = theClient.firstName + "" + theClient.lastName + "" + theClient.address;
         var key = lwrapper.getPersonKey(theClient);
         var list_class = JSON.parse(localStorage.getItem(key));
-        if (list_class != 'undefined' && list_class != null) {
+        if (list_class !== 'undefined' && list_class !== null) {
             for (var i = 0; i < list_class.length; i++) {
                 console.log(list_class[i]);
                 theClient.list_class.push(list_class[i]);

@@ -32,9 +32,9 @@ SecretaryDB = function () {
  * Initialisation for local storage
  */
 SecretaryDB.prototype.init = function () {
-    if (typeof(Storage) == "undefined") {
+    if (typeof(Storage) === "undefined") {
         // Sorry! No Web Storage support..
-        alert("Your browser don't support local storage");
+        //alert("Your browser don't support local storage");
         return;
     }
     // init secretary list in the db
@@ -89,7 +89,7 @@ SecretaryDB.prototype.login_secretary = function (firstname, lastname, password)
 
     //Traverse in the secretary list to find the secretary
     for (var i = 0; i <= secretarylistobject.length - 1; i++) {
-        if (secretarylistobject[i].firstName == firstname && secretarylistobject[i].lastName == lastname && secretarylistobject[i].pwd == password) {
+        if (secretarylistobject[i].firstName === firstname && secretarylistobject[i].lastName === lastname && secretarylistobject[i].pwd === password) {
             return true;
         }
     }
@@ -119,7 +119,7 @@ SecretaryDB.prototype.validate = function (firstName, lastName) {
     }
 
     return false;
-}
+};
 
 
 /**
@@ -128,7 +128,7 @@ SecretaryDB.prototype.validate = function (firstName, lastName) {
  * @returns {boolean}
  */
 SecretaryDB.prototype.hasSecretary = function (secretary) {
-    if (typeof(this.secretaryList) != 'undefined') {
+    if (typeof(this.secretaryList) !== 'undefined') {
         var _secretaryList = this.secretaryList;
 
         for (var i = 0; i < _secretaryList.length; i++) {
@@ -146,9 +146,9 @@ SecretaryDB.prototype.hasSecretary = function (secretary) {
  * @param option
  */
 SecretaryDB.prototype.close = function (option) {
-    if (typeof(Storage) == "undefined") {
+    if (typeof(Storage) === "undefined") {
         // Sorry! No Web Storage support..
-        alert("Your browser don't support local storage");
+        //alert("Your browser don't support local storage");
         return;
     }
     switch (option) {
@@ -156,14 +156,13 @@ SecretaryDB.prototype.close = function (option) {
         {
             var seen = [];
             localStorage.setItem("secretaryList", JSON.stringify(this.secretaryList, function (key, val) {
-                if (typeof val == "object") {
+                if (typeof val === "object") {
                     if (seen.indexOf(val) >= 0)
-                        return
-                    seen.push(val)
+                        return;
+                    seen.push(val);
                 }
                 return val
             }));
-            //localStorage.setItem("secretaryList", JSON.stringify(this.secretaryList));
 
             break;
         }

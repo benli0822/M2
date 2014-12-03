@@ -39,9 +39,9 @@ ClassDB = function () {
  * initialization for class database, normally only needed once
  */
 ClassDB.prototype.init = function () {
-    if (typeof(Storage) == "undefined") {
+    if (typeof(Storage) === "undefined") {
         // Sorry! No Web Storage support..
-        alert("Your browser don't support local storage");
+        //alert("Your browser don't support local storage");
         return;
     }
     //init class List list in the DB
@@ -92,24 +92,23 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 document.getElementsByTagName("body").item[0].appendChild(errorElement1);
             }
             // add class info into student's database
-            if (typeof(sdb) == "undefined") {
+            if (typeof(sdb) === "undefined") {
                 // there should be an exception
-                alert("Check student database js has already loaded!");
+                //alert("Check student database js has already loaded!");
                 return;
             } else {
                 // find the client
 
                 if (sdb.find_a_client_by_name(studentname[0], studentname[1])) {
                     var client_result = sdb.find_a_client_by_name(studentname[0], studentname[1]);
-//                    client_result.list_class.push(newDriveClass);
                     client_result.addAClassToClient(newDriveClass);
                 }
 
             }
             // add class info into teacher's database
-            if (typeof(tdb) == "undefined") {
+            if (typeof(tdb) === "undefined") {
                 // there should be an exception
-                alert("Check teacher database js has already loaded!");
+                //alert("Check teacher database js has already loaded!");
                 return;
             } else {
                 // find the teacher
@@ -145,9 +144,9 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
                 document.getElementsByTagName("body").item[0].appendChild(errorElement1);
             }
             // add class info into student's database
-            if (typeof(sdb) == "undefined") {
+            if (typeof(sdb) === "undefined") {
                 // there should be an exception
-                alert("Check student database js has already loaded!");
+                //alert("Check student database js has already loaded!");
                 return;
             } else {
                 // find the client
@@ -159,9 +158,9 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
 
             }
             // add class info into teacher's database
-            if (typeof(tdb) == "undefined") {
+            if (typeof(tdb) === "undefined") {
                 // there should be an exception
-                alert("Check teacher database js has already loaded!");
+                //alert("Check teacher database js has already loaded!");
                 return;
             } else {
                 // find the teacher
@@ -181,7 +180,7 @@ ClassDB.prototype.addAClass = function (name, teacher, client, duration, startTi
  * @returns {*}
  */
 ClassDB.prototype.getClassById = function (id) {
-    if (typeof(this.classList) != "undefined") {
+    if (typeof(this.classList) !== "undefined") {
         var _classList = this.classList;
 
         for (var i = 0; i < _classList.length; i++) {
@@ -202,7 +201,7 @@ ClassDB.prototype.getClassById = function (id) {
  * @returns {boolean}
  */
 ClassDB.prototype.hasClass = function (theClass) {
-    if (typeof(this.classList) != 'undefined') {
+    if (typeof(this.classList) !== 'undefined') {
         var _classList = this.classList;
 
         for (var i = 0; i < _classList.length; i++) {
@@ -230,7 +229,7 @@ ClassDB.prototype.deleteClass = function (id) {
             }
         }
         // if there is no class, clear local storage
-        if (theTeacher.list_class.length == 0) {
+        if (theTeacher.list_class.length === 0) {
             var key = lwrapper.getPersonKey(theTeacher);
             localStorage.removeItem(key);
         }
@@ -246,7 +245,7 @@ ClassDB.prototype.deleteClass = function (id) {
         }
 
         // if there is no class, clear local storage
-        if (theStudent.list_class.length == 0) {
+        if (theStudent.list_class.length === 0) {
             var key = lwrapper.getPersonKey(theStudent);
             localStorage.removeItem(key);
         }
@@ -255,23 +254,23 @@ ClassDB.prototype.deleteClass = function (id) {
 
     for (var i = 0; i < this.classList.length; i++) {
         var theClass = this.classList[i];
-        if (theClass.id == id) {
+        if (theClass.id === id) {
             this.classList.splice(i, 1);
         }
     }
 
     console.log('class ' + id + " deleted");
 
-}
+};
 
 /**
  * close database operation, 1 for local storage, 0 for abandon memory change
  * @param option
  */
 ClassDB.prototype.close = function (option) {
-    if (typeof(Storage) == "undefined") {
+    if (typeof(Storage) === "undefined") {
         // Sorry! No Web Storage support..
-        alert("Your browser don't support local storage");
+        //alert("Your browser don't support local storage");
         return;
     }
     switch (option) {
@@ -280,16 +279,13 @@ ClassDB.prototype.close = function (option) {
             var seen = [];
             // if the studentList haven't been initialised
             localStorage.setItem("classList", JSON.stringify(this.classList, function (key, val) {
-                if (typeof val == "object") {
+                if (typeof val === "object") {
                     if (seen.indexOf(val) >= 0)
                         return;
-                    seen.push(val)
+                    seen.push(val);
                 }
-                return val
+                return val;
             }));
-
-
-            //localStorage.setItem("classList", JSON.stringify(this.classList));
 
             break;
         }
@@ -298,6 +294,8 @@ ClassDB.prototype.close = function (option) {
             console.log("You have requested to discard class's changes of this time");
             break;
         }
+        default:
+            break;
     }
 };
 

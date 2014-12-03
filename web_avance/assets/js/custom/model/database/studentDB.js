@@ -32,9 +32,9 @@ StudentDB = function () {
  * Initialization for student database, normally only needed once
  */
 StudentDB.prototype.init = function () {
-    if (typeof(Storage) == "undefined") {
+    if (typeof(Storage) === "undefined") {
         // Sorry! No Web Storage support..
-        alert("Your browser don't support local storage");
+        //alert("Your browser don't support local storage");
         return;
     }
     // init studentList list in the DB
@@ -84,8 +84,8 @@ StudentDB.prototype.addStudentObject = function (student) {
  */
 function compare(a, b) {
 
-    tempA = cdb.getClassById(a).date.valueOf();
-    tempB = cdb.getClassById(b).date.valueOf();
+    var tempA = cdb.getClassById(a).date.valueOf();
+    var tempB = cdb.getClassById(b).date.valueOf();
 
 
     if (tempA < tempB)
@@ -102,7 +102,7 @@ function compare(a, b) {
 StudentDB.prototype.sortClasslist = function (student) {
     student.list_class.sort(compare);
     console.log(student.list_class);
-}
+};
 
 
 /**
@@ -117,7 +117,7 @@ StudentDB.prototype.find_a_client_by_name = function (firstname, lastname) {
 
     //Traverse in the client list to find the client
     for (var i = 0; i <= clientlistobject.length - 1; i++) {
-        if (clientlistobject[i].firstName == firstname && clientlistobject[i].lastName == lastname) {
+        if (clientlistobject[i].firstName === firstname && clientlistobject[i].lastName === lastname) {
             //we have find the teacher add the class to this client
             console.log("find the client " + firstname);
             return clientlistobject[i];
@@ -142,7 +142,7 @@ StudentDB.prototype.student_login = function (firstname, lastname, password) {
     //Traverse in the client list to find the client
     for (var i = 0; i <= clientlistobject.length - 1; i++) {
 
-        if (clientlistobject[i].firstName == firstname && clientlistobject[i].lastName == lastname && clientlistobject[i].pwd == password) {
+        if (clientlistobject[i].firstName === firstname && clientlistobject[i].lastName === lastname && clientlistobject[i].pwd === password) {
             return true;
         }
     }
@@ -156,7 +156,7 @@ StudentDB.prototype.student_login = function (firstname, lastname, password) {
  * @returns {boolean}
  */
 StudentDB.prototype.hasStudent = function (student) {
-    if (typeof(this.studentList) != 'undefined') {
+    if (typeof(this.studentList) !== 'undefined') {
         var _studentList = this.studentList;
 
         for (var i = 0; i < _studentList.length; i++) {
@@ -174,9 +174,9 @@ StudentDB.prototype.hasStudent = function (student) {
  * @param option
  */
 StudentDB.prototype.close = function (option) {
-    if (typeof(Storage) == "undefined") {
+    if (typeof(Storage) === "undefined") {
         // Sorry! No Web Storage support..
-        alert("Your browser don't support local storage");
+        //alert("Your browser don't support local storage");
         return;
     }
     switch (option) {
@@ -185,12 +185,12 @@ StudentDB.prototype.close = function (option) {
             var seen = [];
             // to get rid of storing cyclic object, the second parameter filter objects
             localStorage.setItem("studentList", JSON.stringify(this.studentList, function (key, val) {
-                if (typeof val == "object") {
+                if (typeof val === "object") {
                     if (seen.indexOf(val) >= 0)
-                        return
-                    seen.push(val)
+                        return;
+                    seen.push(val);
                 }
-                return val
+                return val;
             }));
             /**
              * but with the first storage, we have filtered all object, including arrays, so this time we will store all
@@ -199,7 +199,7 @@ StudentDB.prototype.close = function (option) {
              */
             for (var i = 0; i < this.studentList.length; i++) {
                 var theStudent = this.studentList[i];
-                if (theStudent.list_class.length != 0) {
+                if (theStudent.list_class.length !== 0) {
                     //var key = theStudent.firstName + "" + theStudent.lastName + "" + theStudent.address;
                     var key = lwrapper.getPersonKey(theStudent);
                     console.log(theStudent.list_class);

@@ -17,6 +17,7 @@ Secretary = function (firstName, lastName, address, pwd) {
     });
 };
 
+//noinspection ThisExpressionReferencesGlobalObjectJS
 /**
  * Hierarchy from person
  * @type {Person}
@@ -34,6 +35,7 @@ Secretary.prototype.equals = function (theperson) {
  */
 SecretaryObjectHelper = {
     createFromObject: function (object) {
+        //noinspection UnnecessaryLocalVariableJS
         var theSecretary = new Secretary(object.firstName, object.lastName, object.address, object.pwd);
         return theSecretary;
     }

@@ -31,9 +31,9 @@ TeacherDB = function () {
  * Initialization for teacher database, normally only needed once
  */
 TeacherDB.prototype.init = function () {
-    if (typeof(Storage) == "undefined") {
+    if (typeof(Storage) === "undefined") {
         // Sorry! No Web Storage support..
-        alert("Your browser don't support local storage");
+        //alert("Your browser don't support local storage");
         return;
     }
     //init _teacherList list in the DB
@@ -86,9 +86,8 @@ TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
 
     //Traverse in the teacher list to find the teacher
     for (var i = 0; i <= _teacherList.length - 1; i++) {
-        if (_teacherList[i].firstName == firstname && _teacherList[i].lastName == lastname) {
+        if (_teacherList[i].firstName === firstname && _teacherList[i].lastName === lastname) {
             //we have find the teacher add the class to this teacher
-            //console.log("find the teacher" + firstname);
             return _teacherList[i];
         }
     }
@@ -101,7 +100,7 @@ TeacherDB.prototype.find_a_teacher_by_name = function (firstname, lastname) {
  * @returns {boolean}
  */
 TeacherDB.prototype.hasTeacher = function (teacher) {
-    if (typeof(this.teacherList) != 'undefined') {
+    if (typeof(this.teacherList) !== 'undefined') {
         var _teacherList = this.teacherList;
 
         for (var i = 0; i < _teacherList.length; i++) {
@@ -118,9 +117,9 @@ TeacherDB.prototype.hasTeacher = function (teacher) {
  * @param option
  */
 TeacherDB.prototype.close = function (option) {
-    if (typeof(Storage) == "undefined") {
+    if (typeof(Storage) === "undefined") {
         // Sorry! No Web Storage support..
-        alert("Your browser don't support local storage");
+        //alert("Your browser don't support local storage");
         return;
     }
     switch (option) {
@@ -129,12 +128,12 @@ TeacherDB.prototype.close = function (option) {
             var seen = [];
             // to get rid of storing cyclic object, the second parameter filter objects
             localStorage.setItem("teacherList", JSON.stringify(this.teacherList, function (key, val) {
-                if (typeof val == "object") {
+                if (typeof val === "object") {
                     if (seen.indexOf(val) >= 0)
-                        return
-                    seen.push(val)
+                        return;
+                    seen.push(val);
                 }
-                return val
+                return val;
             }));
             /**
              * but with the first storage, we have filtered all object, including arrays, so this time we will store all
@@ -143,7 +142,7 @@ TeacherDB.prototype.close = function (option) {
              */
             for (var i = 0; i < this.teacherList.length; i++) {
                 var theTeacher = this.teacherList[i];
-                if (theTeacher.list_class.length != 0) {
+                if (theTeacher.list_class.length !== 0) {
                     var key = lwrapper.getPersonKey(theTeacher);
 
                     console.log(theTeacher.list_class);
@@ -151,8 +150,6 @@ TeacherDB.prototype.close = function (option) {
                 }
             }
             break;
-
-            //localStorage.setItem("teacherList", JSON.stringify(this.teacherList));
         }
         case 0 :
         {

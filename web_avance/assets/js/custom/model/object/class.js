@@ -11,7 +11,8 @@
  * @param date
  * @constructor
  */
-Class = function (name, teacher, duration, client, startTime, date) {
+Class = function (name, teacher, duration, client, startTime, date) //noinspection BadExpressionStatementJS
+{
     this._name = name;
     this._teacher = teacher;
     this._duration = duration;
@@ -74,7 +75,7 @@ Class = function (name, teacher, duration, client, startTime, date) {
         this._id = this.date.getFullYear() + "." + (this.date.getMonth() + 1) + "." + this.date.getDate() + "." + this.date.getHours() +
         "." + this.teacher;
         return this._id;
-    })
+    });
 };
 
 Class.prototype.equals = function (theclass) {
@@ -90,7 +91,6 @@ Class.prototype.equals = function (theclass) {
  * @param day_date
  * @constructor
  */
-//TODO drive class should be one teacher with one student
 DriveClass = function (name, duration, teacher, client, startTime, date) {
     Class.call(this, name, teacher, duration, client, startTime, date);
     this._type = "drive";
@@ -100,9 +100,10 @@ DriveClass = function (name, duration, teacher, client, startTime, date) {
     });
     this.__defineSetter__("type", function (value) {
         return this._type = value;
-    })
+    });
 };
 
+//noinspection ThisExpressionReferencesGlobalObjectJS
 DriveClass.prototype = new Class(this.name, this.teacher, this.duration, this.client, this.startTime, this.date);
 
 DriveClass.prototype.equals = function (theclass) {
@@ -110,11 +111,12 @@ DriveClass.prototype.equals = function (theclass) {
 };
 
 /**
-  A cast object helper, used by database object when retreating at beginning
+ A cast object helper, used by database object when retreating at beginning
  * @type {{createFromObject: Function}}
  */
 DriveClassObjectHelper = {
     createFromObject: function (object) {
+        //noinspection UnnecessaryLocalVariableJS
         var theDriveClass = new DriveClass(object.name, object.duration, object.teacher, object.client, object.startTime, new Date(object.date));
         return theDriveClass;
     }
