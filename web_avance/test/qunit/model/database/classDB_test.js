@@ -42,6 +42,8 @@ test("test for class initialisation with reloading local storage's content", fun
         localStorage.setItem("classList", JSON.stringify(testClassList));
 
         var cdb = new ClassDB();
+        var sdb = new StudentDB();
+        var tdb = new TeacherDB();
 
         //TODO should we add more?
         equal(cdb.classList[0].name, "drive", "Initialisation will take whatever already existed in localStorage");
@@ -50,21 +52,24 @@ test("test for class initialisation with reloading local storage's content", fun
 
 //TODO tdb cdb sdb should work together
 test("test for adding a drive class", function () {
-        //localStorage.clear();
-        //
-        //var sdb = new StudentDB();
-        //var tdb = new TeacherDB();
-        //var cdb = new ClassDB();
-        //
-        //var teacher = new Teacher('Jean', 'Pierre', 'lille1', '123');
-        //var stu1 = new Client('stu1', 'stu1', 'stu1', '123');
-        //var stu2 = new Client('stu2', 'stu2', 'stu2', '123');
-        //
-        //var testdate1 = new Date(2014, 9, 18, 8, 0, 0, 0);
-        //
-        //cdb.addAClass('drive', teacher.firstName + "." + teacher.lastName, stu1.firstName + "." + stu1.lastName, 1, 8, testdate1, 'drive', sdb, tdb);
-        //
-        //equal(cdb.classList[0].)
+        localStorage.clear();
+
+        var cdb = new ClassDB();
+        var sdb = new StudentDB();
+        var tdb = new TeacherDB();
+
+        var teacher = new Teacher('Jean', 'Pierre', 'lille1', '123');
+        tdb.addTeacherObject(teacher);
+        var stu1 = new Client('stu1', 'stu1', 'stu1', '123');
+        var stu2 = new Client('stu2', 'stu2', 'stu2', '123');
+        sdb.addStudentObject(stu1);
+        sdb.addStudentObject(stu2);
+
+        var testdate1 = new Date(2014, 9, 18, 8, 0, 0, 0);
+
+        cdb.addAClass('drive', teacher.firstName + "." + teacher.lastName, stu1.firstName + "." + stu1.lastName, 1, 8, testdate1, 'drive', sdb, tdb);
+
+        equal(cdb.classList[0].name, "drive", "Check creating a class, name = drive");
 
     }
 );
@@ -97,7 +102,6 @@ test("test for getting a class by its id", 3, function () {
 
         var cdb = new ClassDB();
 
-
         var res = cdb.getClassById("2014.10.18.8.Jean.Pierre");
 
         equal(res.type, "drive", "Test if we can get the proper class by its id, type = drive");
@@ -108,6 +112,8 @@ test("test for getting a class by its id", 3, function () {
 
 test("test for checking a class's existence", function () {
         localStorage.clear();
+
+
 
         var testDate = new Date(2014, 9, 18, 8, 0, 0, 0);
         var c = new DriveClass("OTI", 1, "Bob", "Alice", 8, testDate);
@@ -127,17 +133,14 @@ test("test for checking a class's existence", function () {
 test("test for deleting a class from class database", function () {
         localStorage.clear();
 
+        var cdb = new ClassDB();
+
         var testDate = new Date(2014, 9, 18, 8, 0, 0, 0);
         var c = new DriveClass("OTI", 1, "Bob.Bob", "Alice.Alice", 8, testDate);
 
         var testClassList = [c];
 
         localStorage.setItem("classList", JSON.stringify(testClassList));
-
-        var cdb = new ClassDB();
-        // TODO connection is difficult
-        var tdb = new TeacherDB();
-        var sdb = new StudentDB();
 
         cdb.deleteClass("2014.9.18.8.Bob.Bob");
 
@@ -147,4 +150,38 @@ test("test for deleting a class from class database", function () {
     }
 );
 
-//TODO test for closing class DB
+test("test teacher close operation", function () {
+        localStorage.clear();
+
+        var cdb = new ClassDB();
+        var sdb = new StudentDB();
+        var tdb = new TeacherDB();
+
+        var teacher = new Teacher('Jean', 'Pierre', 'lille1', '123');
+        tdb.addTeacherObject(teacher);
+        var stu1 = new Client('stu1', 'stu1', 'stu1', '123');
+        var stu2 = new Client('stu2', 'stu2', 'stu2', '123');
+        sdb.addStudentObject(stu1);
+        sdb.addStudentObject(stu2);
+
+        var testdate1 = new Date(2014, 9, 18, 8, 0, 0, 0);
+
+        cdb.addAClass('drive', teacher.firstName + "." + teacher.lastName, stu1.firstName + "." + stu1.lastName, 1, 8, testdate1, 'drive', sdb, tdb);
+
+        cdb.close(1);
+
+        var testClassList  = [];
+        var localClassList = JSON.parse(localStorage.getItem("classList"));
+        for (var i = 0; i < localClassList.length; i++) {
+            var theClass = DriveClassObjectHelper.createFromObject(localClassList[i]);
+            testClassList.push(theClass);
+        }
+
+        equal(cdb.classList.length, 1, "Check only one element for test");
+        equal(testClassList.length, 1, "Check only one element store in local");
+
+        equal(cdb.classList[0].name, "drive", "Check if has added a new class, name = drive");
+
+        equal(testClassList[0].name, "drive", "Check if has stored a new class in local, name = drive");
+    }
+);

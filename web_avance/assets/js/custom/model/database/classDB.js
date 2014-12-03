@@ -300,3 +300,5 @@ ClassDB.prototype.close = function (option) {
         }
     }
 };
+
+var cdb = new ClassDB();

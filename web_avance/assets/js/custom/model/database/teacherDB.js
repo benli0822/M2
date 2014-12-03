@@ -161,3 +161,5 @@ TeacherDB.prototype.close = function (option) {
         }
     }
 };
+
+var tdb = new TeacherDB();

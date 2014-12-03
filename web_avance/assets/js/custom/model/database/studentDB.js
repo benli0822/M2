@@ -215,3 +215,5 @@ StudentDB.prototype.close = function (option) {
         }
     }
 };
+
+var sdb = new StudentDB();

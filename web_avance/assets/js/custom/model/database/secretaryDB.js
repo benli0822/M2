@@ -174,3 +174,5 @@ SecretaryDB.prototype.close = function (option) {
         }
     }
 };
+
+var sedb = new SecretaryDB();
