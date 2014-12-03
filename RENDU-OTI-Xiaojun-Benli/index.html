@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/signin.css">
+    <link rel="stylesheet" href="assets/css/datepicker.css">
+    <link rel="stylesheet" href="assets/css/jquery.webui-popover.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-multiselect.css">
+</head>
+<body>
+<div id="disconnectDiv" style="display: none">
+    <button type="button" class="btn btn-warning" id="login_button" onclick="buttonAction.logout_button_click()">
+        Logout
+    </button>
+    <button type="button" class="btn btn-danger" id="login_without_save_button"
+            onclick="buttonAction.logout_button_click_without_save()">Logout without save to DB
+    </button>
+</div>
+
+<div id="loginModule">
+    <h1 class="center">Welcome to AutoEcole Class System</h1>
+
+    <form role="form" class="form-signin">
+        <h3 class="form-signin-heading">Please sign in</h3>
+        <input type="username" autofocus="" required="" name="username" placeholder="Please insert your name！"
+               id="username" class="username form-control">
+        <input type="password" required="" placeholder="Password" class="form-control password" id="password">
+        <button type="button" class="btn btn-lg btn-primary btn-block" id="loginButton"
+                onclick="buttonAction.login_button_click()">Sign in
+        </button>
+        <div class="form-control" style="display: none;" id="loginError"></div>
+        <div class="error">
+            <span>just for test. (admin,usr: admin.admin pwd: admin),(client, usr:stu1.stu1 . pwd:123 ) )</span></div>
+    </form>
+
+</div>
+
+<div class="row" id="studentModule" style="display: none">
+    <div class="col-lg-10">
+        <h3 id="studentName">Student</h3>
+
+
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered" id="student_table">
+                <thead>
+                <tr>
+                    <th id="s-date">Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Teacher</th>
+                    <th>Class type</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="secretaryModule" style="display: none">
+    <div role="alert" class="alert alert-warning fade in" style="display: none">
+        <button data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+        </button>
+        <strong>Holy guacamole!</strong>
+    </div>
+    <!--<div id="home" class="tab-pane fade active in">
+        <button type="button" class="btn btn-primary" id="addStudent">Registration</button>
+    </div>-->
+    <ul class="nav nav-pills">
+
+        <li id="secretaryHomePageTab" class="active"><a
+                onclick="secretaryMenuController.display_home_page_for_secretary()">Home</a></li>
+        <li id="secretarySearchStudentTab"><a id="secretarySearch">Find Student Lesson Information</a>
+        <li id="secretaryAddStudentTab"><a onclick="secretaryMenuController.display_add_student_page()">Add Student</a>
+        <li id="secretaryAddTeacherTab"><a onclick="secretaryMenuController.display_add_teacher_page()">Add Teacher</a>
+        </li>
+    </ul>
+
+    <div id="secretaryHomePage">
+        <div class="well">
+            <input type="text" class="span2" value="16-10-2014" id="dp1" data-date-format="dd-mm-yyyy">
+        </div>
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="secretary_table">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- formule-->
+    <div id="secretarySearchStudent">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">Select student login name</div>
+                    <select id="student_list" style="display: none;"></select>
+                </div>
+            </div>
+            <button type="button" class="btn btn-default" id="searchButton"
+                    onclick="buttonAction.search_button_click()">Search
+            </button>
+
+            <p class="help-block" id="searchResult"></p>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered" id="student_lesson_table">
+                <thead>
+                <tr>
+                    <th id="abc">Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Teacher</th>
+                    <th>Class type</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <!-- formule-->
+
+    <!-- addStudent-->
+    <div id="secretaryAddStudent">
+        <h3>Add a student</h3>
+
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">firstname</span>
+                <input type="text" class="form-control" id="addStudentFirstname">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">lastname</span>
+                <input type="text" class="form-control" id="addStudentLastname">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">addresse</span>
+                <input type="text" class="form-control" id="addStudentAddresse">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">password</span>
+                <input type="password" class="form-control" id="addStudentPassword">
+            </div>
+        </div>
+        <br> </br>
+
+        <button type="button" class="btn btn-danger"
+                onclick="secretaryMenuController.display_home_page_for_secretary()">Cancel
+        </button>
+        <button type="button" class="btn active" onclick="buttonAction.add_Student_button_click()">Save</button>
+    </div>
+
+    <!-- addTeacher-->
+    <div id="secretaryAddTeacher">
+        <h3>Add a Teacher</h3>
+
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">firstname</span>
+                <input type="text" class="form-control" id="addTeacherFirstname">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">lastname</span>
+                <input type="text" class="form-control" id="addTeacherLastname">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">addresse</span>
+                <input type="text" class="form-control" id="addTeacherAddresse">
+            </div>
+        </div>
+        <br> </br>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon">password</span>
+                <input type="password" class="form-control" id="addTeacherPassword">
+            </div>
+        </div>
+        <br> </br>
+        <button type="button" class="btn btn-danger"
+                onclick="secretaryMenuController.display_home_page_for_secretary()">Cancel
+        </button>
+        <button id="addTeacherSaveButton" type="button" class="btn active" onclick="buttonAction.add_Teacher_button_click()">Save</button>
+    </div>
+
+
+</div>
+</div>
+<div id="popover-content" class="hide">
+    <form class="form-horizontal" role="form">
+        <div class="form-group" id="when">
+        </div>
+        <div class="form-group" id="teacher">
+        </div>
+        <div class="form-group" id="student">
+        </div>
+        <div class="form-group" id="classes">
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-4">
+                <button type="button" class="btn btn-success" id="create" onclick="buttonAction.create_event_click()">
+                    Create Event
+                </button>
+                <button type="button" class="btn btn-primary" id="edit" onclick="buttonAction.edit_event_click()">Edit
+                    Event
+                </button>
+                <button type="button" class="btn btn-danger" id="delete"
+                        onclick="buttonAction.delete_a_class_button_click()">Delete Event
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.webui-popover.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap-multiselect.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/object/person.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/object/class.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/object/client.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/object/teacher.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/object/secretary.js"></script>
+<!--<script type="text/javascript" src="js/custom/dataHelper.js"></script>-->
+
+<script type="text/javascript" src="assets/js/custom/model/database/classDB.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/database/teacherDB.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/database/studentDB.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/database/secretaryDB.js"></script>
+<script type="text/javascript" src="assets/js/custom/model/database/localStorageWrapper.js"></script>
+
+<script type="text/javascript" src="assets/js/custom/controller/buttonActionController.js"></script>
+
+<script type="text/javascript" src="assets/js/custom/controller/popoverController.js"></script>
+<script type="text/javascript" src="assets/js/custom/controller/mainController.js"></script>
+<script type="text/javascript" src="assets/js/custom/controller/tableController.js"></script>
+<script type="text/javascript" src="assets/js/custom/controller/loginController.js"></script>
+<script type="text/javascript" src="assets/js/custom/controller/secretaryMenuController.js"></script>
+
+<script type="text/javascript" src="assets/js/custom/app.js"></script>
+
+
+</body>
+</html>
