@@ -37,7 +37,7 @@ table = {
                 temp_elem.appendChild(temp_div);
                 new_row.appendChild(temp_elem);
             }
-            body.appendChild(new_row);
+            body.appendChild(new_row)
             time++;
             count++;
         }
@@ -62,7 +62,7 @@ table = {
             title_temp.appendChild(document.createTextNode(teacherList[i].firstName));
             title_row.appendChild(title_temp);
         }
-        head.appendChild(title_row);
+        head.appendChild(title_row)
         table.appendChild(head);
         this.addTimeLine(table_name, teacherList.length + 1);
     },
@@ -269,4 +269,4 @@ table = {
         }
         table.appendChild(body);
     }
-};
+}

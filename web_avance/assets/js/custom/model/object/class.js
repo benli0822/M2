@@ -58,7 +58,7 @@ Class = function (name, teacher, duration, client, startTime, date) {
     });
     this.__defineSetter__("startTime", function (value) {
         return this._startTime = value;
-    });
+    })
 
     /* getter and setter for date */
     this.__defineGetter__("date", function () {
@@ -66,7 +66,7 @@ Class = function (name, teacher, duration, client, startTime, date) {
     });
     this.__defineSetter__("date", function (value) {
         return this._date = value;
-    });
+    })
 
     /* getter for id */
     this.__defineGetter__("id", function () {
@@ -74,11 +74,11 @@ Class = function (name, teacher, duration, client, startTime, date) {
         "." + this.teacher;
         return this._id;
     })
-};
+}
 
 Class.prototype.equals = function (theclass) {
     return this.id === theclass.id;
-};
+}
 
 /**
  * A representation for drive class
@@ -101,13 +101,13 @@ DriveClass = function (name, duration, teacher, client, startTime, date) {
     this.__defineSetter__("type", function (value) {
         return this._type = value;
     })
-};
+}
 
 DriveClass.prototype = new Class(this.name, this.teacher, this.duration, this.client, this.startTime, this.date);
 
 DriveClass.prototype.equals = function (theclass) {
     return this.id === theclass.id;
-};
+}
 
 /**
  * A cast object helper, used by database object when retreating at beginning
@@ -115,11 +115,10 @@ DriveClass.prototype.equals = function (theclass) {
  */
 DriveClassObjectHelper = {
     createFromObject: function (object) {
-        //noinspection UnnecessaryLocalVariableJS
         var theDriveClass = new DriveClass(object.name, object.duration, object.teacher, object.client, object.startTime, new Date(object.date));
         return theDriveClass;
     }
-};
+}
 
 /**
  * A representation for lecture class
@@ -136,14 +135,14 @@ LectureClass = function (name, duration, teacher, client, startTime, date) {
     this.__defineSetter__("type", function (value) {
         return this._type = value;
     })
-};
+}
 
 
 LectureClass.prototype = new Class(this.name, this.teacher, this.duration, this.client, this.startTime, this.date);
 
 LectureClass.prototype.equals = function (theclass) {
     return this.id === theclass.id;
-};
+}
 
 /**
  * A cast object helper, used by database object when retreating at beginning
@@ -151,9 +150,8 @@ LectureClass.prototype.equals = function (theclass) {
  */
 LectureClassObjectHelper = {
     createFromObject: function (object) {
-        //noinspection UnnecessaryLocalVariableJS
         var theLectureClass = new LectureClass(object.name, object.duration, object.teacher, object.client, object.startTime, new Date(object.date));
         return theLectureClass;
     }
-};
+}
 

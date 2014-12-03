@@ -34,7 +34,7 @@ document.addEventListener('click', function (e) {
         var parent = $(e.target).parent();
         console.log(parent);
 //    console.log(id);
-        if (typeof(id) !== 'undefined') {
+        if (typeof(id) != 'undefined') {
             var i = id.substring(0, 1);
             var count = id.substring(1, 2);
             popover.updatePopoverContent(i + '' + count, parent);
@@ -72,7 +72,7 @@ popover = {
                     "." + teacher;
                 var idtime = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour;
                 console.log(id);
-                if ($(this).val() === 'lecture') {
+                if ($(this).val() == 'lecture') {
 
                     popover.updateStudentList(id, idtime, 1);
 
@@ -87,7 +87,7 @@ popover = {
                                 var nonSelectedOptions = $('.webui-popover-content:last .form-horizontal #student div #pop_student option').filter(function () {
                                     return !$(this).is(':selected');
                                 });
-                                // javascript:UnusedVariable
+
                                 var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
                                 nonSelectedOptions.each(function () {
                                     var input = $('input[value="' + $(this).val() + '"]');
@@ -97,7 +97,6 @@ popover = {
                             }
                             else {
 // Enable all checkboxes.
-                                // javascript:RedeclaredVariable
                                 var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
                                 $('.webui-popover-content:last .form-horizontal #student div #pop_student option').each(function () {
                                     var input = $('input[value="' + $(this).val() + '"]');
@@ -122,7 +121,7 @@ popover = {
                                 var nonSelectedOptions = $('.webui-popover-content:last .form-horizontal #student div #pop_student option').filter(function () {
                                     return !$(this).is(':selected');
                                 });
-                                // javascript:UnusedVariable
+
                                 var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
                                 nonSelectedOptions.each(function () {
                                     var input = $('input[value="' + $(this).val() + '"]');
@@ -158,7 +157,7 @@ popover = {
                         var nonSelectedOptions = $('.webui-popover-content:last .form-horizontal #student div #pop_student option').filter(function () {
                             return !$(this).is(':selected');
                         });
-                        // javascript:UnusedVariable
+
                         var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
                         nonSelectedOptions.each(function () {
                             var input = $('input[value="' + $(this).val() + '"]');
@@ -168,7 +167,6 @@ popover = {
                     }
                     else {
 // Enable all checkboxes.
-                        // javascript:UnusedVariable
                         var dropdown = $('.webui-popover-content:last .form-horizontal #student div #pop_student').siblings('.multiselect-container');
                         $('.webui-popover-content:last .form-horizontal #student div #pop_student option').each(function () {
                             var input = $('input[value="' + $(this).val() + '"]');
@@ -186,11 +184,11 @@ popover = {
      * @param parent
      */
     updatePopoverContent: function (divid, parent) {
-        if (typeof(tdb) === "undefined") {
+        if (typeof(tdb) == "undefined") {
             console.log("Teacher database is not loaded, please make sure it is loaded!");
             return;
         }
-        if (typeof(divid) !== "undefined") {
+        if (typeof(divid) != "undefined") {
             console.log('div id is: ' + divid);
         }
         var id_column = parseInt(divid.substring(0, 1));
@@ -248,7 +246,7 @@ popover = {
      * @param theTeacher
      */
     showTheTeacher: function (theTeacher) {
-        if (typeof(theTeacher) === 'undefined') {
+        if (typeof(theTeacher) == 'undefined') {
             console.log('error with loading the teacher');
             return;
         }
@@ -282,7 +280,7 @@ popover = {
      * @param idtime
      */
     showStudentList: function (type, id, idtime) {
-        if (typeof(sdb) === "undefined") {
+        if (typeof(sdb) == "undefined") {
             console.log("Student database is not loaded, please make sure it is loaded!");
             return;
         }
@@ -296,13 +294,13 @@ popover = {
         var divStudent = document.createElement('div');
         divStudent.setAttribute('class', 'col-sm-6 col-sm-offset-2');
         // type success stand for drive class, reference could be found with Bootstrap's table css
-        if (type === 'success') {
+        if (type == 'success') {
             var theClass = cdb.getClassById(id);
             var text2 = document.createTextNode(theClass.client);
             divStudent.appendChild(text2);
         }
         // info stand for lecture class
-        else if (type === 'info') {
+        else if (type == 'info') {
             var studentsName1 = document.createElement('select');
             for (var i = 0; i < studentList.length; i++) {
                 var studentOption1 = document.createElement('option');
@@ -310,7 +308,7 @@ popover = {
                 studentOption1.setAttribute('value', studentList[i].firstName + "." + studentList[i].lastName);
                 var index = studentList[i].hasClass(id);
                 console.log(index);
-                if (index !== -1) {
+                if (index != -1) {
                     studentOption1.setAttribute('selected', 'selected');
                 }
                 studentOption1.appendChild(text3);
@@ -333,6 +331,7 @@ popover = {
                 }
             }
             studentsName2.setAttribute('id', 'pop_student');
+//            studentsName2.setAttribute('multiple', 'multiple');
             divStudent.appendChild(studentsName2);
         }
         studentsLabel.appendChild(text1);
@@ -366,7 +365,7 @@ popover = {
             }
         }
         studentsName1.setAttribute('id', 'pop_student');
-        if (type === 1) {
+        if (type == 1) {
             studentsName1.setAttribute('multiple', 'multiple');
         }
         $('.webui-popover-content:last .form-horizontal #student div')[0].appendChild(studentsName1);
@@ -385,7 +384,7 @@ popover = {
         var text1 = document.createTextNode('Class\'s Type: ');
         var divClasses = document.createElement('div');
         divClasses.setAttribute('class', 'col-sm-6 col-sm-offset-2');
-        if (type === "success") {
+        if (type == "success") {
             var text2 = document.createTextNode("Drive Class");
             divClasses.appendChild(text2);
         } else if (type == "info") {
@@ -471,4 +470,4 @@ popover = {
         return monthText;
     }
 
-};
+}

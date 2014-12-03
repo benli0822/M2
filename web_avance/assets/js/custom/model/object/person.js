@@ -50,7 +50,7 @@ Person = function (firstName, lastName, address, pwd) {
     this.__defineSetter__("pwd", function (value) {
         return this._pwd = value;
     });
-};
+}
 
 
 /**
@@ -59,11 +59,11 @@ Person = function (firstName, lastName, address, pwd) {
  */
 Person.prototype.say = function () {
     console.log("This is" + this.firstName + " " + this.lastName + ", I live in " + this.address);
-};
+}
 
 Person.prototype.addAClass = function (the_class) {
     this.list_class.push(the_class.id);
-};
+}
 
 Person.prototype.equals = function (theperson) {
     return (this.firstName === theperson.firstName) &&
@@ -71,4 +71,4 @@ Person.prototype.equals = function (theperson) {
         (this.address === theperson.address) &&
         (this.list_class === theperson.list_class) &&
         (this.pwd === theperson.pwd);
-};
+}

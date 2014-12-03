@@ -98,7 +98,32 @@ SecretaryDB.prototype.login_secretary = function (firstname, lastname, password)
 };
 
 /**
- * Check a secretary's existence
+ * Login validation
+ * @param firstName
+ * @param lastName
+ * @returns {boolean}
+ */
+SecretaryDB.prototype.validate = function (firstName, lastName) {
+    if (localStorage.getItem('secretaryList') != null) {
+        var _sl = JSON.parse(localStorage.getItem('secretaryList'));
+        for (var i = 0; i < _sl.length; i++) {
+            if (_sl[i].firstName === firstName && _sl[i].lastName === lastName) {
+                return true;
+            }
+        }
+    }
+    for (var j = 0; j < this.secretaryList.length; j++) {
+        if (this.secretaryList[i].firstName === firstName && this.secretaryList[i].lastName === lastName) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+/**
+ * Check a student's existence
  * @param secretary
  * @returns {boolean}
  */
@@ -133,7 +158,7 @@ SecretaryDB.prototype.close = function (option) {
             localStorage.setItem("secretaryList", JSON.stringify(this.secretaryList, function (key, val) {
                 if (typeof val == "object") {
                     if (seen.indexOf(val) >= 0)
-                        return;
+                        return
                     seen.push(val)
                 }
                 return val

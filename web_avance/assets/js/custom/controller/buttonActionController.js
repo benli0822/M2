@@ -15,7 +15,7 @@ buttonAction = {
 
 
         var the_student = sdb.find_a_client_by_name(name[0], name[1]);
-        if (typeof(the_student) !== 'undefined' && !the_student) {
+        if (typeof(the_student) != 'undefined' && the_student != false) {
             table.update_student_table_for_secretary(the_student);
             document.getElementById("searchResult").innerHTML = 'here is the search result';
             $(".alert").show();
@@ -36,13 +36,16 @@ buttonAction = {
     },
 
     create_event_click: function () {
+//    var time = document.getElementById('pop_time').getAttribute('value').value;
         var time = $('.webui-popover-content:last .form-horizontal #when div #pop_time').attr('value');
         var teacher = $('.webui-popover-content:last .form-horizontal #teacher div #pop_teacher').text();
+//        var student = $('.webui-popover-content:last .form-horizontal #student div #pop_student').val();
         var selectedStudents = $('.webui-popover-content:last .form-horizontal #student div #pop_student').val();
         var selectedClass = $('.webui-popover-content:last .form-horizontal #classes div input[name=optionClass]:checked').val();
 
         console.log('Selected time: ' + time);
         console.log('Selected teacher: ' + teacher);
+//        console.log('Selected student: ' + student);
         console.log('Selected selectedClass: ' + selectedClass);
         console.log('Selected student: ' + selectedStudents);
 
@@ -58,7 +61,7 @@ buttonAction = {
 
         var theDate = new Date(year, month, day, hour);
 
-        if (selectedClass === "drive") {
+        if (selectedClass == "drive") {
             cdb.addAClass(selectedClass, teacher, selectedStudents, 1, hour, theDate, selectedClass, sdb, tdb);
             table.updateSecretaryTableContent(theDate);
             $('.webui-popover:last').hide();
@@ -66,15 +69,14 @@ buttonAction = {
             var id = datepicker.date.getFullYear() + "." + (datepicker.date.getMonth() + 1) + "." + datepicker.date.getDate() + "." + hour +
                 "." + teacher;
 
-            if (selectedStudents.length !== 0) {
+            if (selectedStudents.length != 0) {
                 for (var i = 0; i < selectedStudents.length; i++) {
                     console.log(cdb.getClassById(id));
-                    if (cdb.getClassById(id) !== null) {
+                    if (cdb.getClassById(id) != null) {
                         var studentName = selectedStudents[i].split(".");
-                        // javascript:NestedIfDepth
                         var theStudent = sdb.find_a_client_by_name(studentName[0], studentName[1]);
                         console.log(theStudent);
-                        if (theStudent.hasClass(id) === -1) {
+                        if (theStudent.hasClass(id) == -1) {
                             theStudent.list_class.push(id);
                             console.log("added to" + theStudent);
                         }
@@ -92,13 +94,16 @@ buttonAction = {
     edit_event_click: function () {
         var selectedClass = $('.webui-popover-content:last .form-horizontal #classes div').text();
         console.log(selectedClass);
-        if (selectedClass === "Lecture Class") {
+        if (selectedClass == "Lecture Class") {
+//    var time = document.getElementById('pop_time').getAttribute('value').value;
             var time = $('.webui-popover-content:last .form-horizontal #when div #pop_time').attr('value');
             var teacher = $('.webui-popover-content:last .form-horizontal #teacher div #pop_teacher').text();
+//        var student = $('.webui-popover-content:last .form-horizontal #student div #pop_student').val();
             var selectedStudents = $('.webui-popover-content:last .form-horizontal #student div #pop_student').val();
 
             console.log('Selected time: ' + time);
             console.log('Selected teacher: ' + teacher);
+//        console.log('Selected student: ' + student);
             console.log('Selected selectedClass: ' + selectedClass);
             console.log('Selected student: ' + selectedStudents);
 
@@ -118,14 +123,14 @@ buttonAction = {
 
             var theDate = new Date(year, month, day, hour);
 
-            if (selectedStudents.length !== 0) {
+            if (selectedStudents.length != 0) {
                 for (var i = 0; i < selectedStudents.length; i++) {
                     console.log(cdb.getClassById(id));
                     if (cdb.getClassById(id) != null) {
                         var studentName = selectedStudents[i].split(".");
                         var theStudent = sdb.find_a_client_by_name(studentName[0], studentName[1]);
                         console.log(theStudent);
-                        if (theStudent.hasClass(id) === -1) {
+                        if (theStudent.hasClass(id) == -1) {
                             theStudent.list_class.push(id);
                             console.log("added to" + theStudent);
                         }
@@ -187,6 +192,7 @@ buttonAction = {
 
         }
         else {
+            //alert("Try to correct information. each words should be more then 2 words");
 
             $(".alert").show();
 
@@ -219,6 +225,8 @@ buttonAction = {
 
         }
         else {
+            //alert("Try to correct information. each words should be more then 2 words");
+
             $(".alert").show();
 
             $(".alert strong").text("Try to correct information. each words should be more then 2 words");
@@ -254,7 +262,7 @@ buttonAction = {
 
 
     }
-};
+}
 
 
 

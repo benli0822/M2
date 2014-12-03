@@ -32,9 +32,9 @@ loginController = {
             $("#login_without_save_button").fadeOut();
             document.getElementById("login_button").innerHTML = "Logout";
         }
-        else {
-            //we don't find the user
+        else {//we don't find the user
+
             $("#loginError").text("Wrong username or password, try again").show();
         }
     }
-};
+}

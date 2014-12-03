@@ -9,9 +9,7 @@
  * @param freeTime
  * @constructor
  */
-//noinspection UnterminatedStatementJS
-Client = function (firstName, lastName, address, pwd)
-{
+Client = function (firstName, lastName, address, pwd) {
     Person.call(this, firstName, lastName, address, pwd);
     this._type_of_person = "Client";
     /* getter and setter for type_of_person */
@@ -21,7 +19,7 @@ Client = function (firstName, lastName, address, pwd)
     this.__defineSetter__("type_of_person", function (value) {
         return this._type_of_person = value;
     });
-};
+}
 
 /**
  * Hierarchy from person
@@ -32,15 +30,15 @@ Client.prototype = new Person(this.firstName, this.lastName, this.address, this.
 Client.prototype.equals = function (theperson) {
     return (this.type === theperson.type) && (this.firstName === theperson.firstName) && (this.lastName === theperson.lastName)
         && (this.address == theperson.address) && (this.pwd === theperson.pwd);
-};
+}
 
 Client.prototype.addAClassToClient = function (the_class) {
     this.list_class.push(the_class.id);
-};
+}
 
 Client.prototype.hasClass = function (id) {
     return this.list_class.indexOf(id);
-};
+}
 
 Client.prototype.hasClassAlready = function (time) {
     for (var i = 0; i < this.list_class.length; i++) {
@@ -51,7 +49,7 @@ Client.prototype.hasClassAlready = function (time) {
         }
     }
     return false;
-};
+}
 
 Client.prototype.deleteClass = function (id) {
 
@@ -70,7 +68,7 @@ Client.prototype.deleteClass = function (id) {
 
     console.log('class ' + id + " deleted from " + this.say());
 
-};
+}
 
 /**
  * A cast object helper, used by database object when retreating at beginning
@@ -90,4 +88,4 @@ ClientObjectHelper = {
         }
         return theClient;
     }
-};
+}

@@ -15,7 +15,7 @@ Secretary = function (firstName, lastName, address, pwd) {
     this.__defineSetter__("type_of_person", function (value) {
         return this._type_of_person = value;
     });
-};
+}
 
 /**
  * Hierarchy from person
@@ -23,12 +23,10 @@ Secretary = function (firstName, lastName, address, pwd) {
  */
 Secretary.prototype = new Person(this.firstName, this.lastName, this.address, this.pwd);
 
-//noinspection UnterminatedStatementJS
-Secretary.prototype.equals = function (theperson)
-{
+Secretary.prototype.equals = function (theperson) {
     return (this.type === theperson.type) && (this.firstName === theperson.firstName) && (this.lastName === theperson.lastName)
         && (this.address == theperson.address) && (this.pwd === theperson.pwd);
-};
+}
 
 /**
  * A cast object helper, used by database object when retreating at beginning
@@ -36,8 +34,7 @@ Secretary.prototype.equals = function (theperson)
  */
 SecretaryObjectHelper = {
     createFromObject: function (object) {
-        //noinspection UnnecessaryLocalVariableJS
         var theSecretary = new Secretary(object.firstName, object.lastName, object.address, object.pwd);
         return theSecretary;
     }
-};
+}
