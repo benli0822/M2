@@ -1,5 +1,5 @@
 /**
- * Created by benli on 25/11/14.
+ * Created by CHENG Xiaojun et JIN Benli on 25/11/14.
  */
 module("localStorageWrapper", {
 //	setup:function(){alert("setup class individual test");},

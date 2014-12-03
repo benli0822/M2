@@ -1,5 +1,5 @@
 /**
- * Created by benli on 29/11/14.
+ * Created by CHENG Xiaojun et JIN Benli on 5/11/14.
  */
 module("secretaryDB", {
 //	setup:function(){alert("setup class individual test");},

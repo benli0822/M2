@@ -1,5 +1,5 @@
 /**
- * Created by benli on 03/12/14.
+ * Created by CHENG Xiaojun et JIN Benli on 29/11/14.
  */
 module("teacherDB", {
 //	setup:function(){alert("setup class individual test");},
