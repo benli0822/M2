@@ -31,13 +31,12 @@ table = {
                 var popclass = document.createAttribute('class');
                 popclass.value = 'show-pop';
                 temp_div.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-//                temp_div.innerHTML = '<span id="myPopover' + i + '' + count + '\" class="popover">asdasd</span>';
                 temp_div.setAttributeNode(popid);
                 temp_div.setAttributeNode(popclass);
                 temp_elem.appendChild(temp_div);
                 new_row.appendChild(temp_elem);
             }
-            body.appendChild(new_row)
+            body.appendChild(new_row);
             time++;
             count++;
         }
@@ -47,7 +46,6 @@ table = {
      * Creation for secretary table
      * @param table_name
      */
-    //TODO need to consider whether we do need this function or not
     createSecretaryTable: function (table_name) {
         var teacherList = tdb.teacherList;
 
@@ -62,7 +60,7 @@ table = {
             title_temp.appendChild(document.createTextNode(teacherList[i].firstName));
             title_row.appendChild(title_temp);
         }
-        head.appendChild(title_row)
+        head.appendChild(title_row);
         table.appendChild(head);
         this.addTimeLine(table_name, teacherList.length + 1);
     },
@@ -72,7 +70,6 @@ table = {
     updateSecretaryTableContent: function (date) {
         var secretary_table = document.getElementById('secretary_table');
         //to delete all the content in the table
-        //secretary_table.innerHTML = "";
 
         console.log("try to update secretart table");
         console.log(date);
@@ -87,7 +84,6 @@ table = {
 
         var teacherList = tdb.teacherList;
 
-        //secretary_table.rows[1].cells[1].innerHTML = 'Hello';
 
         //To update the secretary table we need to traverse the teacher list and for each teacher we display
         // YES(at this moment) in the time area if he has a lesson in that time
@@ -130,37 +126,12 @@ table = {
         var theStudent = student;
 
         var table = document.getElementById("student_table");
-        /// document.getElementById("searchResult").innerHTML = student.firstName;
 
         var student_name = document.getElementById("studentName").innerHTML = student.firstName + " " + student.lastName;
         //clear all the existeds elements
         while (table.childNodes.length > 2) {
             table.removeChild(table.lastChild);
         }
-
-        //create the first row
-        /*
-         <tr>
-         <th id="abc">Date</th>
-         <th>Time</th>
-         <th>Duration</th>
-         <th>Teacher</th>
-         </tr>
-         */
-//        var first_row = document.createElement('tr');
-//        var elementDate = document.createElement('th');
-//        elementDate.innerHTML = "Date";
-//        first_row.appendChild(elementDate);
-//        var elementDate = document.createElement('th');
-//        elementDate.innerHTML = "Time";
-//        first_row.appendChild(elementDate);
-//        var elementDate = document.createElement('th');
-//        elementDate.innerHTML = "Duration";
-//        first_row.appendChild(elementDate);
-//        var elementDate = document.createElement('th');
-//        elementDate.innerHTML = "Teacher";
-//        first_row.appendChild(elementDate);
-//        table.appendChild(first_row);
 
         var body = document.createElement('tbody');
         //travese the class list
@@ -210,12 +181,8 @@ table = {
     },
 
 
-    ////
     update_student_table_for_secretary: function (student) {
-        var theStudent = student;
-
         var table = document.getElementById("student_lesson_table");
-        /// document.getElementById("searchResult").innerHTML = student.firstName;
 
         //clear all the existeds elements
         while (table.childNodes.length > 2) {

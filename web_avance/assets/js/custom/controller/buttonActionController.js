@@ -36,16 +36,13 @@ buttonAction = {
     },
 
     create_event_click: function () {
-//    var time = document.getElementById('pop_time').getAttribute('value').value;
         var time = $('.webui-popover-content:last .form-horizontal #when div #pop_time').attr('value');
         var teacher = $('.webui-popover-content:last .form-horizontal #teacher div #pop_teacher').text();
-//        var student = $('.webui-popover-content:last .form-horizontal #student div #pop_student').val();
         var selectedStudents = $('.webui-popover-content:last .form-horizontal #student div #pop_student').val();
         var selectedClass = $('.webui-popover-content:last .form-horizontal #classes div input[name=optionClass]:checked').val();
 
         console.log('Selected time: ' + time);
         console.log('Selected teacher: ' + teacher);
-//        console.log('Selected student: ' + student);
         console.log('Selected selectedClass: ' + selectedClass);
         console.log('Selected student: ' + selectedStudents);
 
@@ -95,15 +92,12 @@ buttonAction = {
         var selectedClass = $('.webui-popover-content:last .form-horizontal #classes div').text();
         console.log(selectedClass);
         if (selectedClass == "Lecture Class") {
-//    var time = document.getElementById('pop_time').getAttribute('value').value;
             var time = $('.webui-popover-content:last .form-horizontal #when div #pop_time').attr('value');
             var teacher = $('.webui-popover-content:last .form-horizontal #teacher div #pop_teacher').text();
-//        var student = $('.webui-popover-content:last .form-horizontal #student div #pop_student').val();
             var selectedStudents = $('.webui-popover-content:last .form-horizontal #student div #pop_student').val();
 
             console.log('Selected time: ' + time);
             console.log('Selected teacher: ' + teacher);
-//        console.log('Selected student: ' + student);
             console.log('Selected selectedClass: ' + selectedClass);
             console.log('Selected student: ' + selectedStudents);
 
@@ -164,7 +158,6 @@ buttonAction = {
     },
     logout_button_click_without_save: function () {
         $("#disconnectDiv").fadeOut();
-//        main.closeException();
         $(".webui-popover").hide();
         $("#studentModule").fadeOut();
         $("#secretaryModule").fadeOut();
@@ -192,7 +185,6 @@ buttonAction = {
 
         }
         else {
-            //alert("Try to correct information. each words should be more then 2 words");
 
             $(".alert").show();
 
@@ -225,7 +217,6 @@ buttonAction = {
 
         }
         else {
-            //alert("Try to correct information. each words should be more then 2 words");
 
             $(".alert").show();
 

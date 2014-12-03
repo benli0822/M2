@@ -470,4 +470,4 @@ popover = {
         return monthText;
     }
 
-}
+};
