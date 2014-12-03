@@ -1,5 +1,5 @@
 /**
- * Created by benli on 03/12/14.
+ * Created by CHENG Xiaojun et JIN Benli on 29/11/14.
  */
 var lwrapper = new LocalStorageWrapper();
 
