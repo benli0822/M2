@@ -24,7 +24,6 @@ window.onload = function () {
     $("#secretaryModule").fadeOut();
     $("#disconnectDiv").fadeOut();
     secretaryMenuController.init_SecretaryMenu();
-    //localStorage.clear();
     test.addTeacherExamples();
     test.addTestDataToDB();
     table.addTimeLine('student_table', 4);

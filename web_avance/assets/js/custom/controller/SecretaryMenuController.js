@@ -136,6 +136,6 @@ secretaryMenuController = {
             studentsName1.appendChild(studentOption1);
         }
     }
-}
+};
 
 

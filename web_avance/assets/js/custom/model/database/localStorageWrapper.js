@@ -20,4 +20,4 @@ LocalStorageWrapper = function () {
 LocalStorageWrapper.prototype.getPersonKey = function (person) {
     var key = person.firstName + "" + person.lastName + "" + person.address;
     return key;
-}
+};

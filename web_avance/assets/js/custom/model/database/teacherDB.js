@@ -24,7 +24,7 @@ TeacherDB = function () {
 
     this.__defineGetter__("teacherList", function () {
         return _teacherList;
-    })
+    });
 };
 
 /**
