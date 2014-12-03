@@ -1,12 +1,14 @@
 /**
  * Created by benli on 29/11/14.
  */
+test_without_module_is_called = false;
+
 module("secretaryDB", {
 //	setup:function(){alert("setup class individual test");},
 //	teardown:function(){alert("teardown class individual test");}
 });
 
-QUnit.test("test for secretary initialisation for the first time", function () {
+test("test for secretary initialisation for the first time", function () {
         localStorage.clear();
 
         var sedb = new SecretaryDB();
@@ -16,7 +18,7 @@ QUnit.test("test for secretary initialisation for the first time", function () {
     }
 );
 
-QUnit.test("test for secretary initialisation with reloading local storage's content", function () {
+test("test for secretary initialisation with reloading local storage's content", function () {
 
         localStorage.clear();
 
@@ -43,7 +45,7 @@ QUnit.test("test for secretary initialisation with reloading local storage's con
     }
 );
 
-QUnit.test("test for adding a secretary", 3, function () {
+test("test for adding a secretary", 3, function () {
         localStorage.clear();
 
         var sedb = new SecretaryDB();
@@ -56,7 +58,7 @@ QUnit.test("test for adding a secretary", 3, function () {
     }
 );
 
-QUnit.test("test for adding a secretary object", 3, function () {
+test("test for adding a secretary object", 3, function () {
         localStorage.clear();
 
         var testSecretary = new Secretary("test", "test", "lille", "test");
@@ -71,7 +73,7 @@ QUnit.test("test for adding a secretary object", 3, function () {
     }
 );
 
-QUnit.test("test login", 2, function () {
+test("test login", 2, function () {
         localStorage.clear();
 
         var testSecretary = new Secretary("test", "test", "lille", "test");
@@ -87,7 +89,7 @@ QUnit.test("test login", 2, function () {
     }
 );
 
-QUnit.test("test a secretary's existence", 2, function () {
+test("test a secretary's existence", 2, function () {
         localStorage.clear();
 
         var testSecretary = new Secretary("test", "test", "lille", "test");
@@ -103,7 +105,7 @@ QUnit.test("test a secretary's existence", 2, function () {
     }
 );
 
-QUnit.test("test secretary close operation", function () {
+test("test secretary close operation", function () {
         localStorage.clear();
 
         var testSecretary = new Secretary("test", "test", "lille", "test");

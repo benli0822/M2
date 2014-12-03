@@ -1,13 +1,15 @@
 /**
  * Created by benli on 24/11/14.
  */
+test_without_module_is_called = false;
+
 module("secretary", {
 //	setup:function(){alert("setup class individual test");},
 //	teardown:function(){alert("teardown class individual test");}
 });
 
 /**
- * Test for constructing a secretary class
+ * test for constructing a secretary class
  */
 test("test construct secretary class", 4, function () {
         var c = new Secretary("bob", "bob", "lille", "123");
@@ -38,7 +40,7 @@ test("test for creating a secretary from json object", function () {
             "pwd":"admin",
             "_type_of_person":"Secretary",
             "type_of_person":"Secretary"
-        }
+        };
 
         var createdSecretaryClass = SecretaryObjectHelper.createFromObject(testObject);
         equal(createdSecretaryClass.firstName, "admin", "created secretary first name = admin");
